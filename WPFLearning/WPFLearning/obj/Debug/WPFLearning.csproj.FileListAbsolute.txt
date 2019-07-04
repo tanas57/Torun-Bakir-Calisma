@@ -13,3 +13,4 @@ C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\WPFLearning\WPFLearnin
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\WPFLearning\WPFLearning\obj\Debug\WPFLearning.csproj.CoreCompileInputs.cache
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\WPFLearning\WPFLearning\obj\Debug\WPFLearning.exe
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\WPFLearning\WPFLearning\obj\Debug\WPFLearning.pdb
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\WPFLearning\WPFLearning\obj\Debug\App.baml

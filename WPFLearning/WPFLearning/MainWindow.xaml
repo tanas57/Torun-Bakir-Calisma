@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPFLearning"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
@@ -25,7 +24,7 @@
                     <RowDefinition Height="55"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0">
+                <Border Grid.Row="0" x:Name="brd_topLogo" MouseDown="Brd_topLogo_MouseDown">
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="/images/icon/mainform.png" Width="24" Height="24"></Image>
                         <Label Content="My Application" Foreground="White" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
@@ -61,14 +60,69 @@
                     <RowDefinition Height="35"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Background="White">
+                <Border Background="White" x:Name="brd_top" MouseDown="Brd_top_MouseDown">
                     <DockPanel HorizontalAlignment="Right" Width="75">
-                        <Button Content="_" Width="35"></Button>
-                        <Button Content="X" Width="35" x:Name="btnClose" Click="BtnClose_Click"/>
+                        <Button Content="__" Style="{DynamicResource miniButtons}"></Button>
+                        <Button Content="X" Style="{DynamicResource miniButtons}" x:Name="btnClose" Click="BtnClose_Click"/>
                     </DockPanel>
                 </Border>
             </Grid>
         </Border>
-        <Border Background="DarkBlue" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"></Border>
+        
+        <Border Background="DarkBlue" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" >
+            <StackPanel>
+                <Button Height="50" Style="{DynamicResource menuButtons}">
+                    <DockPanel Width="200" Margin="15,0,0,0">
+                        <Image Source="/images/icon/booklist_white.png" Width="32"/>
+                        <Label Content="Book List" Foreground="White" FontSize="16"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="50" Style="{DynamicResource menuButtons}">
+                    <DockPanel Width="200" Margin="15,0,0,0">
+                        <Image Source="/images/icon/readerlist.png" Width="32"/>
+                        <Label Content="Reader List" Foreground="White" FontSize="16"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="50" Style="{DynamicResource menuButtons}">
+                    <DockPanel Width="200" Margin="15,0,0,0">
+                        <Image Source="/images/icon/deposit.png" Width="32"/>
+                        <Label Content="Deposit List" Foreground="White" FontSize="16"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="50" Style="{DynamicResource menuButtons}">
+                    <DockPanel Width="200" Margin="15,0,0,0">
+                        <Image Source="/images/icon/calendar.png" Width="32"/>
+                        <Label Content="Time Expired" Foreground="White" FontSize="16"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="50" Style="{DynamicResource menuButtons}">
+                    <DockPanel Width="200" Margin="15,0,0,0">
+                        <Image Source="/images/icon/about.png" Width="32"/>
+                        <Label Content="About" Foreground="White" FontSize="16"/>
+                    </DockPanel>
+                </Button>
+                <Image Source="/images/page/reading.png" Width="150" Height="150" FlowDirection="LeftToRight" Opacity="0.33" Stretch="Fill">
+                    <Image.Effect>
+                        <BlurEffect Radius="1" RenderingBias="Quality"/>
+                    </Image.Effect>
+                </Image>
+                <Canvas>
+                    <Border Canvas.Left="70" Canvas.Top="-50" CornerRadius="10,10,10,10">
+                        <Label Content="0.0.0.1" Foreground="White" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#7F054273"/>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="#99053D76"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#CC053D76"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        
+                    </Border>
+                </Canvas>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

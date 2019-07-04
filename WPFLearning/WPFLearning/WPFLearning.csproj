@@ -100,7 +100,25 @@
     <Resource Include="images\icon\add_white.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\icon\booklist_white.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="images\icon\mainform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon\readerlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon\deposit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\page\reading.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
