@@ -27,5 +27,15 @@ namespace WPFLearning
             pr.Name = "Tayyip";
             pr.Surname = "Muslu";
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        //private void BtnClose_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //}
     }
 }
