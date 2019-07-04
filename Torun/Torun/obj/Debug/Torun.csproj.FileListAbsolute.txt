@@ -14,3 +14,9 @@ C:\Users\tayyipmuslu\Documents\GitHub\Torun\Torun\bin\Debug\Torun.exe
 C:\Users\tayyipmuslu\Documents\GitHub\Torun\Torun\bin\Debug\Torun.pdb
 C:\Users\tayyipmuslu\Documents\GitHub\Torun\Torun\obj\Debug\Torun.exe
 C:\Users\tayyipmuslu\Documents\GitHub\Torun\Torun\obj\Debug\Torun.pdb
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.csprojAssemblyReference.cache
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\App.g.cs
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun_MarkupCompile.cache
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun_MarkupCompile.lref
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.exe
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.pdb
