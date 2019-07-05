@@ -1,6 +1,6 @@
-## Torun Bakır Plan Tracer Application
+# Torun Bakır Plan Tracer Application
 
-# This project contains
+## This project contains
 
 * .NET C#
 * WPF
