@@ -13,7 +13,15 @@
         </Grid.ColumnDefinitions>
         <!-- log in -->
         <Border Grid.Column="0">
-            
+            <StackPanel Margin="20,0,0,0">
+                <DockPanel>
+                    <Button x:Name="username">
+                        <DockPanel>
+                           
+                        </DockPanel>
+                    </Button>
+                </DockPanel>
+            </StackPanel>
         </Border>
         <!-- sign up -->
         <Border Grid.Column="1">

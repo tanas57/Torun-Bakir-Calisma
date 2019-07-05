@@ -149,37 +149,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\icon\biglogo.jpg" />
-    <Resource Include="images\icon\topbarlogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\about.png" />
-    <Resource Include="images\icon\add_blue.png" />
-    <Resource Include="images\icon\add_white.png" />
-    <Resource Include="images\icon\menu_todo.png" />
-    <Resource Include="images\icon\calendar.png" />
-    <Resource Include="images\icon\mainform.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\page\reading.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\biglogo_white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\biglogo_blue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\employee.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\menu_planning.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\icon\menu_completed.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Db\DbModel.Context.tt">
