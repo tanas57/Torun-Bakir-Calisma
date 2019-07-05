@@ -115,10 +115,10 @@
 
             </Grid>
         </Border>
-
+        <!-- left menu-->
         <Border Background="DarkBlue" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" >
             <StackPanel>
-                <Button Height="50" Style="{DynamicResource menuButtons}">
+                <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_toDo" Click="Btn_toDo_Click">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/menu_todo.png" Width="32"/>
                         <Label Content="Yapılacaklar" Foreground="White" FontSize="16"/>
@@ -166,6 +166,12 @@
                     </Border>
                 </Canvas>
             </StackPanel>
+        </Border>
+        <!-- content -->
+        <Border Grid.Column="3" Grid.Row="1">
+            <Grid x:Name="Grd_Content">
+                
+            </Grid>
         </Border>
     </Grid>
 </Window>

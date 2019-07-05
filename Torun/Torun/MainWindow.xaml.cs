@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Torun.Classes;
+using Torun.UControls;
 
 namespace Torun
 {
@@ -34,6 +36,11 @@ namespace Torun
         private void BtnFormDown_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void Btn_toDo_Click(object sender, RoutedEventArgs e)
+        {
+            UserControllCall.Add(Grd_Content, new UCTodoList());
         }
     }
 }
