@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000" MinHeight="600" MinWidth="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="Plan Takip - Torun" Height="650" Width="1000" MinHeight="600" MinWidth="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="images/icon/topbarlogo.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="170"></RowDefinition>
@@ -82,12 +82,32 @@
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
                                     <Label Content="Toplam kayıtlı talep sayısı : " Foreground="White" FontSize="19"/>
-                                    <Label Content="Welcome!" Foreground="White" FontSize="19"/>
+                                    <Label Content="125" Foreground="LightSeaGreen" FontSize="19"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <Label Content="Toplam kayıtlı talep sayısı : " Foreground="White" FontSize="14"/>
-                                    <Label Content="Welcome!" Foreground="White" FontSize="14"/>
+                                    <Label Content="Açık talep : " Foreground="White" FontSize="14"/>
+                                    <Label Content="Welcome!" Foreground="MediumVioletRed" FontSize="14"/>
+                                    <Label Content="Kapatılmış talep : " Foreground="White" FontSize="14"/>
+                                    <Label Content="Welcome!" Foreground="Yellow" FontSize="14"/>
                                 </DockPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Column="1">
+                            <StackPanel Margin="30,20,0,0">
+                                <DockPanel>
+                                    <Image Source="/images/icon/employee.png" Height="100"/>
+                                    <Label Content="M.Tayyip Muslu ," Foreground="White" FontSize="19" Height="40"/>
+                                    <Label Content="hoşgeldiniz" Foreground="Bisque" FontSize="19" Height="40"/>
+                                </DockPanel>
+                                <DockPanel Margin="110, -35, 0,0">
+                                    <Button Height="50" Background="{x:Null}">
+                                        <DockPanel Margin="0,0,0,0">
+                                            <Image Source="/images/icon/exit.png" Height="24" Width="24"></Image>
+                                            <Label Content="Çıkış yap" Foreground="White" FontSize="17"/>
+                                        </DockPanel>
+                                    </Button>
+                                </DockPanel>
+                               
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -100,26 +120,26 @@
             <StackPanel>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/booklist_white.png" Width="32"/>
-                        <Label Content="Book List" Foreground="White" FontSize="16"/>
+                        <Image Source="/images/icon/menu_todo.png" Width="32"/>
+                        <Label Content="Yapılacaklar" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/readerlist.png" Width="32"/>
-                        <Label Content="Reader List" Foreground="White" FontSize="16"/>
+                        <Image Source="/images/icon/menu_planning.png" Width="32"/>
+                        <Label Content="Haftalık Plan" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/deposit.png" Width="32"/>
-                        <Label Content="Deposit List" Foreground="White" FontSize="16"/>
+                        <Image Source="/images/icon/menu_completed.png" Width="32"/>
+                        <Label Content="Yapılmış İşler" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/calendar.png" Width="32"/>
-                        <Label Content="Time Expired" Foreground="White" FontSize="16"/>
+                        <Label Content="Rapor" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">

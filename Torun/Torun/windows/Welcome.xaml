@@ -1,0 +1,23 @@
+﻿<Window x:Class="Torun.windows.Welcome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Torun.windows"
+        mc:Ignorable="d"
+        Title="Giriş - Plan Takip" Height="320" Width="650" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Torun;component/images/icon/topbarlogo.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- log in -->
+        <Border Grid.Column="0">
+            
+        </Border>
+        <!-- sign up -->
+        <Border Grid.Column="1">
+            
+        </Border>
+    </Grid>
+</Window>
