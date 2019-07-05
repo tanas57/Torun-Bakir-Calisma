@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Windows;
 using System.Windows.Input;
 using Torun.Classes;
 using Torun.UControls;
@@ -41,6 +42,11 @@ namespace Torun
         private void Btn_toDo_Click(object sender, RoutedEventArgs e)
         {
             UserControllCall.Add(Grd_Content, new UCTodoList());
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
     }
 }

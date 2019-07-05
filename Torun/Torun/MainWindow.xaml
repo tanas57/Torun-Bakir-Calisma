@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Plan Takip - Torun" Height="650" Width="1000" MinHeight="600" MinWidth="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="images/icon/topbarlogo.png">
+        Title="Plan Takip - Torun" Height="650" Width="1000" MinHeight="600" MinWidth="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="images/icon/topbarlogo.png" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="170"></RowDefinition>
@@ -151,7 +151,7 @@
 
                 <Canvas>
                     <Border Canvas.Left="70" CornerRadius="10,10,10,10">
-                        <Label Content="0.0.0.1" Foreground="White" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#7F054273"/>
+                        <Label x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#7F054273"/>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#99384757"/>

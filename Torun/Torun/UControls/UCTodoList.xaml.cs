@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Torun.Db;
 namespace Torun.UControls
 {
     /// <summary>
@@ -23,6 +23,8 @@ namespace Torun.UControls
         public UCTodoList()
         {
             InitializeComponent();
+            DB db = new DB();
+            Grid_user.ItemsSource = db.getUsers();
         }
     }
 }
