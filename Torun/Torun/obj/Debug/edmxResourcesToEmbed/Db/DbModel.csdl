@@ -13,8 +13,58 @@
     <Property Name="last_login" Type="DateTime" Precision="3" />
     <Property Name="login_status" Type="Byte" />
     <Property Name="user_status" Type="Byte" />
+    <NavigationProperty Name="todoList" Relationship="plan_tracerDBModel.FK_todoList_users" FromRole="users" ToRole="todoList" />
   </EntityType>
   <EntityContainer Name="plan_tracerDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="plan" EntityType="plan_tracerDBModel.plan" />
+    <EntitySet Name="todoList" EntityType="plan_tracerDBModel.todoList" />
+    <EntitySet Name="WorkDone" EntityType="plan_tracerDBModel.WorkDone" />
+    <AssociationSet Name="FK_todoList_users" Association="plan_tracerDBModel.FK_todoList_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="todoList" EntitySet="todoList" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="plan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="work_id" Type="Int32" />
+    <Property Name="add_time" Type="DateTime" Precision="3" />
+    <Property Name="work_plan_time" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="todoList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="talep_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="user_id" Type="Int32" />
+    <NavigationProperty Name="users" Relationship="plan_tracerDBModel.FK_todoList_users" FromRole="todoList" ToRole="users" />
+  </EntityType>
+  <EntityType Name="WorkDone">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="work_id" Type="Int32" />
+    <Property Name="workDoneTime" Type="DateTime" Precision="3" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="add_time" Type="DateTime" Precision="3" />
+    <Property Name="status" Type="Byte" />
+  </EntityType>
+  <Association Name="FK_todoList_users">
+    <End Type="plan_tracerDBModel.users" Role="users" Multiplicity="0..1" />
+    <End Type="plan_tracerDBModel.todoList" Role="todoList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="todoList">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

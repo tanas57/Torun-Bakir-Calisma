@@ -26,5 +26,8 @@ namespace Torun.Db
         }
     
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<plan> plan { get; set; }
+        public virtual DbSet<todoList> todoList { get; set; }
+        public virtual DbSet<WorkDone> WorkDone { get; set; }
     }
 }

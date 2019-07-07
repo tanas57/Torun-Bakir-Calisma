@@ -1,5 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="plan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="work_id" Type="int" />
+    <Property Name="add_time" Type="datetime" />
+    <Property Name="work_plan_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="todoList">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="talep_number" Type="varchar" MaxLength="15" />
+    <Property Name="description" Type="text" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
   <EntityType Name="users">
     <Key>
       <PropertyRef Name="id" />
@@ -8,13 +26,42 @@
     <Property Name="firstname" Type="varchar" MaxLength="50" />
     <Property Name="lastname" Type="varchar" MaxLength="50" />
     <Property Name="username" Type="varchar" MaxLength="25" />
-    <Property Name="pc_name" Type="varchar" MaxLength="50" />
     <Property Name="pc_username" Type="varchar" MaxLength="50" />
     <Property Name="last_login" Type="datetime" />
     <Property Name="login_status" Type="tinyint" />
     <Property Name="user_status" Type="tinyint" />
   </EntityType>
+  <EntityType Name="WorkDone">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="work_id" Type="int" />
+    <Property Name="workDoneTime" Type="datetime" />
+    <Property Name="description" Type="text" />
+    <Property Name="add_time" Type="datetime" />
+    <Property Name="status" Type="tinyint" />
+  </EntityType>
+  <Association Name="FK_todoList_user">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="todoList" Type="Self.todoList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="todoList">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="plan_tracerDBModelStoreContainer">
+    <EntitySet Name="plan" EntityType="Self.plan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="todoList" EntityType="Self.todoList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkDone" EntityType="Self.WorkDone" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_todoList_user" Association="Self.FK_todoList_user">
+      <End Role="users" EntitySet="users" />
+      <End Role="todoList" EntitySet="todoList" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

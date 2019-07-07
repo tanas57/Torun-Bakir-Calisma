@@ -83,7 +83,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Db\plan.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\todoList.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Db\users.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Db\WorkDone.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UControls\UCTodoList.xaml.cs">
@@ -149,9 +158,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\page\reading.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Db\DbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DbModel.edmx</DependentUpon>
@@ -162,6 +168,22 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\page\reading.png" />
+    <Resource Include="images\icon\about.png" />
+    <Resource Include="images\icon\add_blue.png" />
+    <Resource Include="images\icon\add_white.png" />
+    <Resource Include="images\icon\biglogo.jpg" />
+    <Resource Include="images\icon\biglogo_blue.png" />
+    <Resource Include="images\icon\biglogo_white.png" />
+    <Resource Include="images\icon\calendar.png" />
+    <Resource Include="images\icon\employee.png" />
+    <Resource Include="images\icon\exit.png" />
+    <Resource Include="images\icon\mainform.png" />
+    <Resource Include="images\icon\menu_completed.png" />
+    <Resource Include="images\icon\menu_planning.png" />
+    <Resource Include="images\icon\menu_todo.png" />
+    <Resource Include="images\icon\topbarlogo.png" />
+    <Resource Include="images\icon\user.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

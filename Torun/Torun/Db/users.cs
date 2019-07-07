@@ -14,6 +14,12 @@ namespace Torun.Db
     
     public partial class users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public users()
+        {
+            this.todoList = new HashSet<todoList>();
+        }
+    
         public int id { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
@@ -23,5 +29,8 @@ namespace Torun.Db
         public Nullable<System.DateTime> last_login { get; set; }
         public Nullable<byte> login_status { get; set; }
         public Nullable<byte> user_status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<todoList> todoList { get; set; }
     }
 }

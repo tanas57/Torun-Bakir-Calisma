@@ -8,11 +8,42 @@
           <ScalarProperty Name="firstname" ColumnName="firstname" />
           <ScalarProperty Name="lastname" ColumnName="lastname" />
           <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="pc_name" ColumnName="pc_name" />
           <ScalarProperty Name="pc_username" ColumnName="pc_username" />
           <ScalarProperty Name="last_login" ColumnName="last_login" />
           <ScalarProperty Name="login_status" ColumnName="login_status" />
           <ScalarProperty Name="user_status" ColumnName="user_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plan">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.plan">
+        <MappingFragment StoreEntitySet="plan">
+          <ScalarProperty Name="work_plan_time" ColumnName="work_plan_time" />
+          <ScalarProperty Name="add_time" ColumnName="add_time" />
+          <ScalarProperty Name="work_id" ColumnName="work_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="todoList">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.todoList">
+        <MappingFragment StoreEntitySet="todoList">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="talep_number" ColumnName="talep_number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkDone">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
+        <MappingFragment StoreEntitySet="WorkDone">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="add_time" ColumnName="add_time" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="workDoneTime" ColumnName="workDoneTime" />
+          <ScalarProperty Name="work_id" ColumnName="work_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
