@@ -23,5 +23,20 @@ namespace Torun.windows
         {
             InitializeComponent();
         }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnSignUp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
