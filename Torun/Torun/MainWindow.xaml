@@ -66,8 +66,9 @@
                 </Grid.RowDefinitions>
                 
                 <Border Grid.Row="0" Background="White" x:Name="brd_top" MouseDown="Brd_top_MouseDown">
-                    <DockPanel HorizontalAlignment="Right" Width="75">
+                    <DockPanel HorizontalAlignment="Right" Width="100" ContextMenuClosing="DockPanel_ContextMenuClosing">
                         <Button Content="__" Style="{DynamicResource miniButtons}" x:Name="btnFormDown" Click="BtnFormDown_Click"></Button>
+                        <Button Content="O" Style="{DynamicResource miniButtons}" x:Name="btnFormUp" Click="BtnFormUp_Click"/>
                         <Button Content="X" Style="{DynamicResource miniButtons}" x:Name="btnClose" Click="BtnClose_Click"/>
                     </DockPanel>
                 </Border>
@@ -82,13 +83,13 @@
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
                                     <Label Content="Toplam kayıtlı talep sayısı : " Foreground="White" FontSize="19"/>
-                                    <Label Content="125" Foreground="LightSeaGreen" FontSize="19"/>
+                                    <Label x:Name="requestCount" Content="125" Foreground="LightSeaGreen" FontSize="19"/>
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Content="Açık talep : " Foreground="White" FontSize="14"/>
-                                    <Label Content="Welcome!" Foreground="MediumVioletRed" FontSize="14"/>
+                                    <Label x:Name="requestOpen" Content="Welcome!" Foreground="MediumVioletRed" FontSize="14"/>
                                     <Label Content="Kapatılmış talep : " Foreground="White" FontSize="14"/>
-                                    <Label Content="Welcome!" Foreground="Yellow" FontSize="14"/>
+                                    <Label x:Name="requestClosed" Content="Welcome!" Foreground="Yellow" FontSize="14"/>
                                 </DockPanel>
                             </StackPanel>
                         </Border>

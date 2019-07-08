@@ -65,3 +65,4 @@ C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Tor
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.csproj.CopyComplete
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.exe
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.pdb
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.csprojAssemblyReference.cache

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Torun.Db
+namespace Torun.Database
 {
     using System;
     using System.Data.Entity;
@@ -25,9 +25,9 @@ namespace Torun.Db
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<users> users { get; set; }
         public virtual DbSet<plan> plan { get; set; }
         public virtual DbSet<todoList> todoList { get; set; }
+        public virtual DbSet<users> users { get; set; }
         public virtual DbSet<WorkDone> WorkDone { get; set; }
     }
 }

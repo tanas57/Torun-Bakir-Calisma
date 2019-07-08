@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Torun.Db
+namespace Torun.Database
 {
     using System;
     using System.Collections.Generic;

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Torun.Db
+namespace Torun.Database
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,6 @@ namespace Torun.Db
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string username { get; set; }
-        public string pc_name { get; set; }
         public string pc_username { get; set; }
         public Nullable<System.DateTime> last_login { get; set; }
         public Nullable<byte> login_status { get; set; }

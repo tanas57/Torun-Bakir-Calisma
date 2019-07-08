@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Torun.Db
+namespace Torun.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkDone
+    public partial class todoList
     {
         public int id { get; set; }
-        public Nullable<int> work_id { get; set; }
-        public Nullable<System.DateTime> workDoneTime { get; set; }
+        public string talep_number { get; set; }
         public string description { get; set; }
-        public Nullable<System.DateTime> add_time { get; set; }
-        public Nullable<byte> status { get; set; }
+        public Nullable<int> user_id { get; set; }
+    
+        public virtual users users { get; set; }
     }
 }

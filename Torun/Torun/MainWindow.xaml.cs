@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Torun.Classes;
 using Torun.UControls;
-
+using Torun.Database;
 namespace Torun
 {
     /// <summary>
@@ -11,10 +11,12 @@ namespace Torun
     /// </summary>
     public partial class MainWindow : Window
     {
+        public DB db;
         public MainWindow()
         {
             InitializeComponent();
             Personnel pr = new Personnel();
+            db = new DB();
             pr.Name = "Tayyip";
             pr.Surname = "Muslu";
         }
@@ -46,7 +48,23 @@ namespace Torun
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.MaxWidth = SystemParameters.PrimaryScreenWidth;
+            this.MaxHeight = SystemParameters.PrimaryScreenHeight;
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            requestCount.Content = db.getRequestCount(1); // load count of all request
+            requestOpen.Content = db.getRequestCount(2);  // load count of currently open requests
+            requestClosed.Content = db.getRequestCount(3);// load count of closed request until today
+        }
+
+        private void DockPanel_ContextMenuClosing(object sender, System.Windows.Controls.ContextMenuEventArgs e)
+        {
+
+        }
+
+        private void BtnFormUp_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
         }
     }
 }
