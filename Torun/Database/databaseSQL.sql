@@ -4,23 +4,24 @@
 -- users table
 CREATE TABLE users(
 	id INT PRIMARY KEY IDENTITY(1,1),
-	firstname VARCHAR(50),
-	lastname VARCHAR(50),
-	user_name VARCHAR(25),
-	pc_name VARCHAR(50),
-	last_login DATETIME,
-	login_status TINYINT, -- 1: on, 2 off 
-	user_status TINYINT,  -- 1: active, 2: disactive 3: banned
+	firstname VARCHAR(50) NOT NULL,
+	lastname VARCHAR(50) NOT NULL,
+	user_name VARCHAR(25) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	pc_name VARCHAR(50) NOT NULL,
+	last_login DATETIME NOT NULL,
+	login_status TINYINT NOT NULL, -- 1: on, 2 off 
+	user_status TINYINT NOT NULL,  -- 1: active, 2: disactive 3: banned
 );
 -- to do list table
 CREATE TABLE todoList(
 	id INT PRIMARY KEY IDENTITY(1,1),
-	request_number VARCHAR(15),
-	priority TINYINT, -- 1: high, 2: normal, 3: low
+	request_number VARCHAR(15) NOT NULL,
+	priority TINYINT NOT NULL, -- 1: high, 2: normal, 3: low
 	description TEXT,
-	user_id INT, -- which user is
-	add_time DATETIME,
-	status TINYINT -- 1: added, 2: updated, 3: deleted
+	user_id INT NOT NULL, -- which user is
+	add_time DATETIME NOT NULL,
+	status TINYINT NOT NULL -- 1: added, 2: updated, 3: deleted
 );
 
 alter table todoList
@@ -31,9 +32,9 @@ foreign key  (user_id) references users (id);
 
 CREATE TABLE plans(
 	id INT PRIMARY KEY IDENTITY(1,1),
-	work_id INT,
-	add_time DATETIME,
-	work_plan_time DATETIME
+	work_id INT NOT NULL,
+	add_time DATETIME NOT NULL,
+	work_plan_time DATETIME NOT NULL
 );
 
 alter table plans
@@ -44,11 +45,11 @@ foreign key  (work_id) references todoList (id);
 
 CREATE TABLE WorkDone(
 	id INT PRIMARY KEY IDENTITY(1,1),
-	work_id INT,
-	workDoneTime DATETIME,
-	add_time DATETIME,
+	work_id INT NOT NULL,
+	workDoneTime DATETIME NOT NULL,
+	add_time DATETIME NOT NULL,
 	description TEXT,
-	status TINYINT
+	status TINYINT NOT NULL
 );
 
 alter table WorkDone
