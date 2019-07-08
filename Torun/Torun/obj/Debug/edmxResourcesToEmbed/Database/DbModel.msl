@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="plan_tracerModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
-    <EntitySetMapping Name="plan">
-      <EntityTypeMapping TypeName="plan_tracerModel.plan">
-        <MappingFragment StoreEntitySet="plan">
+  <EntityContainerMapping StorageEntityContainer="plan_tracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
+    <EntitySetMapping Name="plans">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.plans">
+        <MappingFragment StoreEntitySet="plans">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="work_id" ColumnName="work_id" />
           <ScalarProperty Name="add_time" ColumnName="add_time" />
@@ -12,23 +12,26 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="todoList">
-      <EntityTypeMapping TypeName="plan_tracerModel.todoList">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.todoList">
         <MappingFragment StoreEntitySet="todoList">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="talep_number" ColumnName="talep_number" />
+          <ScalarProperty Name="request_number" ColumnName="request_number" />
+          <ScalarProperty Name="priority" ColumnName="priority" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="add_time" ColumnName="add_time" />
+          <ScalarProperty Name="status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="users">
-      <EntityTypeMapping TypeName="plan_tracerModel.users">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.users">
         <MappingFragment StoreEntitySet="users">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
           <ScalarProperty Name="lastname" ColumnName="lastname" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="pc_username" ColumnName="pc_username" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="pc_name" ColumnName="pc_name" />
           <ScalarProperty Name="last_login" ColumnName="last_login" />
           <ScalarProperty Name="login_status" ColumnName="login_status" />
           <ScalarProperty Name="user_status" ColumnName="user_status" />
@@ -36,13 +39,13 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WorkDone">
-      <EntityTypeMapping TypeName="plan_tracerModel.WorkDone">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
         <MappingFragment StoreEntitySet="WorkDone">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="work_id" ColumnName="work_id" />
           <ScalarProperty Name="workDoneTime" ColumnName="workDoneTime" />
-          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="add_time" ColumnName="add_time" />
+          <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="status" ColumnName="status" />
         </MappingFragment>
       </EntityTypeMapping>

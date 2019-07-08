@@ -15,7 +15,21 @@ namespace Torun.Database
         }
         public List<Database.users> getUsers => db.users.ToList();
 
-        public List<Database.todoList> GetTodoLists => db.todoList.ToList();
+        public List<todoList> GetTodoLists() {
+            var result = from row in db.todoList
+                          join u in db.users
+                          on row.user_id equals u.id
+                          select new
+                          {
+                              row.request_number,
+                              row.description,
+                              u.firstname
+                          };
+
+            return null;
+            //return new List<todoList>(result);
+
+        }
 
         public int getRequestCount(byte ReqType)
         {
