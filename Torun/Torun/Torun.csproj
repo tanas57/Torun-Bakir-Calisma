@@ -159,7 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\page\reading.png" />
-    <Resource Include="images\icon\about.png" />
     <Resource Include="images\icon\add_blue.png" />
     <Resource Include="images\icon\add_white.png" />
     <Resource Include="images\icon\biglogo.jpg" />
@@ -189,6 +188,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\icon\backup.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

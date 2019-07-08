@@ -77,7 +77,7 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="385"/>
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0">
                             <StackPanel Margin="30,20,0,0">
@@ -87,9 +87,9 @@
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Content="Açık talep : " Foreground="White" FontSize="14"/>
-                                    <Label x:Name="requestOpen" Content="Welcome!" Foreground="MediumVioletRed" FontSize="14"/>
+                                    <Label x:Name="requestOpen" Content="0" Foreground="MediumVioletRed" FontSize="14"/>
                                     <Label Content="Kapatılmış talep : " Foreground="White" FontSize="14"/>
-                                    <Label x:Name="requestClosed" Content="Welcome!" Foreground="Yellow" FontSize="14"/>
+                                    <Label x:Name="requestClosed" Content="0" Foreground="Yellow" FontSize="14"/>
                                 </DockPanel>
                             </StackPanel>
                         </Border>
@@ -145,8 +145,8 @@
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/about.png" Width="32"/>
-                        <Label Content="About" Foreground="White" FontSize="16"/>
+                        <Image Source="/images/icon/backup.png" Width="32"/>
+                        <Label Content="Backup" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
 

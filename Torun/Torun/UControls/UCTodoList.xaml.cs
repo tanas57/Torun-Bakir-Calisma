@@ -24,7 +24,7 @@ namespace Torun.UControls
         {
             InitializeComponent();
             DB db = new DB();
-            Grid_user.ItemsSource = db.getUsers();
+            Grid_todoList.ItemsSource = db.GetTodoLists;
         }
     }
 }

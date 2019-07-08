@@ -13,10 +13,9 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
-        public List<Database.users> getUsers()
-        {
-            return db.users.ToList();
-        }
+        public List<Database.users> getUsers => db.users.ToList();
+
+        public List<Database.todoList> GetTodoLists => db.todoList.ToList();
 
         public int getRequestCount(byte ReqType)
         {

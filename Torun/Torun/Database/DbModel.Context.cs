@@ -25,7 +25,7 @@ namespace Torun.Database
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<plan> plan { get; set; }
+        public virtual DbSet<plans> plans { get; set; }
         public virtual DbSet<todoList> todoList { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<WorkDone> WorkDone { get; set; }

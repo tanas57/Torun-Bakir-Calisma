@@ -12,11 +12,13 @@ namespace Torun.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class plan
+    public partial class plans
     {
         public int id { get; set; }
         public Nullable<int> work_id { get; set; }
         public Nullable<System.DateTime> add_time { get; set; }
         public Nullable<System.DateTime> work_plan_time { get; set; }
+    
+        public virtual todoList todoList { get; set; }
     }
 }

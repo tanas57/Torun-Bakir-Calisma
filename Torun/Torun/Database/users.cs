@@ -23,8 +23,8 @@ namespace Torun.Database
         public int id { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
-        public string username { get; set; }
-        public string pc_username { get; set; }
+        public string user_name { get; set; }
+        public string pc_name { get; set; }
         public Nullable<System.DateTime> last_login { get; set; }
         public Nullable<byte> login_status { get; set; }
         public Nullable<byte> user_status { get; set; }

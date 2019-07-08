@@ -29,14 +29,14 @@ foreign key  (user_id) references users (id);
 
 -- plan table
 
-CREATE TABLE plan(
+CREATE TABLE plans(
 	id INT PRIMARY KEY IDENTITY(1,1),
 	work_id INT,
 	add_time DATETIME,
 	work_plan_time DATETIME
 );
 
-alter table plan
+alter table plans
 add constraint FK_plan_todoList 
 foreign key  (work_id) references todoList (id);
 
@@ -55,3 +55,12 @@ alter table WorkDone
 add constraint FK_WorkDone_todoList 
 foreign key  (work_id) references todoList(id);
 
+insert into users (firstname, lastname, user_name, pc_name, last_login, login_status, user_status) values ('M.Tayyip', 'Muslu', 'tanas57', 'MusluNET', '2019-07-08', 0, 1);
+insert into users (firstname, lastname, user_name, pc_name, last_login, login_status, user_status) values ('Emir', 'Çağlın', 'emir', 'EMIR', '2019-07-09', 0, 1);
+
+insert into todoList(request_number, priority, user_id, description, add_time, status)
+values('2900', 2, 1, 'Talep açıklaması gelecek', '2019-07-07', 1);
+insert into todoList(request_number, priority, user_id, description, add_time, status)
+values(NULL, 3, 1, 'Talep açıklaması gelecek', '2019-07-07', 1);
+insert into todoList(request_number, priority, user_id, description, add_time, status)
+values('2900', 1, 1, 'Talep açıklaması gelecek', '2019-07-07', 1);
