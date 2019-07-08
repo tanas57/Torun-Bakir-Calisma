@@ -40,5 +40,11 @@ namespace Torun.Database
             }
             return 0;
         }
+
+        public byte Login(string username, string password)
+        {
+
+            return 0;
+        }
     }
 }
