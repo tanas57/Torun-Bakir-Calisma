@@ -45,10 +45,10 @@ namespace Torun.Database
             {
                 if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password))
                 {
-                    //users tempUser = db.users.SingleOrDefault(x => x.user_name == user.user_name);
-                    //tempUser = user;
-                    //db.Entry(tempUser).State = EntityState.Modified;
-                    //db.SaveChanges();
+                    db.users.Attach(user);
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                   
                     return 1; // login successfully
                 }
                 else return 3; // 3 : password is wrong
