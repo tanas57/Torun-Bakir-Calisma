@@ -33,6 +33,8 @@
     <Property Name="last_login" Type="datetime" />
     <Property Name="login_status" Type="tinyint" />
     <Property Name="user_status" Type="tinyint" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="register_date" Type="datetime" />
   </EntityType>
   <EntityType Name="WorkDone">
     <Key>

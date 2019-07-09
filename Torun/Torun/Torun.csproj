@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\MD5Crypt.cs" />
+    <Compile Include="Classes\FileOperation.cs" />
     <Compile Include="Classes\UserControllCall.cs" />
     <Compile Include="Database\DB.cs" />
     <Compile Include="Database\DbModel.Context.cs">
@@ -196,6 +198,9 @@
     <Resource Include="images\welcome_screen\username_blue.png" />
     <Resource Include="images\welcome_screen\password.png" />
     <Resource Include="images\welcome_screen\username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

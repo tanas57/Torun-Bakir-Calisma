@@ -27,6 +27,8 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="plan_tracerDBModel.users">
         <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="register_date" ColumnName="register_date" />
+          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
           <ScalarProperty Name="lastname" ColumnName="lastname" />

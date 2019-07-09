@@ -28,6 +28,8 @@ namespace Torun.Database
         public Nullable<System.DateTime> last_login { get; set; }
         public Nullable<byte> login_status { get; set; }
         public Nullable<byte> user_status { get; set; }
+        public string password { get; set; }
+        public Nullable<System.DateTime> register_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<todoList> todoList { get; set; }

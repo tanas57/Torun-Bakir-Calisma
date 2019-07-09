@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="plans">
           <Key>
             <PropertyRef Name="id" />
@@ -38,6 +38,8 @@
           <Property Name="last_login" Type="datetime" />
           <Property Name="login_status" Type="tinyint" />
           <Property Name="user_status" Type="tinyint" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="register_date" Type="datetime" />
         </EntityType>
         <EntityType Name="WorkDone">
           <Key>
@@ -104,8 +106,7 @@
             <End Role="WorkDone" EntitySet="WorkDone" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="plan_tracerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -147,6 +148,8 @@
           <Property Name="login_status" Type="Byte" />
           <Property Name="user_status" Type="Byte" />
           <NavigationProperty Name="todoList" Relationship="Self.FK_todoList_user" FromRole="users" ToRole="todoList" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="register_date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="WorkDone">
           <Key>
@@ -246,6 +249,8 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="plan_tracerDBModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="register_date" ColumnName="register_date" />
+                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />

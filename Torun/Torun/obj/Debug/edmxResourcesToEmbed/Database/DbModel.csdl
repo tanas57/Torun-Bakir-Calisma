@@ -38,6 +38,8 @@
     <Property Name="login_status" Type="Byte" />
     <Property Name="user_status" Type="Byte" />
     <NavigationProperty Name="todoList" Relationship="Self.FK_todoList_user" FromRole="users" ToRole="todoList" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="register_date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="WorkDone">
     <Key>
