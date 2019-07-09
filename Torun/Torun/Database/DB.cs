@@ -41,8 +41,20 @@ namespace Torun.Database
             return 0;
         }
 
-        public byte Login(string username, string password)
+        public byte Login(users user)
         {
+            if (db.users.Any(x => x.user_name == user.user_name))
+            {
+                if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password)) return 1; // login successfully
+                else return 3; // 3 : password is wrong
+            }
+            else return 2; // 2 : user could not find
+        }
+
+        public byte Register(users user)
+        {
+            db.users.Add(user);
+            db.SaveChanges();
 
             return 0;
         }
