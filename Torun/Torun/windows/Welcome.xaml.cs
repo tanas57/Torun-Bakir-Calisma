@@ -62,8 +62,12 @@ namespace Torun.windows
                             switch (db.Register(currentUser))
                             {
                                 case 1:
+                                    lbl_RegResult.Content = "Kayıt başarılı";
+                                    lbl_RegResult.Background = Brushes.Green;
                                     break;
                                 case 0:
+                                    lbl_RegResult.Content = "Kullanıcı daha önce kayıt edilmiş";
+                                    lbl_RegResult.Background = Brushes.Red;
                                     break;
                             }
                         }

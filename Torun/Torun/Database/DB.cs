@@ -47,7 +47,6 @@ namespace Torun.Database
             {
                 if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password))
                 {
-                    
                     return 1; // login successfully
                 }
                 else return 3; // 3 : password is wrong
@@ -57,10 +56,12 @@ namespace Torun.Database
 
         public byte Register(users user)
         {
+            if (db.users.Any(x => x.user_name == user.user_name)) return 0;
+
             db.users.Add(user);
             db.SaveChanges();
 
-            return 0;
+            return 1;
         }
     }
 }
