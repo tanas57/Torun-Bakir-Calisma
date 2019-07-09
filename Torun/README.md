@@ -6,3 +6,4 @@
 * WPF
 * Entitiy Framework
 * SQL Database
+* LINQ
