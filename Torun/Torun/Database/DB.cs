@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Sql;
 using System.Data.SqlClient;
 namespace Torun.Database
@@ -13,32 +14,29 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
-        public List<Database.users> getUsers => db.users.ToList();
 
-        public List<todoList> GetTodoLists() {
-            var result = from row in db.todoList
-                          join u in db.users
-                          on row.user_id equals u.id
-                          select new
-                          {
-                              row.request_number,
-                              row.description,
-                              u.firstname
-                          };
-
-            return null;
+        public List<todoList> GetTodoLists(users user) {
+            return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
             //return new List<todoList>(result);
 
         }
 
-        public int getRequestCount(byte ReqType)
+        public int GetRequestCount(byte ReqType, users user)
         {
             switch (ReqType)
             {
-                case 1: return db.todoList.Count(); break;
-                case 2: return db.todoList.Count(); break;
+                case 1: return db.todoList.Where(x => x.user_id == user.id).Count();
+                case 2: return db.todoList.Where(x => x.status == 2 && x.user_id == user.id).Count();
+                case 3: return db.todoList.Where(x => x.status == 3 && x.user_id == user.id).Count();
             }
             return 0;
+        }
+
+        public users GetUserDetail(users user)
+        {
+            users temp = new users();
+            temp = db.users.SingleOrDefault(x => x.user_name == user.user_name);
+            return temp;
         }
 
         public byte Login(users user)
@@ -47,6 +45,10 @@ namespace Torun.Database
             {
                 if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password))
                 {
+                    //users tempUser = db.users.SingleOrDefault(x => x.user_name == user.user_name);
+                    //tempUser = user;
+                    //db.Entry(tempUser).State = EntityState.Modified;
+                    //db.SaveChanges();
                     return 1; // login successfully
                 }
                 else return 3; // 3 : password is wrong

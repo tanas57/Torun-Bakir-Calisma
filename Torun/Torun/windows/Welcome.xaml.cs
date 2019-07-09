@@ -22,8 +22,8 @@ namespace Torun.windows
     {
         private users currentUser;
         private DB db;
-        private string str_saveLogin = "username.txt";
-        private string str_savePass = "password.txt";
+        private string str_saveLogin = "username.txt"; //
+        private string str_savePass = "password.txt";  // to save user login info
         private bool passwordMD5 = false;
         public Welcome()
         {

@@ -200,8 +200,6 @@
     <Resource Include="images\welcome_screen\password.png" />
     <Resource Include="images\welcome_screen\username.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

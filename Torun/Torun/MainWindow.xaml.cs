@@ -54,11 +54,11 @@ namespace Torun
             this.MaxWidth = SystemParameters.PrimaryScreenWidth;
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            requestCount.Content = db.getRequestCount(1); // load count of all request
-            requestOpen.Content = db.getRequestCount(2);  // load count of currently open requests
-            requestClosed.Content = db.getRequestCount(3);// load count of closed request until today
-
-            menuUsername.Content = currentUser.user_name;
+            requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
+            requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
+            requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
+            currentUser = db.GetUserDetail(currentUser);
+            menuUsername.Content = currentUser.firstname + " " + currentUser.lastname;
         }
 
         private void DockPanel_ContextMenuClosing(object sender, System.Windows.Controls.ContextMenuEventArgs e)
