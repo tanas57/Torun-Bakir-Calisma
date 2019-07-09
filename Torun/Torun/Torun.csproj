@@ -193,6 +193,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\welcome_screen\info.png" />
     <Resource Include="images\welcome_screen\identification.png" />
     <Resource Include="images\welcome_screen\password_blue.png" />
     <Resource Include="images\welcome_screen\username_blue.png" />

@@ -12,6 +12,8 @@ namespace Torun
     public partial class MainWindow : Window
     {
         public DB db;
+        public Window welcome;
+        public users currentUser;
         public MainWindow()
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace Torun
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            welcome.Close();
         }
 
         private void Brd_top_MouseDown(object sender, MouseButtonEventArgs e)
@@ -54,6 +57,8 @@ namespace Torun
             requestCount.Content = db.getRequestCount(1); // load count of all request
             requestOpen.Content = db.getRequestCount(2);  // load count of currently open requests
             requestClosed.Content = db.getRequestCount(3);// load count of closed request until today
+
+            menuUsername.Content = currentUser.user_name;
         }
 
         private void DockPanel_ContextMenuClosing(object sender, System.Windows.Controls.ContextMenuEventArgs e)
@@ -65,6 +70,13 @@ namespace Torun
         {
             if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
+        }
+
+        private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
+        {
+            currentUser.login_status = 0;
+            this.Close();
+            welcome.Show();
         }
     }
 }

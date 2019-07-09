@@ -45,7 +45,11 @@ namespace Torun.Database
         {
             if (db.users.Any(x => x.user_name == user.user_name))
             {
-                if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password)) return 1; // login successfully
+                if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password))
+                {
+                    
+                    return 1; // login successfully
+                }
                 else return 3; // 3 : password is wrong
             }
             else return 2; // 2 : user could not find
