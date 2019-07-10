@@ -28,8 +28,8 @@ namespace Torun.Database
             switch (ReqType)
             {
                 case 1: return db.todoList.Where(x => x.user_id == user.id).Count();
-                case 2: return db.todoList.Where(x => x.status == 2 && x.user_id == user.id).Count();
-                case 3: return db.todoList.Where(x => x.status == 3 && x.user_id == user.id).Count();
+                case 2: return db.todoList.Where(x => x.status == 1 && x.user_id == user.id).Count();
+                case 3: return db.todoList.Where(x => x.status == 2 && x.user_id == user.id).Count();
             }
             return 0;
         }

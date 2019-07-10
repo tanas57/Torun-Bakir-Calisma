@@ -25,6 +25,7 @@ namespace Torun
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            db.LogOut(currentUser);
             this.Close();
             welcome.Close();
         }
@@ -56,10 +57,10 @@ namespace Torun
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
 
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            currentUser = db.GetUserDetail(currentUser);
             requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
             requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
             requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
-            currentUser = db.GetUserDetail(currentUser);
             menuUsername.Content = currentUser.firstname + " " + currentUser.lastname;
         }
 

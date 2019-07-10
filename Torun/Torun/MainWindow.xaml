@@ -97,8 +97,7 @@
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
                                     <Image Source="/images/icon/employee.png" Height="100"/>
-                                    <Label x:Name="menuUsername" Content="M.Tayyip Muslu ," Foreground="White" FontSize="19" Height="40"/>
-                                    <Label Content="hoşgeldiniz" Foreground="Bisque" FontSize="19" Height="40"/>
+                                    <Label x:Name="menuUsername" Content="M.Tayyip Muslu" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
                                 </DockPanel>
                                 <DockPanel Margin="110, -35, 0,0">
                                     <Button x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">

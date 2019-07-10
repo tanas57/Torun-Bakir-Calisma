@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Classes.FileOperations;
-
+using Torun.Lang;
 namespace Torun.windows
 {
     /// <summary>
@@ -27,11 +27,12 @@ namespace Torun.windows
         private string str_saveLogin = "username.txt"; //
         private string str_savePass = "password.txt";  // to save user login info
         private bool passwordMD5 = false;
+        private ILanguage language;
         public Welcome()
         {
             InitializeComponent();
-            currentUser = new users();
             db = new DB();
+            language = new TR();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -41,6 +42,7 @@ namespace Torun.windows
 
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
+            currentUser = new users();
             if(register_firstname.Text != String.Empty 
                 && register_lastname.Text != String.Empty 
                 && register_username.Text != String.Empty 
@@ -64,42 +66,43 @@ namespace Torun.windows
                             switch (db.Register(currentUser))
                             {
                                 case 1:
-                                    lbl_RegResult.Content = "Kayıt başarılı";
+                                    lbl_RegResult.Content = language.WelcomeSignSuccess;
                                     lbl_RegResult.Background = Brushes.Green;
                                     break;
                                 case 0:
-                                    lbl_RegResult.Content = "Kullanıcı daha önce kayıt edilmiş";
+                                    lbl_RegResult.Content = language.WelcomeSignUserAlreadyExists;
                                     lbl_RegResult.Background = Brushes.Red;
                                     break;
                             }
                         }
                         else
                         {
-                            lbl_RegResult.Content = "Şifre yetersiz";
+                            lbl_RegResult.Content = language.WelcomeSignPasswordNotEnough;
                             lbl_RegResult.Background = Brushes.Red;
                         }
                     else
                     {
-                        lbl_RegResult.Content = "Girilen şifreler uyuşmuyor";
+                        lbl_RegResult.Content = language.WelcomeSignPasswordsNotMatch;
                         lbl_RegResult.Background = Brushes.Red;
                     }
                 }
                 else
                 {
-                    lbl_RegResult.Content = "Kullanıcı adı en az 3 karakter olmalı";
+                    lbl_RegResult.Content = language.WelcomeSignUsernameLenghtMustBeGreaterThanThree;
                     lbl_RegResult.Background = Brushes.Red;
                 }
             }
             else
             {
-                lbl_RegResult.Content = "Lütfen boş alanları doldurun";
+                lbl_RegResult.Content = language.WelcomeSignFillAllFields;
                 lbl_RegResult.Background = Brushes.Red;
             }
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if(chk_loginSave.IsChecked == true && passwordMD5 == true) currentUser.password = login_password.Password;
+            currentUser = new users();
+            if (chk_loginSave.IsChecked == true && passwordMD5 == true) currentUser.password = login_password.Password;
             else
                 if(passwordMD5 == false)
                     currentUser.password = MD5Crypt.MD5Hash(login_password.Password);
@@ -108,7 +111,7 @@ namespace Torun.windows
             if (currentUser.user_name.Length < 3 || currentUser.password.Length < 3)
             {
                 lbl_LoginResult.Visibility = Visibility.Visible;
-                lbl_LoginResult.Content = "Kullanıcı adı veya şifre yetersiz";
+                lbl_LoginResult.Content = language.WelcomeLoginFailedNotEnoughUserOrPassword;
                 lbl_LoginResult.Background = Brushes.Red;
             }
             else
@@ -117,7 +120,7 @@ namespace Torun.windows
                 {
                     case 1:
                         lbl_LoginResult.Visibility = Visibility.Hidden;
-                        lbl_LoginResult.Content = "Giriş başarılı";
+                        lbl_LoginResult.Content = language.WelcomeLoginSuccess;
                         lbl_LoginResult.Background = Brushes.Green;
                         /*
                         * when an user login, a file which has a name that is current username
@@ -140,13 +143,13 @@ namespace Torun.windows
 
                     case 2:
                         lbl_LoginResult.Visibility = Visibility.Visible;
-                        lbl_LoginResult.Content = "Kullanıcı bulunamadı";
+                        lbl_LoginResult.Content = language.WelcomeLoginFailedUserNotFind;
                         lbl_LoginResult.Background = Brushes.Red;
                         break;
 
                     case 3:
                         lbl_LoginResult.Visibility = Visibility.Visible;
-                        lbl_LoginResult.Content = "Şifre yanlış";
+                        lbl_LoginResult.Content = language.WelcomeLoginFailedWrongPassword;
                         lbl_LoginResult.Background = Brushes.Red;
                         break;
                 }
@@ -155,6 +158,18 @@ namespace Torun.windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // form items names from language
+            lbl_loginTitle.Content = language.WelcomeLoginTitle;
+            lbl_registerTitle.Content = language.WelcomeRegisterTitle;
+            btnSignUp.Content = language.WelcomeRegisterButton;
+            lbl_info_username.Content = language.WelcomeRegisterTitleUsername;
+            lbl_info_password.Content = language.WelcomeRegisterTitlePassword;
+            lbl_info_password2.Content = language.WelcomeRegisterTitlePasswordAgain;
+            lbl_info_firstname.Content = language.WelcomeRegisterTitleFirstName;
+            lbl_info_lastname.Content = language.WelcomeRegisterTitleLastName;
+            chk_loginSave.Content = language.WelcomeLoginRemember;
+            btnLogin.Content = language.WelcomeLoginButton;
+
             if (FileOperation.FileExists(FileNames.IS_LOGGED))
             {
                 FileOperation.UserFilename = FileOperation.Read(FileNames.IS_LOGGED);

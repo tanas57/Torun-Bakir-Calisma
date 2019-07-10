@@ -5,15 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Torun.UControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!-- right menu-->
+        <Border Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!-- add button is here-->
+                <Border Grid.Row="0">
+                    <Button Content="Yeni talep ekle" x:Name="btn_adddRequest" Click="btn_adddRequest_Click"/>
+                </Border>
+                <!-- to do list-->
+                <Border Grid.Row="1">
+                    <DataGrid x:Name="Grid_todoList" Background="White" BorderBrush="{x:Null}" BorderThickness="0"/>
+                </Border>
+            </Grid>
+        </Border>
+        <!-- left menu-->
+        <Border Grid.Column="1">
+            
+        </Border>
+        <!--
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0">
-            
+        <Border Grid.Row="0" Background="White">
+            <Button Width="100" Content="Yeni talep ekle" x:Name="btn_adddRequest" Click="btn_adddRequest_Click">
+                
+            </Button>
         </Border>
         <Border Grid.Row="1">
             <Grid>
@@ -27,6 +55,6 @@
                 <Border Grid.Column="1"></Border>
                 
             </Grid>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>
