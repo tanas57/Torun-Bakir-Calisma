@@ -24,7 +24,29 @@
                 </Border>
                 <!-- to do list-->
                 <Border Grid.Row="1">
-                    <DataGrid x:Name="Grid_todoList" Background="White" BorderBrush="{x:Null}" BorderThickness="0"/>
+                    <DataGrid x:Name="Grid_todoList" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
+                              CanUserResizeColumns="False" Background="{x:Null}"
+                              >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Padding" Value="3"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background" Value="Blue"/>
+                                        <Setter Property="BorderThickness" Value="5,0,0,0"/>
+                                        <Setter Property="BorderBrush" Value="Red"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Border>
             </Grid>
         </Border>
