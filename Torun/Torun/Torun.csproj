@@ -98,6 +98,8 @@
     <Compile Include="Database\WorkDone.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Lang\ILanguage.cs" />
+    <Compile Include="Lang\TR.cs" />
     <Compile Include="UControls\UCTodoList.xaml.cs">
       <DependentUpon>UCTodoList.xaml</DependentUpon>
     </Compile>
