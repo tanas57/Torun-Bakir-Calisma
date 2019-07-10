@@ -66,8 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\FileOperations\FileNames.cs" />
     <Compile Include="Classes\MD5Crypt.cs" />
-    <Compile Include="Classes\FileOperation.cs" />
+    <Compile Include="Classes\FileOperations\FileOperation.cs" />
     <Compile Include="Classes\UserControllCall.cs" />
     <Compile Include="Database\DB.cs" />
     <Compile Include="Database\DbModel.Context.cs">

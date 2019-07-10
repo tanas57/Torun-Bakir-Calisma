@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Torun.Database;
 using Torun.Classes;
+using Torun.Classes.FileOperations;
+
 namespace Torun.windows
 {
     /// <summary>
@@ -121,6 +123,8 @@ namespace Torun.windows
                         * when an user login, a file which has a name that is current username
                         */
                         FileOperation.UserFilename = currentUser.user_name;
+                        
+                        FileOperation.Write(currentUser.user_name, FileNames.IS_LOGGED, true);
                         FileOperation.ControlUserFile();
                         if (chk_loginSave.IsChecked == true)
                         {
@@ -151,12 +155,16 @@ namespace Torun.windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if(FileOperation.FileExists(str_saveLogin) && FileOperation.FileExists(str_savePass))
+            if (FileOperation.FileExists(FileNames.IS_LOGGED))
             {
-                chk_loginSave.IsChecked = true;
-                login_username.Text = FileOperation.Read(str_saveLogin);
-                login_password.Password = FileOperation.Read(str_savePass);
-                passwordMD5 = true;
+                FileOperation.UserFilename = FileOperation.Read(FileNames.IS_LOGGED);
+                if (FileOperation.FileExists(str_saveLogin) && FileOperation.FileExists(str_savePass))
+                {
+                    chk_loginSave.IsChecked = true;
+                    login_username.Text = FileOperation.Read(str_saveLogin);
+                    login_password.Password = FileOperation.Read(str_savePass);
+                    passwordMD5 = true;
+                }
             }
         }
 
