@@ -51,8 +51,10 @@ namespace Torun
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // set maximum screen size
             this.MaxWidth = SystemParameters.PrimaryScreenWidth;
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
+
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
             requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
@@ -74,7 +76,7 @@ namespace Torun
 
         private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
         {
-            currentUser.login_status = 0;
+            db.LogOut(currentUser);
             this.Close();
             welcome.Show();
         }

@@ -103,8 +103,6 @@ namespace Torun.windows
                     currentUser.password = MD5Crypt.MD5Hash(login_password.Password);
 
             currentUser.user_name = login_username.Text;
-            currentUser.login_status = 1;
-            currentUser.last_login = DateTime.Now;
             if (currentUser.user_name.Length < 3 || currentUser.password.Length < 3)
             {
                 lbl_LoginResult.Visibility = Visibility.Visible;
@@ -119,6 +117,11 @@ namespace Torun.windows
                         lbl_LoginResult.Visibility = Visibility.Hidden;
                         lbl_LoginResult.Content = "Giriş başarılı";
                         lbl_LoginResult.Background = Brushes.Green;
+                        /*
+                        * when an user login, a file which has a name that is current username
+                        */
+                        FileOperation.UserFilename = currentUser.user_name;
+                        FileOperation.ControlUserFile();
                         if (chk_loginSave.IsChecked == true)
                         {
                             FileOperation.Write(currentUser.user_name, str_saveLogin);

@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System;
+
 namespace Torun.Database
 {
     public class DB
@@ -45,8 +47,11 @@ namespace Torun.Database
             {
                 if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password))
                 {
-                    db.users.Attach(user);
-                    db.Entry(user).State = EntityState.Modified;
+                    users tempUser = db.users.FirstOrDefault(x => x.user_name == user.user_name);
+                    tempUser.login_status = 1;
+                    tempUser.last_login = DateTime.Now;
+                    db.users.Attach(tempUser);
+                    db.Entry(tempUser).State = EntityState.Modified;
                     db.SaveChanges();
                    
                     return 1; // login successfully
@@ -54,6 +59,18 @@ namespace Torun.Database
                 else return 3; // 3 : password is wrong
             }
             else return 2; // 2 : user could not find
+        }
+
+        public void LogOut(users user)
+        {
+            if (db.users.Any(x => x.id == user.id))
+            {
+                users tempUser = db.users.FirstOrDefault(x => x.id == user.id);
+                tempUser.login_status = 0;
+                db.users.Attach(tempUser);
+                db.Entry(tempUser).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         public byte Register(users user)
