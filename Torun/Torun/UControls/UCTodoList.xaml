@@ -26,9 +26,20 @@
                 <Border Grid.Row="1">
                     <DataGrid x:Name="Grid_todoList" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
-                              CanUserResizeColumns="False" Background="{x:Null}"
+                              CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                         <DataGrid.Columns>
+                            
+                            <DataGridTextColumn Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="1">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="FontSize" Value="0.1"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            
                             <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
@@ -39,9 +50,43 @@
                                 </DataGridTextColumn.ElementStyle>
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="Blue"/>
+                                        <Setter Property="Background" Value="#FFCDCDCD"/>
                                         <Setter Property="BorderThickness" Value="5,0,0,0"/>
-                                        <Setter Property="BorderBrush" Value="Red"/>
+                                        <Setter Property="BorderBrush" Value="#FF959595"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="30">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Padding" Value="3"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background" Value="#FFCDCDCD"/>
+                                        <Setter Property="BorderThickness" Value="5,0,0,0"/>
+                                        <Setter Property="BorderBrush" Value="#FF959595"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding Path=description}" IsReadOnly="True" Header="Açıklama" MinWidth="100">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Padding" Value="3"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background" Value="#FFCDCDCD"/>
+                                        <Setter Property="BorderThickness" Value="5,0,0,0"/>
+                                        <Setter Property="BorderBrush" Value="#FF959595"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
