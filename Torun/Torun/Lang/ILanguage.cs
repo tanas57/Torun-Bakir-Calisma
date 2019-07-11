@@ -11,28 +11,40 @@ namespace Torun.Lang
         /* WELCOME PAGE STARTS*/
 
         // LOGIN //
-        string WelcomeLoginTitle { get; set; }
-        string WelcomeLoginRemember { get; set; }
-        string WelcomeLoginButton { get; set; }
-        string WelcomeLoginFailedNotEnoughUserOrPassword { get; set; }
-        string WelcomeLoginFailedUserNotFind { get; set; }
-        string WelcomeLoginFailedWrongPassword { get; set; }
-        string WelcomeLoginSuccess { get; set; }
+        string WelcomeLoginTitle { get; }
+        string WelcomeLoginRemember { get; }
+        string WelcomeLoginButton { get; }
+        string WelcomeLoginFailedNotEnoughUserOrPassword { get; }
+        string WelcomeLoginFailedUserNotFind { get; }
+        string WelcomeLoginFailedWrongPassword { get; }
+        string WelcomeLoginSuccess { get; }
         // REGISTER //
-        string WelcomeRegisterTitle { get; set; }
-        string WelcomeRegisterButton { get; set; }
-        string WelcomeSignSuccess { get; set; }
-        string WelcomeSignUserAlreadyExists { get; set; }
-        string WelcomeSignPasswordNotEnough { get; set; }
-        string WelcomeSignPasswordsNotMatch { get; set; }
-        string WelcomeSignUsernameLenghtMustBeGreaterThanThree { get; set; }
-        string WelcomeSignFillAllFields { get; set; }
-        string WelcomeRegisterTitleUsername { get; set; }
-        string WelcomeRegisterTitlePassword { get; set; }
-        string WelcomeRegisterTitlePasswordAgain { get; set; }
-        string WelcomeRegisterTitleFirstName { get; set; }
-        string WelcomeRegisterTitleLastName { get; set; }
+        string WelcomeRegisterTitle { get; }
+        string WelcomeRegisterButton { get; }
+        string WelcomeSignSuccess { get; }
+        string WelcomeSignUserAlreadyExists { get; }
+        string WelcomeSignPasswordNotEnough { get; }
+        string WelcomeSignPasswordsNotMatch { get; }
+        string WelcomeSignUsernameLenghtMustBeGreaterThanThree { get; }
+        string WelcomeSignFillAllFields { get; }
+        string WelcomeRegisterTitleUsername { get; }
+        string WelcomeRegisterTitlePassword { get; }
+        string WelcomeRegisterTitlePasswordAgain { get; }
+        string WelcomeRegisterTitleFirstName { get; }
+        string WelcomeRegisterTitleLastName { get; }
 
         /* WELCOME PAGE ENDS*/
+
+        /* COMBOBOX ITEMS */
+
+        // PRIORITY
+        string ComboboxPriorityLow { get; }
+        string ComboboxPriorityNormal { get; }
+        string ComboboxPriorityHigh { get; }
+        // STATUS
+        string ComboboxStatusNew { get; }
+        string ComboboxStatusInProcess { get; }
+        string ComboboxStatusClosed { get; }
+        /* COMBOBOX ITEMS */
     }
 }
