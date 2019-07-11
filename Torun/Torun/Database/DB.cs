@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System;
 
 namespace Torun.Database
@@ -17,6 +15,15 @@ namespace Torun.Database
             db = new plan_tracerDBEntities();
         }
 
+        public byte AddTodoList(todoList todoList)
+        {
+            if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty))) return 0;
+            todoList.add_time = DateTime.Now;
+            db.todoList.Add(todoList);
+            db.SaveChanges();
+
+            return 1;
+        }
         public List<todoList> GetTodoLists(users user) {
             return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
             //return new List<todoList>(result);

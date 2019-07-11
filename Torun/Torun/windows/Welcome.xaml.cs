@@ -104,8 +104,10 @@ namespace Torun.windows
             currentUser = new users();
             if (chk_loginSave.IsChecked == true && passwordMD5 == true) currentUser.password = login_password.Password;
             else
-                if(passwordMD5 == false)
-                    currentUser.password = MD5Crypt.MD5Hash(login_password.Password);
+                if (passwordMD5 == false)
+                currentUser.password = MD5Crypt.MD5Hash(login_password.Password);
+            else
+                currentUser.password = login_password.Password;
 
             currentUser.user_name = login_username.Text;
             if (currentUser.user_name.Length < 3 || currentUser.password.Length < 3)
@@ -138,6 +140,7 @@ namespace Torun.windows
                         this.Hide();
                         mainWindow.welcome = this;
                         mainWindow.currentUser = this.currentUser;
+                        mainWindow.language = language;
                         mainWindow.Show();
                         break;
 

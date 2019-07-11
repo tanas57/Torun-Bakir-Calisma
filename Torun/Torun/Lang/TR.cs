@@ -40,6 +40,14 @@ namespace Torun.Lang
         public string ComboboxStatusNew { get => "Yeni eklendi"; }
         public string ComboboxStatusInProcess { get => "İşlemde"; }
         public string ComboboxStatusClosed { get => "Kapatıldı"; }
+
+        public string RequestAddRequestNumber => "Talep numarası";
+
+        public string RequestAddRequestPriority => "Öncelik";
+
+        public string RequestAddRequestDescription => "Açıklama";
+
+        public string RequestAddRequestButton => "Talep Ekle";
         /* REGISTER */
         /* 
          * WELCOME PAGE ENDS

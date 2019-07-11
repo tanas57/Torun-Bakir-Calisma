@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ComboBoxValues.cs" />
     <Compile Include="Classes\FileOperations\FileNames.cs" />
     <Compile Include="Classes\MD5Crypt.cs" />
     <Compile Include="Classes\FileOperations\FileOperation.cs" />

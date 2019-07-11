@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
+using Torun.Database;
+using Torun.Classes;
 namespace Torun.Windows
 {
     /// <summary>
@@ -28,6 +20,31 @@ namespace Torun.Windows
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mainWindow.Opacity = 1;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityLow);
+            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityNormal);
+            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityHigh);
+
+            lbl_reqNumber.Content = mainWindow.language.RequestAddRequestNumber;
+            lbl_reqPriority.Content = mainWindow.language.RequestAddRequestPriority;
+            lbl_reqDescription.Content = mainWindow.language.RequestAddRequestDescription;
+            
+        }
+
+        private void Req_Save_Click(object sender, RoutedEventArgs e)
+        {
+            DB db = mainWindow.db;
+            todoList todoList = new todoList();
+            todoList.user_id = mainWindow.currentUser.id;
+            todoList.status = (byte)StatusType.Added;
+            todoList.priority = (byte)req_Priority.SelectedIndex;
+            todoList.description = req_Description.Text;
+            todoList.request_number = req_Number.Text;
+            if(db.AddTodoList(todoList) == 0) MessageBox.Show("Eklenemedi");
+            else MessageBox.Show("Eklendii");
         }
     }
 }

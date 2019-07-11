@@ -46,5 +46,13 @@ namespace Torun.Lang
         string ComboboxStatusInProcess { get; }
         string ComboboxStatusClosed { get; }
         /* COMBOBOX ITEMS */
+
+        /* REQUEST ADD WINDOWS STARTS */
+        string RequestAddRequestNumber { get; }
+        string RequestAddRequestPriority { get; }
+        string RequestAddRequestDescription { get; }
+        string RequestAddRequestButton { get; }
+        /* REQUEST ADD WINDOWS ENDS */
+
     }
 }

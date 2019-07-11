@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Torun.Classes;
 using Torun.UControls;
 using Torun.Database;
+using Torun.Lang;
 namespace Torun
 {
     /// <summary>
@@ -14,6 +15,8 @@ namespace Torun
         public DB db;
         public Window welcome;
         public users currentUser;
+        public ILanguage language;
+        private bool formLogoutControl = false; // for form closing control, and logout button action
         public MainWindow()
         {
             InitializeComponent();
@@ -21,6 +24,7 @@ namespace Torun
             db = new DB();
             pr.Name = "Tayyip";
             pr.Surname = "Muslu";
+            
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -78,13 +82,15 @@ namespace Torun
         private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
         {
             db.LogOut(currentUser);
+            formLogoutControl = true;
             this.Close();
+            this.currentUser = null;
             welcome.Show();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            welcome.Close();
+            if(!formLogoutControl) welcome.Close(); // when user logout, do not close the main form
         }
     }
 }
