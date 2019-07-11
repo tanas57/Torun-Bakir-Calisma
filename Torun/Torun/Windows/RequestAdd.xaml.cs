@@ -24,5 +24,10 @@ namespace Torun.Windows
         {
             InitializeComponent();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            mainWindow.Opacity = 1;
+        }
     }
 }

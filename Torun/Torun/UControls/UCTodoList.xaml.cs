@@ -25,6 +25,7 @@ namespace Torun.UControls
             RequestAdd requestAdd = new RequestAdd();
             requestAdd.Owner = mainWindow;
             mainWindow.Opacity = 0.5;
+            requestAdd.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             requestAdd.ShowDialog();
         }
     }

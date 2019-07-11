@@ -81,5 +81,10 @@ namespace Torun
             this.Close();
             welcome.Show();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            welcome.Close();
+        }
     }
 }

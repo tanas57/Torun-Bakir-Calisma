@@ -7,10 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <!-- right menu-->
         <Border Grid.Column="0">
             <Grid>
@@ -29,99 +25,44 @@
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                         <DataGrid.Columns>
-                            
-                            <DataGridTextColumn Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="1">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="FontSize" Value="0.1"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </DataGridTextColumn>
-                            
-                            <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="Padding" Value="3"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="#FFCDCDCD"/>
-                                        <Setter Property="BorderThickness" Value="5,0,0,0"/>
-                                        <Setter Property="BorderBrush" Value="#FF959595"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
 
-                            <DataGridTextColumn Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="30">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="Padding" Value="3"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="#FFCDCDCD"/>
-                                        <Setter Property="BorderThickness" Value="5,0,0,0"/>
-                                        <Setter Property="BorderBrush" Value="#FF959595"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
-
-                            <DataGridTextColumn Binding="{Binding Path=description}" IsReadOnly="True" Header="Açıklama" MinWidth="100">
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Left"/>
-                                        <Setter Property="VerticalAlignment" Value="Center"/>
-                                        <Setter Property="Padding" Value="3"/>
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Setter Property="Background" Value="#FFCDCDCD"/>
-                                        <Setter Property="BorderThickness" Value="5,0,0,0"/>
-                                        <Setter Property="BorderBrush" Value="#FF959595"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="1"/>
+                            <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="30"/>
+                            <DataGridTextColumn Binding="{Binding Path=add_time}" IsReadOnly="True" Header="Eklenme Zamanı" MinWidth="100"/>
+                            <DataGridTextColumn Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="Açıklama" MinWidth="200"/>
+                            <DataGridTextColumn Binding="{Binding Path=status}" IsReadOnly="True" Header="Durumu" MinWidth="30"/>
+                            <DataGridTemplateColumn Header="İşlemler">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <Button x:Name="btn_requestSchedule" Style="{DynamicResource gridButtons}">
+                                                <DockPanel>
+                                                    <Image Source="/images/screen/main/schedule.png" Width="19"/>
+                                                    <Label Content="Zamanla"/>
+                                                </DockPanel>
+                                            </Button>
+                                            <Button x:Name="btn_requestEdit" Style="{DynamicResource gridButtons}">
+                                                <DockPanel>
+                                                    <Image Source="/images/screen/main/edit.png" Width="19"/>
+                                                    <Label Content="Düzenle"/>
+                                                </DockPanel>
+                                            </Button>
+                                            <Button x:Name="btn_requestDelete" Style="{DynamicResource gridButtons}">
+                                                <DockPanel>
+                                                    <Image Source="/images/screen/main/delete.png" Width="19"/>
+                                                    <Label Content="Sil"/>
+                                                </DockPanel>
+                                            </Button>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
             </Grid>
         </Border>
         <!-- left menu-->
-        <Border Grid.Column="1">
-            
-        </Border>
-        <!--
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <Border Grid.Row="0" Background="White">
-            <Button Width="100" Content="Yeni talep ekle" x:Name="btn_adddRequest" Click="btn_adddRequest_Click">
-                
-            </Button>
-        </Border>
-        <Border Grid.Row="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Border Grid.Column="0">
-                    <DataGrid x:Name="Grid_todoList" Background="White" BorderBrush="{x:Null}" BorderThickness="0"/>
-                </Border>
-                <Border Grid.Column="1"></Border>
-                
-            </Grid>
-        </Border>-->
     </Grid>
 </UserControl>
