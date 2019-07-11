@@ -18,7 +18,7 @@ namespace Torun.Lang
         public string WelcomeLoginFailedUserNotFind { get => "Kullanıcı bulunamadı"; }
         public string WelcomeLoginFailedWrongPassword { get => "Şifre yanlış"; }
         public string WelcomeLoginSuccess { get => "Giriş başarılı"; }
-        public string WelcomeLoginRemember { get => "Girişi hatırla"; }
+        public string WelcomeLoginRemember { get => "Beni hatırla"; }
         public string WelcomeLoginButton { get => "Giriş yap"; }
         /* REGISTER */
         public string WelcomeRegisterTitle { get => "Yeni üyelik"; }
@@ -48,6 +48,16 @@ namespace Torun.Lang
         public string RequestAddRequestDescription => "Açıklama";
 
         public string RequestAddRequestButton => "Talep Ekle";
+
+        public string RequestAddRequestResultOk => "Talep başarıyla eklendi";
+
+        public string RequestAddRequestResultNo => "Talep numarası sistemde kayıtlı";
+
+        public string RequestAddRequestResultNotSelected => "Öncelik seçilmedi";
+
+        public string RequestAddRequestResultNoDescription => "Açıklama girilmedi";
+
+        public string RequestAddRequestTitle => "Yeni Talep Ekle";
         /* REGISTER */
         /* 
          * WELCOME PAGE ENDS

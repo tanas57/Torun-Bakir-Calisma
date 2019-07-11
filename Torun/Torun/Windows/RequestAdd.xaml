@@ -4,40 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="RequestAdd" Height="350" Width="600" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded">
-    <Grid Background="LightGray">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <DockPanel>
-                <TextBlock>
+        Title="RequestAdd" BorderBrush="CornflowerBlue" BorderThickness="0,0,0,5" Height="350" Width="400" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="CornflowerBlue" x:Name="req_RequestAdd" />
+                </Border>
+                <Border Grid.Column="1">
+                    <Button Content="X" Width="33" Height="30" HorizontalAlignment="Right" Background="White" BorderBrush="Blue" x:Name="req_btnClose" Click="ReqBtnClose_Click" Margin="3">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF5F99FF"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <DockPanel>
+                    <TextBlock>
                     <Label Content="XXX" x:Name="lbl_reqNumber"/>
-                    <Image Source="{x:Null}"/>
-                    <TextBox x:Name="req_Number" Width="150" Height="30"/>
-                </TextBlock>
-            </DockPanel>
-            <DockPanel Margin="0,15,0,0">
-                <TextBlock>
+                    <TextBox x:Name="req_Number" Width="190" Height="30" HorizontalAlignment="Right"/>
+                    </TextBlock>
+                </DockPanel>
+                <DockPanel Margin="0,15,0,0">
+                    <TextBlock>
                     <Label Content="XXX" x:Name="lbl_reqPriority"/>
-                    <Image Source="{x:Null}"/>
-                    <ComboBox x:Name="req_Priority" Width="150" Height="30">
-                        
-                    </ComboBox>
-                </TextBlock>
-            </DockPanel>
-            <DockPanel Margin="0,15,0,0">
-                <TextBlock>
+                    <ComboBox SelectedIndex="0" x:Name="req_Priority" Width="191" Height="30" HorizontalAlignment="Right"/>
+                    </TextBlock>
+                </DockPanel>
+                <DockPanel Margin="0,15,0,0">
+                    <TextBlock>
                     <Label Content="XXX" x:Name="lbl_reqDescription"/>
-                   <Image Source="{x:Null}"/>
-                    <TextBox x:Name="req_Description" Width="150" Height="30"/>
-                </TextBlock>
-            </DockPanel>
-            <DockPanel Margin="0,15,0,0">
-                <Button x:Name="req_Save" Click="Req_Save_Click">
-                    <DockPanel>
-                        <Image Source="{x:Null}" />
-                        <Label Content="XXX" x:Name="lbl_req_Button"/>
-                    </DockPanel>
-                </Button>
-            </DockPanel>
-        </StackPanel>
+                    <TextBox TextWrapping="Wrap" Height="100" x:Name="req_Description" Width="192" HorizontalAlignment="Right"/>
+                    </TextBlock>
+                </DockPanel>
+                <DockPanel Margin="0,15,0,0">
+                    <Button x:Name="req_Save" Click="Req_Save_Click">
+                        <DockPanel>
+                            <Image Source="{x:Null}" />
+                            <Label Content="XXX" x:Name="lbl_req_Button"/>
+                        </DockPanel>
+                    </Button>
+                </DockPanel>
+                <Label x:Name="req_Result" Content="XXX" Background="Red" Margin="0,10,0,0" Foreground="White" Visibility="Hidden"/>
+            </StackPanel>
+        </Border>
+        
     </Grid>
 </Window>

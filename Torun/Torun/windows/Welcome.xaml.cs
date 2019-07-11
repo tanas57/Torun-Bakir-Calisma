@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Classes.FileOperations;
@@ -57,7 +47,7 @@ namespace Torun.windows
                         if (register_password.Password.Length >= 3)
                         {
                             currentUser.password = MD5Crypt.MD5Hash(register_password.Password);
-                            currentUser.user_name = register_username.Text;
+                            currentUser.user_name = register_username.Text.ToLower();
                             currentUser.pc_name = System.Environment.MachineName;
                             currentUser.last_login = null;
                             currentUser.login_status = 0;
@@ -109,7 +99,7 @@ namespace Torun.windows
             else
                 currentUser.password = login_password.Password;
 
-            currentUser.user_name = login_username.Text;
+            currentUser.user_name = login_username.Text.ToLower();
             if (currentUser.user_name.Length < 3 || currentUser.password.Length < 3)
             {
                 lbl_LoginResult.Visibility = Visibility.Visible;

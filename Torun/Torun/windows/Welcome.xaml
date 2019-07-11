@@ -92,7 +92,7 @@
                                     <Image Source="/images/welcome_screen/identification.png" Width="32" Height="32"/>
                                     <TextBox x:Name="register_firstname" Background="#FF3B87D3" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
-                                    <Label  x:Name="lbl_info_lastname" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="CadetBlue"/>
+                                    <Label x:Name="lbl_info_firstname" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="CadetBlue"/>
                                 </DockPanel>
                         </TextBlock>
 
@@ -101,7 +101,7 @@
                                     <Image Source="/images/welcome_screen/identification.png" Width="32" Height="32"/>
                                     <TextBox x:Name="register_lastname" Background="#FF3B87D3" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
-                                    <Label x:Name="lbl_info_firstname" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="CadetBlue"/>
+                                    <Label x:Name="lbl_info_lastname" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="CadetBlue"/>
                                 </DockPanel>
                         </TextBlock>
 

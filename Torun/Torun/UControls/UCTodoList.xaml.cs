@@ -28,5 +28,16 @@ namespace Torun.UControls
             requestAdd.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             requestAdd.ShowDialog();
         }
+
+        private void Btn_requestDelete_Click(object sender, RoutedEventArgs e)
+        {
+            todoList todoList = Grid_todoList.SelectedItem as todoList;
+            var result = MessageBox.Show(todoList.id + " id numaralı talep silinecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            if(result == MessageBoxResult.Yes)
+            {
+                db.DeleteTodoList(todoList);
+                Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
+            }
+        }
     }
 }

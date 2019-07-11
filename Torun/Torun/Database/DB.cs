@@ -15,6 +15,12 @@ namespace Torun.Database
             db = new plan_tracerDBEntities();
         }
 
+        public byte DeleteTodoList(todoList todoList)
+        {
+            db.todoList.Remove(todoList);
+            db.SaveChanges();
+            return 0;
+        }
         public byte AddTodoList(todoList todoList)
         {
             if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty))) return 0;

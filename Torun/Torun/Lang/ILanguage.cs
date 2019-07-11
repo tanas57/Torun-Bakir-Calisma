@@ -52,6 +52,11 @@ namespace Torun.Lang
         string RequestAddRequestPriority { get; }
         string RequestAddRequestDescription { get; }
         string RequestAddRequestButton { get; }
+        string RequestAddRequestResultOk { get; }
+        string RequestAddRequestResultNo { get; }
+        string RequestAddRequestResultNotSelected { get; }
+        string RequestAddRequestResultNoDescription { get; }
+        string RequestAddRequestTitle { get; }
         /* REQUEST ADD WINDOWS ENDS */
 
     }

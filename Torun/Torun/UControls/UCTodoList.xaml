@@ -25,13 +25,7 @@
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                         <DataGrid.Columns>
-
                             <DataGridTextColumn Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="1"/>
-                            <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60"/>
-                            <DataGridTextColumn Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="30"/>
-                            <DataGridTextColumn Binding="{Binding Path=add_time}" IsReadOnly="True" Header="Eklenme Zamanı" MinWidth="100"/>
-                            <DataGridTextColumn Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="Açıklama" MinWidth="200"/>
-                            <DataGridTextColumn Binding="{Binding Path=status}" IsReadOnly="True" Header="Durumu" MinWidth="30"/>
                             <DataGridTemplateColumn Header="İşlemler">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -48,7 +42,7 @@
                                                     <Label Content="Düzenle"/>
                                                 </DockPanel>
                                             </Button>
-                                            <Button x:Name="btn_requestDelete" Style="{DynamicResource gridButtons}">
+                                            <Button x:Name="btn_requestDelete" Style="{DynamicResource gridButtons}" Click="Btn_requestDelete_Click">
                                                 <DockPanel>
                                                     <Image Source="/images/screen/main/delete.png" Width="19"/>
                                                     <Label Content="Sil"/>
@@ -58,6 +52,11 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60"/>
+                            <DataGridTextColumn Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="30"/>
+                            <DataGridTextColumn Binding="{Binding Path=add_time}" IsReadOnly="True" Header="Eklenme Zamanı" MinWidth="100"/>
+                            <DataGridTextColumn Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="Açıklama" MinWidth="200"/>
+                            <DataGridTextColumn Binding="{Binding Path=status}" IsReadOnly="True" Header="Durumu" MinWidth="30"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
