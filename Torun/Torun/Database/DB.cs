@@ -45,9 +45,9 @@ namespace Torun.Database
         {
             if (db.users.Any(x => x.user_name == user.user_name))
             {
-                if (db.users.Any(x => x.user_name == user.user_name && x.password == user.password))
+                users tempUser = db.users.FirstOrDefault(x => x.user_name == user.user_name);
+                if (String.Equals(user.password, tempUser.password))
                 {
-                    users tempUser = db.users.FirstOrDefault(x => x.user_name == user.user_name);
                     tempUser.login_status = 1;
                     tempUser.last_login = DateTime.Now;
                     db.users.Attach(tempUser);
