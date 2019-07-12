@@ -25,7 +25,7 @@ namespace Torun.Database
         public byte EditTodoList(todoList todoList)
         {
             if (!db.todoList.Any(x => x.id == todoList.id)) return 0;
-            if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty))) return 0;
+            //if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty)) && ) return 0;
             db.todoList.Attach(todoList);
             db.Entry(todoList).State = EntityState.Modified;
             db.SaveChanges();

@@ -1,12 +1,24 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+
 namespace Torun.Classes
 {
     public static class FileOperation
     {
         private const string DIR_LOGIN = "login";
         private const string DIR_REPORT = "rapor";
+
+        public static string ChangeUserPhoto()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                return Path.GetFileName(filename);
+
+            }
+        }
         public static string UserFilename { get; set; }
         private static string getFilePath(string file, bool withoutUser = false)
         {

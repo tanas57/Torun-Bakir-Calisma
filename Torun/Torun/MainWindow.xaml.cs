@@ -97,5 +97,10 @@ namespace Torun
         {
             if(!formLogoutControl) welcome.Close(); // when user logout, do not close the main form
         }
+
+        private void Btn_UpdateUserPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

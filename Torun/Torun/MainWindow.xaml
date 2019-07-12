@@ -96,7 +96,9 @@
                         <Border Grid.Column="1">
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
-                                    <Image Source="/images/icon/employee.png" Height="100"/>
+                                    <Button Cursor="Hand" x:Name="btn_UpdateUserPhoto" Background="{x:Null}" Click="Btn_UpdateUserPhoto_Click">
+                                        <Image Source="/images/icon/employee.png" Height="100"/>
+                                    </Button>
                                     <Label x:Name="menuUsername" Content="M.Tayyip Muslu" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
                                 </DockPanel>
                                 <DockPanel Margin="110, -35, 0,0">
