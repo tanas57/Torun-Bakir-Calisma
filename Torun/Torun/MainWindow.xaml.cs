@@ -16,15 +16,12 @@ namespace Torun
         public Window welcome;
         public users currentUser;
         public ILanguage language;
+        private UCTodoList uCTodoList;
         private bool formLogoutControl = false; // for form closing control, and logout button action
         public MainWindow()
         {
             InitializeComponent();
-            Personnel pr = new Personnel();
             db = new DB();
-            pr.Name = "Tayyip";
-            pr.Surname = "Muslu";
-            
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -51,7 +48,7 @@ namespace Torun
 
         private void Btn_toDo_Click(object sender, RoutedEventArgs e)
         {
-            UserControllCall.Add(Grd_Content, new UCTodoList());
+            UserControllCall.Add(Grd_Content, uCTodoList = new UCTodoList());
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -75,8 +72,16 @@ namespace Torun
 
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
-            else this.WindowState = WindowState.Normal;
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+                if (uCTodoList != null) uCTodoList.Grid_todoList.Columns[5].Width = SystemParameters.PrimaryScreenWidth - 758;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+                if (uCTodoList != null) uCTodoList.Grid_todoList.Columns[5].Width = 242;
+            }
         }
 
         private void Menu_userLogout_Click(object sender, RoutedEventArgs e)

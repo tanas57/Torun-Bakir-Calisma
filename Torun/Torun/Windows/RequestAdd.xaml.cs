@@ -73,10 +73,6 @@ namespace Torun.Windows
                     req_Result.Background = System.Windows.Media.Brushes.Green;
                 }
             }
-
-
-
-            
         }
 
         private void ReqBtnClose_Click(object sender, RoutedEventArgs e)

@@ -3,6 +3,9 @@ using System.Windows.Controls;
 using System.Linq;
 using Torun.Database;
 using Torun.Windows;
+using Torun.Windows.Request;
+using System.Data;
+
 namespace Torun.UControls
 {
     /// <summary>
@@ -18,8 +21,8 @@ namespace Torun.UControls
             db = mainWindow.db;
             currentUser = mainWindow.currentUser;
             Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
+            
         }
-
         private void btn_adddRequest_Click(object sender, RoutedEventArgs e)
         {
             RequestAdd requestAdd = new RequestAdd();
@@ -38,6 +41,27 @@ namespace Torun.UControls
                 db.DeleteTodoList(todoList);
                 Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
             }
+        }
+
+        private void Grid_todoList_Loaded(object sender, RoutedEventArgs e)
+        {
+            // priority ve status int to string işlemi
+
+        }
+
+        private void Grid_todoList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            // get detail of selected row
+        }
+
+        private void Btn_requestEdit_Click(object sender, RoutedEventArgs e)
+        {
+            RequestDetail requestEdit = new RequestDetail();
+            requestEdit.Owner = mainWindow;
+            requestEdit.todolist = Grid_todoList.SelectedItem as todoList;
+            mainWindow.Opacity = 0.5;
+            requestEdit.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            requestEdit.ShowDialog();
         }
     }
 }

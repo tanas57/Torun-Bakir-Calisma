@@ -68,3 +68,5 @@ C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Tor
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.csprojAssemblyReference.cache
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\RequestAdd.baml
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\RequestAdd.g.cs
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\Request\RequestDetail.g.cs
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\Request\RequestDetail.baml

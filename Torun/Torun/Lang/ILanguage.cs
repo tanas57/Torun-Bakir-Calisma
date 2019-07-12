@@ -59,5 +59,11 @@ namespace Torun.Lang
         string RequestAddRequestTitle { get; }
         /* REQUEST ADD WINDOWS ENDS */
 
+        /* REQUEST EDIT WINDOWS ENDS */
+        string RequestEditTitle { get; }
+        string RequestEditButton { get; }
+        string RequestEditLabelSaveOK { get; }
+        string RequestEditLabelSaveNO { get; }
+        /* REQUEST EDIT WINDOWS ENDS */
     }
 }

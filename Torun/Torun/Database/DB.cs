@@ -3,6 +3,7 @@ using System.Linq;
 using System.Data;
 using System.Data.Entity;
 using System;
+using Torun.Classes;
 
 namespace Torun.Database
 {
@@ -21,6 +22,16 @@ namespace Torun.Database
             db.SaveChanges();
             return 0;
         }
+        public byte EditTodoList(todoList todoList)
+        {
+            if (!db.todoList.Any(x => x.id == todoList.id)) return 0;
+            if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty))) return 0;
+            db.todoList.Attach(todoList);
+            db.Entry(todoList).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return 1;
+        }
         public byte AddTodoList(todoList todoList)
         {
             if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty))) return 0;
@@ -31,9 +42,11 @@ namespace Torun.Database
             return 1;
         }
         public List<todoList> GetTodoLists(users user) {
-            return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
-            //return new List<todoList>(result);
-
+            //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
+            var result = from todo in db.todoList
+                         where user.id == todo.user_id
+                         select todo;
+            return result.ToList<todoList>();
         }
 
         public int GetRequestCount(byte ReqType, users user)

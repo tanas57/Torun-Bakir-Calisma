@@ -14,8 +14,6 @@ namespace Torun.windows
     {
         private users currentUser;
         private DB db;
-        private string str_saveLogin = "username.txt"; //
-        private string str_savePass = "password.txt";  // to save user login info
         private bool passwordMD5 = false;
         private ILanguage language;
         public Welcome()
@@ -123,8 +121,8 @@ namespace Torun.windows
                         FileOperation.ControlUserFile();
                         if (chk_loginSave.IsChecked == true)
                         {
-                            FileOperation.Write(currentUser.user_name, str_saveLogin);
-                            FileOperation.Write(currentUser.password, str_savePass);
+                            FileOperation.Write(currentUser.user_name, FileNames.FILENAME_USERNAME);
+                            FileOperation.Write(currentUser.password, FileNames.FILENAME_PASSWORD);
                         }
                         MainWindow mainWindow = new MainWindow();
                         this.Hide();
@@ -166,11 +164,11 @@ namespace Torun.windows
             if (FileOperation.FileExists(FileNames.IS_LOGGED))
             {
                 FileOperation.UserFilename = FileOperation.Read(FileNames.IS_LOGGED);
-                if (FileOperation.FileExists(str_saveLogin) && FileOperation.FileExists(str_savePass))
+                if (FileOperation.FileExists(FileNames.FILENAME_USERNAME) && FileOperation.FileExists(FileNames.FILENAME_PASSWORD))
                 {
                     chk_loginSave.IsChecked = true;
-                    login_username.Text = FileOperation.Read(str_saveLogin);
-                    login_password.Password = FileOperation.Read(str_savePass);
+                    login_username.Text = FileOperation.Read(FileNames.FILENAME_USERNAME);
+                    login_password.Password = FileOperation.Read(FileNames.FILENAME_PASSWORD);
                     passwordMD5 = true;
                 }
             }

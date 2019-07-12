@@ -34,6 +34,11 @@ namespace Torun.Lang
         public string WelcomeRegisterTitlePasswordAgain { get => "şifre tekrarı"; }
         public string WelcomeRegisterTitleFirstName { get => "kullanıcı ismi"; }
         public string WelcomeRegisterTitleLastName { get => "kullanıcı soyismi"; }
+        /* REGISTER */
+        /* 
+         * WELCOME PAGE ENDS
+         */
+        /* REQUEST PAGES */
         public string ComboboxPriorityLow { get => "Düşük"; }
         public string ComboboxPriorityNormal { get => "Normal"; }
         public string ComboboxPriorityHigh { get => "Yüksek"; }
@@ -58,9 +63,18 @@ namespace Torun.Lang
         public string RequestAddRequestResultNoDescription => "Açıklama girilmedi";
 
         public string RequestAddRequestTitle => "Yeni Talep Ekle";
-        /* REGISTER */
-        /* 
-         * WELCOME PAGE ENDS
-         */
+
+
+        
+        /* REQUEST EDIT WINDOWS ENDS */
+        public string RequestEditTitle => "Talep Düzenleme";
+
+        public string RequestEditButton => "Kaydet";
+
+        public string RequestEditLabelSaveOK => "Talep düzenlemesi kaydedildi";
+
+        public string RequestEditLabelSaveNO => "Talep düzenlemesi yapılamadı";
+
+        /* REQUEST PAGES */
     }
 }

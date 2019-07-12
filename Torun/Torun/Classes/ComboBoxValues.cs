@@ -4,7 +4,8 @@
     {
         Added = 1,
         InProcess = 2,
-        Closed = 3
+        Closed = 3,
+        Edited = 4
     }
     public enum PriorityType
     {
