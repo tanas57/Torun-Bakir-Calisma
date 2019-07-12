@@ -71,6 +71,7 @@ namespace Torun.Windows
                 else {
                     req_Result.Content = mainWindow.language.RequestAddRequestResultOk;
                     req_Result.Background = System.Windows.Media.Brushes.Green;
+                    mainWindow.uCTodoList.Grid_todoList.ItemsSource = mainWindow.db.GetTodoLists(mainWindow.currentUser);
                 }
             }
         }

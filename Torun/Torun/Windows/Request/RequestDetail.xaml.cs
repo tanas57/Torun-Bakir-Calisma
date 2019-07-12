@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Torun.Classes;
 using Torun.Database;
+using Torun.UControls;
 namespace Torun.Windows.Request
 {
     /// <summary>
@@ -80,8 +81,14 @@ namespace Torun.Windows.Request
                 {
                     req_Result.Content = mainWindow.language.RequestEditLabelSaveOK;
                     req_Result.Background = Brushes.Green;
+                    mainWindow.uCTodoList.Grid_todoList.ItemsSource = mainWindow.db.GetTodoLists(mainWindow.currentUser);
                 }
             }
+        }
+
+        private void Req_DetailTitle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
         }
     }
 }

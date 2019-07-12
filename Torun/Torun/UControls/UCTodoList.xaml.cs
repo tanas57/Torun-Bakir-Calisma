@@ -21,7 +21,6 @@ namespace Torun.UControls
             db = mainWindow.db;
             currentUser = mainWindow.currentUser;
             Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
-            
         }
         private void btn_adddRequest_Click(object sender, RoutedEventArgs e)
         {

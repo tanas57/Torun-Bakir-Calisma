@@ -5,6 +5,9 @@ using Torun.Classes;
 using Torun.UControls;
 using Torun.Database;
 using Torun.Lang;
+using System;
+using System.Windows.Media.Imaging;
+
 namespace Torun
 {
     /// <summary>
@@ -16,8 +19,9 @@ namespace Torun
         public Window welcome;
         public users currentUser;
         public ILanguage language;
-        private UCTodoList uCTodoList;
+        public UCTodoList uCTodoList;
         private bool formLogoutControl = false; // for form closing control, and logout button action
+        //public users CurrentUser { get; set; } daha sonra bu şekil değiştir
         public MainWindow()
         {
             InitializeComponent();
@@ -63,6 +67,12 @@ namespace Torun
             requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
             requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
             menuUsername.Content = currentUser.firstname + " " + currentUser.lastname;
+
+            if (FileOperation.FileExists(FileOperation.UserFilename))
+            {
+                //imageUser.Source = new BitmapImage(new Uri(FileOperation.UserFilename, UriKind.Relative));
+                
+            }
         }
 
         private void DockPanel_ContextMenuClosing(object sender, System.Windows.Controls.ContextMenuEventArgs e)

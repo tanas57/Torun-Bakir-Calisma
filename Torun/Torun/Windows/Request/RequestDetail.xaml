@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torun.Windows.Request"
         mc:Ignorable="d"
-        Title="RequestDetail" Loaded="RequestDetail_Load" BorderBrush="CornflowerBlue" BorderThickness="0,0,0,5" WindowStyle="None" Background="{x:Null}" x:Name="req_DetailTitle" Height="350" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="RequestDetail" Loaded="RequestDetail_Load" BorderBrush="CornflowerBlue" BorderThickness="0,0,0,5" WindowStyle="None" Background="{x:Null}" x:Name="req_DetailTitle" Height="350" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" MouseDown="Req_DetailTitle_MouseDown">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -39,25 +39,25 @@
         <Border Grid.Row="1">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <DockPanel>
-                    <TextBlock>
+                    <TextBlock HorizontalAlignment="Right">
                     <Label Content="XXX" x:Name="lbl_reqNumber"/>
-                    <TextBox x:Name="req_Number" Width="190" Height="30" HorizontalAlignment="Right"/>
+                    <TextBox x:Name="req_Number" Width="190" Height="30"/>
                     </TextBlock>
                 </DockPanel>
                 <DockPanel Margin="0,15,0,0">
-                    <TextBlock>
+                    <TextBlock HorizontalAlignment="Right">
                     <Label Content="XXX" x:Name="lbl_reqPriority"/>
-                    <ComboBox SelectedIndex="0" x:Name="req_Priority" Width="191" Height="30" HorizontalAlignment="Right"/>
+                    <ComboBox SelectedIndex="0" x:Name="req_Priority" Width="191" Height="30"/>
                     </TextBlock>
                 </DockPanel>
                 <DockPanel Margin="0,15,0,0">
-                    <TextBlock>
+                    <TextBlock HorizontalAlignment="Right">
                     <Label Content="XXX" x:Name="lbl_reqDescription"/>
-                    <TextBox TextWrapping="Wrap" Height="100" x:Name="req_Description" Width="192" HorizontalAlignment="Right"/>
+                    <TextBox TextWrapping="Wrap" Height="100" x:Name="req_Description" Width="192"/>
                     </TextBlock>
                 </DockPanel>
                 <DockPanel Margin="0,15,0,0">
-                    <Button x:Name="req_Save" Click="Req_Save_Click">
+                    <Button x:Name="req_Save" Click="Req_Save_Click" Width="150" HorizontalAlignment="Right">
                         <DockPanel>
                             <Image Source="{x:Null}" />
                             <Label Content="XXX" x:Name="lbl_req_Button"/>
