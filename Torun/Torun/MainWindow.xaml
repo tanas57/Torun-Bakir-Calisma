@@ -18,7 +18,7 @@
 
         </Grid.ColumnDefinitions>
         <!-- logo ve button -->
-        <Border Background="DarkBlue" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+        <Border Background="#B0151E" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55"></RowDefinition>
@@ -40,7 +40,7 @@
                                     <Setter Property="Width" Value="140"/>
                                     <Style.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Source" Value="/images/icon/biglogo_blue.png"/>
+                                            <!--<Setter Property="Source" Value="/images/icon/biglogo_blue.png"/>-->
                                             <Setter Property="Width" Value="150"/>
                                         </Trigger>
                                     </Style.Triggers>
@@ -53,10 +53,10 @@
             </Grid>
         </Border>
         <!-- mini buttonlar & header-->
-        <Border Background="DarkBlue" Grid.Column="3" Grid.Row="0">
+        <Border Background="#B0151E" Grid.Column="3" Grid.Row="0">
             <Grid>
                 <Grid.Effect>
-                    <DropShadowEffect/>
+                    <DropShadowEffect Color="#FFB0151E"/>
                 </Grid.Effect>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"></RowDefinition>
@@ -73,7 +73,7 @@
                     </DockPanel>
                 </Border>
 
-                <Border Grid.Row="1" Background="DarkBlue">
+                <Border Grid.Row="1" Background="#B0151E">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -105,6 +105,15 @@
                                             <Image Source="/images/icon/exit.png" Height="24" Width="24"></Image>
                                             <Label Content="Çıkış yap" Foreground="White" FontSize="17"/>
                                         </DockPanel>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="{x:Null}" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
                                 </DockPanel>
                                
@@ -116,7 +125,7 @@
             </Grid>
         </Border>
         <!-- left menu-->
-        <Border Background="DarkBlue" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" >
+        <Border Background="#B0151E" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" >
             <StackPanel>
                 <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_toDo" Click="Btn_toDo_Click">
                     <DockPanel Width="200" Margin="15,0,0,0">
@@ -151,7 +160,7 @@
 
                 <Canvas>
                     <Border Canvas.Left="70" CornerRadius="10,10,10,10">
-                        <Label x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#7F054273"/>
+                        <Label x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#99384757"/>

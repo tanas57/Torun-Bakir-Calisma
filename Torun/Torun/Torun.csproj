@@ -104,7 +104,7 @@
     <Compile Include="UControls\UCTodoList.xaml.cs">
       <DependentUpon>UCTodoList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\RequestAdd.xaml.cs">
+    <Compile Include="Windows\Request\RequestAdd.xaml.cs">
       <DependentUpon>RequestAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Request\RequestDetail.xaml.cs">
@@ -129,7 +129,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\RequestAdd.xaml">
+    <Page Include="Windows\Request\RequestAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

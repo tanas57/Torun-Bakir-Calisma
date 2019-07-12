@@ -21,7 +21,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="DarkBlue"/>
+                                <Setter TargetName="border" Property="Background" Value="#B0151E"/>
                                 <Setter Property="Background" Value="White"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
@@ -33,7 +33,7 @@
 
         <!-- menu buttons-->
         <Style x:Key="menuButtons" TargetType="Button">
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Foreground" Value="#B0151E"/>
             <Setter Property="Margin" Value="0,0,0,1"/>
             <!--sol yukarı sağ alt-->
             <Setter Property="Template">
@@ -47,15 +47,15 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="#2b5493"/>
-                                <Setter TargetName="border" Property="Background" Value="#2b5493"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FFD15158"/>
+                                <Setter TargetName="border" Property="Background" Value="#FFD15158"/>
                                 <Setter TargetName="border" Property="BorderThickness" Value="5,0,0,0"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
 
                             <Trigger Property="IsFocused" Value="True">
                                 <Setter TargetName="border" Property="BorderBrush" Value="white"/>
-                                <Setter TargetName="border" Property="Background" Value="#2b5493"/>
+                                <Setter TargetName="border" Property="Background" Value="#FFD15158"/>
                                 <Setter TargetName="border" Property="BorderThickness" Value="5,0,0,0"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
@@ -67,7 +67,7 @@
         
         <!-- data grid button s-->
         <Style x:Key="gridButtons" TargetType="Button">
-            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="Foreground" Value="#B0151E"/>
             <Setter Property="Width" Value="70"/>
             <Setter Property="FontSize" Value="11"/>
             <Setter Property="Background" Value="White"/>
@@ -81,7 +81,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="Gray"/>
+                                <Setter TargetName="border" Property="Background" Value="#FFE65353"/>
                                 <Setter Property="Background" Value="White"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
