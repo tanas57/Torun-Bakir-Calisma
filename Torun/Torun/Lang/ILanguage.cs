@@ -65,5 +65,18 @@ namespace Torun.Lang
         string RequestEditLabelSaveOK { get; }
         string RequestEditLabelSaveNO { get; }
         /* REQUEST EDIT WINDOWS ENDS */
+        /* MAIN PAGE STARTS */
+        string MainPageTitle { get; }
+        string MainPageTotalRequest { get; }
+        string MainPageOpenRequest { get; }
+        string MainPageClosedRequest { get; }
+        string MainPageLogOut { get; }
+        string MainPageMenuToDo { get; }
+        string MainPageMenuWeeklyPlan { get; }
+        string MainPageWorkDone { get; }
+        string MainPageMenuReport { get; }
+        string MainPageMenuBackup { get; }
+        /* MAIN PAGE ENDS */
+
     }
 }

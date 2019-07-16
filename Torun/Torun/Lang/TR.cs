@@ -75,6 +75,26 @@ namespace Torun.Lang
 
         public string RequestEditLabelSaveNO => "Talep düzenlemesi yapılamadı";
 
+        public string MainPageTitle => "Torun - Plan Tracer";
+
+        public string MainPageTotalRequest => "Toplam kayıtlı talep sayısı : ";
+
+        public string MainPageOpenRequest => "Açık talep : ";
+
+        public string MainPageClosedRequest => "Kapatılmış talep : ";
+
+        public string MainPageLogOut => "Çıkış yap";
+
+        public string MainPageMenuToDo => "Yapılacaklar";
+
+        public string MainPageMenuWeeklyPlan => "Haftalık Plan";
+
+        public string MainPageWorkDone => "Yapılmış İşler";
+
+        public string MainPageMenuReport => "Rapor";
+
+        public string MainPageMenuBackup => "Yedekleme";
+
         /* REQUEST PAGES */
     }
 }

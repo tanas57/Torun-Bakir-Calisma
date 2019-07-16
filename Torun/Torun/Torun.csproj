@@ -110,6 +110,9 @@
     <Compile Include="Windows\Request\RequestDetail.xaml.cs">
       <DependentUpon>RequestDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Request\RequestSchedule.xaml.cs">
+      <DependentUpon>RequestSchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Request\RequestDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Request\RequestSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

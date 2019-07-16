@@ -27,7 +27,7 @@
                 <Border Grid.Row="0" x:Name="brd_topLogo" MouseDown="Brd_topLogo_MouseDown">
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="/images/icon/topbarlogo.png" Width="32" Height="32"></Image>
-                        <Label Content="Torun - Plan Tracer" Foreground="White" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                        <Label x:Name="mainPage_title" Content="XXX" Foreground="White" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
                     </DockPanel>
                 </Border>
                 <Border Grid.Row="1">
@@ -82,13 +82,13 @@
                         <Border Grid.Column="0">
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
-                                    <Label Content="Toplam kayıtlı talep sayısı : " Foreground="White" FontSize="19"/>
+                                    <Label x:Name="mainPage_totalRequest" Content="XXX : " Foreground="White" FontSize="19"/>
                                     <Label x:Name="requestCount" Content="125" Foreground="#FFEEB8B8" FontSize="19" Background="#00000000"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <Label Content="Açık talep : " Foreground="White" FontSize="14"/>
+                                    <Label x:Name="mainPage_openRequest" Content="XXX : " Foreground="White" FontSize="14"/>
                                     <Label x:Name="requestOpen" Content="0" Foreground="#FF9BE897" FontSize="14"/>
-                                    <Label Content="Kapatılmış talep : " Foreground="White" FontSize="14"/>
+                                    <Label x:Name="mainPage_closedRequest" Content="XXX : " Foreground="White" FontSize="14"/>
                                     <Label x:Name="requestClosed" Content="0" Foreground="#FF93F5F9" FontSize="14"/>
                                 </DockPanel>
                             </StackPanel>
@@ -97,13 +97,13 @@
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
                                     <Image Source="/images/icon/employee.png" Height="100"/>
-                                        <Label x:Name="menuUsername" Content="M.Tayyip Muslu" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
+                                    <Label x:Name="menuUsername" Content="XXX" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
                                 </DockPanel>
                                 <DockPanel Margin="110, -35, 0,0">
                                     <Button Style="{DynamicResource buttonRedBorder}" BorderThickness="0" x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">
                                         <DockPanel Margin="0,0,0,0">
                                             <Image Source="/images/icon/exit.png" Height="24" Width="24"></Image>
-                                            <Label Content="Çıkış yap" Foreground="White" FontSize="17"/>
+                                            <Label x:Name="mainPage_logOut" Content="XXX" Foreground="White" FontSize="17"/>
                                         </DockPanel>
                                     </Button>
                                 </DockPanel>
@@ -121,31 +121,31 @@
                 <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_toDo" Click="Btn_toDo_Click">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/menu_todo.png" Width="32"/>
-                        <Label Content="Yapılacaklar" Foreground="White" FontSize="16"/>
+                        <Label x:Name="mainPage_menuTodo" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/menu_planning.png" Width="32"/>
-                        <Label Content="Haftalık Plan" Foreground="White" FontSize="16"/>
+                        <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/menu_completed.png" Width="32"/>
-                        <Label Content="Yapılmış İşler" Foreground="White" FontSize="16"/>
+                        <Label x:Name="mainPage_menuWordDone" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/calendar.png" Width="32"/>
-                        <Label Content="Rapor" Foreground="White" FontSize="16"/>
+                        <Label x:Name="mainPage_menuReport" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/backup.png" Width="32"/>
-                        <Label Content="Backup" Foreground="White" FontSize="16"/>
+                        <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
 

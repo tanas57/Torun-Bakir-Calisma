@@ -73,6 +73,16 @@ namespace Torun
                 //imageUser.Source = new BitmapImage(new Uri(FileOperation.UserFilename, UriKind.Relative));
                 
             }
+            mainPage_title.Content = language.MainPageTitle;
+            mainPage_totalRequest.Content = language.MainPageTotalRequest;
+            mainPage_openRequest.Content = language.MainPageOpenRequest;
+            mainPage_closedRequest.Content = language.MainPageClosedRequest;
+            mainPage_logOut.Content = language.MainPageLogOut;
+            mainPage_menuTodo.Content = language.MainPageMenuToDo;
+            mainPage_menuWeeklyPlan.Content = language.MainPageMenuWeeklyPlan;
+            mainPage_menuWordDone.Content = language.MainPageWorkDone;
+            mainPage_menuReport.Content = language.MainPageMenuReport;
+            mainPage_menuBackup.Content = language.MainPageMenuBackup;
         }
 
         private void DockPanel_ContextMenuClosing(object sender, System.Windows.Controls.ContextMenuEventArgs e)
