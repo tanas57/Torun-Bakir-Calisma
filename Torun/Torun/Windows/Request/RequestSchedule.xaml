@@ -8,7 +8,7 @@
         Closing="Window_Closing"
         MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"
-        Title="RequestSchedule" Height="250" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
+        Title="RequestSchedule" Height="250" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -32,8 +32,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -42,7 +42,7 @@
                 <!-- request number -->
                 <Border Grid.Row="0" Grid.Column="0">
                     <DockPanel>
-                        <Label Style="{DynamicResource ScheduleLabels}" HorizontalAlignment="Left" x:Name="schedule_ReqNumber" Content="XXX" />
+                        <Label Style="{DynamicResource ScheduleLabels}" HorizontalAlignment="Left" x:Name="schedule_ReqNumber" Content="XXX" Background="#FFDEE800" />
                         <Label Style="{DynamicResource ScheduleLabels}" Background="#FFC35858" x:Name="schedule_DBReqNumber" Content="XXX" />
                     </DockPanel>
                 </Border>
@@ -50,24 +50,24 @@
                 <Border Grid.Row="0" Grid.Column="1">
                     <DockPanel>
                         <Label Style="{DynamicResource ScheduleLabels}" Background="#FFF18428" x:Name="schedule_DBReqDate" Content="XXX" />
-                        <Label Style="{DynamicResource ScheduleLabels}" Background="#FF0B81D3" x:Name="schedule_ReqDate" Content="XXX" />
+                        <Label FlowDirection="RightToLeft" Style="{DynamicResource ScheduleLabels}" Background="#FF0B81D3" x:Name="schedule_ReqDate" Content="XXX" />
                     </DockPanel>
                 </Border>
                 <!-- request added time-->
                 <!-- radio buttons-->
-                <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
                     <RadioButton GroupName="dateSelectorRadios" x:Name="schedule_ReqADay" Content="XXX" />
                 </Border>
-                <Border Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="0,10,0,0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
                     <RadioButton GroupName="dateSelectorRadios" x:Name="schedule_ReqManyDays" Content="XXX" />
                 </Border>
                 <!-- first date picker-->
                 <Border Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
-                    <DatePicker x:Name="schedule_ReqDatePick1" Text="XXX"/>
+                    <DatePicker x:Name="schedule_ReqDatePick1" Text="XXX" Style="{DynamicResource DatePickers}"/>
                 </Border>
                 <!-- second date picker-->
                 <Border Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-                    <DatePicker x:Name="schedule_ReqDatePick2" Text="XXX"/>
+                    <DatePicker x:Name="schedule_ReqDatePick2" Text="XXX" Style="{DynamicResource DatePickers}"/>
                 </Border>
             </Grid>
         </Border>

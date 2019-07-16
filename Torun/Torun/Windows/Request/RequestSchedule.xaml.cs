@@ -52,10 +52,12 @@ namespace Torun.Windows.Request
             schedule_ReqDate.Content = mainWindow.language.RequestScheduleReqDate;
             schedule_ReqADay.Content = mainWindow.language.RequestScheduleADay;
             schedule_ReqManyDays.Content = mainWindow.language.RequestScheduleManyDays;
+            schedule_ReqDatePick1.Text = mainWindow.language.RequestScheduleChooseDate;
+            schedule_ReqDatePick2.Text = mainWindow.language.RequestScheduleChooseDate;
             if (todolist == null) this.Close();
             else
             {
-                schedule_DBReqDate.Content = todolist.add_time;
+                schedule_DBReqDate.Content = todolist.add_time.Value.ToString("dd.MM.yyyy");
                 schedule_DBReqNumber.Content = todolist.request_number;
             }
 

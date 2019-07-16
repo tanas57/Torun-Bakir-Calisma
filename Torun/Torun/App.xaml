@@ -127,19 +127,13 @@
             </Style.Triggers>
         </Style>
         <!-- date selector -->
-        <Style TargetType="{x:Type DatePickerTextBox}" x:Key="DatePickers">
-            <Setter Property="Width" Value="33"/>
-            <Setter Property="Height" Value="30"/>
+        <Style TargetType="{x:Type DatePicker}" x:Key="DatePickers">
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="BorderBrush" Value="#B0151E"/>
-            <Setter Property="Margin" Value="3"/>
-            <Setter Property="Background" Value="White"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#B0151E"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
         <!-- labels -->
         <Style TargetType="{x:Type Label}" x:Key="ScheduleLabels">

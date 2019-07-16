@@ -108,11 +108,11 @@ namespace Torun.Lang
         #region
         public string RequestScheduleTitle => "Talep Zamanlama";
 
-        public string RequestScheduleReqNumber => "Talep Numarası : ";
+        public string RequestScheduleReqNumber => "Talep Numarası";
 
-        public string RequestScheduleReqDate => "Talep oluşturulma : ";
+        public string RequestScheduleReqDate => "Talep oluşturulma";
 
-        public string RequestScheduleChooseDate => "Zaman seçiniz";
+        public string RequestScheduleChooseDate => "Tarih seçiniz";
 
         public string RequestScheduleADay => "Tek gün";
 
