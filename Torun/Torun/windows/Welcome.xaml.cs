@@ -5,6 +5,8 @@ using Torun.Database;
 using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Lang;
+using System.Windows.Input;
+
 namespace Torun.windows
 {
     /// <summary>
@@ -13,9 +15,9 @@ namespace Torun.windows
     public partial class Welcome : Window
     {
         private users currentUser;
-        private DB db;
+        private readonly DB db;
         private bool passwordMD5 = false;
-        private ILanguage language;
+        private readonly ILanguage language;
         public Welcome()
         {
             InitializeComponent();
@@ -182,6 +184,11 @@ namespace Torun.windows
         private void Login_password_PasswordChanged(object sender, RoutedEventArgs e)
         {
             passwordMD5 = false;
+        }
+
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
         }
     }
 }
