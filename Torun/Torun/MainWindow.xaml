@@ -83,13 +83,13 @@
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
                                     <Label Content="Toplam kayıtlı talep sayısı : " Foreground="White" FontSize="19"/>
-                                    <Label x:Name="requestCount" Content="125" Foreground="LightSeaGreen" FontSize="19"/>
+                                    <Label x:Name="requestCount" Content="125" Foreground="#FFEEB8B8" FontSize="19" Background="#00000000"/>
                                 </DockPanel>
                                 <DockPanel>
                                     <Label Content="Açık talep : " Foreground="White" FontSize="14"/>
-                                    <Label x:Name="requestOpen" Content="0" Foreground="MediumVioletRed" FontSize="14"/>
+                                    <Label x:Name="requestOpen" Content="0" Foreground="#FF9BE897" FontSize="14"/>
                                     <Label Content="Kapatılmış talep : " Foreground="White" FontSize="14"/>
-                                    <Label x:Name="requestClosed" Content="0" Foreground="Yellow" FontSize="14"/>
+                                    <Label x:Name="requestClosed" Content="0" Foreground="#FF93F5F9" FontSize="14"/>
                                 </DockPanel>
                             </StackPanel>
                         </Border>
@@ -100,20 +100,11 @@
                                         <Label x:Name="menuUsername" Content="M.Tayyip Muslu" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
                                 </DockPanel>
                                 <DockPanel Margin="110, -35, 0,0">
-                                    <Button x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">
+                                    <Button Style="{DynamicResource buttonRedBorder}" BorderThickness="0" x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">
                                         <DockPanel Margin="0,0,0,0">
                                             <Image Source="/images/icon/exit.png" Height="24" Width="24"></Image>
                                             <Label Content="Çıkış yap" Foreground="White" FontSize="17"/>
                                         </DockPanel>
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Background" Value="{x:Null}" />
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
                                     </Button>
                                 </DockPanel>
                                

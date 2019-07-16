@@ -210,13 +210,13 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\welcome_screen\identification_red.png" />
+    <Resource Include="images\welcome_screen\password_red.png" />
+    <Resource Include="images\welcome_screen\username_red.png" />
+    <Resource Include="images\welcome_screen\info.png" />
     <Resource Include="images\screen\main\edit.png" />
     <Resource Include="images\screen\main\schedule.png" />
     <Resource Include="images\screen\main\delete.png" />
-    <Resource Include="images\welcome_screen\info.png" />
-    <Resource Include="images\welcome_screen\identification.png" />
-    <Resource Include="images\welcome_screen\password_blue.png" />
-    <Resource Include="images\welcome_screen\username_blue.png" />
     <Resource Include="images\welcome_screen\password.png" />
     <Resource Include="images\welcome_screen\username.png" />
   </ItemGroup>

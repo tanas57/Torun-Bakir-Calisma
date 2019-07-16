@@ -21,18 +21,7 @@
                     <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="req_RequestAdd" />
                 </Border>
                 <Border Grid.Column="1">
-                    <Button Content="X" Width="33" Height="30" HorizontalAlignment="Right" Background="White" BorderBrush="Blue" x:Name="req_btnClose" Click="ReqBtnClose_Click" Margin="3">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF5F99FF"/>
-                                        <Setter Property="Foreground" Value="White"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                    <Button Content="X" Style="{DynamicResource buttonMiniClose}" x:Name="req_btnClose" Click="ReqBtnClose_Click"/>
                 </Border>
             </Grid>
         </Border>

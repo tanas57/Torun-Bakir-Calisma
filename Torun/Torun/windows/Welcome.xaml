@@ -37,17 +37,7 @@
 
                 <DockPanel Margin="0,10,0,0">
                     <CheckBox x:Name="chk_loginSave" Content="XXX" Foreground="White" Margin="30,10"/>
-                    <Button x:Name="btnLogin" BorderBrush="White" BorderThickness="1,1,1,1"  Content="XXX" Foreground="White" Width="70" Height="30" HorizontalAlignment="Right" Background="{x:Null}" Click="BtnLogin_Click">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FFDE6168"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                    <Button Style="{DynamicResource buttonRedBorder}" x:Name="btnLogin" BorderBrush="White" BorderThickness="1,1,1,1"  Content="XXX" Foreground="White" Width="70" Height="30" HorizontalAlignment="Right" Background="{x:Null}" Click="BtnLogin_Click"/>
                 </DockPanel>
                 <Label Margin="0,10,0,5" x:Name="lbl_LoginResult" Content="" Foreground="White" FontSize="14"/>
             </StackPanel>
@@ -67,18 +57,18 @@
                         <DockPanel>
                             <TextBlock FontFamily="MS Outlook" FontSize="14">
                                 <DockPanel>
-                                    <Image Source="/images/welcome_screen/username_blue.png" Width="32" Height="32"/>
+                                    <Image Source="/images/welcome_screen/username_red.png" Width="32" Height="32"/>
                                     <TextBox x:Name="register_username" Background="#B0151E" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
                                     <Label x:Name="lbl_info_username" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="#B0151E"/>
-                                </DockPanel>    
+                                </DockPanel>
                             </TextBlock>
                         </DockPanel>
 
                         <DockPanel Margin="0,15,0,0">
                             <TextBlock FontFamily="MS Outlook" FontSize="14">
                                 <DockPanel>
-                                    <Image Source="/images/welcome_screen/password_blue.png" Width="32" Height="32"/>
+                                    <Image Source="/images/welcome_screen/password_red.png" Width="32" Height="32"/>
                                     <PasswordBox x:Name="register_password" Background="#B0151E" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
                                     <Label  x:Name="lbl_info_password" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="#B0151E"/>
@@ -89,7 +79,7 @@
                         <DockPanel Margin="0,15,0,0">
                             <TextBlock FontFamily="MS Outlook" FontSize="14">
                                 <DockPanel>
-                                    <Image Source="/images/welcome_screen/password_blue.png" Width="32" Height="32"/>
+                                    <Image Source="/images/welcome_screen/password_red.png" Width="32" Height="32"/>
                                     <PasswordBox x:Name="register_password2" Background="#B0151E" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
                                     <Label  x:Name="lbl_info_password2" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="#B0151E"/>
@@ -99,7 +89,7 @@
 
                         <TextBlock Margin="0,15,0,0" FontFamily="MS Outlook" FontSize="14">
                                 <DockPanel>
-                                    <Image Source="/images/welcome_screen/identification.png" Width="32" Height="32"/>
+                                    <Image Source="/images/welcome_screen/identification_red.png" Width="32" Height="32"/>
                                     <TextBox x:Name="register_firstname" Background="#B0151E" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
                                     <Label x:Name="lbl_info_firstname" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="#B0151E"/>
@@ -108,42 +98,19 @@
 
                         <TextBlock Margin="0,15,0,0" FontFamily="MS Outlook" FontSize="14">
                                 <DockPanel>
-                                    <Image Source="/images/welcome_screen/identification.png" Width="32" Height="32"/>
+                                    <Image Source="/images/welcome_screen/identification_red.png" Width="32" Height="32"/>
                                     <TextBox x:Name="register_lastname" Background="#B0151E" Foreground="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
                                     <Image Margin="5,0,0,4" Source="/images/welcome_screen/info.png" Width="18"/>
                                     <Label x:Name="lbl_info_lastname" Content="XXX" FontFamily="times new roman" FontSize="13" Foreground="#B0151E"/>
                                 </DockPanel>
                         </TextBlock>
 
-                        <Button x:Name="btnSignUp" BorderBrush="White" BorderThickness="1,1,1,1"  Content="XXX" Background="#B0151E" Foreground="White" Width="70" Height="30" Margin="0,10,0,0" HorizontalAlignment="Right" Click="BtnSignUp_Click">
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#B0151E"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                        <Button Style="{DynamicResource buttonRedBorder}" x:Name="btnSignUp" BorderBrush="White" BorderThickness="1,1,1,1"  Content="XXX" Background="#B0151E" Foreground="White" Width="70" Height="30" Margin="0,10,0,0" HorizontalAlignment="Right" Click="BtnSignUp_Click"/>
                         <Label Margin="0,10,0,0" x:Name="lbl_RegResult" Content="" Foreground="White" FontSize="14"/>
                     </StackPanel>
                 </Border>
-                
-                
                 <Border Grid.Row="1">
-                    <Button Content="X" Width="33" Height="30" HorizontalAlignment="Right" Background="White" BorderBrush="Blue" x:Name="btnClose" Click="BtnClose_Click" Margin="3">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF5F99FF"/>
-                                        <Setter Property="Foreground" Value="White"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                    <Button Content="X" x:Name="btnClose" Click="BtnClose_Click" Style="{DynamicResource buttonMiniClose}"/>
                 </Border>
             </Grid>
         </Border>
