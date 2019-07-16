@@ -30,7 +30,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>
-                                            <Button x:Name="btn_requestSchedule" Style="{DynamicResource gridButtons}">
+                                            <Button x:Name="btn_requestSchedule" Click="Btn_requestSchedule_Click" Style="{DynamicResource gridButtons}">
                                                 <DockPanel>
                                                     <Image Source="/images/screen/main/schedule.png" Width="19"/>
                                                     <Label Content="Zamanla"/>

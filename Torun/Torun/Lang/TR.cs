@@ -13,6 +13,7 @@ namespace Torun.Lang
          */
 
         /* LOGIN */
+        #region
         public string WelcomeLoginTitle { get => "Giriş"; }
         public string WelcomeLoginFailedNotEnoughUserOrPassword { get => "Kullanıcı adı veya şifre yanlış"; }
         public string WelcomeLoginFailedUserNotFind { get => "Kullanıcı bulunamadı"; }
@@ -20,7 +21,9 @@ namespace Torun.Lang
         public string WelcomeLoginSuccess { get => "Giriş başarılı"; }
         public string WelcomeLoginRemember { get => "Beni hatırla"; }
         public string WelcomeLoginButton { get => "Giriş yap"; }
+        #endregion
         /* REGISTER */
+        #region
         public string WelcomeRegisterTitle { get => "Yeni üyelik"; }
         public string WelcomeSignSuccess { get => "Kayıt başarılı, giriş yapabilirsiniz"; }
         public string WelcomeSignUserAlreadyExists { get => "Kullanıcı adı sistemde mevcut"; }
@@ -34,17 +37,20 @@ namespace Torun.Lang
         public string WelcomeRegisterTitlePasswordAgain { get => "şifre tekrarı"; }
         public string WelcomeRegisterTitleFirstName { get => "kullanıcı ismi"; }
         public string WelcomeRegisterTitleLastName { get => "kullanıcı soyismi"; }
+        #endregion
         /* REGISTER */
-        /* 
-         * WELCOME PAGE ENDS
-         */
+        /*   WELCOME PAGE ENDS */
         /* REQUEST PAGES */
+        #region
         public string ComboboxPriorityLow { get => "Düşük"; }
         public string ComboboxPriorityNormal { get => "Normal"; }
         public string ComboboxPriorityHigh { get => "Yüksek"; }
         public string ComboboxStatusNew { get => "Yeni eklendi"; }
         public string ComboboxStatusInProcess { get => "İşlemde"; }
         public string ComboboxStatusClosed { get => "Kapatıldı"; }
+        #endregion
+        // REQUEST ADD PAGE 
+        #region
 
         public string RequestAddRequestNumber => "Talep numarası";
 
@@ -63,10 +69,9 @@ namespace Torun.Lang
         public string RequestAddRequestResultNoDescription => "Açıklama girilmedi";
 
         public string RequestAddRequestTitle => "Yeni Talep Ekle";
-
-
-        
+        #endregion
         /* REQUEST EDIT WINDOWS ENDS */
+        #region
         public string RequestEditTitle => "Talep Düzenleme";
 
         public string RequestEditButton => "Kaydet";
@@ -74,7 +79,10 @@ namespace Torun.Lang
         public string RequestEditLabelSaveOK => "Talep düzenlemesi kaydedildi";
 
         public string RequestEditLabelSaveNO => "Talep düzenlemesi yapılamadı";
+        #endregion
 
+        // MAINPAGE STARTS
+        #region
         public string MainPageTitle => "Torun - Plan Tracer";
 
         public string MainPageTotalRequest => "Toplam kayıtlı talep sayısı : ";
@@ -94,7 +102,26 @@ namespace Torun.Lang
         public string MainPageMenuReport => "Rapor";
 
         public string MainPageMenuBackup => "Yedekleme";
+        // MAIN PAGE ENDS
+        #endregion
+        // REQUEST SCHEDULE PAGE STARTS
+        #region
+        public string RequestScheduleTitle => "Talep Zamanlama";
 
+        public string RequestScheduleReqNumber => "Talep Numarası : ";
+
+        public string RequestScheduleReqDate => "Talep oluşturulma : ";
+
+        public string RequestScheduleChooseDate => "Zaman seçiniz";
+
+        public string RequestScheduleADay => "Tek gün";
+
+        public string RequestScheduleManyDays => "Birden fazla gün";
+
+        public string RequestScheduleStartDate => "Başlangıç zamanı";
+
+        public string RequestScheduleEndDate => "Bitiş zamanı";
+        #endregion
         /* REQUEST PAGES */
     }
 }

@@ -90,5 +90,10 @@ namespace Torun.Windows.Request
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
         }
+
+        private void Req_DetailTitle_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            mainWindow.Opacity = 1;
+        }
     }
 }

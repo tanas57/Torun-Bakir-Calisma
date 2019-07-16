@@ -61,5 +61,15 @@ namespace Torun.UControls
             requestEdit.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             requestEdit.ShowDialog();
         }
+
+        private void Btn_requestSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            RequestSchedule requestSchedule = new RequestSchedule();
+            requestSchedule.Owner = mainWindow;
+            requestSchedule.todolist = Grid_todoList.SelectedItem as todoList;
+            mainWindow.Opacity = 0.5;
+            requestSchedule.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            requestSchedule.ShowDialog();
+        }
     }
 }

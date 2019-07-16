@@ -78,5 +78,17 @@ namespace Torun.Lang
         string MainPageMenuBackup { get; }
         /* MAIN PAGE ENDS */
 
+        /* REQUEST SCHEDULE PAGE STARTS*/
+        string RequestScheduleTitle { get; }
+        string RequestScheduleReqNumber { get; }
+        string RequestScheduleReqDate { get; }
+        string RequestScheduleChooseDate { get; }
+        string RequestScheduleADay { get; }
+        string RequestScheduleManyDays { get; }
+        string RequestScheduleStartDate { get; }
+        string RequestScheduleEndDate { get; }
+
+        /* REQUEST SCHEDULE PAGE ENDS */
+
     }
 }

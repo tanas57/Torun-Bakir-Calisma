@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torun.Windows.Request"
         mc:Ignorable="d"
-        Title="RequestSchedule" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
+        Closing="Window_Closing"
+        MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded"
+        Title="RequestSchedule" Height="250" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -18,7 +21,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0">
-                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="req_RequestAdd" />
+                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="req_RequestSchedule" />
                 </Border>
                 <Border Grid.Column="1">
                     <Button Content="X" Style="{DynamicResource buttonMiniClose}" x:Name="req_btnClose" Click="Req_btnClose_Click"/>
@@ -26,35 +29,47 @@
             </Grid>
         </Border>
         <Border Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <DockPanel>
-                    <TextBlock HorizontalAlignment="Right">
-                    <Label Content="XXX" x:Name="lbl_reqNumber"/>
-                    <TextBox x:Name="req_Number" Width="190" Height="30"/>
-                    </TextBlock>
-                </DockPanel>
-                <DockPanel Margin="0,15,0,0">
-                    <TextBlock HorizontalAlignment="Right">
-                    <Label Content="XXX" x:Name="lbl_reqPriority"/>
-                    <ComboBox SelectedIndex="0" x:Name="req_Priority" Width="191" Height="30"/>
-                    </TextBlock>
-                </DockPanel>
-                <DockPanel Margin="0,15,0,0">
-                    <TextBlock HorizontalAlignment="Right">
-                    <Label Content="XXX" x:Name="lbl_reqDescription"/>
-                    <TextBox TextWrapping="Wrap" Height="100" x:Name="req_Description" Width="192"/>
-                    </TextBlock>
-                </DockPanel>
-                <DockPanel Margin="0,15,0,0">
-                    <Button x:Name="req_Save" Click="Req_Save_Click" HorizontalAlignment="Right">
-                        <DockPanel>
-                            <Image Source="{x:Null}" />
-                            <Label Content="XXX" x:Name="lbl_req_Button"/>
-                        </DockPanel>
-                    </Button>
-                </DockPanel>
-                <Label x:Name="req_Result" Content="XXX" Background="Red" Margin="0,10,0,0" Foreground="White" Visibility="Hidden"/>
-            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!-- request number -->
+                <Border Grid.Row="0" Grid.Column="0">
+                    <DockPanel>
+                        <Label Style="{DynamicResource ScheduleLabels}" HorizontalAlignment="Left" x:Name="schedule_ReqNumber" Content="XXX" />
+                        <Label Style="{DynamicResource ScheduleLabels}" Background="#FFC35858" x:Name="schedule_DBReqNumber" Content="XXX" />
+                    </DockPanel>
+                </Border>
+                <!-- request added time-->
+                <Border Grid.Row="0" Grid.Column="1">
+                    <DockPanel>
+                        <Label Style="{DynamicResource ScheduleLabels}" Background="#FFF18428" x:Name="schedule_DBReqDate" Content="XXX" />
+                        <Label Style="{DynamicResource ScheduleLabels}" Background="#FF0B81D3" x:Name="schedule_ReqDate" Content="XXX" />
+                    </DockPanel>
+                </Border>
+                <!-- request added time-->
+                <!-- radio buttons-->
+                <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">
+                    <RadioButton GroupName="dateSelectorRadios" x:Name="schedule_ReqADay" Content="XXX" />
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+                    <RadioButton GroupName="dateSelectorRadios" x:Name="schedule_ReqManyDays" Content="XXX" />
+                </Border>
+                <!-- first date picker-->
+                <Border Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">
+                    <DatePicker x:Name="schedule_ReqDatePick1" Text="XXX"/>
+                </Border>
+                <!-- second date picker-->
+                <Border Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+                    <DatePicker x:Name="schedule_ReqDatePick2" Text="XXX"/>
+                </Border>
+            </Grid>
         </Border>
 
     </Grid>
