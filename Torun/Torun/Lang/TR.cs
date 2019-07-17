@@ -114,13 +114,7 @@ namespace Torun.Lang
 
         public string RequestScheduleChooseDate => "Tarih seçiniz";
 
-        public string RequestScheduleADay => "Tek gün";
-
-        public string RequestScheduleManyDays => "Birden fazla gün";
-
-        public string RequestScheduleStartDate => "Başlangıç zamanı";
-
-        public string RequestScheduleEndDate => "Bitiş zamanı";
+        public string RequestScheduleSave => "Planla";
         #endregion
         /* REQUEST PAGES */
     }

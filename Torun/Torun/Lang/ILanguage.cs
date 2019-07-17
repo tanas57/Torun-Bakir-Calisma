@@ -83,10 +83,7 @@ namespace Torun.Lang
         string RequestScheduleReqNumber { get; }
         string RequestScheduleReqDate { get; }
         string RequestScheduleChooseDate { get; }
-        string RequestScheduleADay { get; }
-        string RequestScheduleManyDays { get; }
-        string RequestScheduleStartDate { get; }
-        string RequestScheduleEndDate { get; }
+        string RequestScheduleSave { get; }
 
         /* REQUEST SCHEDULE PAGE ENDS */
 

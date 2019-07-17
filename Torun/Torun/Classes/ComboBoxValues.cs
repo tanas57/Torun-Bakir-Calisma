@@ -5,7 +5,8 @@
         Added = 1,
         InProcess = 2,
         Closed = 3,
-        Edited = 4
+        Edited = 4,
+        Planned = 5
     }
     public enum PriorityType
     {

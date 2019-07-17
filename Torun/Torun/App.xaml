@@ -127,13 +127,14 @@
             </Style.Triggers>
         </Style>
         <!-- date selector -->
-        <Style TargetType="{x:Type DatePicker}" x:Key="DatePickers">
-            <Setter Property="Width" Value="220"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Style TargetType="{x:Type Calendar}" x:Key="DatePickers">
+            <Setter Property="BorderBrush" Value="#B0151E"/>
+            <Setter Property="Height" Value="210"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="SelectionMode" Value="MultipleRange"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
         <!-- labels -->
         <Style TargetType="{x:Type Label}" x:Key="ScheduleLabels">

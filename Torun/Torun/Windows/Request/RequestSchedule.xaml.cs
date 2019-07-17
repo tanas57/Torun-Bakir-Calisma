@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Torun.Classes;
 using Torun.Database;
 
 namespace Torun.Windows.Request
@@ -45,27 +46,64 @@ namespace Torun.Windows.Request
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            schedule_chooseDate.Content = mainWindow.language.RequestScheduleChooseDate;
             this.Title = mainWindow.language.RequestScheduleTitle;
             req_RequestSchedule.Content = mainWindow.language.RequestScheduleTitle;
             schedule_ReqNumber.Content = mainWindow.language.RequestScheduleReqNumber;
             schedule_ReqDate.Content = mainWindow.language.RequestScheduleReqDate;
-            schedule_ReqADay.Content = mainWindow.language.RequestScheduleADay;
-            schedule_ReqManyDays.Content = mainWindow.language.RequestScheduleManyDays;
-            schedule_ReqDatePick1.Text = mainWindow.language.RequestScheduleChooseDate;
-            schedule_ReqDatePick2.Text = mainWindow.language.RequestScheduleChooseDate;
+            Schedule_Save.Content = mainWindow.language.RequestScheduleSave;
             if (todolist == null) this.Close();
             else
             {
                 schedule_DBReqDate.Content = todolist.add_time.Value.ToString("dd.MM.yyyy");
                 schedule_DBReqNumber.Content = todolist.request_number;
             }
-
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
+        }
+
+        private void Schedule_Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (schedule_ReqDatePicker.SelectedDate.HasValue)
+            {
+                plans plans;
+                lbl_scheduleResult.Background = Brushes.Blue;
+                lbl_scheduleResult.Content = "Planlama kaydediliyor...";
+                int count = schedule_ReqDatePicker.SelectedDates.Count, count2 = 0;
+                foreach (var item in schedule_ReqDatePicker.SelectedDates)
+                {
+                    plans = new plans
+                    {
+                        add_time = DateTime.Now,
+                        work_id = todolist.id,
+                        work_plan_time = item
+                    };
+                    mainWindow.db.AddPlanDates(plans);
+                    count2++;
+                }
+                if(count == count2)
+                {
+                    lbl_scheduleResult.Background = Brushes.Green;
+                    lbl_scheduleResult.Content = "Kaydedilme işlemi başarılı";
+                    todolist.status = (int)StatusType.Planned;
+                    mainWindow.db.EditTodoList(todolist);
+                }
+                else
+                {
+                    lbl_scheduleResult.Background = Brushes.Red;
+                    lbl_scheduleResult.Content = "İşlem başarısız";
+                }
+            }
+            else
+            {
+                lbl_scheduleResult.Background = Brushes.Red;
+                lbl_scheduleResult.Content = "Takvimden tarih seçiniz";
+            }
+            
+            
         }
     }
 }

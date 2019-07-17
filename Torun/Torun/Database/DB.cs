@@ -16,6 +16,11 @@ namespace Torun.Database
             db = new plan_tracerDBEntities();
         }
 
+        public void AddPlanDates(plans plans)
+        {
+            db.plans.Add(plans);
+            db.SaveChanges();
+        }
         public byte DeleteTodoList(todoList todoList)
         {
             db.todoList.Remove(todoList);
