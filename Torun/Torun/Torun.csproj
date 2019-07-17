@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\ComboBoxValues.cs" />
     <Compile Include="Classes\FileOperations\FileNames.cs" />
+    <Compile Include="Classes\Keyboard\KeyControl.cs" />
     <Compile Include="Classes\MD5Crypt.cs" />
     <Compile Include="Classes\FileOperations\FileOperation.cs" />
     <Compile Include="Classes\UserControllCall.cs" />

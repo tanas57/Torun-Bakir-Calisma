@@ -37,10 +37,11 @@ namespace Torun.Lang
         public string WelcomeRegisterTitlePasswordAgain { get => "şifre tekrarı"; }
         public string WelcomeRegisterTitleFirstName { get => "kullanıcı ismi"; }
         public string WelcomeRegisterTitleLastName { get => "kullanıcı soyismi"; }
+        public string WelcomeCapsLock => "Caps Lock Açık";
         #endregion
         /* REGISTER */
         /*   WELCOME PAGE ENDS */
-        
+
         // COMBOBOX VALUES
         #region
         public string ComboboxPriorityLow { get => "Düşük"; }

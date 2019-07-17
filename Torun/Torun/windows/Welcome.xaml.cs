@@ -4,6 +4,7 @@ using System.Windows.Media;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Classes.FileOperations;
+using Torun.Classes.Keyboard;
 using Torun.Lang;
 using System.Windows.Input;
 
@@ -39,8 +40,8 @@ namespace Torun.windows
                 && register_password.Password != String.Empty 
                 && register_password2.Password != String.Empty)
             {
-                currentUser.firstname = register_firstname.Text;
-                currentUser.lastname = register_lastname.Text;
+                currentUser.firstname = register_firstname.Text.ToUpper();
+                currentUser.lastname = register_lastname.Text.ToUpper();
                 if(register_username.Text.Length >= 3)
                 {
                     if (String.Equals(register_password.Password, register_password2.Password) == true)
@@ -153,6 +154,8 @@ namespace Torun.windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            CapsLockControl();
+            capslockControl.Content = language.WelcomeCapsLock;
             // form items names from language
             lbl_loginTitle.Content = language.WelcomeLoginTitle;
             lbl_registerTitle.Content = language.WelcomeRegisterTitle;
@@ -191,6 +194,17 @@ namespace Torun.windows
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            CapsLockControl();
+        }
+
+        private void CapsLockControl()
+        {
+            if (KeyControl.CapsLock()) capslockControl.Visibility = Visibility.Visible;
+            else capslockControl.Visibility = Visibility.Hidden;
         }
     }
 }

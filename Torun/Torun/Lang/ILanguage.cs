@@ -32,6 +32,7 @@ namespace Torun.Lang
         string WelcomeRegisterTitlePasswordAgain { get; }
         string WelcomeRegisterTitleFirstName { get; }
         string WelcomeRegisterTitleLastName { get; }
+        string WelcomeCapsLock { get; }
 
         /* WELCOME PAGE ENDS*/
 

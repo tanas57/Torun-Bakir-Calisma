@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Torun.windows"
         mc:Ignorable="d"
         BorderBrush="LightSlateGray"
+        KeyDown="Window_KeyDown"
         BorderThickness="1,1,1,1"
         Title="Giriş - Plan Takip" Height="400" Width="650" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Torun;component/images/icon/topbarlogo.png" Foreground="{x:Null}" Background="White" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Grid>
@@ -110,7 +111,10 @@
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1">
-                    <Button Content="X" x:Name="btnClose" Click="BtnClose_Click" Style="{DynamicResource buttonMiniClose}"/>
+                    <DockPanel>
+                        <Label Content="XXX" x:Name="capslockControl" Foreground="White" Background="#FFDC3434" Width="200" Visibility="Visible" FontSize="15" FontWeight="ExtraLight" HorizontalContentAlignment="Center" Margin="90,0,0,0"/>
+                        <Button Content="X" x:Name="btnClose" Click="BtnClose_Click" Style="{DynamicResource buttonMiniClose}"/>
+                    </DockPanel>
                 </Border>
             </Grid>
         </Border>

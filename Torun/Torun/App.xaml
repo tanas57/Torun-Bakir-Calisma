@@ -91,13 +91,33 @@
         </Style>
         <!-- datagrid deneme -->
         
-        <!-- button red border: welcome; login button, main: logout button -->
+        <!-- button red border: welcome; login button -->
         <Style TargetType="{x:Type Button}" x:Key="buttonRedBorder">
             <Setter Property="Background" Value="#B0151E"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}" BorderBrush="#FFF56666" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFDE5454"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--  main: logout button -->
+        <Style TargetType="{x:Type Button}" x:Key="buttonRedBorder2">
+            <Setter Property="Background" Value="#B0151E"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#FFF56666" BorderThickness="0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -146,7 +166,7 @@
             <Setter Property="FontSize" Value="16"/>
         </Style>
 
-        <!-- menu buttons-->
+        <!-- todolist page buttons-->
         <Style x:Key="buttonUCTodoList" TargetType="Button">
             <Setter Property="Background" Value="#B0151E"/>
             <Setter Property="Foreground" Value="White"/>
