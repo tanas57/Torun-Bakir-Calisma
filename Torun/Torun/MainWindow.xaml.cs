@@ -5,8 +5,6 @@ using Torun.Classes;
 using Torun.UControls;
 using Torun.Database;
 using Torun.Lang;
-using System;
-using System.Windows.Media.Imaging;
 
 namespace Torun
 {
@@ -59,7 +57,9 @@ namespace Torun
 
         private void Btn_toDo_Click(object sender, RoutedEventArgs e)
         {
-            UserControllCall.Add(Grd_Content, uCTodoList = new UCTodoList());
+            if (uCTodoList == null) UserControllCall.Add(Grd_Content, uCTodoList = new UCTodoList());
+            else UserControllCall.Add(Grd_Content, uCTodoList);
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -99,15 +99,20 @@ namespace Torun
 
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Normal)
+            if (uCTodoList != null)
             {
-                this.WindowState = WindowState.Maximized;
-                if (uCTodoList != null) uCTodoList.Grid_todoList.Columns[5].Width = SystemParameters.PrimaryScreenWidth - 758;
-            }
-            else
-            {
-                this.WindowState = WindowState.Normal;
-                if (uCTodoList != null) uCTodoList.Grid_todoList.Columns[5].Width = 242;
+                if (this.WindowState == WindowState.Normal)
+                {
+                    this.WindowState = WindowState.Maximized;
+                    if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 568;
+                    else uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 758;
+                }
+                else
+                {
+                    this.WindowState = WindowState.Normal;
+                    if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = 430;
+                    else uCTodoList.Grid_todoList.Columns[4].Width = 242;
+                }
             }
         }
 

@@ -76,9 +76,7 @@
                             </DataGridTemplateColumn>
                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60"/>
                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="40"/>
-                            <DataGridTextColumn Binding="{Binding Path=add_time}" IsReadOnly="True" Header="Eklenme Zamanı" MinWidth="100"/>
-                            <DataGridTextColumn Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="Açıklama" Width="242"/>
-                            <DataGridTextColumn Binding="{Binding Path=status}" IsReadOnly="True" Header="Durumu" MinWidth="30"/>
+                            <DataGridTextColumn Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="Açıklama" Width="430"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

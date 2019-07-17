@@ -14,6 +14,7 @@ namespace Torun.UControls
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private DB db; private users currentUser;
+        public bool buttonDetail = false;
         public UCTodoList()
         {
             InitializeComponent();
@@ -74,15 +75,33 @@ namespace Torun.UControls
 
         private void Grid_detail_Click(object sender, RoutedEventArgs e)
         {
-            /*
-             * <DataGridTextColumn Binding="{Binding Path=add_time}" IsReadOnly="True" Header="Eklenme Zamanı" MinWidth="100"/>
-            <DataGridTextColumn Binding="{Binding Path=status}" IsReadOnly="True" Header="Durumu" MinWidth="30"/>
-            */
-            DataGridColumn item = new DataGridColumn();
-            item.Header = "asdas";
+            // detay butonuna tıklandı ilk kez.
+            if (!buttonDetail)
+            {
+                DataGridTextColumn add_time = new DataGridTextColumn();
+                add_time.Header = "Eklenme Zamanı";
+                add_time.MinWidth = 100;
+                add_time.IsReadOnly = true;
+                add_time.Binding = new System.Windows.Data.Binding("add_time");
+                Grid_todoList.Columns.Add(add_time);
 
+                DataGridTextColumn status = new DataGridTextColumn();
+                status.Header = "Durumu";
+                status.MinWidth = 30;
+                status.IsReadOnly = true;
+                status.Binding = new System.Windows.Data.Binding("status");
+                Grid_todoList.Columns.Add(status);
 
-            Grid_todoList.Columns.Add()
+                Grid_todoList.Columns[4].Width = Grid_todoList.Columns[4].Width.Value - 190;
+                buttonDetail = true;
+            }
+            else
+            { // ikinci basışta eklenenleri gizle
+                Grid_todoList.Columns.RemoveAt(Grid_todoList.Columns.Count - 1); // add_time column
+                Grid_todoList.Columns.RemoveAt(Grid_todoList.Columns.Count - 1); // status column
+                Grid_todoList.Columns[4].Width = Grid_todoList.Columns[4].Width.Value + 190;
+                buttonDetail = false;
+            }
         }
     }
 }
