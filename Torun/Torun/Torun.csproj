@@ -217,6 +217,10 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\main_screen\TodoList\arrow.png" />
+    <Resource Include="images\main_screen\TodoList\arrow_red.png" />
+    <Resource Include="images\main_screen\TodoList\add.png" />
+    <Resource Include="images\main_screen\TodoList\add_red.png" />
     <Resource Include="images\welcome_screen\identification_red.png" />
     <Resource Include="images\welcome_screen\password_red.png" />
     <Resource Include="images\welcome_screen\username_red.png" />

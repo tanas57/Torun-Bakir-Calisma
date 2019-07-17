@@ -11,12 +11,34 @@
         <Border Grid.Column="0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- add button is here-->
                 <Border Grid.Row="0">
-                    <Button Content="Yeni talep ekle" x:Name="btn_adddRequest" Click="btn_adddRequest_Click"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
+                            <Button Style="{DynamicResource buttonUCTodoList}"  x:Name="btn_adddRequest" Click="btn_adddRequest_Click">
+                                <DockPanel>
+                                    <Image Source="/images/main_screen/TodoList/add.png" Width="32"/>
+                                    <Label Content="Yeni talep ekle" Foreground="White"/>
+                                </DockPanel>
+
+                            </Button>
+                        </Border>
+                        <Border Grid.Column="1" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
+                            <Button x:Name="grid_detail" Click="Grid_detail_Click" Style="{DynamicResource buttonUCTodoList}">
+                                <DockPanel>
+                                    <Image Source="/images/main_screen/TodoList/arrow.png" Width="32"/>
+                                    <Label Content="Listeyi Detaylandır" Foreground="White"/>
+                                </DockPanel>
+                            </Button>
+                        </Border>
+                    </Grid>
                 </Border>
                 <!-- to do list-->
                 <Border Grid.Row="1">

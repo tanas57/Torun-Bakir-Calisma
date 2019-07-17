@@ -145,6 +145,35 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
+
+        <!-- menu buttons-->
+        <Style x:Key="buttonUCTodoList" TargetType="Button">
+            <Setter Property="Background" Value="#B0151E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0,0,0,1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <!--sol yukarı sağ alt-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                BorderThickness="5,0,0,0"
+                                BorderBrush="{x:Null}"
+                                Background="{x:Null}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FFD15158"/>
+                                <Setter TargetName="border" Property="Background" Value="#FFD15158"/>
+                                <Setter TargetName="border" Property="BorderThickness" Value="5,0,0,0"/>
+                                <Setter Property="Foreground" Value="#FFD15158"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!-- menu buttons
         <Style x:Key="gridColumn" TargetType="DataGridCell">
             

@@ -71,5 +71,18 @@ namespace Torun.UControls
             requestSchedule.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             requestSchedule.ShowDialog();
         }
+
+        private void Grid_detail_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+             * <DataGridTextColumn Binding="{Binding Path=add_time}" IsReadOnly="True" Header="Eklenme Zamanı" MinWidth="100"/>
+            <DataGridTextColumn Binding="{Binding Path=status}" IsReadOnly="True" Header="Durumu" MinWidth="30"/>
+            */
+            DataGridColumn item = new DataGridColumn();
+            item.Header = "asdas";
+
+
+            Grid_todoList.Columns.Add()
+        }
     }
 }
