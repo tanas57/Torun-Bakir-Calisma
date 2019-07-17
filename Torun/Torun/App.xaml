@@ -130,7 +130,6 @@
         <Style TargetType="{x:Type Calendar}" x:Key="DatePickers">
             <Setter Property="BorderBrush" Value="#B0151E"/>
             <Setter Property="Height" Value="210"/>
-            <Setter Property="FontSize" Value="16"/>
             <Setter Property="HorizontalContentAlignment" Value="Right"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="SelectionMode" Value="MultipleRange"/>

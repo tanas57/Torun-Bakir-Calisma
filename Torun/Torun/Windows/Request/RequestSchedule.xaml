@@ -8,7 +8,7 @@
         Closing="Window_Closing"
         MouseDown="Window_MouseDown"
         Loaded="Window_Loaded"
-        Title="RequestSchedule" Height="300" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
+        Title="RequestSchedule" Height="300" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -33,19 +33,11 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0">
                     <DockPanel>
-                        <Label Style="{DynamicResource ScheduleLabels}" HorizontalAlignment="Left" x:Name="schedule_ReqNumber" Content="XXX" Background="#FFDEE800" />
-                        <Label Style="{DynamicResource ScheduleLabels}" Background="#FFC35858" x:Name="schedule_DBReqNumber" Content="XXX" />
-                    </DockPanel>
-                </Border>
-                <!-- request added time-->
-                <Border Grid.Column="1">
-                    <DockPanel>
-                        <Label Style="{DynamicResource ScheduleLabels}" Background="#FFF18428" x:Name="schedule_DBReqDate" Content="XXX" />
-                        <Label FlowDirection="RightToLeft" Style="{DynamicResource ScheduleLabels}" Background="#FF0B81D3" x:Name="schedule_ReqDate" Content="XXX" />
+                        <Label Width="210" Style="{DynamicResource ScheduleLabels}" HorizontalAlignment="Left" x:Name="schedule_ReqNumber" Content="XXX" Background="#FFDEE800" />
+                        <Label HorizontalContentAlignment="Left" Style="{DynamicResource ScheduleLabels}" Background="#FFC35858" x:Name="schedule_DBReqNumber" Content="XXX" />
                     </DockPanel>
                 </Border>
                 <!-- request added time-->
@@ -54,13 +46,13 @@
         <Border Grid.Row="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="210"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0">
                     <StackPanel>
                         <DockPanel>
-                            <Label x:Name="schedule_chooseDate" Content="XXX"/>
+                            <Label Margin="70,0,0,0" x:Name="schedule_chooseDate" Content="XXX"/>
                         </DockPanel>
                         <DockPanel HorizontalAlignment="Center">
                             <Calendar x:Name="schedule_ReqDatePicker" Style="{DynamicResource DatePickers}"/>
@@ -70,7 +62,7 @@
                 <Border Grid.Column="1">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                         <DockPanel>
-                            <Button Width="100" Height="50" Foreground="White" x:Name="Schedule_Save" Click="Schedule_Save_Click" Content="XXX" Style="{DynamicResource buttonRedBorder}"/>
+                            <Button Width="80" Height="50" Foreground="White" x:Name="Schedule_Save" Click="Schedule_Save_Click" Content="XXX" Style="{DynamicResource buttonRedBorder}"/>
                         </DockPanel>
                         <DockPanel>
                             <Label HorizontalAlignment="Left" Margin="0,15,0,0" Foreground="White" x:Name="lbl_scheduleResult" FontSize="14"/>

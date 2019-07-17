@@ -50,12 +50,10 @@ namespace Torun.Windows.Request
             this.Title = mainWindow.language.RequestScheduleTitle;
             req_RequestSchedule.Content = mainWindow.language.RequestScheduleTitle;
             schedule_ReqNumber.Content = mainWindow.language.RequestScheduleReqNumber;
-            schedule_ReqDate.Content = mainWindow.language.RequestScheduleReqDate;
             Schedule_Save.Content = mainWindow.language.RequestScheduleSave;
             if (todolist == null) this.Close();
             else
             {
-                schedule_DBReqDate.Content = todolist.add_time.Value.ToString("dd.MM.yyyy");
                 schedule_DBReqNumber.Content = todolist.request_number;
             }
         }

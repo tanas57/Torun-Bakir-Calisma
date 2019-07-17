@@ -116,8 +116,6 @@ namespace Torun.Lang
 
         public string RequestScheduleReqNumber => "Talep Numarası";
 
-        public string RequestScheduleReqDate => "Talep oluşturulma";
-
         public string RequestScheduleChooseDate => "Tarih seçiniz";
 
         public string RequestScheduleSave => "Planla";
