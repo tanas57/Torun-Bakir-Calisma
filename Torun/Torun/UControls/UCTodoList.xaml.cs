@@ -37,7 +37,7 @@ namespace Torun.UControls
             if(result == MessageBoxResult.Yes)
             {
                 db.DeleteTodoList(todoList);
-                Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
+                mainWindow.UpdateScreens();
             }
         }
 

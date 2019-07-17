@@ -40,15 +40,21 @@ namespace Torun.Lang
         #endregion
         /* REGISTER */
         /*   WELCOME PAGE ENDS */
-        /* REQUEST PAGES */
+        
+        // COMBOBOX VALUES
         #region
         public string ComboboxPriorityLow { get => "Düşük"; }
         public string ComboboxPriorityNormal { get => "Normal"; }
         public string ComboboxPriorityHigh { get => "Yüksek"; }
+
+        public string ComboboxPriorityUrgent => "Acil";
+
+        public string ComboboxPriorityProject => "Proje";
         public string ComboboxStatusNew { get => "Yeni eklendi"; }
         public string ComboboxStatusInProcess { get => "İşlemde"; }
         public string ComboboxStatusClosed { get => "Kapatıldı"; }
         #endregion
+        /* REQUEST PAGES */
         // REQUEST ADD PAGE 
         #region
 
@@ -115,7 +121,13 @@ namespace Torun.Lang
         public string RequestScheduleChooseDate => "Tarih seçiniz";
 
         public string RequestScheduleSave => "Planla";
+
+        public string RequestScheduleSaveChooseDateError => "Takvimden tarih seçiniz";
+
+        public string RequestScheduleSaveFailed => "İşlem başarısız";
+
         #endregion
+
         /* REQUEST PAGES */
     }
 }

@@ -58,6 +58,8 @@ namespace Torun.windows
                                 case 1:
                                     lbl_RegResult.Content = language.WelcomeSignSuccess;
                                     lbl_RegResult.Background = Brushes.Green;
+                                    register_firstname.Text = ""; register_lastname.Text = "";
+                                    register_username.Text = ""; register_password.Password = ""; register_password2.Password = "";
                                     break;
                                 case 0:
                                     lbl_RegResult.Content = language.WelcomeSignUserAlreadyExists;

@@ -32,6 +32,8 @@ namespace Torun.Windows.Request
             req_Priority.Items.Add(mainWindow.language.ComboboxPriorityLow);
             req_Priority.Items.Add(mainWindow.language.ComboboxPriorityNormal);
             req_Priority.Items.Add(mainWindow.language.ComboboxPriorityHigh);
+            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityUrgent);
+            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityProject);
 
             req_Number.Text = todolist.request_number;
             req_Description.Text = todolist.description;
@@ -81,7 +83,8 @@ namespace Torun.Windows.Request
                 {
                     req_Result.Content = mainWindow.language.RequestEditLabelSaveOK;
                     req_Result.Background = Brushes.Green;
-                    mainWindow.uCTodoList.Grid_todoList.ItemsSource = mainWindow.db.GetTodoLists(mainWindow.currentUser);
+                    mainWindow.UpdateScreens();
+                    this.Close();
                 }
             }
         }

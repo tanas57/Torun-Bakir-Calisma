@@ -86,21 +86,21 @@ namespace Torun.Windows.Request
                 }
                 if(count == count2)
                 {
-                    lbl_scheduleResult.Background = Brushes.Green;
-                    lbl_scheduleResult.Content = "Kaydedilme işlemi başarılı";
                     todolist.status = (int)StatusType.Planned;
                     mainWindow.db.EditTodoList(todolist);
+                    mainWindow.UpdateScreens();
+                    this.Close();
                 }
                 else
                 {
                     lbl_scheduleResult.Background = Brushes.Red;
-                    lbl_scheduleResult.Content = "İşlem başarısız";
+                    lbl_scheduleResult.Content = mainWindow.language.RequestScheduleSaveFailed;
                 }
             }
             else
             {
                 lbl_scheduleResult.Background = Brushes.Red;
-                lbl_scheduleResult.Content = "Takvimden tarih seçiniz";
+                lbl_scheduleResult.Content = mainWindow.language.RequestScheduleSaveChooseDateError;
             }
             
             

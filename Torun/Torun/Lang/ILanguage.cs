@@ -41,6 +41,8 @@ namespace Torun.Lang
         string ComboboxPriorityLow { get; }
         string ComboboxPriorityNormal { get; }
         string ComboboxPriorityHigh { get; }
+        string ComboboxPriorityUrgent { get; }
+        string ComboboxPriorityProject { get; }
         // STATUS
         string ComboboxStatusNew { get; }
         string ComboboxStatusInProcess { get; }
@@ -84,6 +86,8 @@ namespace Torun.Lang
         string RequestScheduleReqDate { get; }
         string RequestScheduleChooseDate { get; }
         string RequestScheduleSave { get; }
+        string RequestScheduleSaveChooseDateError { get; }
+        string RequestScheduleSaveFailed { get; }
 
         /* REQUEST SCHEDULE PAGE ENDS */
 
