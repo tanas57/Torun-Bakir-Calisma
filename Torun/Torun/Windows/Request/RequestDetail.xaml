@@ -43,7 +43,7 @@
                 <DockPanel Margin="0,15,0,0">
                     <TextBlock HorizontalAlignment="Right">
                     <Label Content="XXX" x:Name="lbl_reqDescription"/>
-                    <TextBox TextWrapping="Wrap" Height="100" x:Name="req_Description" Width="192"/>
+                    <TextBox TextWrapping="Wrap" Height="140" x:Name="req_Description" Width="222"/>
                     </TextBlock>
                 </DockPanel>
                 <DockPanel Margin="0,15,0,0">

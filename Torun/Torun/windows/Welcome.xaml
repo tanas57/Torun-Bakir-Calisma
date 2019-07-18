@@ -22,7 +22,7 @@
                     <TextBlock FontFamily="MS Outlook" FontSize="14">
                         <DockPanel>
                             <Image Source="/images/welcome_screen/username.png" Width="32" Height="32"/>
-                            <TextBox x:Name="login_username" Background="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" KeyDown="Login_username_KeyDown"/>
+                            <TextBox x:Name="login_username" Background="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" KeyUp="Login_username_KeyUp"/>
                         </DockPanel>
                     </TextBlock>
                 </DockPanel>
