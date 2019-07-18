@@ -16,13 +16,13 @@
         </Grid.ColumnDefinitions>
         <!-- log in -->
         <Border Background="#B0151E" Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="LightSlateGray">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Label x:Name="lbl_loginTitle" Foreground="White" Content="xxx" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30" FontSize="22" FontFamily="Book Antiqua"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" KeyUp="StackPanel_KeyUp">
+                <Label x:Name="lbl_loginTitle" Foreground="White" Content="xxx" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30" FontSize="22" FontFamily="Corbel"/>
                 <DockPanel>
                     <TextBlock FontFamily="MS Outlook" FontSize="14">
                         <DockPanel>
                             <Image Source="/images/welcome_screen/username.png" Width="32" Height="32"/>
-                            <TextBox x:Name="login_username" Background="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana"/>
+                            <TextBox x:Name="login_username" Background="White" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" KeyDown="Login_username_KeyDown"/>
                         </DockPanel>
                     </TextBlock>
                 </DockPanel>
@@ -54,7 +54,7 @@
 
                 <Border Grid.Row="0">
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Label x:Name="lbl_registerTitle" Foreground="#B0151E" Content="Yeni Üyelik" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,30" FontSize="22" FontFamily="Book Antiqua"/>
+                        <Label x:Name="lbl_registerTitle" Foreground="#B0151E" Content="Yeni Üyelik" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="00,10,0,30" FontSize="22" FontFamily="Corbel"/>
                         <DockPanel>
                             <TextBlock FontFamily="MS Outlook" FontSize="14">
                                 <DockPanel>

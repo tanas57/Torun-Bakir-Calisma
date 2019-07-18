@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-
+using Torun.Classes.FileOperations;
 namespace Torun.Classes
 {
     public static class FileOperation
@@ -23,17 +23,19 @@ namespace Torun.Classes
         public static string UserFilename { get; set; }
         private static string getFilePath(string file, bool withoutUser = false)
         {
-            if (file == String.Empty) return System.Environment.CurrentDirectory + "//" + UserFilename;
-            if(withoutUser == true) return System.Environment.CurrentDirectory + "//" + file;
-            return System.Environment.CurrentDirectory + "//" + UserFilename + "//" + file;
+            if (file == String.Empty) return System.Environment.CurrentDirectory + @"\" + UserFilename;
+            if(withoutUser) return System.Environment.CurrentDirectory + @"\" + file;
+            else return System.Environment.CurrentDirectory + @"\" + UserFilename + @"\" + file;
         }
-
         public static bool Write(string data, string filename, bool withoutUser = false)
         {
-            if (File.Exists(getFilePath(filename))) File.Delete(getFilePath(filename));
-            TextWriter txt = new StreamWriter(getFilePath(filename, withoutUser));
+            string filePath = getFilePath(filename, withoutUser);
+
+            if (File.Exists(filePath)) File.Delete(filePath);
+            TextWriter txt = new StreamWriter(filePath);
             txt.Write(data);
             txt.Close();
+
             return true;
         }
 
@@ -56,7 +58,7 @@ namespace Torun.Classes
         /// <param name="username"></param>
         public static void ControlUserFile()
         {
-            if (File.Exists("logged"))
+            if (File.Exists(FileNames.IS_LOGGED))
             {
                 if (!Directory.Exists(getFilePath(String.Empty)) == true) Directory.CreateDirectory(getFilePath(String.Empty));
             }

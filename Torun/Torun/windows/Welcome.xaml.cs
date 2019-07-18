@@ -206,5 +206,14 @@ namespace Torun.windows
             if (KeyControl.CapsLock()) capslockControl.Visibility = Visibility.Visible;
             else capslockControl.Visibility = Visibility.Hidden;
         }
+        private void Login_username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (login_username.Text == String.Empty) login_password.Password = String.Empty;
+        }
+
+        private void StackPanel_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) BtnLogin_Click(sender, e);
+        }
     }
 }
