@@ -25,7 +25,7 @@
                             <Button Style="{DynamicResource buttonUCTodoList}"  x:Name="btn_adddRequest" Click="btn_adddRequest_Click">
                                 <DockPanel>
                                     <Image Source="/images/main_screen/TodoList/add.png" Width="32"/>
-                                    <Label Content="Yeni talep ekle" Foreground="White"/>
+                                    <Label x:Name="ucTodolist_addRequest" Content="Yeni talep ekle" Foreground="White"/>
                                 </DockPanel>
 
                             </Button>
@@ -34,7 +34,7 @@
                             <Button x:Name="grid_detail" Click="Grid_detail_Click" Style="{DynamicResource buttonUCTodoList}">
                                 <DockPanel>
                                     <Image Source="/images/main_screen/TodoList/arrow.png" Width="32"/>
-                                    <Label Content="Listeyi Detaylandır" Foreground="White"/>
+                                    <Label x:Name="ucTodolist_ListDetail" Content="Listeyi Detaylandır" Foreground="White"/>
                                 </DockPanel>
                             </Button>
                         </Border>
@@ -47,8 +47,8 @@
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False" Loaded="Grid_todoList_Loaded" MouseDoubleClick="Grid_todoList_MouseDoubleClick"
                               >
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="1"/>
-                            <DataGridTemplateColumn Header="İşlemler">
+                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
+                            <DataGridTemplateColumn Header="XXX" x:Name="ucTodolist_Processes">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <DockPanel>
@@ -74,9 +74,9 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60"/>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=priority}" IsReadOnly="True" Header="Öncelik" MinWidth="40"/>
-                            <DataGridTextColumn Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="Açıklama" Width="430"/>
+                            <DataGridTextColumn x:Name="ucTodolist_requestNumber" CanUserReorder="False" Binding="{Binding Path=request_number}" IsReadOnly="True" Header="XXX" MinWidth="60"/>
+                            <DataGridTextColumn x:Name="ucTodolist_Priority" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
+                            <DataGridTextColumn x:Name="ucTodolist_Description" Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="XXX" Width="430"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

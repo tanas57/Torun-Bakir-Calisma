@@ -47,13 +47,13 @@ namespace Torun.Lang
         public string ComboboxPriorityLow { get => "Düşük"; }
         public string ComboboxPriorityNormal { get => "Normal"; }
         public string ComboboxPriorityHigh { get => "Yüksek"; }
-
         public string ComboboxPriorityUrgent => "Acil";
-
         public string ComboboxPriorityProject => "Proje";
         public string ComboboxStatusNew { get => "Yeni eklendi"; }
         public string ComboboxStatusInProcess { get => "İşlemde"; }
         public string ComboboxStatusClosed { get => "Kapatıldı"; }
+        public string ComboboxStatusEdited => "Düzenlendi";
+        public string ComboboxStatusPlanned => "Planlandı";
         #endregion
         /* REQUEST PAGES */
         // REQUEST ADD PAGE 
@@ -114,19 +114,26 @@ namespace Torun.Lang
         // REQUEST SCHEDULE PAGE STARTS
         #region
         public string RequestScheduleTitle => "Talep Zamanlama";
-
         public string RequestScheduleReqNumber => "Talep Numarası";
-
         public string RequestScheduleChooseDate => "Tarih seçiniz";
-
         public string RequestScheduleSave => "Planla";
-
         public string RequestScheduleSaveChooseDateError => "Takvimden tarih seçiniz";
-
         public string RequestScheduleSaveFailed => "İşlem başarısız";
 
         #endregion
 
         /* REQUEST PAGES */
+        public string UCTodoListAddRequest => "Yeni talep ekle";
+        public string UCTodoListDetailList => "Liste Detayını Aç/Kapa";
+        public string UCTodoListProcesses => "İşlemler";
+        public string UCTodoListRequestNumber => "Talep Numarası";
+        public string UCTodoListPriority => "Öncelik";
+        public string UCTodoListDescription => "Açıklama";
+        public string UCTodoListAddedTime => "Eklenme Zamanı";
+        public string UCTodoListStatus => "Durum";
+        public string UCTodoListScheduleButton => "Zamanla";
+        public string UCTodoListEditButton => "Düzenle";
+        public string UCTodoListDeleteButton => "Sil";
+        
     }
 }

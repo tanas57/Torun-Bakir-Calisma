@@ -45,7 +45,12 @@ namespace Torun.UControls
         private void Grid_todoList_Loaded(object sender, RoutedEventArgs e)
         {
             // priority ve status int to string işlemi
-
+            ucTodolist_ListDetail.Content = mainWindow.language.UCTodoListAddedTime;
+            ucTodolist_addRequest.Content = mainWindow.language.UCTodoListAddRequest;
+            ucTodolist_Description.Header = mainWindow.language.UCTodoListDescription;
+            ucTodolist_requestNumber.Header = mainWindow.language.UCTodoListRequestNumber;
+            ucTodolist_Priority.Header = mainWindow.language.UCTodoListPriority;
+            ucTodolist_Processes.Header = mainWindow.language.UCTodoListProcesses;
         }
 
         private void Grid_todoList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -79,20 +84,20 @@ namespace Torun.UControls
             if (!buttonDetail)
             {
                 DataGridTextColumn add_time = new DataGridTextColumn();
-                add_time.Header = "Eklenme Zamanı";
+                add_time.Header = mainWindow.language.UCTodoListAddedTime;
                 add_time.MinWidth = 100;
                 add_time.IsReadOnly = true;
                 add_time.Binding = new System.Windows.Data.Binding("add_time");
                 Grid_todoList.Columns.Add(add_time);
 
                 DataGridTextColumn status = new DataGridTextColumn();
-                status.Header = "Durumu";
+                status.Header = mainWindow.language.UCTodoListStatus;
                 status.MinWidth = 30;
                 status.IsReadOnly = true;
-                status.Binding = new System.Windows.Data.Binding("status");
+                status.Binding = new System.Windows.Data.Binding("StatusString");
                 Grid_todoList.Columns.Add(status);
 
-                Grid_todoList.Columns[4].Width = Grid_todoList.Columns[4].Width.Value - 190;
+                Grid_todoList.Columns[4].Width = Grid_todoList.Columns[4].Width.Value - 205;
                 buttonDetail = true;
             }
             else

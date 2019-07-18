@@ -48,6 +48,8 @@ namespace Torun.Lang
         string ComboboxStatusNew { get; }
         string ComboboxStatusInProcess { get; }
         string ComboboxStatusClosed { get; }
+        string ComboboxStatusEdited { get; }
+        string ComboboxStatusPlanned { get; }
         /* COMBOBOX ITEMS */
 
         /* REQUEST ADD WINDOWS STARTS */
@@ -91,5 +93,16 @@ namespace Torun.Lang
 
         /* REQUEST SCHEDULE PAGE ENDS */
 
+        string UCTodoListAddRequest { get; }
+        string UCTodoListDetailList { get; }
+        string UCTodoListProcesses { get; }
+        string UCTodoListRequestNumber { get; }
+        string UCTodoListPriority { get; }
+        string UCTodoListDescription { get; }
+        string UCTodoListAddedTime { get; }
+        string UCTodoListStatus { get; }
+        string UCTodoListScheduleButton { get; }
+        string UCTodoListEditButton { get; }
+        string UCTodoListDeleteButton { get; }
     }
 }

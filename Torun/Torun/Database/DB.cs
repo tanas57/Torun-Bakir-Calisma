@@ -11,6 +11,15 @@ namespace Torun.Database
     {
         private readonly plan_tracerDBEntities db;
 
+        //public class TodoListEdited
+        //{
+        //    public int ID { get; set; }
+        //    public string RequestNumber { get; set; }
+        //    public string Priority { get; set; }
+        //    public string Description { get; set; }
+        //    public int UserID { get; set; }
+        //    public DateTime Priority { get; set; }
+        //}
         public class WeeklyPlan
         {
             public int PlanID { get; set; }
@@ -77,8 +86,8 @@ namespace Torun.Database
             switch (ReqType)
             {
                 case 1: return db.todoList.Where(x => x.user_id == user.id).Count();
-                case 2: return db.todoList.Where(x => x.status == 1 && x.user_id == user.id).Count();
-                case 3: return db.todoList.Where(x => x.status == 2 && x.user_id == user.id).Count();
+                case 2: return db.todoList.Where(x => x.status != (int)StatusType.Closed && x.user_id == user.id).Count();
+                case 3: return db.todoList.Where(x => x.status == (int)StatusType.Closed && x.user_id == user.id).Count();
             }
             return 0;
         }

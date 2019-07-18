@@ -11,9 +11,13 @@ namespace Torun.Database
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows;
+    using System.Linq;
+    using Torun.Classes;
     public partial class todoList
     {
+        private byte priorities; private byte statu;
+        private readonly MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public todoList()
         {
@@ -23,16 +27,73 @@ namespace Torun.Database
     
         public int id { get; set; }
         public string request_number { get; set; }
-        public Nullable<byte> priority { get; set; }
+        public Nullable<byte> priority {
+            get
+            {
+                return priorities;
+            }
+            set {
+                priorities = (byte)value;
+                switch (value)
+                {
+                        case (int)PriorityType.Low:
+                            PriorityString = mainWindow.language.ComboboxPriorityLow;
+                            break;
+                        case (int)PriorityType.Normal:
+                            PriorityString = mainWindow.language.ComboboxPriorityNormal;
+                            break;
+                        case (int)PriorityType.High:
+                            PriorityString = mainWindow.language.ComboboxPriorityHigh;
+                            break;
+                        case (int)PriorityType.Urgent:
+                            PriorityString = mainWindow.language.ComboboxPriorityUrgent;
+                            break;
+                        case (int)PriorityType.Project:
+                            PriorityString = mainWindow.language.ComboboxPriorityProject;
+                            break;
+                }
+            }
+        }
         public string description { get; set; }
         public Nullable<int> user_id { get; set; }
         public Nullable<System.DateTime> add_time { get; set; }
-        public Nullable<byte> status { get; set; }
+        public Nullable<byte> status
+        {
+            get
+            {
+                return statu;
+            }
+            set
+            {
+                statu = (byte)value;
+                switch (value)
+                {
+                    case (int)StatusType.Added:
+                        StatusString = mainWindow.language.ComboboxStatusNew;
+                        break;
+                    case (int)StatusType.InProcess:
+                        StatusString = mainWindow.language.ComboboxStatusInProcess;
+                        break;
+                    case (int)StatusType.Closed:
+                        StatusString = mainWindow.language.ComboboxStatusClosed;
+                        break;
+                    case (int)StatusType.Edited:
+                        StatusString = mainWindow.language.ComboboxStatusEdited;
+                        break;
+                    case (int)StatusType.Planned:
+                        StatusString = mainWindow.language.ComboboxStatusPlanned;
+                        break;
+                }
+            }
+        }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<plans> plans { get; set; }
         public virtual users users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkDone> WorkDone { get; set; }
+
+        public string PriorityString { get; set; }
+        public string StatusString { get; set; }
     }
 }
