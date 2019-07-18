@@ -194,6 +194,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- weekly plan labels -->
+        <Style x:Key="label_weeklyPlan" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="LightSlateGray"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
         <!-- menu buttons
         <Style x:Key="gridColumn" TargetType="DataGridCell">
             

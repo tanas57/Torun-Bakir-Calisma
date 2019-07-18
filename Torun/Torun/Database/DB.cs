@@ -11,11 +11,29 @@ namespace Torun.Database
     {
         private readonly plan_tracerDBEntities db;
 
+        public class WeeklyPlan
+        {
+            public int PlanID { get; set; }
+            public int WorkID { get; set; }
+            public string RequestNumber { get; set; }
+        }
         public DB()
         {
             db = new plan_tracerDBEntities();
         }
-
+        public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime)
+        {
+            var result = from day in db.plans
+                         join work in db.todoList on day.work_id equals work.id
+                         where day.work_plan_time == dateTime && user.id == work.user_id
+                         select new WeeklyPlan
+                         {
+                             PlanID = day.id,
+                             WorkID = work.id,
+                             RequestNumber = work.request_number
+            };
+            return result.ToList<WeeklyPlan>();
+        }
         public void AddPlanDates(plans plans)
         {
             db.plans.Add(plans);
@@ -114,4 +132,5 @@ namespace Torun.Database
             return 1;
         }
     }
+
 }

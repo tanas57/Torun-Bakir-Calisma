@@ -18,14 +18,13 @@ namespace Torun
         public users currentUser;
         public ILanguage language;
         public UCTodoList uCTodoList;
+        public UCWeeklyPlan ucWeeklyPlan;
         private bool formLogoutControl = false; // for form closing control, and logout button action
         //public users CurrentUser { get; set; } daha sonra bu şekil değiştir
         public MainWindow()
         {
             InitializeComponent();
-            db = new DB();
         }
-
         public void UpdateScreens()
         {
             requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
@@ -54,14 +53,11 @@ namespace Torun
         {
             this.WindowState = WindowState.Minimized;
         }
-
         private void Btn_toDo_Click(object sender, RoutedEventArgs e)
         {
             if (uCTodoList == null) UserControllCall.Add(Grd_Content, uCTodoList = new UCTodoList());
             else UserControllCall.Add(Grd_Content, uCTodoList);
-
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // set maximum screen size
@@ -91,31 +87,28 @@ namespace Torun
             mainPage_menuReport.Content = language.MainPageMenuReport;
             mainPage_menuBackup.Content = language.MainPageMenuBackup;
         }
-
-        private void DockPanel_ContextMenuClosing(object sender, System.Windows.Controls.ContextMenuEventArgs e)
-        {
-
-        }
-
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
         {
-            if (uCTodoList != null)
+            if (this.WindowState == WindowState.Normal)
             {
-                if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+                if (uCTodoList != null)
                 {
-                    this.WindowState = WindowState.Maximized;
                     if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 568;
                     else uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 758;
                 }
-                else
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+                if (uCTodoList != null)
                 {
-                    this.WindowState = WindowState.Normal;
                     if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = 430;
                     else uCTodoList.Grid_todoList.Columns[4].Width = 242;
                 }
             }
+            
         }
-
         private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
         {
             db.LogOut(currentUser);
@@ -124,15 +117,18 @@ namespace Torun
             this.currentUser = null;
             welcome.Show();
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(!formLogoutControl) welcome.Close(); // when user logout, do not close the main form
         }
-
         private void Btn_UpdateUserPhoto_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+        private void Btn_WeeklyPlan_Click(object sender, RoutedEventArgs e)
+        {
+            if (ucWeeklyPlan == null) UserControllCall.Add(Grd_Content, ucWeeklyPlan = new UCWeeklyPlan());
+            else UserControllCall.Add(Grd_Content, ucWeeklyPlan);
         }
     }
 }

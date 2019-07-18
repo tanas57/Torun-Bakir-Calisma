@@ -105,6 +105,9 @@
     <Compile Include="UControls\UCTodoList.xaml.cs">
       <DependentUpon>UCTodoList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UControls\UCWeeklyPlan.xaml.cs">
+      <DependentUpon>UCWeeklyPlan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Request\RequestAdd.xaml.cs">
       <DependentUpon>RequestAdd.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UControls\UCTodoList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControls\UCWeeklyPlan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,6 +225,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\main_screen\WeeklyPlan\calendar.png" />
     <Resource Include="images\main_screen\TodoList\arrow.png" />
     <Resource Include="images\main_screen\TodoList\arrow_red.png" />
     <Resource Include="images\main_screen\TodoList\add.png" />

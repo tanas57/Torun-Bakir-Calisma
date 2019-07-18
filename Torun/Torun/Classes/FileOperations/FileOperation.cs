@@ -43,6 +43,7 @@ namespace Torun.Classes
         {
             TextReader txt = new StreamReader(getFilePath(filename));
             string data = txt.ReadLine();
+            txt.Close();
             if (data != String.Empty) return data;
 
             return String.Empty;
@@ -60,7 +61,8 @@ namespace Torun.Classes
         {
             if (File.Exists(FileNames.IS_LOGGED))
             {
-                if (!Directory.Exists(getFilePath(String.Empty)) == true) Directory.CreateDirectory(getFilePath(String.Empty));
+                string filePath = getFilePath(String.Empty);
+                if (!Directory.Exists(filePath) == true) Directory.CreateDirectory(filePath);
             }
         }
     }

@@ -66,7 +66,7 @@
                 </Grid.RowDefinitions>
                 
                 <Border Grid.Row="0" Background="White" x:Name="brd_top" MouseDown="Brd_top_MouseDown">
-                    <DockPanel HorizontalAlignment="Right" Width="100" ContextMenuClosing="DockPanel_ContextMenuClosing">
+                    <DockPanel HorizontalAlignment="Right" Width="100">
                         <Button Content="__" Style="{DynamicResource miniButtons}" x:Name="btnFormDown" Click="BtnFormDown_Click"></Button>
                         <Button Content="O" Style="{DynamicResource miniButtons}" x:Name="btnFormUp" Click="BtnFormUp_Click"/>
                         <Button Content="X" Style="{DynamicResource miniButtons}" x:Name="btnClose" Click="BtnClose_Click"/>
@@ -124,7 +124,7 @@
                         <Label x:Name="mainPage_menuTodo" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
-                <Button Height="50" Style="{DynamicResource menuButtons}">
+                <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_WeeklyPlan" Click="Btn_WeeklyPlan_Click">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/menu_planning.png" Width="32"/>
                         <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="White" FontSize="16"/>
