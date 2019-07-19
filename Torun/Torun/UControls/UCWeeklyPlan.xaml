@@ -56,7 +56,7 @@
                         <StackPanel HorizontalAlignment="Right" Margin="0,0,20,0">
                             <Label x:Name="lbl_currentTime" Content="XXX" Foreground="White" Margin="10,-4,0,0"/>
                             <DockPanel>
-                                <TextBlock Text="15.07.2019 - 19.07.2019" Foreground="White" FontSize="14"/>
+                                <TextBlock x:Name="lbl_dates" Text="15.07.2019 - 19.07.2019" Foreground="White" FontSize="14"/>
                             </DockPanel>
                         </StackPanel>
                     </DockPanel>
@@ -80,15 +80,15 @@
                                 <DockPanel>
                                     <DataGrid x:Name="Grid_todoList0" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" 
-                              CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False"
-                              >
+                              CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" MaxWidth="0"/>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" MaxWidth="0"/>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="155"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" MaxWidth="0"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" MaxWidth="0"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="155"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </DockPanel>
+                                <TextBlock HorizontalAlignment="Center" x:Name="txt_MondayCount"/>
                             </StackPanel>
                         </Border>
                         <!-- tuesday -->

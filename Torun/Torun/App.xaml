@@ -213,14 +213,19 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Background" Value="white"/>
             <Setter Property="Foreground" Value="#B0151E"/>
-            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFDE4949"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         
-        <!-- grid cell
-        <Style x:Key="gridColumn" TargetType="DataGridCell">
-            <Setter Property="Background" Value="#FFCDCDCD"/>
-            <Setter Property="BorderThickness" Value="5,0,0,0"/>
-            <Setter Property="BorderBrush" Value="#FF959595"/>
-        </Style> -->
+        <!-- grid cell -->
+        <Style x:Key="gridCell" TargetType="DataGridCell">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            
+        </Style>
     </Application.Resources>
 </Application>
