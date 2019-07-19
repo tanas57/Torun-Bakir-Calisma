@@ -55,7 +55,7 @@
                             </StackPanel>
                         <StackPanel HorizontalAlignment="Right" Margin="0,0,20,0">
                             <!--<Label x:Name="lbl_currentTime" Content="XXX" Foreground="White" Margin="10,-4,0,0"/>-->
-                            <DatePicker x:Name="date_picker" BorderThickness="0" Margin="10,2,0,0" CalendarClosed="Date_picker_CalendarClosed" KeyUp="Date_picker_KeyUp" MouseDown="Date_picker_MouseDown" />
+                            <DatePicker MouseEnter="Date_picker_MouseEnter" x:Name="date_picker" BorderThickness="0" Margin="10,2,0,0" CalendarClosed="Date_picker_CalendarClosed" KeyUp="Date_picker_KeyUp" MaxWidth="133" />
                             <DockPanel>
                                 <TextBlock x:Name="lbl_dates" Text="15.07.2019 - 19.07.2019" Foreground="White" FontSize="14"/>
                             </DockPanel>

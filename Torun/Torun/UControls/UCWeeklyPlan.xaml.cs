@@ -34,7 +34,7 @@ namespace Torun.UControls
             lbl_dayFriday.Content = mainWindow.language.UCWeeklyPlanDaysFriday;
             date_picker.Text = mainWindow.language.UCWeeklyPlanCurrentTime;
             
-            LabelDateUpdate(DateTime.Now);
+            LabelDateUpdate(DateTime.Now.Date);
         }
 
         private void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
@@ -49,12 +49,12 @@ namespace Torun.UControls
         private void LabelDateUpdate(DateTime datetime)
         {
             planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
-            lbl_dates.Text = planStartDate.ToShortDateString() + " - " + datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Friday).ToShortDateString();
+            lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
             Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate); txt_MondayCount.Text = Grid_todoList0.Items.Count.ToString() + " adet kayıt";
             Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
-            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
-            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
-            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
+            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2));
+            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3));
+            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4));
         }
 
         private void Date_picker_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -62,7 +62,7 @@ namespace Torun.UControls
             if (e.Key == Key.Enter) Date_picker_CalendarClosed(sender, e);
         }
 
-        private void Date_picker_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Date_picker_MouseEnter(object sender, MouseEventArgs e)
         {
             date_picker.IsDropDownOpen = true;
         }
