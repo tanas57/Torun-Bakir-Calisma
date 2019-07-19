@@ -23,7 +23,7 @@ namespace Torun.windows
         {
             InitializeComponent();
             db = new DB();
-            language = new TR();
+            language = CurrentLanguage.Language;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
