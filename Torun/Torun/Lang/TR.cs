@@ -123,6 +123,9 @@ namespace Torun.Lang
         #endregion
 
         /* REQUEST PAGES */
+
+        // Todolist user control
+        #region
         public string UCTodoListAddRequest => "Yeni talep ekle";
         public string UCTodoListDetailList => "Liste Detayını Aç/Kapa";
         public string UCTodoListProcesses => "İşlemler";
@@ -134,6 +137,6 @@ namespace Torun.Lang
         public string UCTodoListScheduleButton => "Zamanla";
         public string UCTodoListEditButton => "Düzenle";
         public string UCTodoListDeleteButton => "Sil";
-        
+#endregion
     }
 }

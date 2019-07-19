@@ -10,16 +10,6 @@ namespace Torun.Database
     public class DB
     {
         private readonly plan_tracerDBEntities db;
-
-        //public class TodoListEdited
-        //{
-        //    public int ID { get; set; }
-        //    public string RequestNumber { get; set; }
-        //    public string Priority { get; set; }
-        //    public string Description { get; set; }
-        //    public int UserID { get; set; }
-        //    public DateTime Priority { get; set; }
-        //}
         public class WeeklyPlan
         {
             public int PlanID { get; set; }
