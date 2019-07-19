@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\App.xaml
-7-666842969
+8754133688
 2-1645616557
-27-620244522
+29934330705
 20-559953294
-MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\Welcome.xaml;
+MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\ChangeDataInterval.xaml;Windows\Welcome.xaml;
 
 False
 

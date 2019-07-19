@@ -8,15 +8,6 @@ namespace Torun.Lang
 {
     public static class CurrentLanguage
     {
-        private static readonly ILanguage LANG = new TR();
-
-        public static ILanguage Language
-        {
-
-            get
-            {
-                return LANG;
-            }
-        }
+        public static ILanguage Language { get; } = new TR();
     }
 }

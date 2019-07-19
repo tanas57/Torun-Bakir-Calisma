@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Torun.Database;
 
 namespace Torun.UControls
@@ -16,16 +17,12 @@ namespace Torun.UControls
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private DB db; private users currentUser;
+        private DateTime planStartDate;
         public UCWeeklyPlan()
         {
             InitializeComponent();
             db = mainWindow.db;
             currentUser = mainWindow.currentUser;
-            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, new DateTime(2019,07,22)); txt_MondayCount.Text = Grid_todoList0.Items.Count.ToString() + " adet kayıt";
-            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, new DateTime(2019, 07, 23));
-            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, new DateTime(2019, 07, 24));
-            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, new DateTime(2019, 07, 25));
-            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, new DateTime(2019, 07, 26));
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -35,9 +32,39 @@ namespace Torun.UControls
             lbl_dayWednesday.Content = mainWindow.language.UCWeeklyPlanDaysWednesday;
             lbl_dayThursday.Content = mainWindow.language.UCWeeklyPlanDaysThursday;
             lbl_dayFriday.Content = mainWindow.language.UCWeeklyPlanDaysFriday;
-            lbl_currentTime.Content = mainWindow.language.UCWeeklyPlanCurrentTime;
+            date_picker.Text = mainWindow.language.UCWeeklyPlanCurrentTime;
+            
+            LabelDateUpdate(DateTime.Now);
+        }
 
-            lbl_dates.Text = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday).ToShortDateString() + " - " + DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Friday).ToShortDateString();
+        private void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            if (date_picker.SelectedDate.HasValue)
+            {
+                DateTime value = date_picker.SelectedDate.Value;
+                LabelDateUpdate(value);
+            }
+        }
+
+        private void LabelDateUpdate(DateTime datetime)
+        {
+            planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
+            lbl_dates.Text = planStartDate.ToShortDateString() + " - " + datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Friday).ToShortDateString();
+            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate); txt_MondayCount.Text = Grid_todoList0.Items.Count.ToString() + " adet kayıt";
+            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
+            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
+            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
+            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
+        }
+
+        private void Date_picker_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Date_picker_CalendarClosed(sender, e);
+        }
+
+        private void Date_picker_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            date_picker.IsDropDownOpen = true;
         }
     }
 }

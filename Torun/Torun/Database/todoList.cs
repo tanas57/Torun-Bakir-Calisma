@@ -11,18 +11,18 @@ namespace Torun.Database
 {
     using System;
     using System.Collections.Generic;
-    using System.Windows;
-    using System.Linq;
     using Torun.Classes;
+    using Torun.Lang;
     public partial class todoList
     {
         private byte priorities; private byte statu;
-        private readonly MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        private ILanguage language;
+
         public todoList()
         {
             this.plans = new HashSet<plans>();
             this.WorkDone = new HashSet<WorkDone>();
+            language = CurrentLanguage.Language;
         }
     
         public int id { get; set; }
@@ -37,19 +37,19 @@ namespace Torun.Database
                 switch (value)
                 {
                         case (int)PriorityType.Low:
-                            PriorityString = mainWindow.language.ComboboxPriorityLow;
+                            PriorityString = language.ComboboxPriorityLow;
                             break;
                         case (int)PriorityType.Normal:
-                            PriorityString = mainWindow.language.ComboboxPriorityNormal;
+                            PriorityString = language.ComboboxPriorityNormal;
                             break;
                         case (int)PriorityType.High:
-                            PriorityString = mainWindow.language.ComboboxPriorityHigh;
+                            PriorityString = language.ComboboxPriorityHigh;
                             break;
                         case (int)PriorityType.Urgent:
-                            PriorityString = mainWindow.language.ComboboxPriorityUrgent;
+                            PriorityString = language.ComboboxPriorityUrgent;
                             break;
                         case (int)PriorityType.Project:
-                            PriorityString = mainWindow.language.ComboboxPriorityProject;
+                            PriorityString = language.ComboboxPriorityProject;
                             break;
                 }
             }
@@ -69,19 +69,19 @@ namespace Torun.Database
                 switch (value)
                 {
                     case (int)StatusType.Added:
-                        StatusString = mainWindow.language.ComboboxStatusNew;
+                        StatusString = language.ComboboxStatusNew;
                         break;
                     case (int)StatusType.InProcess:
-                        StatusString = mainWindow.language.ComboboxStatusInProcess;
+                        StatusString = language.ComboboxStatusInProcess;
                         break;
                     case (int)StatusType.Closed:
-                        StatusString = mainWindow.language.ComboboxStatusClosed;
+                        StatusString = language.ComboboxStatusClosed;
                         break;
                     case (int)StatusType.Edited:
-                        StatusString = mainWindow.language.ComboboxStatusEdited;
+                        StatusString = language.ComboboxStatusEdited;
                         break;
                     case (int)StatusType.Planned:
-                        StatusString = mainWindow.language.ComboboxStatusPlanned;
+                        StatusString = language.ComboboxStatusPlanned;
                         break;
                 }
             }

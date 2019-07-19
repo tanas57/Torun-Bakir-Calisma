@@ -16,7 +16,7 @@ CREATE TABLE users(
 -- to do list table
 CREATE TABLE todoList(
 	id INT PRIMARY KEY IDENTITY(1,1),
-	request_number VARCHAR(15) DEFAULT NULL,
+	request_number VARCHAR(100) DEFAULT NULL,
 	priority TINYINT NOT NULL DEFAULT 2, -- 1: high, 2: normal, 3: low
 	description TEXT,
 	user_id INT NOT NULL, -- which user is

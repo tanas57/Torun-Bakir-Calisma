@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="RequestAdd" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="350" Width="400" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+        Title="RequestAdd" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="365" Width="400" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -26,7 +26,7 @@
         </Border>
         <Border Grid.Row="1">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <DockPanel>
+                <DockPanel Margin="0,10,0,0">
                     <TextBlock HorizontalAlignment="Right">
                     <Label Content="XXX" x:Name="lbl_reqNumber"/>
                     <TextBox x:Name="req_Number" Width="190" Height="30"/>
