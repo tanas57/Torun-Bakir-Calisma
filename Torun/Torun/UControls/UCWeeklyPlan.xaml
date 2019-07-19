@@ -20,7 +20,7 @@
                     <DockPanel>
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <DockPanel>
-                                    <Button x:Name="btn_GetDetail" Width="100" Height="33" Style="{DynamicResource btn_weeklyPlan}">
+                                    <Button Click="Btn_GetDetail_Click" x:Name="btn_GetDetail" Width="100" Height="33" Style="{DynamicResource btn_weeklyPlan}">
                                         <DockPanel>
                                             <Image Source="/images/main_screen/WeeklyPlan/search.png" Width="16" Margin="0,0,3,0"/>
                                             <TextBlock Text="Detay Getir"/>

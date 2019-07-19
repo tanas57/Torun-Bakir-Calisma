@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\App.xaml
-8754133688
+9-1464766021
 2-1645616557
-29934330705
+30239891173
 20-559953294
-MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\ChangeDataInterval.xaml;Windows\Welcome.xaml;
+MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\ChangeDataInterval.xaml;Windows\WeeklyPlan\GetDetail.xaml;Windows\Welcome.xaml;
 
 False
 

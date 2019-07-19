@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Torun.Database;
-
+using Torun.Windows.WeeklyPlan;
 namespace Torun.UControls
 {
     /// <summary>
@@ -33,8 +33,8 @@ namespace Torun.UControls
             lbl_dayThursday.Content = mainWindow.language.UCWeeklyPlanDaysThursday;
             lbl_dayFriday.Content = mainWindow.language.UCWeeklyPlanDaysFriday;
             date_picker.Text = mainWindow.language.UCWeeklyPlanCurrentTime;
-            
-            LabelDateUpdate(DateTime.Now.Date);
+
+            LabelandGridUpdate(DateTime.Now.Date);
         }
 
         private void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
@@ -42,11 +42,11 @@ namespace Torun.UControls
             if (date_picker.SelectedDate.HasValue)
             {
                 DateTime value = date_picker.SelectedDate.Value;
-                LabelDateUpdate(value);
+                LabelandGridUpdate(value);
             }
         }
 
-        private void LabelDateUpdate(DateTime datetime)
+        private void LabelandGridUpdate(DateTime datetime)
         {
             planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
             lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
@@ -65,6 +65,29 @@ namespace Torun.UControls
         private void Date_picker_MouseEnter(object sender, MouseEventArgs e)
         {
             date_picker.IsDropDownOpen = true;
+        }
+        private DataGrid GridControl()
+        {
+            if (Grid_todoList0.SelectedItem != null) return Grid_todoList0;
+            else if (Grid_todoList1.SelectedItem != null) return Grid_todoList1;
+            else if (Grid_todoList2.SelectedItem != null) return Grid_todoList2;
+            else if (Grid_todoList3.SelectedItem != null) return Grid_todoList3;
+            else if (Grid_todoList4.SelectedItem != null) return Grid_todoList4;
+            else return null;
+        }
+
+        private void Btn_GetDetail_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid selectedGrid = GridControl();
+            if (selectedGrid != null)
+            {
+                GetDetail getDetail = new GetDetail();
+                getDetail.Owner = mainWindow;
+                getDetail.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                getDetail.ShowDialog();
+            }
         }
     }
 }
