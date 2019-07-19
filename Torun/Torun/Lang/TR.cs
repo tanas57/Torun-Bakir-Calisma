@@ -137,6 +137,31 @@ namespace Torun.Lang
         public string UCTodoListScheduleButton => "Zamanla";
         public string UCTodoListEditButton => "Düzenle";
         public string UCTodoListDeleteButton => "Sil";
-#endregion
+
+
+        #endregion
+
+        // Weekly plan page
+        public string UCWeeklyPlanButtonGetDetail => "Detay Getir";
+
+        public string UCWeeklyPlanButtonDoCompleted => "Tamamlandı İşaretle";
+
+        public string UCWeeklyPlanButtonEdit => "Düzenle";
+
+        public string UCWeeklyPlanButtonRemove => "Plandan Çıkar";
+
+        public string UCWeeklyPlanButtonChangeDate => "Zaman Dilimi Değiştir";
+
+        public string UCWeeklyPlanDaysMonday => "Pazartesi";
+
+        public string UCWeeklyPlanDaysTuesday => "Salı";
+
+        public string UCWeeklyPlanDaysWednesday => "Çarşamba";
+
+        public string UCWeeklyPlanDaysThursday => "Perşembe";
+
+        public string UCWeeklyPlanDaysFriday => "Cuma";
+
+        public string UCWeeklyPlanCurrentTime => "Geçerli Zaman Dilimi";
     }
 }

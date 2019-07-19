@@ -93,6 +93,9 @@ namespace Torun.Lang
 
         /* REQUEST SCHEDULE PAGE ENDS */
 
+        // Todolist page
+        #region
+        
         string UCTodoListAddRequest { get; }
         string UCTodoListDetailList { get; }
         string UCTodoListProcesses { get; }
@@ -104,5 +107,20 @@ namespace Torun.Lang
         string UCTodoListScheduleButton { get; }
         string UCTodoListEditButton { get; }
         string UCTodoListDeleteButton { get; }
+        // Todolist ends
+        #endregion
+
+        // Weekly plan page
+        string UCWeeklyPlanButtonGetDetail { get; }
+        string UCWeeklyPlanButtonDoCompleted { get; }
+        string UCWeeklyPlanButtonEdit { get; }
+        string UCWeeklyPlanButtonRemove { get; }
+        string UCWeeklyPlanButtonChangeDate { get; }
+        string UCWeeklyPlanDaysMonday { get; }
+        string UCWeeklyPlanDaysTuesday { get; }
+        string UCWeeklyPlanDaysWednesday { get; }
+        string UCWeeklyPlanDaysThursday { get; }
+        string UCWeeklyPlanDaysFriday { get; }
+        string UCWeeklyPlanCurrentTime { get; }
     }
 }

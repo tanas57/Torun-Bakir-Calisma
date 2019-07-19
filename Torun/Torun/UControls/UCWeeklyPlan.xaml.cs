@@ -5,13 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Torun.Database;
 
 namespace Torun.UControls
@@ -37,7 +30,12 @@ namespace Torun.UControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            lbl_dayMonday.Content = mainWindow.language.UCWeeklyPlanDaysMonday;
+            lbl_dayTuesday.Content = mainWindow.language.UCWeeklyPlanDaysTuesday;
+            lbl_dayWednesday.Content = mainWindow.language.UCWeeklyPlanDaysWednesday;
+            lbl_dayThursday.Content = mainWindow.language.UCWeeklyPlanDaysThursday;
+            lbl_dayFriday.Content = mainWindow.language.UCWeeklyPlanDaysFriday;
+            lbl_currentTime.Content = mainWindow.language.UCWeeklyPlanCurrentTime;
         }
     }
 }

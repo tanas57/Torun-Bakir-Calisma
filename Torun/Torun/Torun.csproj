@@ -226,6 +226,11 @@
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
     <Resource Include="images\main_screen\WeeklyPlan\calendar.png" />
+    <Resource Include="images\main_screen\WeeklyPlan\ok.png" />
+    <Resource Include="images\main_screen\WeeklyPlan\garbage.png" />
+    <Resource Include="images\main_screen\WeeklyPlan\search.png" />
+    <Resource Include="images\main_screen\WeeklyPlan\edit.png" />
+    <Resource Include="images\main_screen\WeeklyPlan\time.png" />
     <Resource Include="images\main_screen\TodoList\arrow.png" />
     <Resource Include="images\main_screen\TodoList\arrow_red.png" />
     <Resource Include="images\main_screen\TodoList\add.png" />

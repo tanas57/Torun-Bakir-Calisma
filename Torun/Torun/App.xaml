@@ -197,14 +197,25 @@
         <!-- weekly plan labels -->
         <Style x:Key="label_weeklyPlan" TargetType="Label">
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="FontFamily" Value="Corbel"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="LightSlateGray"/>
+            <Setter Property="Background" Value="#B0151E"/>
             <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+        
+        <!-- weekly plan buttons -->
+        <Style x:Key="btn_weeklyPlan" TargetType="Button">
+            <Setter Property="Margin" Value="6,0,0,0"/>
+            <Setter Property="FontFamily" Value="Corbel" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="white"/>
+            <Setter Property="Foreground" Value="#B0151E"/>
+            
+        </Style>
+        
         <!-- menu buttons
         <Style x:Key="gridColumn" TargetType="DataGridCell">
             
