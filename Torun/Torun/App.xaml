@@ -216,32 +216,11 @@
             
         </Style>
         
-        <!-- menu buttons
+        <!-- grid cell
         <Style x:Key="gridColumn" TargetType="DataGridCell">
-            
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="DataGridColumnHeader">
-                        <DataGridTextColumn Binding="{Binding Path=request_number}" IsReadOnly="True" Header="Talep Numarası" MinWidth="60">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Left"/>
-                                    <Setter Property="VerticalAlignment" Value="Center"/>
-                                    <Setter Property="Padding" Value="3"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                            <DataGridTextColumn.CellStyle>
-                                <Style TargetType="DataGridCell">
-                                    <Setter Property="Background" Value="#FFCDCDCD"/>
-                                    <Setter Property="BorderThickness" Value="5,0,0,0"/>
-                                    <Setter Property="BorderBrush" Value="#FF959595"/>
-                                </Style>
-                            </DataGridTextColumn.CellStyle>
-                        </DataGridTextColumn>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            
-        </Style>-->
+            <Setter Property="Background" Value="#FFCDCDCD"/>
+            <Setter Property="BorderThickness" Value="5,0,0,0"/>
+            <Setter Property="BorderBrush" Value="#FF959595"/>
+        </Style> -->
     </Application.Resources>
 </Application>
