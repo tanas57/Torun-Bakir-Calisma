@@ -169,5 +169,7 @@ namespace Torun.Lang
         public string WeeklyDetailDescription => "Açıklama";
 
         public string WeeklyDetailCalendar => "Plan Tarihleri";
+
+        public string UCTodoListInfoMessage => "Açıklama detayı";
     }
 }

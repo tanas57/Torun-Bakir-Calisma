@@ -107,6 +107,7 @@ namespace Torun.Lang
         string UCTodoListScheduleButton { get; }
         string UCTodoListEditButton { get; }
         string UCTodoListDeleteButton { get; }
+        string UCTodoListInfoMessage { get; }
         // Todolist ends
         #endregion
 

@@ -56,6 +56,7 @@ namespace Torun.UControls
         private void Grid_todoList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             // get detail of selected row
+           
         }
 
         private void Btn_requestEdit_Click(object sender, RoutedEventArgs e)
@@ -107,6 +108,24 @@ namespace Torun.UControls
                 Grid_todoList.Columns[4].Width = Grid_todoList.Columns[4].Width.Value + 190;
                 buttonDetail = false;
             }
+        }
+
+        private void DataGridRequestNumber_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            todoList todolist = Grid_todoList.SelectedItem as todoList;
+            int result = 0;
+            if (int.TryParse(todolist.request_number,out result))
+            {
+                System.Diagnostics.Process.Start("http://erpdestek/WorkOrder.do?woMode=viewWO&woID=" + result + "&fromListView=true");
+            }
+            
+            
+        }
+
+        private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            todoList todolist = Grid_todoList.SelectedItem as todoList;
+            MessageBox.Show(todolist.description, mainWindow.language.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
