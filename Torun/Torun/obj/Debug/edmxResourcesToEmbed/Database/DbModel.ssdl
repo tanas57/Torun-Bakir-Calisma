@@ -46,6 +46,7 @@
     <Property Name="add_time" Type="datetime" />
     <Property Name="description" Type="text" />
     <Property Name="status" Type="tinyint" />
+    <Property Name="work_plan_time" Type="datetime" />
   </EntityType>
   <Association Name="FK_plan_todoList">
     <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />

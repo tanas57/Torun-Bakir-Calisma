@@ -51,6 +51,7 @@
           <Property Name="add_time" Type="datetime" />
           <Property Name="description" Type="text" />
           <Property Name="status" Type="tinyint" />
+          <Property Name="work_plan_time" Type="datetime" />
         </EntityType>
         <Association Name="FK_plan_todoList">
           <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
@@ -162,6 +163,7 @@
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Byte" />
           <NavigationProperty Name="todoList" Relationship="Self.FK_WorkDone_todoList" FromRole="WorkDone" ToRole="todoList" />
+          <Property Name="work_plan_time" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_plan_todoList">
           <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
@@ -265,6 +267,7 @@
           <EntitySetMapping Name="WorkDone">
             <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
               <MappingFragment StoreEntitySet="WorkDone">
+                <ScalarProperty Name="work_plan_time" ColumnName="work_plan_time" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="work_id" ColumnName="work_id" />
                 <ScalarProperty Name="workDoneTime" ColumnName="workDoneTime" />
@@ -288,7 +291,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

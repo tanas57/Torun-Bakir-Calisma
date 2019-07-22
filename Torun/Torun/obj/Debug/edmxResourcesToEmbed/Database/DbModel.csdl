@@ -52,6 +52,7 @@
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Byte" />
     <NavigationProperty Name="todoList" Relationship="Self.FK_WorkDone_todoList" FromRole="WorkDone" ToRole="todoList" />
+    <Property Name="work_plan_time" Type="DateTime" Precision="3" />
   </EntityType>
   <Association Name="FK_plan_todoList">
     <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />

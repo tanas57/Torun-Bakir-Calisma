@@ -43,6 +43,7 @@
     <EntitySetMapping Name="WorkDone">
       <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
         <MappingFragment StoreEntitySet="WorkDone">
+          <ScalarProperty Name="work_plan_time" ColumnName="work_plan_time" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="work_id" ColumnName="work_id" />
           <ScalarProperty Name="workDoneTime" ColumnName="workDoneTime" />
