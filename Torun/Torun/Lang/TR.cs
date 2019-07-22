@@ -171,5 +171,17 @@ namespace Torun.Lang
         public string WeeklyDetailCalendar => "Plan Tarihleri";
 
         public string UCTodoListInfoMessage => "Açıklama detayı";
+
+        public string WeeklyCompletedTitle => "Talep Tamamlama Sayfası";
+
+        public string WeeklyCompletedCurrentDay => "Bugünkü iş bitti işaretle";
+
+        public string WeeklyCompletedAllWork => "Tüm talebi tamamlandı işaretle";
+
+        public string ButtonSave => "Kaydet";
+
+        public string ButtonDelete => "Sil";
+
+        public string ButtonEdit => "Düzenle";
     }
 }

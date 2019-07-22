@@ -124,6 +124,9 @@
     <Compile Include="Windows\WeeklyPlan\GetDetail.xaml.cs">
       <DependentUpon>GetDetail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WeeklyPlan\MarkCompleted.xaml.cs">
+      <DependentUpon>MarkCompleted.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\WeeklyPlan\GetDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WeeklyPlan\MarkCompleted.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

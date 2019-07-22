@@ -127,5 +127,13 @@ namespace Torun.Lang
         string WeeklyDetailTitle { get; }
         string WeeklyDetailDescription { get; }
         string WeeklyDetailCalendar { get; }
+
+        string WeeklyCompletedTitle { get; }
+        string WeeklyCompletedCurrentDay { get; }
+        string WeeklyCompletedAllWork { get; }
+
+        string ButtonSave { get; }
+        string ButtonDelete { get; }
+        string ButtonEdit { get; }
     }
 }

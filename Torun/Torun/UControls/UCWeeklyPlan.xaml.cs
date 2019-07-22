@@ -89,5 +89,19 @@ namespace Torun.UControls
                 getDetail.ShowDialog();
             }
         }
+
+        private void Btn_doComplated_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid selectedGrid = GridControl();
+            if (selectedGrid != null)
+            {
+                MarkCompleted markCompleted = new MarkCompleted();
+                markCompleted.Owner = mainWindow;
+                markCompleted.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                markCompleted.ShowDialog();
+            }
+        }
     }
 }
