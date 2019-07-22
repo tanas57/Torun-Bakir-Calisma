@@ -42,12 +42,11 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="work_id" Type="int" />
     <Property Name="workDoneTime" Type="datetime" />
     <Property Name="add_time" Type="datetime" />
     <Property Name="description" Type="text" />
     <Property Name="status" Type="tinyint" />
-    <Property Name="work_plan_time" Type="datetime" />
+    <Property Name="plan_id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_plan_todoList">
     <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
@@ -73,15 +72,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_WorkDone_todoList">
-    <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
+  <Association Name="FK_WorkDonePlans">
+    <End Role="plans" Type="Self.plans" Multiplicity="1" />
     <End Role="WorkDone" Type="Self.WorkDone" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="todoList">
+      <Principal Role="plans">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="WorkDone">
-        <PropertyRef Name="work_id" />
+        <PropertyRef Name="plan_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -98,8 +97,8 @@
       <End Role="users" EntitySet="users" />
       <End Role="todoList" EntitySet="todoList" />
     </AssociationSet>
-    <AssociationSet Name="FK_WorkDone_todoList" Association="Self.FK_WorkDone_todoList">
-      <End Role="todoList" EntitySet="todoList" />
+    <AssociationSet Name="FK_WorkDonePlans" Association="Self.FK_WorkDonePlans">
+      <End Role="plans" EntitySet="plans" />
       <End Role="WorkDone" EntitySet="WorkDone" />
     </AssociationSet>
   </EntityContainer>

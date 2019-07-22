@@ -28,7 +28,7 @@ namespace Torun.Database
         public List<plans> PlanToCalendar(int work_id)
         {
             var result = from day in db.plans
-                         where day.work_id == work_id
+                         where day.work_id == work_id && day.status != 1 // 0 : to continue this work
                          select day;
             return result.ToList<plans>();
         }
@@ -47,7 +47,7 @@ namespace Torun.Database
         {
             var result = from day in db.plans
                          join work in db.todoList on day.work_id equals work.id
-                         where day.work_plan_time == dateTime && user.id == work.user_id  && day.status != 1
+                         where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                          select new WeeklyPlan
                          {
                              PlanID = day.id,

@@ -37,7 +37,7 @@ namespace Torun.UControls
             LabelandGridUpdate(DateTime.Now.Date);
         }
 
-        private void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
+        public void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
         {
             if (date_picker.SelectedDate.HasValue)
             {

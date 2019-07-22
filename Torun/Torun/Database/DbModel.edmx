@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="plans">
           <Key>
             <PropertyRef Name="id" />
@@ -47,12 +47,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="work_id" Type="int" />
           <Property Name="workDoneTime" Type="datetime" />
           <Property Name="add_time" Type="datetime" />
           <Property Name="description" Type="text" />
           <Property Name="status" Type="tinyint" />
-          <Property Name="work_plan_time" Type="datetime" />
+          <Property Name="plan_id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_plan_todoList">
           <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
@@ -78,15 +77,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WorkDone_todoList">
-          <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
+        <Association Name="FK_WorkDonePlans">
+          <End Role="plans" Type="Self.plans" Multiplicity="1" />
           <End Role="WorkDone" Type="Self.WorkDone" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="todoList">
+            <Principal Role="plans">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="WorkDone">
-              <PropertyRef Name="work_id" />
+              <PropertyRef Name="plan_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -103,12 +102,13 @@
             <End Role="users" EntitySet="users" />
             <End Role="todoList" EntitySet="todoList" />
           </AssociationSet>
-          <AssociationSet Name="FK_WorkDone_todoList" Association="Self.FK_WorkDone_todoList">
-            <End Role="todoList" EntitySet="todoList" />
+          <AssociationSet Name="FK_WorkDonePlans" Association="Self.FK_WorkDonePlans">
+            <End Role="plans" EntitySet="plans" />
             <End Role="WorkDone" EntitySet="WorkDone" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="plan_tracerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -120,8 +120,9 @@
           <Property Name="work_id" Type="Int32" />
           <Property Name="add_time" Type="DateTime" Precision="3" />
           <Property Name="work_plan_time" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="todoList" Relationship="Self.FK_plan_todoList" FromRole="plans" ToRole="todoList" />
           <Property Name="status" Type="Byte" />
+          <NavigationProperty Name="todoList" Relationship="Self.FK_plan_todoList" FromRole="plans" ToRole="todoList" />
+          <NavigationProperty Name="WorkDone" Relationship="Self.FK_WorkDonePlans" FromRole="plans" ToRole="WorkDone" />
         </EntityType>
         <EntityType Name="todoList">
           <Key>
@@ -136,7 +137,6 @@
           <Property Name="status" Type="Byte" />
           <NavigationProperty Name="plans" Relationship="Self.FK_plan_todoList" FromRole="todoList" ToRole="plans" />
           <NavigationProperty Name="users" Relationship="Self.FK_todoList_user" FromRole="todoList" ToRole="users" />
-          <NavigationProperty Name="WorkDone" Relationship="Self.FK_WorkDone_todoList" FromRole="todoList" ToRole="WorkDone" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -150,22 +150,21 @@
           <Property Name="last_login" Type="DateTime" Precision="3" />
           <Property Name="login_status" Type="Byte" />
           <Property Name="user_status" Type="Byte" />
-          <NavigationProperty Name="todoList" Relationship="Self.FK_todoList_user" FromRole="users" ToRole="todoList" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="register_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="todoList" Relationship="Self.FK_todoList_user" FromRole="users" ToRole="todoList" />
         </EntityType>
         <EntityType Name="WorkDone">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="work_id" Type="Int32" />
           <Property Name="workDoneTime" Type="DateTime" Precision="3" />
           <Property Name="add_time" Type="DateTime" Precision="3" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Byte" />
-          <NavigationProperty Name="todoList" Relationship="Self.FK_WorkDone_todoList" FromRole="WorkDone" ToRole="todoList" />
-          <Property Name="work_plan_time" Type="DateTime" Precision="3" />
+          <Property Name="plan_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="plans" Relationship="Self.FK_WorkDonePlans" FromRole="WorkDone" ToRole="plans" />
         </EntityType>
         <Association Name="FK_plan_todoList">
           <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
@@ -176,6 +175,18 @@
             </Principal>
             <Dependent Role="plans">
               <PropertyRef Name="work_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkDonePlans">
+          <End Role="plans" Type="Self.plans" Multiplicity="1" />
+          <End Role="WorkDone" Type="Self.WorkDone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="plans">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WorkDone">
+              <PropertyRef Name="plan_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -191,18 +202,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WorkDone_todoList">
-          <End Role="todoList" Type="Self.todoList" Multiplicity="0..1" />
-          <End Role="WorkDone" Type="Self.WorkDone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="todoList">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="WorkDone">
-              <PropertyRef Name="work_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="plan_tracerDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="plans" EntityType="Self.plans" />
           <EntitySet Name="todoList" EntityType="Self.todoList" />
@@ -212,13 +211,13 @@
             <End Role="todoList" EntitySet="todoList" />
             <End Role="plans" EntitySet="plans" />
           </AssociationSet>
+          <AssociationSet Name="FK_WorkDonePlans" Association="Self.FK_WorkDonePlans">
+            <End Role="plans" EntitySet="plans" />
+            <End Role="WorkDone" EntitySet="WorkDone" />
+          </AssociationSet>
           <AssociationSet Name="FK_todoList_user" Association="Self.FK_todoList_user">
             <End Role="users" EntitySet="users" />
             <End Role="todoList" EntitySet="todoList" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WorkDone_todoList" Association="Self.FK_WorkDone_todoList">
-            <End Role="todoList" EntitySet="todoList" />
-            <End Role="WorkDone" EntitySet="WorkDone" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -230,11 +229,11 @@
           <EntitySetMapping Name="plans">
             <EntityTypeMapping TypeName="plan_tracerDBModel.plans">
               <MappingFragment StoreEntitySet="plans">
-                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="work_id" ColumnName="work_id" />
                 <ScalarProperty Name="add_time" ColumnName="add_time" />
                 <ScalarProperty Name="work_plan_time" ColumnName="work_plan_time" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -254,8 +253,6 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="plan_tracerDBModel.users">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="register_date" ColumnName="register_date" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
@@ -264,19 +261,20 @@
                 <ScalarProperty Name="last_login" ColumnName="last_login" />
                 <ScalarProperty Name="login_status" ColumnName="login_status" />
                 <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="register_date" ColumnName="register_date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkDone">
             <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
               <MappingFragment StoreEntitySet="WorkDone">
-                <ScalarProperty Name="work_plan_time" ColumnName="work_plan_time" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="work_id" ColumnName="work_id" />
                 <ScalarProperty Name="workDoneTime" ColumnName="workDoneTime" />
                 <ScalarProperty Name="add_time" ColumnName="add_time" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -294,7 +292,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

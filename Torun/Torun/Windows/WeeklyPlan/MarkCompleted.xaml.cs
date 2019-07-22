@@ -30,6 +30,8 @@ namespace Torun.Windows.WeeklyPlan
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mainWindow.Opacity = 1;
+            mainWindow.UpdateScreens();
+            mainWindow.ucWeeklyPlan.Date_picker_CalendarClosed(sender, null);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -61,8 +63,7 @@ namespace Torun.Windows.WeeklyPlan
                 plans plan = mainWindow.db.GetPlanByID(Plan.PlanID);
                 WorkDone workDone = new WorkDone();
                 workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
-                workDone.work_id = Plan.WorkID; workDone.description = DbcompletedNote.Text;
-                workDone.work_plan_time = plan.work_plan_time;
+                workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
                 workDone.status = 2; // end of the work
 
                 todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
@@ -76,31 +77,35 @@ namespace Torun.Windows.WeeklyPlan
             {
                 if (completed_aDay.IsChecked == true) // only one day completed
                 {
-                    //workDone.status = 1; // the work continues
-                    //mainWindow.db.MoveWorkToWorkDone(workDone);
-                    //todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
-                    //todolist.status = 6; // ing proggress
-                    //mainWindow.db.EditTodoList(todolist);
+                    plans plan = mainWindow.db.GetPlanByID(Plan.PlanID);
+                    WorkDone workDone = new WorkDone();
+                    workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                    workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
+                    workDone.status = 1; // end of the work
+                    mainWindow.db.MoveWorkToWorkDone(workDone);
+                    plan.status = 1;
+                    mainWindow.db.EditPlan(plan);
                 }
                 else // all work completed
                 {
-                    //var plans = mainWindow.db.PlanToCalendar(Plan.PlanID);
-                    //for (int i = 0; i < plans.Count; i++)
-                    //{
-                    //    plan = plans[i];
-                    //    workDone = new WorkDone();
-                    //    workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
-                    //    workDone.work_id = plan.work_id; workDone.description = DbcompletedNote.Text;
-                    //    workDone.work_plan_time = plan.work_plan_time;
-                    //    workDone.status = 2; // end of the work
-                    //    mainWindow.db.MoveWorkToWorkDone(workDone);
-                    //}
-                    //todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
-                    //todolist.status = 3; // closed
-                    //mainWindow.db.EditTodoList(todolist);
+                    var plans = mainWindow.db.PlanToCalendar(Plan.PlanID);
+                    for (int i = 0; i < plans.Count; i++)
+                    {
+                        plans plan = plans[i];
+                        WorkDone workDone = new WorkDone();
+                        workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                        workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
+                        workDone.status = 1; // end of the work
+                        mainWindow.db.MoveWorkToWorkDone(workDone);
+                        plan.status = 1;
+                        mainWindow.db.EditPlan(plan);
+                    }
+                    todoList todolist = mainWindow.db.GetTodoByID((int)plans[0].work_id);
+                    todolist.status = 3; // closed
+                    mainWindow.db.EditTodoList(todolist);
                 }
             }
-            mainWindow.UpdateScreens();
+            this.Close();
         }
 
     }

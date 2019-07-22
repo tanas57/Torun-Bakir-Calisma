@@ -14,6 +14,12 @@ namespace Torun.Database
     
     public partial class plans
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public plans()
+        {
+            this.WorkDone = new HashSet<WorkDone>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> work_id { get; set; }
         public Nullable<System.DateTime> add_time { get; set; }
@@ -21,5 +27,7 @@ namespace Torun.Database
         public Nullable<byte> status { get; set; }
     
         public virtual todoList todoList { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkDone> WorkDone { get; set; }
     }
 }
