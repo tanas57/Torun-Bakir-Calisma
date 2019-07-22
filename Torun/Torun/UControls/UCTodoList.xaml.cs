@@ -4,6 +4,7 @@ using System.Linq;
 using Torun.Database;
 using Torun.Windows;
 using Torun.Windows.Request;
+using System;
 
 namespace Torun.UControls
 {
@@ -116,7 +117,14 @@ namespace Torun.UControls
             int result = 0;
             if (int.TryParse(todolist.request_number,out result))
             {
-                System.Diagnostics.Process.Start("http://erpdestek/WorkOrder.do?woMode=viewWO&woID=" + result + "&fromListView=true");
+                try
+                {
+                    System.Diagnostics.Process.Start("chrome.exe","http://erpdestek/WorkOrder.do?woMode=viewWO&woID=" + result + "&fromListView=true");
+                }catch (Exception)
+                {
+                    System.Diagnostics.Process.Start("http://erpdestek/WorkOrder.do?woMode=viewWO&woID=" + result + "&fromListView=true");
+                }
+                
             }
             
             
