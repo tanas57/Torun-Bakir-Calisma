@@ -163,5 +163,11 @@ namespace Torun.Lang
         public string UCWeeklyPlanDaysFriday => "Cuma";
 
         public string UCWeeklyPlanCurrentTime => "Geçerli Zaman Dilimi";
+
+        public string WeeklyDetailTitle => "Talep Detay Görüntüleme : ";
+
+        public string WeeklyDetailDescription => "Açıklama";
+
+        public string WeeklyDetailCalendar => "Plan Tarihleri";
     }
 }

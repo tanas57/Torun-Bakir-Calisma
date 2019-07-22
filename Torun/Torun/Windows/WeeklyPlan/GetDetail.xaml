@@ -6,12 +6,51 @@
         xmlns:local="clr-namespace:Torun.Windows.WeeklyPlan"
         mc:Ignorable="d"
         Loaded="Window_Loaded" Closing="Window_Closing"
-        Title="GetDetail" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="161*"/>
-            <ColumnDefinition Width="631*"/>
-        </Grid.ColumnDefinitions>
-
+        ResizeMode="NoResize" MouseDown="Window_MouseDown"
+        WindowStartupLocation="CenterOwner" WindowStyle="None"
+        Title="GetDetail" Height="430" Width="300" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="170"></RowDefinition>
+            <RowDefinition Height="210"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="weeklyPlan_title" />
+                </Border>
+                <Border Grid.Column="1">
+                    <Button Content="X" Style="{DynamicResource buttonMiniClose}" x:Name="btnClose" Click="BtnClose_Click"/>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!-- calendar -->
+                <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="XXX" x:Name="getDetailCalendar"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Calendar x:Name="dbCalendar" SelectionMode="MultipleRange" IsTodayHighlighted="False"/>
+                </Border>
+            </Grid>
+        </Border>
+        <!-- description -->
+        <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="XXX" x:Name="getDetailDescription" HorizontalAlignment="Center"/>
+                <TextBox Padding="3" x:Name="dbDescription" Width="290" Height="190" ScrollBar.Scroll="DbDescription_Scroll" TextWrapping="Wrap"/>
+            </StackPanel>
+            
+        </Border>
     </Grid>
 </Window>

@@ -20,6 +20,15 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
+        public List<plans> PlanToCalendar(int work_id)
+        {
+            var result = from day in db.plans
+                         where day.work_id == work_id
+                         select day;
+            return result.ToList<plans>();
+        }
+        public plans GetPlanByID(int id) => db.plans.SingleOrDefault(x => x.id == id);
+        public todoList GetTodoByID(int id) => db.todoList.SingleOrDefault(x => x.id == id);
         public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime)
         {
             var result = from day in db.plans
