@@ -32,13 +32,22 @@ namespace Torun.Database
                          select day;
             return result.ToList<plans>();
         }
+        public byte EditPlan(plans plan)
+        {
+            if (!db.plans.Any(x => x.id == plan.id)) return 0;
+            db.plans.Attach(plan);
+            db.Entry(plan).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return 1;
+        }
         public plans GetPlanByID(int id) => db.plans.SingleOrDefault(x => x.id == id);
         public todoList GetTodoByID(int id) => db.todoList.SingleOrDefault(x => x.id == id);
         public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime)
         {
             var result = from day in db.plans
                          join work in db.todoList on day.work_id equals work.id
-                         where day.work_plan_time == dateTime && user.id == work.user_id 
+                         where day.work_plan_time == dateTime && user.id == work.user_id  && day.status != 1
                          select new WeeklyPlan
                          {
                              PlanID = day.id,

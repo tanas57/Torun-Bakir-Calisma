@@ -55,7 +55,7 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Completed_save_Click(object sender, RoutedEventArgs e)
         {
-            if (completed_aDay.IsChecked == true) // a day
+            if (completed_allDays.IsEnabled == false) // the work only one day
             {
                 // move this plan to workdone
                 plans plan = mainWindow.db.GetPlanByID(Plan.PlanID);
@@ -63,50 +63,45 @@ namespace Torun.Windows.WeeklyPlan
                 workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
                 workDone.work_id = Plan.WorkID; workDone.description = DbcompletedNote.Text;
                 workDone.work_plan_time = plan.work_plan_time;
+                workDone.status = 2; // end of the work
 
-                if(completed_allDays.IsEnabled == false) // the work only one day
-                {
-                    workDone.status = 2; // end of the work
-                    // todolist item status have to mark 3: closed
-                    todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
-                    todolist.status = 3; // closed
-                    mainWindow.db.MoveWorkToWorkDone(workDone);
-                    mainWindow.db.EditTodoList(todolist);
-                }
-                else // work has many days
-                {
-                    if (completed_aDay.IsChecked == true) // only one day completed
-                    {
-                        workDone.status = 1; // the work continues
-                        mainWindow.db.MoveWorkToWorkDone(workDone);
-                        todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
-                        todolist.status = 6; // ing proggress
-                        mainWindow.db.EditTodoList(todolist);
-                    }
-                    else // all work completed
-                    {
-                        //var plans = mainWindow.db.PlanToCalendar(Plan.PlanID);
-                        //for (int i = 0; i < plans.Count; i++)
-                        //{
-                        //    plan = plans[i];
-                        //    workDone = new WorkDone();
-                        //    workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
-                        //    workDone.work_id = plan.work_id; workDone.description = DbcompletedNote.Text;
-                        //    workDone.work_plan_time = plan.work_plan_time;
-                        //    workDone.status = 2; // end of the work
-                        //    mainWindow.db.MoveWorkToWorkDone(workDone);
-                        //}
-                        //todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
-                        //todolist.status = 3; // closed
-                        //mainWindow.db.EditTodoList(todolist);
-                    }
-                }
+                todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
+                todolist.status = 3; // todolist item status have to mark 3: closed
+                mainWindow.db.MoveWorkToWorkDone(workDone);
+                mainWindow.db.EditTodoList(todolist);
+                plan.status = 1;
+                mainWindow.db.EditPlan(plan);
             }
-            else // all work
+            else // work has many days
             {
-                //move plans that have current work id to workdone
+                if (completed_aDay.IsChecked == true) // only one day completed
+                {
+                    //workDone.status = 1; // the work continues
+                    //mainWindow.db.MoveWorkToWorkDone(workDone);
+                    //todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
+                    //todolist.status = 6; // ing proggress
+                    //mainWindow.db.EditTodoList(todolist);
+                }
+                else // all work completed
+                {
+                    //var plans = mainWindow.db.PlanToCalendar(Plan.PlanID);
+                    //for (int i = 0; i < plans.Count; i++)
+                    //{
+                    //    plan = plans[i];
+                    //    workDone = new WorkDone();
+                    //    workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                    //    workDone.work_id = plan.work_id; workDone.description = DbcompletedNote.Text;
+                    //    workDone.work_plan_time = plan.work_plan_time;
+                    //    workDone.status = 2; // end of the work
+                    //    mainWindow.db.MoveWorkToWorkDone(workDone);
+                    //}
+                    //todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID);
+                    //todolist.status = 3; // closed
+                    //mainWindow.db.EditTodoList(todolist);
+                }
             }
             mainWindow.UpdateScreens();
         }
+
     }
 }

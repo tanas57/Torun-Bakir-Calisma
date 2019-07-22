@@ -45,7 +45,7 @@ foreign key  (work_id) references todoList (id);
 
 CREATE TABLE WorkDone(
 	id INT PRIMARY KEY IDENTITY(1,1),
-	work_id INT NOT NULL,
+	plan_id INT NOT NULL,
 	workDoneTime DATETIME NOT NULL,
 	add_time DATETIME NOT NULL,
 	description TEXT,
@@ -54,7 +54,7 @@ CREATE TABLE WorkDone(
 
 alter table WorkDone
 add constraint FK_WorkDone_todoList 
-foreign key  (work_id) references todoList(id);
+foreign key  (plan_id) references plans(id);
 
 insert into users (firstname, lastname, user_name, pc_name, last_login, login_status, user_status) values ('M.Tayyip', 'Muslu', 'tanas57', 'MusluNET', '2019-07-08', 0, 1,'202cb962ac59075b964b07152d234b70', '2019-07-08');
 

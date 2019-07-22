@@ -9,6 +9,7 @@
     <Property Name="add_time" Type="DateTime" Precision="3" />
     <Property Name="work_plan_time" Type="DateTime" Precision="3" />
     <NavigationProperty Name="todoList" Relationship="Self.FK_plan_todoList" FromRole="plans" ToRole="todoList" />
+    <Property Name="status" Type="Byte" />
   </EntityType>
   <EntityType Name="todoList">
     <Key>

@@ -18,6 +18,7 @@ namespace Torun.Database
         public Nullable<int> work_id { get; set; }
         public Nullable<System.DateTime> add_time { get; set; }
         public Nullable<System.DateTime> work_plan_time { get; set; }
+        public Nullable<byte> status { get; set; }
     
         public virtual todoList todoList { get; set; }
     }

@@ -8,6 +8,7 @@
     <Property Name="work_id" Type="int" />
     <Property Name="add_time" Type="datetime" />
     <Property Name="work_plan_time" Type="datetime" />
+    <Property Name="status" Type="tinyint" />
   </EntityType>
   <EntityType Name="todoList">
     <Key>

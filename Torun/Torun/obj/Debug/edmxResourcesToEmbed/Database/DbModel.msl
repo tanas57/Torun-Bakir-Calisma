@@ -4,6 +4,7 @@
     <EntitySetMapping Name="plans">
       <EntityTypeMapping TypeName="plan_tracerDBModel.plans">
         <MappingFragment StoreEntitySet="plans">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="work_id" ColumnName="work_id" />
           <ScalarProperty Name="add_time" ColumnName="add_time" />

@@ -13,6 +13,7 @@
           <Property Name="work_id" Type="int" />
           <Property Name="add_time" Type="datetime" />
           <Property Name="work_plan_time" Type="datetime" />
+          <Property Name="status" Type="tinyint" />
         </EntityType>
         <EntityType Name="todoList">
           <Key>
@@ -120,6 +121,7 @@
           <Property Name="add_time" Type="DateTime" Precision="3" />
           <Property Name="work_plan_time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="todoList" Relationship="Self.FK_plan_todoList" FromRole="plans" ToRole="todoList" />
+          <Property Name="status" Type="Byte" />
         </EntityType>
         <EntityType Name="todoList">
           <Key>
@@ -228,6 +230,7 @@
           <EntitySetMapping Name="plans">
             <EntityTypeMapping TypeName="plan_tracerDBModel.plans">
               <MappingFragment StoreEntitySet="plans">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="work_id" ColumnName="work_id" />
                 <ScalarProperty Name="add_time" ColumnName="add_time" />
