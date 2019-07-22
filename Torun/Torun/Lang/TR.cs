@@ -183,5 +183,7 @@ namespace Torun.Lang
         public string ButtonDelete => "Sil";
 
         public string ButtonEdit => "Düzenle";
+
+        public string WeeklyCompletedNote => "Notunuz (varsa)";
     }
 }

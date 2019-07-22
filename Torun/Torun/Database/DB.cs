@@ -20,6 +20,11 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
+        public void MoveWorkToWorkDone(WorkDone workdone)
+        {
+            db.WorkDone.Add(workdone);
+            db.SaveChanges();
+        }
         public List<plans> PlanToCalendar(int work_id)
         {
             var result = from day in db.plans
@@ -33,7 +38,7 @@ namespace Torun.Database
         {
             var result = from day in db.plans
                          join work in db.todoList on day.work_id equals work.id
-                         where day.work_plan_time == dateTime && user.id == work.user_id
+                         where day.work_plan_time == dateTime && user.id == work.user_id 
                          select new WeeklyPlan
                          {
                              PlanID = day.id,

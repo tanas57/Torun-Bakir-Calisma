@@ -30,7 +30,7 @@ namespace Torun
             requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
             requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
             requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
-            uCTodoList.Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
+            if(uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {

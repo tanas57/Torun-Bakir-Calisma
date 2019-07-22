@@ -100,7 +100,7 @@ namespace Torun.UControls
                 markCompleted.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
                 mainWindow.Opacity = 0.5;
                 markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                markCompleted.ShowDialog();
+                if (markCompleted.ShowDialog() == true) Date_picker_CalendarClosed(sender, e);
             }
         }
     }

@@ -230,7 +230,7 @@
         <!-- weekly completed radios-->
         <Style x:Key="completedRadios" TargetType="RadioButton">
             <Setter Property="FontFamily" Value="Corbet"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="0,0,10,0"/>
         </Style>
     </Application.Resources>

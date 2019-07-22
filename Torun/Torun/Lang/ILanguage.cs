@@ -132,6 +132,7 @@ namespace Torun.Lang
         string WeeklyCompletedCurrentDay { get; }
         string WeeklyCompletedAllWork { get; }
 
+        string WeeklyCompletedNote { get; }
         string ButtonSave { get; }
         string ButtonDelete { get; }
         string ButtonEdit { get; }
