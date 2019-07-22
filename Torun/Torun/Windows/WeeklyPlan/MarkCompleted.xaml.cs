@@ -100,7 +100,7 @@ namespace Torun.Windows.WeeklyPlan
                         plan.status = 1;
                         mainWindow.db.EditPlan(plan);
                     }
-                    todoList todolist = mainWindow.db.GetTodoByID((int)plans[0].work_id);
+                    todoList todolist = mainWindow.db.GetTodoByID((int)plans[0].work_id); // in here exception error !
                     todolist.status = 3; // closed
                     mainWindow.db.EditTodoList(todolist);
                 }

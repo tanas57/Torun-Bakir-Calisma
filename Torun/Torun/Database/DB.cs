@@ -70,7 +70,6 @@ namespace Torun.Database
         public byte EditTodoList(todoList todoList)
         {
             if (!db.todoList.Any(x => x.id == todoList.id)) return 0;
-            //if (db.todoList.Any(x => x.request_number == todoList.request_number && (todoList.request_number != String.Empty)) && ) return 0;
             db.todoList.Attach(todoList);
             db.Entry(todoList).State = EntityState.Modified;
             db.SaveChanges();
@@ -89,7 +88,7 @@ namespace Torun.Database
         public List<todoList> GetTodoLists(users user) {
             //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
             var result = from todo in db.todoList
-                         where user.id == todo.user_id
+                         where user.id == todo.user_id && todo.status == (int)StatusType.Added
                          select todo;
             return result.ToList<todoList>();
         }
