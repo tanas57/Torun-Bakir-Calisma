@@ -20,9 +20,24 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
+        public List<WorkDone> GetWorkdoneByID(int work_id)
+        {
+            //join work in db.todoList on day.work_id equals work.id
+            var result = from workdone in db.WorkDone
+                         join plan in db.plans on workdone.plan_id equals plan.id
+                         where plan.work_id == work_id
+                         select workdone;
+            return result.ToList<WorkDone>();
+        }
         public void MoveWorkToWorkDone(WorkDone workdone)
         {
             db.WorkDone.Add(workdone);
+            db.SaveChanges();
+        }
+
+        public void RemovePlan(plans plan)
+        {
+            db.plans.Remove(plan);
             db.SaveChanges();
         }
         public List<plans> PlanToCalendar(int work_id)
@@ -92,7 +107,7 @@ namespace Torun.Database
         public List<todoList> GetTodoLists(users user) {
             //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
             var result = from todo in db.todoList
-                         where user.id == todo.user_id && todo.status == (int)StatusType.Added
+                         where user.id == todo.user_id && ( todo.status == (int)StatusType.Added || todo.status == (int)StatusType.Edited )
                          select todo;
             return result.ToList<todoList>();
         }

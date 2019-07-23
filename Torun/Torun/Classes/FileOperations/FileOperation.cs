@@ -8,16 +8,25 @@ namespace Torun.Classes
     {
         private const string DIR_LOGIN = "login";
         private const string DIR_REPORT = "rapor";
+        private const string DIR_PROFILE = "profile.jpg";
 
-        public static string UserImage { get; set; }
+        public static string ProfilePhotoPath()
+        {
+            return getFilePath(DIR_PROFILE, false);
+        }
+        public static bool isProfileExists()
+        {
+            return FileExists(DIR_PROFILE);
+        }
         public static void ChangeUserPhoto()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-                UserImage = getFilePath(UserFilename + openFileDialog.Filter);
-                File.Copy(openFileDialog.FileName, UserImage);
+                openFileDialog.Filter = "Image files | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                openFileDialog.Multiselect = false;
+                File.Delete(ProfilePhotoPath());
+                File.Copy(openFileDialog.FileName, ProfilePhotoPath());
             }
         }
         public static string UserFilename { get; set; }

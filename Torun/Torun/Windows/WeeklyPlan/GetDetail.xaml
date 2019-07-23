@@ -8,7 +8,7 @@
         Loaded="Window_Loaded" Closing="Window_Closing"
         ResizeMode="NoResize" MouseDown="Window_MouseDown"
         WindowStartupLocation="CenterOwner" WindowStyle="None"
-        Title="GetDetail" Height="430" Width="300" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
+        Title="GetDetail" Height="430" Width="330" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -22,7 +22,7 @@
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0">
-                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="weeklyPlan_title" />
+                    <Label Content="XXX"  FontSize="16" Padding="5" Foreground="White" Background="#B0151E" x:Name="weeklyPlan_title" />
                 </Border>
                 <Border Grid.Column="1">
                     <Button Content="X" Style="{DynamicResource buttonMiniClose}" x:Name="btnClose" Click="BtnClose_Click"/>

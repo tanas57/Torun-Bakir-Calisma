@@ -44,6 +44,7 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Title = mainWindow.language.WeeklyCompletedTitle;
             completed_title.Content = mainWindow.language.WeeklyCompletedTitle;
             completed_aDay.Content = mainWindow.language.WeeklyCompletedCurrentDay;
             completed_allDays.Content = mainWindow.language.WeeklyCompletedAllWork;

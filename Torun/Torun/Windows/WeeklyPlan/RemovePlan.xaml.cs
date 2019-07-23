@@ -29,7 +29,31 @@ namespace Torun.Windows.WeeklyPlan
 
         private void RemoveSave_Click(object sender, RoutedEventArgs e)
         {
-
+            todoList todoList = mainWindow.db.GetTodoByID(Plan.WorkID);
+            plans plan = mainWindow.db.GetPlanByID(Plan.PlanID);
+            if(remove_aDay.IsChecked == true)
+            {
+                // only one day
+                if(remove_allDays.IsEnabled == false)
+                {
+                    // todolist has only one plan so todolist can be removed
+                    mainWindow.db.RemovePlan(plan);
+                    if(!(mainWindow.db.GetWorkdoneByID(todoList.id).Count > 0)) mainWindow.db.DeleteTodoList(todoList);
+                }
+                else
+                {
+                    mainWindow.db.RemovePlan(plan);
+                }
+            }
+            else if(remove_allDaysExceptDoit.IsChecked == true)
+            {
+                // all days except workdone
+            }
+            else if(remove_allDays.IsChecked == true)
+            {
+                // all days && work done
+            }
+            this.Close();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)

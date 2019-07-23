@@ -5,6 +5,9 @@ using Torun.Classes;
 using Torun.UControls;
 using Torun.Database;
 using Torun.Lang;
+using System.Windows.Media.Imaging;
+using System;
+using System.Drawing;
 
 namespace Torun
 {
@@ -71,10 +74,9 @@ namespace Torun
             requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
             menuUsername.Content = currentUser.firstname + " " + currentUser.lastname;
 
-            if (FileOperation.FileExists(FileOperation.UserFilename))
+            if (FileOperation.isProfileExists())
             {
-                //imageUser.Source = new BitmapImage(new Uri(FileOperation.UserFilename, UriKind.Relative));
-                
+                photoChange.Source = GetImage(FileOperation.ProfilePhotoPath());
             }
             mainPage_title.Content = language.MainPageTitle;
             mainPage_totalRequest.Content = language.MainPageTotalRequest;
@@ -107,7 +109,6 @@ namespace Torun
                     else uCTodoList.Grid_todoList.Columns[4].Width = 242;
                 }
             }
-            
         }
         private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
         {
@@ -121,14 +122,24 @@ namespace Torun
         {
             if(!formLogoutControl) welcome.Close(); // when user logout, do not close the main form
         }
-        private void Btn_UpdateUserPhoto_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
         private void Btn_WeeklyPlan_Click(object sender, RoutedEventArgs e)
         {
             if (ucWeeklyPlan == null) UserControllCall.Add(Grd_Content, ucWeeklyPlan = new UCWeeklyPlan());
             else UserControllCall.Add(Grd_Content, ucWeeklyPlan);
+        }
+        private void PhotoChange_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            FileOperation.ChangeUserPhoto();
+            photoChange.Source = GetImage(FileOperation.ProfilePhotoPath());
+        }
+        private BitmapImage GetImage(string imageUri)
+        {
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri( imageUri, UriKind.RelativeOrAbsolute);
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.EndInit();
+            return bitmapImage;
         }
     }
 }
