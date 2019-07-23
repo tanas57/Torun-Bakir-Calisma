@@ -35,6 +35,13 @@ namespace Torun.UControls
             lbl_dayFriday.Content = mainWindow.language.UCWeeklyPlanDaysFriday;
             date_picker.Text = mainWindow.language.UCWeeklyPlanCurrentTime;
 
+            txt_GetDetail.Text = mainWindow.language.UCWeeklyPlanButtonGetDetail;
+            txt_MarkCompleted.Text = mainWindow.language.UCWeeklyPlanButtonDoCompleted;
+            txt_RemovePlan.Text = mainWindow.language.UCWeeklyPlanButtonRemove;
+            txt_Edit.Text = mainWindow.language.UCWeeklyPlanButtonEdit;
+            txt_ChangeDate.Text = mainWindow.language.UCWeeklyPlanButtonChangeDate;
+            LabelandGridUpdate(DateTime.Now.Date);
+
             UserControl_SizeChanged(sender, null);
             LabelandGridUpdate(DateTime.Now.Date);
         }
