@@ -54,7 +54,6 @@ namespace Torun.Windows.WeeklyPlan
             int workDayCount = mainWindow.db.PlanToCalendar(Plan.WorkID).Count;
             if (workDayCount == 1) completed_allDays.IsEnabled = false;
         }
-
         private void Completed_save_Click(object sender, RoutedEventArgs e)
         {
             if (completed_allDays.IsEnabled == false) // the work only one day

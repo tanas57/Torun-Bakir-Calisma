@@ -185,5 +185,7 @@ namespace Torun.Lang
         public string ButtonEdit => "Düzenle";
 
         public string WeeklyCompletedNote => "Notunuz (varsa)";
+
+        public string UCWeeklyPlanNumOfPlans => "adet kayıt";
     }
 }

@@ -18,6 +18,7 @@ namespace Torun.UControls
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private DB db; private users currentUser;
         private DateTime planStartDate;
+        private int gridWidth = 155; // if form size changed, size must be increase.
         public UCWeeklyPlan()
         {
             InitializeComponent();
@@ -51,11 +52,11 @@ namespace Torun.UControls
         {
             planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
             lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
-            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate); txt_MondayCount.Text = Grid_todoList0.Items.Count.ToString() + " adet kayıt";
-            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1));
-            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2));
-            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3));
-            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4));
+            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.language.UCWeeklyPlanNumOfPlans;
+            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1)); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.language.UCWeeklyPlanNumOfPlans;
+            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2)); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.language.UCWeeklyPlanNumOfPlans;
+            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3)); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.language.UCWeeklyPlanNumOfPlans;
+            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4)); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.language.UCWeeklyPlanNumOfPlans;
         }
 
         private void Date_picker_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)

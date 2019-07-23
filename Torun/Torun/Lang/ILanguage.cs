@@ -123,6 +123,7 @@ namespace Torun.Lang
         string UCWeeklyPlanDaysThursday { get; }
         string UCWeeklyPlanDaysFriday { get; }
         string UCWeeklyPlanCurrentTime { get; }
+        string UCWeeklyPlanNumOfPlans { get; }
 
         string WeeklyDetailTitle { get; }
         string WeeklyDetailDescription { get; }
