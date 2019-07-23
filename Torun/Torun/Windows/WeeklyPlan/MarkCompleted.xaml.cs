@@ -30,8 +30,6 @@ namespace Torun.Windows.WeeklyPlan
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mainWindow.Opacity = 1;
-            mainWindow.UpdateScreens();
-            mainWindow.ucWeeklyPlan.Date_picker_CalendarClosed(sender, null);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

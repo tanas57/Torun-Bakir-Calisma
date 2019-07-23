@@ -125,5 +125,23 @@ namespace Torun.UControls
             gridCell0.Width = gridWidth; gridCell1.Width = gridWidth; gridCell2.Width = gridWidth;
             gridCell3.Width = gridWidth; gridCell4.Width = gridWidth;
         }
+
+        private void Btn_Remove_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid selectedGrid = GridControl();
+            if (selectedGrid != null)
+            {
+                RemovePlan removePlan = new RemovePlan();
+                removePlan.Owner = mainWindow;
+                removePlan.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                removePlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (removePlan.ShowDialog() == false)
+                {
+                    Date_picker_CalendarClosed(sender, e);
+                    mainWindow.UpdateScreens();
+                }
+            }
+        }
     }
 }

@@ -137,5 +137,11 @@ namespace Torun.Lang
         string ButtonSave { get; }
         string ButtonDelete { get; }
         string ButtonEdit { get; }
+
+        string WeeklyRemoveTitle { get; }
+        string WeeklyRemoveAday { get; }
+        string WeeklyRemoveAllDays { get; }
+        string WeeklyRemoveAllDaysExceptDoit { get; }
+        string WeeklyRemoveButtonRemove { get; }
     }
 }
