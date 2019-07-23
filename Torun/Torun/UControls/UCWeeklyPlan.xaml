@@ -83,8 +83,8 @@
                               CanUserResizeRows="False" 
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" MaxWidth="0"/>
-                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" MaxWidth="0"/>
+                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" MaxWidth="0"/>
+                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" MaxWidth="0"/>
                                             <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" x:Name="gridCell0"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
@@ -106,7 +106,7 @@
                                         <DataGrid.Columns>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="" MaxWidth="0"/>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path=gridWidth}" x:Name="gridCell1"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path=gridWidth}" x:Name="gridCell1"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </DockPanel>
@@ -127,7 +127,7 @@
                                         <DataGrid.Columns>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="" MaxWidth="0"/>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path = gridWidth}" x:Name="gridCell2"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path = gridWidth}" x:Name="gridCell2"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </DockPanel>
@@ -148,7 +148,7 @@
                                         <DataGrid.Columns>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="" MaxWidth="0"/>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path = gridWidth}" x:Name="gridCell3"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path = gridWidth}" x:Name="gridCell3"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </DockPanel>
@@ -170,7 +170,7 @@
                                         <DataGrid.Columns>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="" MaxWidth="0"/>
                                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path = gridWidth}" x:Name="gridCell4"/>
+                                            <DataGridTextColumn CellStyle="{DynamicResource gridCell}" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" MinWidth="{Binding Path = gridWidth}" x:Name="gridCell4"/>
                                         </DataGrid.Columns>
                                     </DataGrid>
                                 </DockPanel>

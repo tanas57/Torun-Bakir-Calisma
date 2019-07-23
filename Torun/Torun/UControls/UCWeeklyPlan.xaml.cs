@@ -18,7 +18,6 @@ namespace Torun.UControls
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private DB db; private users currentUser;
         private DateTime planStartDate;
-        private int gridWidth = 155; // if form size changed, size must be increase.
         public UCWeeklyPlan()
         {
             InitializeComponent();
@@ -120,6 +119,7 @@ namespace Torun.UControls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            int gridWidth = 155; // if form size changed, size must be increase.
             if (mainWindow.WindowState == WindowState.Normal) gridWidth = 155;
             else gridWidth += ((int)SystemParameters.WorkArea.Width - 1000) / 5;
             gridCell0.Width = gridWidth; gridCell1.Width = gridWidth; gridCell2.Width = gridWidth;
