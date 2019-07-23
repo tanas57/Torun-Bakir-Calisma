@@ -35,6 +35,7 @@ namespace Torun.UControls
             lbl_dayFriday.Content = mainWindow.language.UCWeeklyPlanDaysFriday;
             date_picker.Text = mainWindow.language.UCWeeklyPlanCurrentTime;
 
+            UserControl_SizeChanged(sender, null);
             LabelandGridUpdate(DateTime.Now.Date);
         }
 
@@ -108,6 +109,14 @@ namespace Torun.UControls
                     mainWindow.UpdateScreens();
                 }
             }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (mainWindow.WindowState == WindowState.Normal) gridWidth = 155;
+            else gridWidth += ((int)SystemParameters.WorkArea.Width - 1000) / 5;
+            gridCell0.Width = gridWidth; gridCell1.Width = gridWidth; gridCell2.Width = gridWidth;
+            gridCell3.Width = gridWidth; gridCell4.Width = gridWidth;
         }
     }
 }
