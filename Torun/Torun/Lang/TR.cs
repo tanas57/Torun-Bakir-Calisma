@@ -41,7 +41,6 @@ namespace Torun.Lang
         #endregion
         /* REGISTER */
         /*   WELCOME PAGE ENDS */
-
         // COMBOBOX VALUES
         #region
         public string ComboboxPriorityLow { get => "Düşük"; }
@@ -87,7 +86,6 @@ namespace Torun.Lang
 
         public string RequestEditLabelSaveNO => "Talep düzenlemesi yapılamadı";
         #endregion
-
         // MAINPAGE STARTS
         #region
         public string MainPageTitle => "Torun - Plan Tracer";
@@ -121,9 +119,7 @@ namespace Torun.Lang
         public string RequestScheduleSaveFailed => "İşlem başarısız";
 
         #endregion
-
         /* REQUEST PAGES */
-
         // Todolist user control
         #region
         public string UCTodoListAddRequest => "Yeni talep ekle";
@@ -137,11 +133,11 @@ namespace Torun.Lang
         public string UCTodoListScheduleButton => "Zamanla";
         public string UCTodoListEditButton => "Düzenle";
         public string UCTodoListDeleteButton => "Sil";
-
+        public string UCTodoListInfoMessage => "Açıklama detayı";
 
         #endregion
-
         // Weekly plan page
+        #region
         public string UCWeeklyPlanButtonGetDetail => "Detay Getir";
 
         public string UCWeeklyPlanButtonDoCompleted => "Tamamlandı İşaretle";
@@ -163,31 +159,35 @@ namespace Torun.Lang
         public string UCWeeklyPlanDaysFriday => "Cuma";
 
         public string UCWeeklyPlanCurrentTime => "Geçerli Zaman Dilimi";
-
+        public string UCWeeklyPlanNumOfPlans => "adet kayıt";
+        #endregion
+        // Wekkly detail
+        #region
         public string WeeklyDetailTitle => "Talep Detay Görüntüleme : ";
 
         public string WeeklyDetailDescription => "Açıklama";
 
         public string WeeklyDetailCalendar => "Plan Tarihleri";
-
-        public string UCTodoListInfoMessage => "Açıklama detayı";
-
+        #endregion
+        // weekly completed
+        #region
         public string WeeklyCompletedTitle => "Talep Tamamlama Sayfası";
 
         public string WeeklyCompletedCurrentDay => "Bugünkü iş bitti işaretle";
 
         public string WeeklyCompletedAllWork => "Tüm talebi tamamlandı işaretle";
-
+        public string WeeklyCompletedNote => "Notunuz (varsa)";
+        #endregion
+        // buttons
+        #region
         public string ButtonSave => "Kaydet";
 
         public string ButtonDelete => "Sil";
 
         public string ButtonEdit => "Düzenle";
-
-        public string WeeklyCompletedNote => "Notunuz (varsa)";
-
-        public string UCWeeklyPlanNumOfPlans => "adet kayıt";
-
+        #endregion
+        // wekkly remove
+        #region
         public string WeeklyRemoveTitle => "Plandan Çıkarma";
 
         public string WeeklyRemoveAday => "Sadece seçili iş";
@@ -197,5 +197,6 @@ namespace Torun.Lang
         public string WeeklyRemoveAllDaysExceptDoit => "Tüm talep işleri çıkar (tamamlananlar silinmez)";
 
         public string WeeklyRemoveButtonRemove => "Plandan çıkar";
+        #endregion
     }
 }

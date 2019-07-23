@@ -11,6 +11,7 @@ namespace Torun.Lang
         /* WELCOME PAGE STARTS*/
 
         // LOGIN //
+        #region
         string WelcomeLoginTitle { get; }
         string WelcomeLoginRemember { get; }
         string WelcomeLoginButton { get; }
@@ -18,7 +19,9 @@ namespace Torun.Lang
         string WelcomeLoginFailedUserNotFind { get; }
         string WelcomeLoginFailedWrongPassword { get; }
         string WelcomeLoginSuccess { get; }
+        #endregion
         // REGISTER //
+        #region
         string WelcomeRegisterTitle { get; }
         string WelcomeRegisterButton { get; }
         string WelcomeSignSuccess { get; }
@@ -33,10 +36,12 @@ namespace Torun.Lang
         string WelcomeRegisterTitleFirstName { get; }
         string WelcomeRegisterTitleLastName { get; }
         string WelcomeCapsLock { get; }
+        #endregion
 
         /* WELCOME PAGE ENDS*/
 
         /* COMBOBOX ITEMS */
+        #region
 
         // PRIORITY
         string ComboboxPriorityLow { get; }
@@ -51,8 +56,10 @@ namespace Torun.Lang
         string ComboboxStatusEdited { get; }
         string ComboboxStatusPlanned { get; }
         /* COMBOBOX ITEMS */
+        #endregion
 
         /* REQUEST ADD WINDOWS STARTS */
+        #region
         string RequestAddRequestNumber { get; }
         string RequestAddRequestPriority { get; }
         string RequestAddRequestDescription { get; }
@@ -63,14 +70,18 @@ namespace Torun.Lang
         string RequestAddRequestResultNoDescription { get; }
         string RequestAddRequestTitle { get; }
         /* REQUEST ADD WINDOWS ENDS */
+        #endregion
 
         /* REQUEST EDIT WINDOWS ENDS */
+        #region
         string RequestEditTitle { get; }
         string RequestEditButton { get; }
         string RequestEditLabelSaveOK { get; }
         string RequestEditLabelSaveNO { get; }
         /* REQUEST EDIT WINDOWS ENDS */
+        #endregion
         /* MAIN PAGE STARTS */
+        #region
         string MainPageTitle { get; }
         string MainPageTotalRequest { get; }
         string MainPageOpenRequest { get; }
@@ -81,21 +92,22 @@ namespace Torun.Lang
         string MainPageWorkDone { get; }
         string MainPageMenuReport { get; }
         string MainPageMenuBackup { get; }
+        #endregion
         /* MAIN PAGE ENDS */
 
         /* REQUEST SCHEDULE PAGE STARTS*/
+        #region
         string RequestScheduleTitle { get; }
         string RequestScheduleReqNumber { get; }
         string RequestScheduleChooseDate { get; }
         string RequestScheduleSave { get; }
         string RequestScheduleSaveChooseDateError { get; }
         string RequestScheduleSaveFailed { get; }
+        #endregion
 
         /* REQUEST SCHEDULE PAGE ENDS */
-
         // Todolist page
         #region
-        
         string UCTodoListAddRequest { get; }
         string UCTodoListDetailList { get; }
         string UCTodoListProcesses { get; }
@@ -110,8 +122,8 @@ namespace Torun.Lang
         string UCTodoListInfoMessage { get; }
         // Todolist ends
         #endregion
-
         // Weekly plan page
+        #region
         string UCWeeklyPlanButtonGetDetail { get; }
         string UCWeeklyPlanButtonDoCompleted { get; }
         string UCWeeklyPlanButtonEdit { get; }
@@ -124,24 +136,33 @@ namespace Torun.Lang
         string UCWeeklyPlanDaysFriday { get; }
         string UCWeeklyPlanCurrentTime { get; }
         string UCWeeklyPlanNumOfPlans { get; }
-
+        #endregion
+        // weekly detail
+        #region
         string WeeklyDetailTitle { get; }
         string WeeklyDetailDescription { get; }
         string WeeklyDetailCalendar { get; }
-
+        #endregion
+        // weekly completed
+        #region
         string WeeklyCompletedTitle { get; }
         string WeeklyCompletedCurrentDay { get; }
         string WeeklyCompletedAllWork { get; }
-
         string WeeklyCompletedNote { get; }
+        #endregion
+        // buttons
+        #region
         string ButtonSave { get; }
         string ButtonDelete { get; }
         string ButtonEdit { get; }
-
+        #endregion
+        // weekly remove
+        #region
         string WeeklyRemoveTitle { get; }
         string WeeklyRemoveAday { get; }
         string WeeklyRemoveAllDays { get; }
         string WeeklyRemoveAllDaysExceptDoit { get; }
         string WeeklyRemoveButtonRemove { get; }
+        #endregion
     }
 }
