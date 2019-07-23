@@ -51,7 +51,7 @@ namespace Torun.Windows
             todoList.priority = (byte)req_Priority.SelectedIndex;
             todoList.description = req_Description.Text;
 
-            todoList.request_number = req_Number.Text;
+            todoList.request_number = req_Number.Text.ToUpper();
             req_Result.Visibility = Visibility.Visible;
             if (req_Priority.SelectedIndex == -1)
             {
