@@ -88,21 +88,30 @@ namespace Torun.Windows.WeeklyPlan
                 }
                 else // all work completed
                 {
-                    var plans = mainWindow.db.PlanToCalendar(Plan.PlanID);
+                    // a work has a lot of plans
+                    // the plans that have current work_id status must be 1
+                    // at the same time the plan_id's transfers to workDone table
+                    // and finally, todolist work_id status must be 3 : closed
+                    var plans = mainWindow.db.PlanToCalendar(Plan.WorkID);
+                    WorkDone workDone;
                     for (int i = 0; i < plans.Count; i++)
                     {
-                        plans plan = plans[i];
-                        WorkDone workDone = new WorkDone();
-                        workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
-                        workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
-                        workDone.status = 1; // end of the work
-                        mainWindow.db.MoveWorkToWorkDone(workDone);
+                        plans plan = plans[i]; // for each plan
                         plan.status = 1;
                         mainWindow.db.EditPlan(plan);
+
+                        workDone = new WorkDone();
+                        workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                        workDone.plan_id = plan.id; workDone.description = DbcompletedNote.Text;
+                        workDone.status = 1; // end of the work
+                        mainWindow.db.MoveWorkToWorkDone(workDone);
                     }
-                    todoList todolist = mainWindow.db.GetTodoByID((int)plans[0].work_id); // in here exception error !
-                    todolist.status = 3; // closed
-                    mainWindow.db.EditTodoList(todolist);
+                    if(plans.Count > 0)
+                    {
+                        todoList todolist = mainWindow.db.GetTodoByID((int)plans[0].work_id); // in here exception error !
+                        todolist.status = 3; // closed
+                        mainWindow.db.EditTodoList(todolist);
+                    }
                 }
             }
             this.Close();
