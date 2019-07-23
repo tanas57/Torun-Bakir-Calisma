@@ -44,6 +44,7 @@ namespace Torun.UControls
                 DateTime value = date_picker.SelectedDate.Value;
                 LabelandGridUpdate(value);
             }
+            else LabelandGridUpdate(DateTime.Now.Date);
         }
 
         private void LabelandGridUpdate(DateTime datetime)
@@ -100,7 +101,11 @@ namespace Torun.UControls
                 markCompleted.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
                 mainWindow.Opacity = 0.5;
                 markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                if (markCompleted.ShowDialog() == true) Date_picker_CalendarClosed(sender, e);
+                if (markCompleted.ShowDialog() == false)
+                {
+                    Date_picker_CalendarClosed(sender, e);
+                    mainWindow.UpdateScreens();
+                }
             }
         }
     }
