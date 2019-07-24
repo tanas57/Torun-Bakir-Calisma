@@ -168,5 +168,9 @@ namespace Torun.Lang
         string WeeklyRemoveAllDaysExceptDoit { get; }
         string WeeklyRemoveButtonRemove { get; }
         #endregion
+        // weekly edit plan
+        #region
+        string WeeklyEditPlanTitle { get; }
+        #endregion
     }
 }

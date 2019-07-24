@@ -7,7 +7,7 @@
         mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
         BorderBrush="#B0151E" BorderThickness="0,0,0,5"
         Closing="Window_Closing" MouseDown="Window_MouseDown" Loaded="Window_Loaded"
-        Title="MarkCompleted" Height="285" Width="720">
+        Title="MarkCompleted" Height="285" Width="700">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0">
-                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="completed_title" />
+                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="editPlanTitle" />
                 </Border>
                 <Border Grid.Column="1">
                     <Button Content="X" Style="{DynamicResource buttonMiniClose}" x:Name="btnClose" Click="BtnClose_Click"/>

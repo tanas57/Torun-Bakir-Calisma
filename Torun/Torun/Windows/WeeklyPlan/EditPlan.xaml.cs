@@ -22,6 +22,8 @@ namespace Torun.Windows.WeeklyPlan
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         public DB.WeeklyPlan Plan { get; set; }
+        private todoList todoList; // current request
+        private List<plans> plans; // current plans
         public EditPlan()
         {
             InitializeComponent();
@@ -47,6 +49,21 @@ namespace Torun.Windows.WeeklyPlan
             plan_add.Content = mainWindow.language.ButtonAdd;
             plan_remove.Content = mainWindow.language.ButtonRemove;
             plan_transfer.Content = mainWindow.language.ButtonTransfer;
+            this.Title = mainWindow.language.WeeklyEditPlanTitle;
+            editPlanTitle.Content = mainWindow.language.WeeklyEditPlanTitle;
+
+            todoList = mainWindow.db.GetTodoByID(Plan.WorkID);
+            plans = mainWindow.db.PlanToCalendar(Plan.WorkID);
+
+            editRequestNumber.Text = todoList.request_number;
+            editRequestDescription.Text = todoList.description;
+            editRequestPriority.SelectedIndex = (int)todoList.priority;
+
+            for (int i = 0; i < plans.Count; i++)
+            {
+                plans temp = plans[i];
+                list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

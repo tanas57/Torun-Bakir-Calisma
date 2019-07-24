@@ -204,6 +204,8 @@ namespace Torun.Lang
 
         public string WeeklyRemoveButtonRemove => "Plandan çıkar";
 
+        public string WeeklyEditPlanTitle => "Plan Düzenleme Sayfası";
+
         #endregion
     }
 }
