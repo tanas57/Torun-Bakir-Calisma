@@ -118,9 +118,6 @@
     <Compile Include="Windows\Request\RequestSchedule.xaml.cs">
       <DependentUpon>RequestSchedule.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WeeklyPlan\ChangeDataInterval.xaml.cs">
-      <DependentUpon>ChangeDataInterval.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\WeeklyPlan\EditPlan.xaml.cs">
       <DependentUpon>EditPlan.xaml</DependentUpon>
     </Compile>
@@ -165,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Request\RequestSchedule.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\WeeklyPlan\ChangeDataInterval.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

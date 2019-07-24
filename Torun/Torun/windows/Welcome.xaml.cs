@@ -18,12 +18,12 @@ namespace Torun.windows
         private users currentUser;
         private readonly DB db;
         private bool passwordMD5 = false;
-        private readonly ILanguage language;
+        private ILanguage Lang { get; set; }
         public Welcome()
         {
             InitializeComponent();
             db = new DB();
-            language = CurrentLanguage.Language;
+            Lang = CurrentLanguage.Language;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -57,37 +57,37 @@ namespace Torun.windows
                             switch (db.Register(currentUser))
                             {
                                 case 1:
-                                    lbl_RegResult.Content = language.WelcomeSignSuccess;
+                                    lbl_RegResult.Content = Lang.WelcomeSignSuccess;
                                     lbl_RegResult.Background = Brushes.Green;
                                     register_firstname.Text = ""; register_lastname.Text = "";
                                     register_username.Text = ""; register_password.Password = ""; register_password2.Password = "";
                                     break;
                                 case 0:
-                                    lbl_RegResult.Content = language.WelcomeSignUserAlreadyExists;
+                                    lbl_RegResult.Content = Lang.WelcomeSignUserAlreadyExists;
                                     lbl_RegResult.Background = Brushes.Red;
                                     break;
                             }
                         }
                         else
                         {
-                            lbl_RegResult.Content = language.WelcomeSignPasswordNotEnough;
+                            lbl_RegResult.Content = Lang.WelcomeSignPasswordNotEnough;
                             lbl_RegResult.Background = Brushes.Red;
                         }
                     else
                     {
-                        lbl_RegResult.Content = language.WelcomeSignPasswordsNotMatch;
+                        lbl_RegResult.Content = Lang.WelcomeSignPasswordsNotMatch;
                         lbl_RegResult.Background = Brushes.Red;
                     }
                 }
                 else
                 {
-                    lbl_RegResult.Content = language.WelcomeSignUsernameLenghtMustBeGreaterThanThree;
+                    lbl_RegResult.Content = Lang.WelcomeSignUsernameLenghtMustBeGreaterThanThree;
                     lbl_RegResult.Background = Brushes.Red;
                 }
             }
             else
             {
-                lbl_RegResult.Content = language.WelcomeSignFillAllFields;
+                lbl_RegResult.Content = Lang.WelcomeSignFillAllFields;
                 lbl_RegResult.Background = Brushes.Red;
             }
         }
@@ -106,7 +106,7 @@ namespace Torun.windows
             if (currentUser.user_name.Length < 3 || currentUser.password.Length < 3)
             {
                 lbl_LoginResult.Visibility = Visibility.Visible;
-                lbl_LoginResult.Content = language.WelcomeLoginFailedNotEnoughUserOrPassword;
+                lbl_LoginResult.Content = Lang.WelcomeLoginFailedNotEnoughUserOrPassword;
                 lbl_LoginResult.Background = Brushes.Red;
             }
             else
@@ -115,7 +115,7 @@ namespace Torun.windows
                 {
                     case 1:
                         lbl_LoginResult.Visibility = Visibility.Hidden;
-                        lbl_LoginResult.Content = language.WelcomeLoginSuccess;
+                        lbl_LoginResult.Content = Lang.WelcomeLoginSuccess;
                         lbl_LoginResult.Background = Brushes.Green;
                         /*
                         * when an user login, a file which has a name that is current username
@@ -133,8 +133,8 @@ namespace Torun.windows
                         this.Hide();
                         mainWindow.welcome = this;
                         mainWindow.currentUser = this.currentUser;
-                        mainWindow.language = language;
-                        mainWindow.Lang = language;
+                        mainWindow.Lang = Lang;
+                        mainWindow.Lang = Lang;
                         mainWindow.db = this.db;
                         mainWindow.DB = this.db;
                         mainWindow.Show();
@@ -142,13 +142,13 @@ namespace Torun.windows
 
                     case 2:
                         lbl_LoginResult.Visibility = Visibility.Visible;
-                        lbl_LoginResult.Content = language.WelcomeLoginFailedUserNotFind;
+                        lbl_LoginResult.Content = Lang.WelcomeLoginFailedUserNotFind;
                         lbl_LoginResult.Background = Brushes.Red;
                         break;
 
                     case 3:
                         lbl_LoginResult.Visibility = Visibility.Visible;
-                        lbl_LoginResult.Content = language.WelcomeLoginFailedWrongPassword;
+                        lbl_LoginResult.Content = Lang.WelcomeLoginFailedWrongPassword;
                         lbl_LoginResult.Background = Brushes.Red;
                         break;
                 }
@@ -158,18 +158,18 @@ namespace Torun.windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             CapsLockControl();
-            capslockControl.Content = language.WelcomeCapsLock;
-            // form items names from language
-            lbl_loginTitle.Content = language.WelcomeLoginTitle;
-            lbl_registerTitle.Content = language.WelcomeRegisterTitle;
-            btnSignUp.Content = language.WelcomeRegisterButton;
-            lbl_info_username.Content = language.WelcomeRegisterTitleUsername;
-            lbl_info_password.Content = language.WelcomeRegisterTitlePassword;
-            lbl_info_password2.Content = language.WelcomeRegisterTitlePasswordAgain;
-            lbl_info_firstname.Content = language.WelcomeRegisterTitleFirstName;
-            lbl_info_lastname.Content = language.WelcomeRegisterTitleLastName;
-            chk_loginSave.Content = language.WelcomeLoginRemember;
-            btnLogin.Content = language.WelcomeLoginButton;
+            capslockControl.Content = Lang.WelcomeCapsLock;
+            // form items names from Lang
+            lbl_loginTitle.Content = Lang.WelcomeLoginTitle;
+            lbl_registerTitle.Content = Lang.WelcomeRegisterTitle;
+            btnSignUp.Content = Lang.WelcomeRegisterButton;
+            lbl_info_username.Content = Lang.WelcomeRegisterTitleUsername;
+            lbl_info_password.Content = Lang.WelcomeRegisterTitlePassword;
+            lbl_info_password2.Content = Lang.WelcomeRegisterTitlePasswordAgain;
+            lbl_info_firstname.Content = Lang.WelcomeRegisterTitleFirstName;
+            lbl_info_lastname.Content = Lang.WelcomeRegisterTitleLastName;
+            chk_loginSave.Content = Lang.WelcomeLoginRemember;
+            btnLogin.Content = Lang.WelcomeLoginButton;
 
             if (FileOperation.FileExists(FileNames.IS_LOGGED))
             {

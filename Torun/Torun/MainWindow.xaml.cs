@@ -19,7 +19,6 @@ namespace Torun
         public DB db;
         public Window welcome;
         public users currentUser;
-        public ILanguage language;
         public UCTodoList uCTodoList;
         public UCWeeklyPlan ucWeeklyPlan;
         private bool formLogoutControl = false; // for form closing control, and logout button action
@@ -80,16 +79,16 @@ namespace Torun
             {
                 photoChange.Source = GetImage(FileOperation.ProfilePhotoPath());
             }
-            mainPage_title.Content = language.MainPageTitle;
-            mainPage_totalRequest.Content = language.MainPageTotalRequest;
-            mainPage_openRequest.Content = language.MainPageOpenRequest;
-            mainPage_closedRequest.Content = language.MainPageClosedRequest;
-            mainPage_logOut.Content = language.MainPageLogOut;
-            mainPage_menuTodo.Content = language.MainPageMenuToDo;
-            mainPage_menuWeeklyPlan.Content = language.MainPageMenuWeeklyPlan;
-            mainPage_menuWordDone.Content = language.MainPageWorkDone;
-            mainPage_menuReport.Content = language.MainPageMenuReport;
-            mainPage_menuBackup.Content = language.MainPageMenuBackup;
+            mainPage_title.Content = Lang.MainPageTitle;
+            mainPage_totalRequest.Content = Lang.MainPageTotalRequest;
+            mainPage_openRequest.Content = Lang.MainPageOpenRequest;
+            mainPage_closedRequest.Content = Lang.MainPageClosedRequest;
+            mainPage_logOut.Content = Lang.MainPageLogOut;
+            mainPage_menuTodo.Content = Lang.MainPageMenuToDo;
+            mainPage_menuWeeklyPlan.Content = Lang.MainPageMenuWeeklyPlan;
+            mainPage_menuWordDone.Content = Lang.MainPageWorkDone;
+            mainPage_menuReport.Content = Lang.MainPageMenuReport;
+            mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
         }
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
         {

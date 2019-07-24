@@ -44,12 +44,12 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = mainWindow.language.WeeklyCompletedTitle;
-            completed_title.Content = mainWindow.language.WeeklyCompletedTitle;
-            completed_aDay.Content = mainWindow.language.WeeklyCompletedCurrentDay;
-            completed_allDays.Content = mainWindow.language.WeeklyCompletedAllWork;
-            completed_save.Content = mainWindow.language.ButtonSave;
-            completedNote.Content = mainWindow.language.WeeklyCompletedNote;
+            this.Title = mainWindow.Lang.WeeklyCompletedTitle;
+            completed_title.Content = mainWindow.Lang.WeeklyCompletedTitle;
+            completed_aDay.Content = mainWindow.Lang.WeeklyCompletedCurrentDay;
+            completed_allDays.Content = mainWindow.Lang.WeeklyCompletedAllWork;
+            completed_save.Content = mainWindow.Lang.ButtonSave;
+            completedNote.Content = mainWindow.Lang.WeeklyCompletedNote;
             int workDayCount = mainWindow.db.PlanToCalendar(Plan.WorkID).Count;
             if (workDayCount == 1) completed_allDays.IsEnabled = false;
         }

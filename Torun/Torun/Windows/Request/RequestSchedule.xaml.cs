@@ -46,11 +46,11 @@ namespace Torun.Windows.Request
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            schedule_chooseDate.Content = mainWindow.language.RequestScheduleChooseDate;
-            this.Title = mainWindow.language.RequestScheduleTitle;
-            req_RequestSchedule.Content = mainWindow.language.RequestScheduleTitle;
-            schedule_ReqNumber.Content = mainWindow.language.RequestScheduleReqNumber;
-            Schedule_Save.Content = mainWindow.language.RequestScheduleSave;
+            schedule_chooseDate.Content = mainWindow.Lang.RequestScheduleChooseDate;
+            this.Title = mainWindow.Lang.RequestScheduleTitle;
+            req_RequestSchedule.Content = mainWindow.Lang.RequestScheduleTitle;
+            schedule_ReqNumber.Content = mainWindow.Lang.RequestScheduleReqNumber;
+            Schedule_Save.Content = mainWindow.Lang.RequestScheduleSave;
             if (todolist == null) this.Close();
             else
             {
@@ -92,13 +92,13 @@ namespace Torun.Windows.Request
                 else
                 {
                     lbl_scheduleResult.Background = Brushes.Red;
-                    lbl_scheduleResult.Content = mainWindow.language.RequestScheduleSaveFailed;
+                    lbl_scheduleResult.Content = mainWindow.Lang.RequestScheduleSaveFailed;
                 }
             }
             else
             {
                 lbl_scheduleResult.Background = Brushes.Red;
-                lbl_scheduleResult.Content = mainWindow.language.RequestScheduleSaveChooseDateError;
+                lbl_scheduleResult.Content = mainWindow.Lang.RequestScheduleSaveChooseDateError;
             }
             
             

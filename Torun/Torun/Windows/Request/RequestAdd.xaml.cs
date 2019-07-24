@@ -28,18 +28,18 @@ namespace Torun.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityLow);
-            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityNormal);
-            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityHigh);
-            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityUrgent);
-            req_Priority.Items.Add(mainWindow.language.ComboboxPriorityProject);
+            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
+            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
+            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
+            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
+            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
 
-            lbl_reqNumber.Content = mainWindow.language.RequestAddRequestNumber;
-            lbl_reqPriority.Content = mainWindow.language.RequestAddRequestPriority;
-            lbl_reqDescription.Content = mainWindow.language.RequestAddRequestDescription;
-            lbl_req_Button.Content = mainWindow.language.RequestAddRequestButton;
-            req_RequestAdd.Content = mainWindow.language.RequestAddRequestTitle;
-            this.Title = mainWindow.language.RequestAddRequestTitle;
+            lbl_reqNumber.Content = mainWindow.Lang.RequestAddRequestNumber;
+            lbl_reqPriority.Content = mainWindow.Lang.RequestAddRequestPriority;
+            lbl_reqDescription.Content = mainWindow.Lang.RequestAddRequestDescription;
+            lbl_req_Button.Content = mainWindow.Lang.RequestAddRequestButton;
+            req_RequestAdd.Content = mainWindow.Lang.RequestAddRequestTitle;
+            this.Title = mainWindow.Lang.RequestAddRequestTitle;
         }
 
         private void Req_Save_Click(object sender, RoutedEventArgs e)
@@ -57,24 +57,24 @@ namespace Torun.Windows
             {
                 if (req_Priority.SelectedIndex == -1)
                 {
-                    req_Result.Content = mainWindow.language.RequestAddRequestResultNotSelected;
+                    req_Result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
                     req_Result.Background = System.Windows.Media.Brushes.Red;
                 }
                 else if (req_Description.Text == String.Empty)
                 {
-                    req_Result.Content = mainWindow.language.RequestAddRequestResultNoDescription;
+                    req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
                     req_Result.Background = System.Windows.Media.Brushes.Red;
                 }
                 else
                 {
                     if (db.AddTodoList(todoList) == 0)
                     {
-                        req_Result.Content = mainWindow.language.RequestAddRequestResultNo;
+                        req_Result.Content = mainWindow.Lang.RequestAddRequestResultNo;
                         req_Result.Background = System.Windows.Media.Brushes.Red;
                     }
                     else
                     {
-                        req_Result.Content = mainWindow.language.RequestAddRequestResultOk;
+                        req_Result.Content = mainWindow.Lang.RequestAddRequestResultOk;
                         req_Result.Background = System.Windows.Media.Brushes.Green;
                         mainWindow.UpdateScreens();
                         this.Close();
@@ -83,7 +83,7 @@ namespace Torun.Windows
             }
             else
             {
-                req_Result.Content = mainWindow.language.RequestAddReqNumEmpty;
+                req_Result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
                 req_Result.Background = System.Windows.Media.Brushes.Red;
             }
         }

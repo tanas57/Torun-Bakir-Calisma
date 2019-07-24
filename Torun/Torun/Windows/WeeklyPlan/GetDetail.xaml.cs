@@ -28,14 +28,14 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = mainWindow.language.WeeklyDetailTitle + " " + Plan.RequestNumber;
-            weeklyPlan_title.Content = mainWindow.language.WeeklyDetailTitle + " " + Plan.RequestNumber;
+            this.Title = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
+            weeklyPlan_title.Content = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
 
             plans plan = mainWindow.db.GetPlanByID(Plan.PlanID); // selected plan
             todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID); // plan's work
             dbDescription.Text = todolist.description;
-            getDetailDescription.Text = mainWindow.language.WeeklyDetailDescription;
-            getDetailCalendar.Text = mainWindow.language.WeeklyDetailCalendar;
+            getDetailDescription.Text = mainWindow.Lang.WeeklyDetailDescription;
+            getDetailCalendar.Text = mainWindow.Lang.WeeklyDetailCalendar;
             var work_plans = mainWindow.db.PlanToCalendar(Plan.WorkID);
             for (int i = 0; i < work_plans.Count; i++)
             {

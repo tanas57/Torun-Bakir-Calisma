@@ -68,12 +68,12 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = mainWindow.language.WeeklyRemoveTitle;
-            remove_title.Content = mainWindow.language.WeeklyRemoveTitle;
-            remove_aDay.Content = mainWindow.language.WeeklyRemoveAday;
-            remove_allDaysExceptDoit.Content = mainWindow.language.WeeklyRemoveAllDays;
-            remove_allDays.Content = mainWindow.language.WeeklyRemoveAllDaysExceptDoit;
-            removeSave.Content = mainWindow.language.WeeklyRemoveButtonRemove;
+            this.Title = mainWindow.Lang.WeeklyRemoveTitle;
+            remove_title.Content = mainWindow.Lang.WeeklyRemoveTitle;
+            remove_aDay.Content = mainWindow.Lang.WeeklyRemoveAday;
+            remove_allDaysExceptDoit.Content = mainWindow.Lang.WeeklyRemoveAllDays;
+            remove_allDays.Content = mainWindow.Lang.WeeklyRemoveAllDaysExceptDoit;
+            removeSave.Content = mainWindow.Lang.WeeklyRemoveButtonRemove;
             int workDayCount = mainWindow.db.PlanToCalendar(Plan.WorkID).Count;
             if (workDayCount == 1)
             {

@@ -19,7 +19,7 @@ namespace Torun.UControls
         public UCTodoList()
         {
             InitializeComponent();
-            db = mainWindow.db;
+            db = mainWindow.DB;
             currentUser = mainWindow.currentUser;
             Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
         }
@@ -46,12 +46,12 @@ namespace Torun.UControls
         private void Grid_todoList_Loaded(object sender, RoutedEventArgs e)
         {
             // priority ve status int to string işlemi
-            ucTodolist_ListDetail.Content = mainWindow.language.UCTodoListAddedTime;
-            ucTodolist_addRequest.Content = mainWindow.language.UCTodoListAddRequest;
-            ucTodolist_Description.Header = mainWindow.language.UCTodoListDescription;
-            ucTodolist_requestNumber.Header = mainWindow.language.UCTodoListRequestNumber;
-            ucTodolist_Priority.Header = mainWindow.language.UCTodoListPriority;
-            ucTodolist_Processes.Header = mainWindow.language.UCTodoListProcesses;
+            ucTodolist_ListDetail.Content = mainWindow.Lang.UCTodoListAddedTime;
+            ucTodolist_addRequest.Content = mainWindow.Lang.UCTodoListAddRequest;
+            ucTodolist_Description.Header = mainWindow.Lang.UCTodoListDescription;
+            ucTodolist_requestNumber.Header = mainWindow.Lang.UCTodoListRequestNumber;
+            ucTodolist_Priority.Header = mainWindow.Lang.UCTodoListPriority;
+            ucTodolist_Processes.Header = mainWindow.Lang.UCTodoListProcesses;
         }
 
         private void Grid_todoList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -86,14 +86,14 @@ namespace Torun.UControls
             if (!buttonDetail)
             {
                 DataGridTextColumn add_time = new DataGridTextColumn();
-                add_time.Header = mainWindow.language.UCTodoListAddedTime;
+                add_time.Header = mainWindow.Lang.UCTodoListAddedTime;
                 add_time.MinWidth = 100;
                 add_time.IsReadOnly = true;
                 add_time.Binding = new System.Windows.Data.Binding("add_time");
                 Grid_todoList.Columns.Add(add_time);
 
                 DataGridTextColumn status = new DataGridTextColumn();
-                status.Header = mainWindow.language.UCTodoListStatus;
+                status.Header = mainWindow.Lang.UCTodoListStatus;
                 status.MinWidth = 30;
                 status.IsReadOnly = true;
                 status.Binding = new System.Windows.Data.Binding("StatusString");
@@ -133,7 +133,7 @@ namespace Torun.UControls
         private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             todoList todolist = Grid_todoList.SelectedItem as todoList;
-            MessageBox.Show(todolist.description, mainWindow.language.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(todolist.description, mainWindow.Lang.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
