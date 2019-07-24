@@ -187,6 +187,10 @@ namespace Torun.Lang
         public string ButtonDelete => "Sil";
 
         public string ButtonEdit => "Düzenle";
+        public string ButtonRemove => "Kaldır";
+        public string ButtonTransfer => "Taşı";
+        public string ButtonAdd => "Ekle";
+
         #endregion
         // wekkly remove
         #region

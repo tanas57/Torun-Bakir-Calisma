@@ -43,6 +43,10 @@ namespace Torun.Windows.WeeklyPlan
             lbl_reqNum.Text = mainWindow.language.RequestAddRequestNumber;
             lbl_reqPriority.Text = mainWindow.language.RequestAddRequestPriority;
             lbl_description.Text = mainWindow.language.RequestAddRequestDescription;
+
+            plan_add.Content = mainWindow.language.ButtonAdd;
+            plan_remove.Content = mainWindow.language.ButtonRemove;
+            plan_transfer.Content = mainWindow.language.ButtonTransfer;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -156,6 +156,9 @@ namespace Torun.Lang
         string ButtonSave { get; }
         string ButtonDelete { get; }
         string ButtonEdit { get; }
+        string ButtonRemove { get; }
+        string ButtonTransfer { get; }
+        string ButtonAdd { get; }
         #endregion
         // weekly remove
         #region
