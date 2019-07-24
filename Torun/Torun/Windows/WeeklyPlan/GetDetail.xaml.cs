@@ -31,12 +31,12 @@ namespace Torun.Windows.WeeklyPlan
             this.Title = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
             weeklyPlan_title.Content = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
 
-            plans plan = mainWindow.db.GetPlanByID(Plan.PlanID); // selected plan
-            todoList todolist = mainWindow.db.GetTodoByID(Plan.WorkID); // plan's work
+            plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID); // selected plan
+            todoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID); // plan's work
             dbDescription.Text = todolist.description;
             getDetailDescription.Text = mainWindow.Lang.WeeklyDetailDescription;
             getDetailCalendar.Text = mainWindow.Lang.WeeklyDetailCalendar;
-            var work_plans = mainWindow.db.PlanToCalendar(Plan.WorkID);
+            var work_plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
             for (int i = 0; i < work_plans.Count; i++)
             {
                 dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time.Value);

@@ -16,13 +16,13 @@ namespace Torun
     /// </summary>
     public partial class MainWindow : Window
     {
-        public DB db;
         public Window welcome;
-        public users currentUser;
         public UCTodoList uCTodoList;
         public UCWeeklyPlan ucWeeklyPlan;
+        
         private bool formLogoutControl = false; // for form closing control, and logout button action
-        //public users CurrentUser { get; set; } daha sonra bu şekil değiştir
+        //public users User { get; set; } daha sonra bu şekil değiştir
+        public users User { get; set; }
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public MainWindow()
@@ -31,14 +31,14 @@ namespace Torun
         }
         public void UpdateScreens()
         {
-            requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
-            requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
-            requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
-            if(uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
+            requestCount.Content = DB.GetRequestCount(1, User); // load count of all request
+            requestOpen.Content = DB.GetRequestCount(2, User);  // load count of currently open requests
+            requestClosed.Content = DB.GetRequestCount(3, User);// load count of closed request until today
+            if(uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = DB.GetTodoLists(User);
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            db.LogOut(currentUser);
+            DB.LogOut(User);
             this.Close();
             welcome.Close();
         }
@@ -69,11 +69,11 @@ namespace Torun
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
 
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            currentUser = db.GetUserDetail(currentUser);
-            requestCount.Content = db.GetRequestCount(1, currentUser); // load count of all request
-            requestOpen.Content = db.GetRequestCount(2, currentUser);  // load count of currently open requests
-            requestClosed.Content = db.GetRequestCount(3, currentUser);// load count of closed request until today
-            menuUsername.Content = currentUser.firstname + " " + currentUser.lastname;
+            User = DB.GetUserDetail(User);
+            requestCount.Content = DB.GetRequestCount(1, User); // load count of all request
+            requestOpen.Content = DB.GetRequestCount(2, User);  // load count of currently open requests
+            requestClosed.Content = DB.GetRequestCount(3, User);// load count of closed request until today
+            menuUsername.Content = User.firstname + " " + User.lastname;
 
             if (FileOperation.isProfileExists())
             {
@@ -113,10 +113,10 @@ namespace Torun
         }
         private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
         {
-            db.LogOut(currentUser);
+            DB.LogOut(User);
             formLogoutControl = true;
             this.Close();
-            this.currentUser = null;
+            this.User = null;
             welcome.Show();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

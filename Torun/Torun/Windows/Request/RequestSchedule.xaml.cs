@@ -79,13 +79,13 @@ namespace Torun.Windows.Request
                         work_id = todolist.id,
                         work_plan_time = item
                     };
-                    mainWindow.db.AddPlanDates(plans);
+                    mainWindow.DB.AddPlanDates(plans);
                     count2++;
                 }
                 if(count == count2)
                 {
                     todolist.status = (int)StatusType.Planned;
-                    mainWindow.db.EditTodoList(todolist);
+                    mainWindow.DB.EditTodoList(todolist);
                     mainWindow.UpdateScreens();
                     this.Close();
                 }

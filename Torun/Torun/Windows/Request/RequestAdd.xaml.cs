@@ -44,9 +44,9 @@ namespace Torun.Windows
 
         private void Req_Save_Click(object sender, RoutedEventArgs e)
         {
-            DB db = mainWindow.db;
+            DB db = mainWindow.DB;
             todoList todoList = new todoList();
-            todoList.user_id = mainWindow.currentUser.id;
+            todoList.user_id = mainWindow.User.id;
             todoList.status = (byte)StatusType.Added;
             todoList.priority = (byte)req_Priority.SelectedIndex;
             todoList.description = req_Description.Text;

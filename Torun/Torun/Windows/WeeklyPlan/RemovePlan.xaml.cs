@@ -29,20 +29,20 @@ namespace Torun.Windows.WeeklyPlan
 
         private void RemoveSave_Click(object sender, RoutedEventArgs e)
         {
-            todoList todoList = mainWindow.db.GetTodoByID(Plan.WorkID);
-            plans plan = mainWindow.db.GetPlanByID(Plan.PlanID);
+            todoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
+            plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
             if(remove_aDay.IsChecked == true)
             {
                 // only one day
                 if(remove_allDays.IsEnabled == false)
                 {
                     // todolist has only one plan so todolist can be removed
-                    mainWindow.db.RemovePlan(plan);
-                    if(!(mainWindow.db.GetWorkdoneByID(todoList.id).Count > 0)) mainWindow.db.DeleteTodoList(todoList);
+                    mainWindow.DB.RemovePlan(plan);
+                    if(!(mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0)) mainWindow.DB.DeleteTodoList(todoList);
                 }
                 else
                 {
-                    mainWindow.db.RemovePlan(plan);
+                    mainWindow.DB.RemovePlan(plan);
                 }
             }
             else if(remove_allDaysExceptDoit.IsChecked == true)
@@ -74,7 +74,7 @@ namespace Torun.Windows.WeeklyPlan
             remove_allDaysExceptDoit.Content = mainWindow.Lang.WeeklyRemoveAllDays;
             remove_allDays.Content = mainWindow.Lang.WeeklyRemoveAllDaysExceptDoit;
             removeSave.Content = mainWindow.Lang.WeeklyRemoveButtonRemove;
-            int workDayCount = mainWindow.db.PlanToCalendar(Plan.WorkID).Count;
+            int workDayCount = mainWindow.DB.PlanToCalendar(Plan.WorkID).Count;
             if (workDayCount == 1)
             {
                 remove_allDaysExceptDoit.IsEnabled = false;

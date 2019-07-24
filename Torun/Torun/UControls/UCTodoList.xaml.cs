@@ -14,14 +14,14 @@ namespace Torun.UControls
     public partial class UCTodoList : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private DB db; private users currentUser;
+        private DB db; private users User;
         public bool buttonDetail = false;
         public UCTodoList()
         {
             InitializeComponent();
             db = mainWindow.DB;
-            currentUser = mainWindow.currentUser;
-            Grid_todoList.ItemsSource = db.GetTodoLists(currentUser);
+            User = mainWindow.User;
+            Grid_todoList.ItemsSource = db.GetTodoLists(User);
         }
         private void btn_adddRequest_Click(object sender, RoutedEventArgs e)
         {

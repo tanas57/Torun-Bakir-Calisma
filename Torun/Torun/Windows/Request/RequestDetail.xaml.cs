@@ -55,7 +55,7 @@ namespace Torun.Windows.Request
 
         private void Req_Save_Click(object sender, RoutedEventArgs e)
         {
-            DB db = mainWindow.db;
+            DB db = mainWindow.DB;
             todolist.status = (byte)StatusType.Edited;
             todolist.priority = (byte)req_Priority.SelectedIndex;
             todolist.description = req_Description.Text;

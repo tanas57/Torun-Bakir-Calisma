@@ -22,7 +22,7 @@ namespace Torun.UControls
         {
             InitializeComponent();
             db = mainWindow.DB;
-            currentUser = mainWindow.currentUser;
+            currentUser = mainWindow.User;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

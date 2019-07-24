@@ -15,14 +15,14 @@ namespace Torun.windows
     /// </summary>
     public partial class Welcome : Window
     {
-        private users currentUser;
-        private readonly DB db;
         private bool passwordMD5 = false;
         private ILanguage Lang { get; set; }
+        private users User { get; set; }
+        public DB DB { get; set; }
         public Welcome()
         {
             InitializeComponent();
-            db = new DB();
+            DB = new DB();
             Lang = CurrentLanguage.Language;
         }
 
@@ -33,28 +33,28 @@ namespace Torun.windows
 
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
-            currentUser = new users();
+            User = new users();
             if(register_firstname.Text != String.Empty 
                 && register_lastname.Text != String.Empty 
                 && register_username.Text != String.Empty 
                 && register_password.Password != String.Empty 
                 && register_password2.Password != String.Empty)
             {
-                currentUser.firstname = register_firstname.Text.ToUpper();
-                currentUser.lastname = register_lastname.Text.ToUpper();
+                User.firstname = register_firstname.Text.ToUpper();
+                User.lastname = register_lastname.Text.ToUpper();
                 if(register_username.Text.Length >= 3)
                 {
                     if (String.Equals(register_password.Password, register_password2.Password) == true)
                         if (register_password.Password.Length >= 3)
                         {
-                            currentUser.password = MD5Crypt.MD5Hash(register_password.Password);
-                            currentUser.user_name = register_username.Text.ToLower();
-                            currentUser.pc_name = System.Environment.MachineName;
-                            currentUser.last_login = null;
-                            currentUser.login_status = 0;
-                            currentUser.user_status = 1;
-                            currentUser.register_date = DateTime.Now;
-                            switch (db.Register(currentUser))
+                            User.password = MD5Crypt.MD5Hash(register_password.Password);
+                            User.user_name = register_username.Text.ToLower();
+                            User.pc_name = System.Environment.MachineName;
+                            User.last_login = null;
+                            User.login_status = 0;
+                            User.user_status = 1;
+                            User.register_date = DateTime.Now;
+                            switch (DB.Register(User))
                             {
                                 case 1:
                                     lbl_RegResult.Content = Lang.WelcomeSignSuccess;
@@ -94,16 +94,16 @@ namespace Torun.windows
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            currentUser = new users();
-            if (chk_loginSave.IsChecked == true && passwordMD5 == true) currentUser.password = login_password.Password;
+            User = new users();
+            if (chk_loginSave.IsChecked == true && passwordMD5 == true) User.password = login_password.Password;
             else
                 if (passwordMD5 == false)
-                currentUser.password = MD5Crypt.MD5Hash(login_password.Password);
+                User.password = MD5Crypt.MD5Hash(login_password.Password);
             else
-                currentUser.password = login_password.Password;
+                User.password = login_password.Password;
 
-            currentUser.user_name = login_username.Text.ToLower();
-            if (currentUser.user_name.Length < 3 || currentUser.password.Length < 3)
+            User.user_name = login_username.Text.ToLower();
+            if (User.user_name.Length < 3 || User.password.Length < 3)
             {
                 lbl_LoginResult.Visibility = Visibility.Visible;
                 lbl_LoginResult.Content = Lang.WelcomeLoginFailedNotEnoughUserOrPassword;
@@ -111,7 +111,7 @@ namespace Torun.windows
             }
             else
             {
-                switch (db.Login(currentUser))
+                switch (DB.Login(User))
                 {
                     case 1:
                         lbl_LoginResult.Visibility = Visibility.Hidden;
@@ -120,23 +120,23 @@ namespace Torun.windows
                         /*
                         * when an user login, a file which has a name that is current username
                         */
-                        FileOperation.UserFilename = currentUser.user_name;
+                        FileOperation.UserFilename = User.user_name;
                         
-                        FileOperation.Write(currentUser.user_name, FileNames.IS_LOGGED, true);
+                        FileOperation.Write(User.user_name, FileNames.IS_LOGGED, true);
                         FileOperation.ControlUserFile();
                         if (chk_loginSave.IsChecked == true)
                         {
-                            FileOperation.Write(currentUser.user_name, FileNames.FILENAME_USERNAME);
-                            FileOperation.Write(currentUser.password, FileNames.FILENAME_PASSWORD);
+                            FileOperation.Write(User.user_name, FileNames.FILENAME_USERNAME);
+                            FileOperation.Write(User.password, FileNames.FILENAME_PASSWORD);
                         }
                         MainWindow mainWindow = new MainWindow();
                         this.Hide();
                         mainWindow.welcome = this;
-                        mainWindow.currentUser = this.currentUser;
+
+                        mainWindow.User = this.User;
                         mainWindow.Lang = Lang;
-                        mainWindow.Lang = Lang;
-                        mainWindow.db = this.db;
-                        mainWindow.DB = this.db;
+                        mainWindow.DB = this.DB;
+
                         mainWindow.Show();
                         break;
 
