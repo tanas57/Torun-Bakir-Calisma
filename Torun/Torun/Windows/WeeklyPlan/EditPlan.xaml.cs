@@ -20,6 +20,8 @@ namespace Torun.Windows.WeeklyPlan
     /// </summary>
     public partial class EditPlan : Window
     {
+        public List<DateTime> SelectedDates { get; set; }
+        public byte UpdateMode { get; set; }
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         public DB.WeeklyPlan Plan { get; set; }
         private todoList todoList; // current request
@@ -108,7 +110,33 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Plan_add_Click(object sender, RoutedEventArgs e)
         {
+            EditPlanChooseDate editPlanChooseDate = new EditPlanChooseDate();
+            editPlanChooseDate.Owner = this;
+            editPlanChooseDate.mainWindow = mainWindow;
+            this.Opacity = 0.5;
+            if(editPlanChooseDate.ShowDialog() == false)
+            {
+                if(SelectedDates.Count > 0)
+                {
+                    foreach (var item in SelectedDates)
+                    {
+                        plans plan = new plans();
+                        plan.add_time = DateTime.Now; plan.work_id = todoList.id;
+                        plan.work_plan_time = item.Date;
+                        mainWindow.DB.AddPlanDates(plan);
+                    }
+                    result.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddDates;
+                    result.Background = System.Windows.Media.Brushes.Green;
 
+                    list_plan.Items.Clear();
+                    plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
+                    for (int i = 0; i < plans.Count; i++)
+                    {
+                        plans temp = plans[i];
+                        list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+                    }
+                }
+            }
         }
 
         private void Plan_remove_Click(object sender, RoutedEventArgs e)

@@ -206,6 +206,14 @@ namespace Torun.Lang
         public string WeeklyEditPlanRemoved => "Seçilen plan kaldırıldı";
 
         public string WeeklyEditPlanRemovePlanTransferTodoList => "Seçilen plan silindi, talep yeniden yapılacaklar listesine taşındı";
+
+        public string WeeklyEditPlanCalendarAddTitle => "Planı Güne Ekleme";
+
+        public string WeeklyEditPlanCalendarAddLabel => "Bir adet gün seçin";
+
+        public string WeeklyEditPlanCalendarAddDates => "Seçilen tarihler talebe eklendi";
+
+
         #endregion
     }
 }
