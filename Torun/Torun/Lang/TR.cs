@@ -206,6 +206,10 @@ namespace Torun.Lang
 
         public string WeeklyEditPlanTitle => "Plan Düzenleme Sayfası";
 
+        public string WeeklyEditPlanRequestInfo => "Talep Bilgileri";
+
+        public string WeeklyEditPlanInfo => "Plan Bilgileri";
+
         #endregion
     }
 }

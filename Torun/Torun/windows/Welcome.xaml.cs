@@ -134,7 +134,9 @@ namespace Torun.windows
                         mainWindow.welcome = this;
                         mainWindow.currentUser = this.currentUser;
                         mainWindow.language = language;
+                        mainWindow.Lang = language;
                         mainWindow.db = this.db;
+                        mainWindow.DB = this.db;
                         mainWindow.Show();
                         break;
 

@@ -171,6 +171,8 @@ namespace Torun.Lang
         // weekly edit plan
         #region
         string WeeklyEditPlanTitle { get; }
+        string WeeklyEditPlanRequestInfo { get; }
+        string WeeklyEditPlanInfo { get; }
         #endregion
     }
 }

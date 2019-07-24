@@ -24,6 +24,8 @@ namespace Torun
         public UCWeeklyPlan ucWeeklyPlan;
         private bool formLogoutControl = false; // for form closing control, and logout button action
         //public users CurrentUser { get; set; } daha sonra bu şekil değiştir
+        public ILanguage Lang { get; set; }
+        public DB DB { get; set; }
         public MainWindow()
         {
             InitializeComponent();

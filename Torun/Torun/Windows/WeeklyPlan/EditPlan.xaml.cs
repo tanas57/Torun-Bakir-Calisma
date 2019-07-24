@@ -36,24 +36,26 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityLow);
-            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityNormal);
-            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityHigh);
-            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityUrgent);
-            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityProject);
+            editRequestPriority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
+            editRequestPriority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
+            editRequestPriority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
+            editRequestPriority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
+            editRequestPriority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
 
-            lbl_reqNum.Text = mainWindow.language.RequestAddRequestNumber;
-            lbl_reqPriority.Text = mainWindow.language.RequestAddRequestPriority;
-            lbl_description.Text = mainWindow.language.RequestAddRequestDescription;
+            lbl_reqNum.Text = mainWindow.Lang.RequestAddRequestNumber;
+            lbl_reqPriority.Text = mainWindow.Lang.RequestAddRequestPriority;
+            lbl_description.Text = mainWindow.Lang.RequestAddRequestDescription;
+            ReqInfo.Text = mainWindow.Lang.WeeklyEditPlanRequestInfo;
+            planInfo.Text = mainWindow.Lang.WeeklyEditPlanInfo;
+            plan_add.Content = mainWindow.Lang.ButtonAdd;
+            plan_remove.Content = mainWindow.Lang.ButtonRemove;
+            plan_transfer.Content = mainWindow.Lang.ButtonTransfer;
+            this.Title = mainWindow.Lang.WeeklyEditPlanTitle;
+            editPlanTitle.Content = mainWindow.Lang.WeeklyEditPlanTitle;
+            savechanges.Content = mainWindow.Lang.ButtonSave;
 
-            plan_add.Content = mainWindow.language.ButtonAdd;
-            plan_remove.Content = mainWindow.language.ButtonRemove;
-            plan_transfer.Content = mainWindow.language.ButtonTransfer;
-            this.Title = mainWindow.language.WeeklyEditPlanTitle;
-            editPlanTitle.Content = mainWindow.language.WeeklyEditPlanTitle;
-
-            todoList = mainWindow.db.GetTodoByID(Plan.WorkID);
-            plans = mainWindow.db.PlanToCalendar(Plan.WorkID);
+            todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
+            plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
 
             editRequestNumber.Text = todoList.request_number;
             editRequestDescription.Text = todoList.description;
@@ -74,6 +76,34 @@ namespace Torun.Windows.WeeklyPlan
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Savechanges_Click(object sender, RoutedEventArgs e)
+        {
+            bool error = false; result.Visibility = Visibility.Visible;
+            if (editRequestNumber.Text == String.Empty)
+            {
+                error = true;
+                result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
+                result.Background = System.Windows.Media.Brushes.Red;
+            }
+            else if(lbl_description.Text == String.Empty)
+            {
+                error = true;
+                result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
+                result.Background = System.Windows.Media.Brushes.Red;
+            }
+
+            if (!error)
+            {
+                todoList.request_number = editRequestNumber.Text.ToUpper();
+                todoList.description = editRequestDescription.Text;
+                todoList.priority = (byte)editRequestPriority.SelectedIndex;
+                mainWindow.DB.EditTodoList(todoList);
+                // succsess info
+                result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
+                result.Background = System.Windows.Media.Brushes.Green;
+            }
         }
     }
 }
