@@ -44,13 +44,6 @@
                                         <TextBlock x:Name="txt_RemovePlan" Text="XXX"/>
                                     </DockPanel>
                                 </Button>
-
-                                <Button x:Name="btn_EditTime" Width="140" Height="33" Style="{DynamicResource btn_weeklyPlan}">
-                                    <DockPanel>
-                                        <Image Source="/images/main_screen/WeeklyPlan/calendar.png" Width="16" Margin="0,0,3,0"/>
-                                        <TextBlock x:Name="txt_ChangeDate" Text="XXX"/>
-                                    </DockPanel>
-                                </Button>
                             </DockPanel>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right" Margin="0,0,20,0">

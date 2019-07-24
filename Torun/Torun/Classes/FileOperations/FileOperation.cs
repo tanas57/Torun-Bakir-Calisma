@@ -9,10 +9,9 @@ namespace Torun.Classes
         private const string DIR_LOGIN = "login";
         private const string DIR_REPORT = "rapor";
         private const string DIR_PROFILE = "profile.jpg";
-
         public static string ProfilePhotoPath()
         {
-            return getFilePath(DIR_PROFILE, false);
+            return getFilePath(DIR_PROFILE);
         }
         public static bool isProfileExists()
         {

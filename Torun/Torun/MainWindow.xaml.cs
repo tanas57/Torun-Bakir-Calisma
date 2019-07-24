@@ -129,6 +129,7 @@ namespace Torun
         }
         private void PhotoChange_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            // hatalar var.
             FileOperation.ChangeUserPhoto();
             photoChange.Source = GetImage(FileOperation.ProfilePhotoPath());
         }
@@ -138,6 +139,7 @@ namespace Torun
             bitmapImage.BeginInit();
             bitmapImage.UriSource = new Uri( imageUri, UriKind.RelativeOrAbsolute);
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
             bitmapImage.EndInit();
             return bitmapImage;
         }
