@@ -53,29 +53,38 @@ namespace Torun.Windows
 
             todoList.request_number = req_Number.Text.ToUpper();
             req_Result.Visibility = Visibility.Visible;
-            if (req_Priority.SelectedIndex == -1)
+            if(req_Number.Text.ToUpper() != String.Empty)
             {
-                req_Result.Content = mainWindow.language.RequestAddRequestResultNotSelected;
-                req_Result.Background = System.Windows.Media.Brushes.Red;
-            }
-            else if(req_Description.Text == String.Empty)
-            {
-                req_Result.Content = mainWindow.language.RequestAddRequestResultNoDescription;
-                req_Result.Background = System.Windows.Media.Brushes.Red;
+                if (req_Priority.SelectedIndex == -1)
+                {
+                    req_Result.Content = mainWindow.language.RequestAddRequestResultNotSelected;
+                    req_Result.Background = System.Windows.Media.Brushes.Red;
+                }
+                else if (req_Description.Text == String.Empty)
+                {
+                    req_Result.Content = mainWindow.language.RequestAddRequestResultNoDescription;
+                    req_Result.Background = System.Windows.Media.Brushes.Red;
+                }
+                else
+                {
+                    if (db.AddTodoList(todoList) == 0)
+                    {
+                        req_Result.Content = mainWindow.language.RequestAddRequestResultNo;
+                        req_Result.Background = System.Windows.Media.Brushes.Red;
+                    }
+                    else
+                    {
+                        req_Result.Content = mainWindow.language.RequestAddRequestResultOk;
+                        req_Result.Background = System.Windows.Media.Brushes.Green;
+                        mainWindow.UpdateScreens();
+                        this.Close();
+                    }
+                }
             }
             else
             {
-                if (db.AddTodoList(todoList) == 0)
-                {
-                    req_Result.Content = mainWindow.language.RequestAddRequestResultNo;
-                    req_Result.Background = System.Windows.Media.Brushes.Red;
-                }
-                else {
-                    req_Result.Content = mainWindow.language.RequestAddRequestResultOk;
-                    req_Result.Background = System.Windows.Media.Brushes.Green;
-                    mainWindow.UpdateScreens();
-                    this.Close();
-                }
+                req_Result.Content = mainWindow.language.RequestAddReqNumEmpty;
+                req_Result.Background = System.Windows.Media.Brushes.Red;
             }
         }
 

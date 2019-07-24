@@ -69,6 +69,7 @@ namespace Torun.Lang
         string RequestAddRequestResultNotSelected { get; }
         string RequestAddRequestResultNoDescription { get; }
         string RequestAddRequestTitle { get; }
+        string RequestAddReqNumEmpty { get; }
         /* REQUEST ADD WINDOWS ENDS */
         #endregion
 

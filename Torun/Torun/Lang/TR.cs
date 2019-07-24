@@ -75,6 +75,8 @@ namespace Torun.Lang
         public string RequestAddRequestResultNoDescription => "Açıklama girilmedi";
 
         public string RequestAddRequestTitle => "Yeni Talep Ekle";
+
+        public string RequestAddReqNumEmpty => "Talep numarası boş olamaz";
         #endregion
         /* REQUEST EDIT WINDOWS ENDS */
         #region
@@ -197,6 +199,7 @@ namespace Torun.Lang
         public string WeeklyRemoveAllDaysExceptDoit => "Tüm talep işleri çıkar (tamamlananlar silinmez)";
 
         public string WeeklyRemoveButtonRemove => "Plandan çıkar";
+
         #endregion
     }
 }
