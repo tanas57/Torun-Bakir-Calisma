@@ -142,5 +142,23 @@ namespace Torun.UControls
                 }
             }
         }
+
+        private void Btn_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid selectedGrid = GridControl();
+            if (selectedGrid != null)
+            {
+                EditPlan editPlan = new EditPlan();
+                editPlan.Owner = mainWindow;
+                editPlan.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                editPlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (editPlan.ShowDialog() == false)
+                {
+                    Date_picker_CalendarClosed(sender, e);
+                    mainWindow.UpdateScreens();
+                }
+            }
+        }
     }
 }
