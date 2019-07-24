@@ -6,16 +6,13 @@ namespace Torun.Classes
 {
     public static class FileOperation
     {
-        private const string DIR_LOGIN = "login";
-        private const string DIR_REPORT = "rapor";
-        private const string DIR_PROFILE = "profile.jpg";
         public static string ProfilePhotoPath()
         {
-            return getFilePath(DIR_PROFILE);
+            return getFilePath(FileNames.FILENAME_PROFILE);
         }
         public static bool isProfileExists()
         {
-            return FileExists(DIR_PROFILE);
+            return FileExists(FileNames.FILENAME_PROFILE);
         }
         public static void ChangeUserPhoto()
         {

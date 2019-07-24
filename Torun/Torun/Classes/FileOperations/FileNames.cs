@@ -11,5 +11,6 @@ namespace Torun.Classes.FileOperations
         public const string FILENAME_USERNAME = "username.txt";
         public const string FILENAME_PASSWORD = "password.txt";
         public const string IS_LOGGED = "last_login";
+        public const string FILENAME_PROFILE = "profile.jpg";
     }
 }
