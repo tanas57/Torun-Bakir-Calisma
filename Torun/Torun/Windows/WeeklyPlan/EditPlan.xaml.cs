@@ -34,7 +34,15 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityLow);
+            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityNormal);
+            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityHigh);
+            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityUrgent);
+            editRequestPriority.Items.Add(mainWindow.language.ComboboxPriorityProject);
 
+            lbl_reqNum.Text = mainWindow.language.RequestAddRequestNumber;
+            lbl_reqPriority.Text = mainWindow.language.RequestAddRequestPriority;
+            lbl_description.Text = mainWindow.language.RequestAddRequestDescription;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
