@@ -55,6 +55,7 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            // System.NullReferenceException: 'Nesne başvurusu bir nesnenin örneğine ayarlanmadı.'
             editPlan.SelectedDates = calendar.SelectedDates.ToList();
             editPlan.UpdateMode = 1;
             this.Close();

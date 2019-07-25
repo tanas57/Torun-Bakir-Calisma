@@ -181,11 +181,6 @@ namespace Torun.Lang
         string WeeklyEditPlanCalendarAddTitle { get; }
         string WeeklyEditPlanCalendarAddLabel { get; }
         string WeeklyEditPlanCalendarAddDates { get; }
-
-        string WeeklyEditPlanTransferTitle { get; }
-        string WeeklyEditPlanCalendarAddADates { get; }
-        string WeeklyEditPlanTransferError { get; }
-        string WeeklyEditPlanTransfered { get; }
         #endregion
 
     }
