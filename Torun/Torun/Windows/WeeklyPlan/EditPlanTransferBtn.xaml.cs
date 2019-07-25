@@ -15,14 +15,19 @@ using System.Windows.Shapes;
 namespace Torun.Windows.WeeklyPlan
 {
     /// <summary>
-    /// Interaction logic for EditPlanChooseDate.xaml
+    /// Interaction logic for EditPlanTransferBtn.xaml
     /// </summary>
-    public partial class EditPlanChooseDate : Window
+    public partial class EditPlanTransferBtn : Window
     {
         public MainWindow mainWindow; EditPlan editPlan;
-        public EditPlanChooseDate()
+        public EditPlanTransferBtn()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            editPlan.Opacity = 1;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,21 +38,17 @@ namespace Torun.Windows.WeeklyPlan
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             editPlan = (EditPlan)this.Owner;
-            Title = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
-            calendarTitle.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
-            dateChoosetxt.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddLabel;
-            save.Content = mainWindow.Lang.ButtonSave;
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            editPlan.Opacity = 1;
+            Title = mainWindow.Lang.WeeklyEditPlanTransferTitle;
+            calendarTitle.Content = mainWindow.Lang.WeeklyEditPlanTransferTitle;
+            dateChoosetxt.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddADates;
+            save.Content = mainWindow.Lang.ButtonTransfer;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             save.IsEnabled = true;
@@ -59,5 +60,6 @@ namespace Torun.Windows.WeeklyPlan
             editPlan.UpdateMode = 1;
             this.Close();
         }
+
     }
 }
