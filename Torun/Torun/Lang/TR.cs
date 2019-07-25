@@ -225,6 +225,19 @@ namespace Torun.Lang
 
         public string RequestAddToWorkDone => "Talebi bugün tamamlandı olarak ekle";
 
+        public string WeeklyPlanSortLbl => "Sıralama Yöntemi : ";
+
+        public string WeeklyPlanSortAddTime => "Eklenme Zamanı";
+
+
+        public string WeeklyPlanSortNameDesc => "Talep Adı(Azalan)";
+
+        public string WeeklyPlanSortNameAsc => "Talep Adı(Artan)";
+
+        public string WeeklyPlanSortPriorityAsc => "Öncelik(Artan)";
+
+        public string WeeklyPlanSortPriorityDesc => "Öncelik(Azalan)";
+
 
         #endregion
     }

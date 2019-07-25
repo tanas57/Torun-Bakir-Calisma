@@ -77,18 +77,76 @@ namespace Torun.Database
         }
         public plans GetPlanByID(int id) => db.plans.SingleOrDefault(x => x.id == id);
         public todoList GetTodoByID(int id) => db.todoList.SingleOrDefault(x => x.id == id);
-        public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime)
+        public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime, OrderBy orderBy)
         {
-            var result = from day in db.plans
-                         join work in db.todoList on day.work_id equals work.id
-                         where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
-                         select new WeeklyPlan
-                         {
-                             PlanID = day.id,
-                             WorkID = work.id,
-                             RequestNumber = work.request_number
-            };
-            return result.ToList<WeeklyPlan>();
+            switch (orderBy)
+            {
+                case OrderBy.PriorityAsc:
+                 var result = from day in db.plans
+                                 join work in db.todoList on day.work_id equals work.id
+                                 where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
+                                 orderby work.priority ascending
+                                 select new WeeklyPlan
+                                 {
+                                     PlanID = day.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+                case OrderBy.PriorityDesc:
+                    result = from day in db.plans
+                                 join work in db.todoList on day.work_id equals work.id
+                                 where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
+                                 orderby work.priority descending
+                                 select new WeeklyPlan
+                                 {
+                                     PlanID = day.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+
+                case OrderBy.NameAsc:
+                    result = from day in db.plans
+                                 join work in db.todoList on day.work_id equals work.id
+                                 where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
+                                 orderby work.request_number ascending
+                                 select new WeeklyPlan
+                                 {
+                                     PlanID = day.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+
+                case OrderBy.NameDesc:
+                    result = from day in db.plans
+                                 join work in db.todoList on day.work_id equals work.id
+                                 where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
+                                 orderby day.add_time descending
+                                 select new WeeklyPlan
+                                 {
+                                     PlanID = day.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+                default:
+                case OrderBy.AddedTime:
+                    result = from day in db.plans
+                                 join work in db.todoList on day.work_id equals work.id
+                                 where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
+                                 orderby day.add_time ascending
+                                 select new WeeklyPlan
+                                 {
+                                     PlanID = day.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+
+            }
+
         }
         public int AddPlanDates(plans plans)
         {

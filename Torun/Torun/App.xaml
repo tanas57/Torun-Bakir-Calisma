@@ -249,5 +249,31 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <!-- weekly plan sort buttons -->
+        <Style TargetType="Button" x:Key="weeklyPlanSortButtons">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="Background" Value="#B0151E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="7,2,0,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                                Background="#B0151E">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FFF1212D"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

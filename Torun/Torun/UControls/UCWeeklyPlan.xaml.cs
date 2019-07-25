@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Torun.Database;
 using Torun.Windows.WeeklyPlan;
+using Torun.Classes;
 namespace Torun.UControls
 {
     /// <summary>
@@ -18,11 +19,13 @@ namespace Torun.UControls
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private DB db; private users currentUser;
         private DateTime planStartDate;
+        private OrderBy Order { get; set; }
         public UCWeeklyPlan()
         {
             InitializeComponent();
             db = mainWindow.DB;
             currentUser = mainWindow.User;
+            Order = OrderBy.AddedTime;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -43,6 +46,12 @@ namespace Torun.UControls
             UserControl_SizeChanged(sender, null);
             LabelandGridUpdate(DateTime.Now.Date);
 
+            sort_lbl.Content = mainWindow.Lang.WeeklyPlanSortLbl;
+            sort_AddTime.Content = mainWindow.Lang.WeeklyPlanSortAddTime;
+            sort_Priority.Content = mainWindow.Lang.WeeklyPlanSortPriorityAsc;
+            sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
+            sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
+            sort_NameAsc.Content = mainWindow.Lang.WeeklyPlanSortNameAsc;
         }
 
         public void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
@@ -59,11 +68,11 @@ namespace Torun.UControls
         {
             planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
             lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
-            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1)); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2)); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3)); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4)); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
         }
 
         private void Date_picker_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -160,6 +169,36 @@ namespace Torun.UControls
                     mainWindow.UpdateScreens();
                 }
             }
+        }
+
+        private void Sort_AddTime_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.AddedTime;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
+        }
+
+        private void Sort_Priority_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.PriorityAsc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
+        }
+
+        private void Sort_NameDesc_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.NameDesc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
+        }
+
+        private void Sort_NameAsc_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.NameAsc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
+        }
+
+        private void Sort_PriorityDesc_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.PriorityDesc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
         }
     }
 }

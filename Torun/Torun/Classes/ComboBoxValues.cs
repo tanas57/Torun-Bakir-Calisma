@@ -17,5 +17,12 @@ namespace Torun.Classes
         Urgent = 3,
         Project = 4
     }
-    
+    public enum OrderBy
+    {
+        AddedTime = 0,
+        PriorityAsc = 1,
+        PriorityDesc = 2,
+        NameDesc = 3,
+        NameAsc = 4,
+    }
 }

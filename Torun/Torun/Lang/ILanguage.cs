@@ -189,5 +189,11 @@ namespace Torun.Lang
         string WeeklyEditPlanTransfered { get; }
         #endregion
 
+        string WeeklyPlanSortLbl { get; }
+        string WeeklyPlanSortAddTime { get; }
+        string WeeklyPlanSortPriorityAsc { get; }
+        string WeeklyPlanSortPriorityDesc { get; }
+        string WeeklyPlanSortNameDesc { get; }
+        string WeeklyPlanSortNameAsc { get; }
     }
 }
