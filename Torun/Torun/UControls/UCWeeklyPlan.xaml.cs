@@ -42,6 +42,7 @@ namespace Torun.UControls
 
             UserControl_SizeChanged(sender, null);
             LabelandGridUpdate(DateTime.Now.Date);
+
         }
 
         public void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)

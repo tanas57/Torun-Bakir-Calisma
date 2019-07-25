@@ -72,6 +72,11 @@ namespace Torun.Windows.Request
                 req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
                 req_Result.Background = Brushes.Red;
             }
+            else if(req_Number.Text.Length < 1)
+            {
+                req_Result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
+                req_Result.Background = Brushes.Red;
+            }
             else
             {
                 if (db.EditTodoList(todolist) == 0)
