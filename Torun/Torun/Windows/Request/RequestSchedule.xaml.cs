@@ -77,6 +77,7 @@ namespace Torun.Windows.Request
                     {
                         add_time = DateTime.Now,
                         work_id = todolist.id,
+                        status = 0,
                         work_plan_time = item
                     };
                     mainWindow.DB.AddPlanDates(plans);

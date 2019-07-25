@@ -67,8 +67,7 @@ namespace Torun.Windows.WeeklyPlan
             {
                 plans temp = plans[i];
                 if(temp.status == 0) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
-                else list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
-
+                else if (temp.status == 1) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
             }
         }
 
@@ -122,10 +121,13 @@ namespace Torun.Windows.WeeklyPlan
                 {
                     foreach (var item in SelectedDates)
                     {
-                        plans plan = new plans();
-                        plan.add_time = DateTime.Now; plan.work_id = todoList.id;
-                        plan.work_plan_time = item.Date;
-                        mainWindow.DB.AddPlanDates(plan);
+                        if (!mainWindow.DB.IsPlanExists(item.Date, todoList.id)) // for the choosen date is found in database, must not add again
+                        {
+                            plans plan = new plans();
+                            plan.add_time = DateTime.Now; plan.work_id = todoList.id;
+                            plan.work_plan_time = item.Date; plan.status = 0;
+                            mainWindow.DB.AddPlanDates(plan);
+                        }
                     }
                     result.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddDates;
                     result.Background = System.Windows.Media.Brushes.Green;
@@ -135,7 +137,8 @@ namespace Torun.Windows.WeeklyPlan
                     for (int i = 0; i < plans.Count; i++)
                     {
                         plans temp = plans[i];
-                        list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+                        if (temp.status == 0) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+                        else if(temp.status == 1) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
                     }
                 }
             }

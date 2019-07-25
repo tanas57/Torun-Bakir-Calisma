@@ -40,6 +40,14 @@ namespace Torun.Database
             db.plans.Remove(plan);
             db.SaveChanges();
         }
+        public bool IsPlanExists(DateTime dateTime, int work_id)
+        {
+            var result = from plan in db.plans
+                         where plan.work_plan_time == dateTime.Date && plan.work_id == work_id
+                         select plan;
+            if (result.Count() == 1) return true;
+            else return false;
+        }
         public List<plans> PlanToCalendar(int work_id, bool withoutCompleted = false)
         {
             if (withoutCompleted == false) // all plans list
