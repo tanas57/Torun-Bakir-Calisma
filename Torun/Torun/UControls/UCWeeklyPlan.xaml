@@ -60,14 +60,32 @@
                 <Border Grid.Row="1" BorderThickness="0,0,0,5" BorderBrush="#B0151E">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <!-- monday -->
+                        <!--numbers-->
                         <Border Grid.Column="0">
+                            <StackPanel>
+                                <DockPanel>
+                                    <Label Background="#B0151E" Width="30" Content="" Style="{DynamicResource label_weeklyPlan}"/>
+                                </DockPanel>
+                                <DockPanel>
+                                    <DataGrid x:Name="numbersGrid" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30" 
+                              CanUserResizeRows="False" CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None" AutoGenerateColumns="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding}" CanUserReorder="False" IsReadOnly="True" x:Name="order"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </DockPanel>
+                            </StackPanel>
+                            
+                        </Border>
+                        <!-- monday -->
+                        <Border Grid.Column="1">
                             <StackPanel>
                                 <DockPanel>
                                     <Label x:Name="lbl_dayMonday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
@@ -87,7 +105,7 @@
                             </StackPanel>
                         </Border>
                         <!-- tuesday -->
-                        <Border Grid.Column="1">
+                        <Border Grid.Column="2">
                             <StackPanel>
                                 <DockPanel>
                                     <Label x:Name="lbl_dayTuesday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
@@ -108,7 +126,7 @@
                             </StackPanel>
                         </Border>
                         <!-- wednesday -->
-                        <Border Grid.Column="2">
+                        <Border Grid.Column="3">
                             <StackPanel>
                                 <DockPanel>
                                     <Label x:Name="lbl_dayWednesday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
@@ -129,7 +147,7 @@
                             </StackPanel>
                         </Border>
                         <!-- tuesday -->
-                        <Border Grid.Column="3">
+                        <Border Grid.Column="4">
                             <StackPanel>
                                 <DockPanel>
                                     <Label x:Name="lbl_dayThursday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
@@ -151,7 +169,7 @@
                             
                         </Border>
                         <!-- friday -->
-                        <Border Grid.Column="4">
+                        <Border Grid.Column="5">
                             <StackPanel>
                                 <DockPanel>
                                     <Label x:Name="lbl_dayFriday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
