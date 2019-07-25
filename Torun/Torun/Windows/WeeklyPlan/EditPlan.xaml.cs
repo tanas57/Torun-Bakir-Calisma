@@ -66,7 +66,9 @@ namespace Torun.Windows.WeeklyPlan
             for (int i = 0; i < plans.Count; i++)
             {
                 plans temp = plans[i];
-                list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+                if(temp.status == 0) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+                else list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
+
             }
         }
 
@@ -116,7 +118,7 @@ namespace Torun.Windows.WeeklyPlan
             this.Opacity = 0.5;
             if(editPlanChooseDate.ShowDialog() == false)
             {
-                if(SelectedDates.Count > 0)
+                if(SelectedDates != null && SelectedDates.Count > 0)
                 {
                     foreach (var item in SelectedDates)
                     {
@@ -153,17 +155,25 @@ namespace Torun.Windows.WeeklyPlan
                 {
                     string[] arr = list_plan.SelectedValue.ToString().Split('-');
                     int plan_id = int.Parse(arr[1].Trim());
-                    plans plan = mainWindow.DB.GetPlanByID(plan_id);
-                    mainWindow.DB.RemovePlan(plan);
-                    result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
-                    result.Background = System.Windows.Media.Brushes.Green;
-                    list_plan.Items.RemoveAt(list_plan.SelectedIndex);
-                    // related request do not have any plan, so we must transfer back in todolist
-                    if(list_plan.Items.Count < 1)
+                    if(arr.Length > 2)
                     {
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemovePlanTransferTodoList;
-                        todoList.status = (int)StatusType.Edited;
-                        mainWindow.DB.EditTodoList(todoList);
+                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                        result.Background = System.Windows.Media.Brushes.Red;
+                    }
+                    else
+                    {
+                        plans plan = mainWindow.DB.GetPlanByID(plan_id);
+                        mainWindow.DB.RemovePlan(plan);
+                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
+                        result.Background = System.Windows.Media.Brushes.Green;
+                        list_plan.Items.RemoveAt(list_plan.SelectedIndex);
+                        // related request do not have any plan, so we must transfer back in todolist
+                        if (list_plan.Items.Count < 1)
+                        {
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemovePlanTransferTodoList;
+                            todoList.status = (int)StatusType.Edited;
+                            mainWindow.DB.EditTodoList(todoList);
+                        }
                     }
                 }
                 catch (Exception) { }

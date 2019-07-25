@@ -40,12 +40,23 @@ namespace Torun.Database
             db.plans.Remove(plan);
             db.SaveChanges();
         }
-        public List<plans> PlanToCalendar(int work_id)
+        public List<plans> PlanToCalendar(int work_id, bool withoutCompleted = false)
         {
-            var result = from day in db.plans
-                         where day.work_id == work_id && day.status != 1 // 0 : to continue this work
-                         select day;
-            return result.ToList<plans>();
+            if (withoutCompleted == false) // all plans list
+            {
+                var result = from day in db.plans
+                             where day.work_id == work_id
+                             select day;
+                return result.ToList<plans>();
+            }
+            else // plans without workdone
+            {
+                var result = from day in db.plans
+                             where day.work_id == work_id && day.status != 1 // 0 : to continue this work
+                             select day;
+                return result.ToList<plans>();
+            }
+                    
         }
         public byte EditPlan(plans plan)
         {

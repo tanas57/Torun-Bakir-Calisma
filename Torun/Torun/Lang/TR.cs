@@ -213,6 +213,8 @@ namespace Torun.Lang
 
         public string WeeklyEditPlanCalendarAddDates => "Seçilen tarihler talebe eklendi";
 
+        public string WeeklyEditPlanRemoveWorkdoneError => "Seçili plan iş tamamlandığından dolayı silinemiyor." + MainPageWorkDone + " bölümünden silinebilir";
+
 
         #endregion
     }

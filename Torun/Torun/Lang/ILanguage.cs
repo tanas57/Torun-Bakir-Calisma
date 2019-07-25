@@ -175,11 +175,13 @@ namespace Torun.Lang
         string WeeklyEditPlanInfo { get; }
         string WeeklyEditPlanNotSelectPlan { get; }
         string WeeklyEditPlanRemoved { get; }
+        string WeeklyEditPlanRemoveWorkdoneError { get; }
         string WeeklyEditPlanRemovePlanTransferTodoList { get; }
 
         string WeeklyEditPlanCalendarAddTitle { get; }
         string WeeklyEditPlanCalendarAddLabel { get; }
         string WeeklyEditPlanCalendarAddDates { get; }
         #endregion
+
     }
 }

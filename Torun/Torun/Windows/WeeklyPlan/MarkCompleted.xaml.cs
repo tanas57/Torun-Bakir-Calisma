@@ -50,7 +50,7 @@ namespace Torun.Windows.WeeklyPlan
             completed_allDays.Content = mainWindow.Lang.WeeklyCompletedAllWork;
             completed_save.Content = mainWindow.Lang.ButtonSave;
             completedNote.Content = mainWindow.Lang.WeeklyCompletedNote;
-            int workDayCount = mainWindow.DB.PlanToCalendar(Plan.WorkID).Count;
+            int workDayCount = mainWindow.DB.PlanToCalendar(Plan.WorkID, true).Count;
             if (workDayCount == 1) completed_allDays.IsEnabled = false;
         }
         private void Completed_save_Click(object sender, RoutedEventArgs e)
@@ -90,7 +90,7 @@ namespace Torun.Windows.WeeklyPlan
                     // the plans that have current work_id status must be 1
                     // at the same time the plan_id's transfers to workDone table
                     // and finally, todolist work_id status must be 3 : closed
-                    var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
+                    var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID, true);
                     WorkDone workDone;
                     for (int i = 0; i < plans.Count; i++)
                     {

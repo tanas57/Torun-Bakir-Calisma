@@ -23,7 +23,6 @@ namespace Torun.Windows.WeeklyPlan
         public EditPlanChooseDate()
         {
             InitializeComponent();
-            editPlan = (EditPlan)Owner;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,6 +32,7 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            editPlan = (EditPlan)this.Owner;
             Title = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
             calendarTitle.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
             dateChoosetxt.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddLabel;

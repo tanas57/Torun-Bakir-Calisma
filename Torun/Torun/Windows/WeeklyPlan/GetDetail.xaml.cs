@@ -41,7 +41,6 @@ namespace Torun.Windows.WeeklyPlan
             {
                 dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time.Value);
             }
-            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

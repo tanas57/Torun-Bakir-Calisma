@@ -74,7 +74,7 @@ namespace Torun.Windows.WeeklyPlan
             remove_allDaysExceptDoit.Content = mainWindow.Lang.WeeklyRemoveAllDays;
             remove_allDays.Content = mainWindow.Lang.WeeklyRemoveAllDaysExceptDoit;
             removeSave.Content = mainWindow.Lang.WeeklyRemoveButtonRemove;
-            int workDayCount = mainWindow.DB.PlanToCalendar(Plan.WorkID).Count;
+            int workDayCount = mainWindow.DB.PlanToCalendar(Plan.WorkID, true).Count;
             if (workDayCount == 1)
             {
                 remove_allDaysExceptDoit.IsEnabled = false;
