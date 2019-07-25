@@ -132,14 +132,7 @@ namespace Torun.Windows.WeeklyPlan
                     result.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddDates;
                     result.Background = System.Windows.Media.Brushes.Green;
 
-                    list_plan.Items.Clear();
-                    plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
-                    for (int i = 0; i < plans.Count; i++)
-                    {
-                        plans temp = plans[i];
-                        if (temp.status == 0) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
-                        else if(temp.status == 1) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
-                    }
+                    PlanListUpdate();
                 }
             }
         }
@@ -185,7 +178,52 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Plan_transfer_Click(object sender, RoutedEventArgs e)
         {
-
+            EditPlanTransferBtn editPlanTransferBtn = new EditPlanTransferBtn();
+            editPlanTransferBtn.Owner = this;
+            editPlanTransferBtn.mainWindow = mainWindow;
+            this.Opacity = 0.5;
+            if (editPlanTransferBtn.ShowDialog() == false)
+            {
+                if (SelectedDates != null && SelectedDates.Count > 0)
+                {
+                    foreach (var item in SelectedDates)
+                    {
+                        if (!mainWindow.DB.IsPlanExists(item.Date, todoList.id)) // for the choosen date is found in database, must not add again
+                        {
+                            string[] arr = list_plan.SelectedValue.ToString().Split('-');
+                            int plan_id = int.Parse(arr[1].Trim());
+                            if (arr.Length > 2)
+                            {
+                                result.Content = mainWindow.Lang.WeeklyEditPlanTransferError;
+                                result.Background = System.Windows.Media.Brushes.Red;
+                            }
+                            else
+                            {
+                                plans plan = mainWindow.DB.GetPlanByID(plan_id);
+                                plan.work_plan_time = item.Date;
+                                mainWindow.DB.EditPlan(plan);
+                                result.Content = mainWindow.Lang.WeeklyEditPlanTransfered;
+                                result.Background = System.Windows.Media.Brushes.Green;
+                                list_plan.Items.RemoveAt(list_plan.SelectedIndex);
+                            }
+                        }
+                    }
+                    result.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddDates;
+                    result.Background = System.Windows.Media.Brushes.Green;
+                    PlanListUpdate();
+                }
+            }
+        }
+        private void PlanListUpdate()
+        {
+            list_plan.Items.Clear();
+            plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
+            for (int i = 0; i < plans.Count; i++)
+            {
+                plans temp = plans[i];
+                if (temp.status == 0) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
+                else if (temp.status == 1) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
+            }
         }
     }
 }

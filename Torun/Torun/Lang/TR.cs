@@ -209,11 +209,19 @@ namespace Torun.Lang
 
         public string WeeklyEditPlanCalendarAddTitle => "Planı Güne Ekleme";
 
-        public string WeeklyEditPlanCalendarAddLabel => "Bir adet gün seçin";
+        public string WeeklyEditPlanCalendarAddLabel => "Gün(leri) seçin";
 
         public string WeeklyEditPlanCalendarAddDates => "Seçilen tarihler talebe eklendi";
 
         public string WeeklyEditPlanRemoveWorkdoneError => "Seçili plan iş tamamlandığından dolayı silinemiyor." + MainPageWorkDone + " bölümünden silinebilir";
+
+        public string WeeklyEditPlanTransferTitle => "Talep Tarih Tranfer";
+
+        public string WeeklyEditPlanCalendarAddADates => "Yeni tarihi seçiniz";
+
+        public string WeeklyEditPlanTransferError => "Seçili plan iş tamamlandığından dolayı transfer edilemiyor." + MainPageWorkDone + " bölümünden düzenlenebilir";
+
+        public string WeeklyEditPlanTransfered => "Seçili planın tarihi güncellenmiştir";
 
 
         #endregion

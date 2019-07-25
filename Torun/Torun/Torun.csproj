@@ -124,6 +124,9 @@
     <Compile Include="Windows\WeeklyPlan\EditPlanChooseDate.xaml.cs">
       <DependentUpon>EditPlanChooseDate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WeeklyPlan\EditPlanTransferBtn.xaml.cs">
+      <DependentUpon>EditPlanTransferBtn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WeeklyPlan\GetDetail.xaml.cs">
       <DependentUpon>GetDetail.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\WeeklyPlan\EditPlanChooseDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WeeklyPlan\EditPlanTransferBtn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
