@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="RequestAdd" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="370" Width="320" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+        Title="RequestAdd" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="385" Width="320" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>

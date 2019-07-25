@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Torun.Windows.Request"
         mc:Ignorable="d"
         Closing="Req_DetailTitle_Closing"
-        Title="RequestDetail" Loaded="RequestDetail_Load" BorderBrush="#B0151E" BorderThickness="0,0,0,5" WindowStyle="None" Background="{x:Null}" x:Name="req_DetailTitle" Height="365" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" MouseDown="Req_DetailTitle_MouseDown">
+        Title="RequestDetail" Loaded="RequestDetail_Load" BorderBrush="#B0151E" BorderThickness="0,0,0,5" WindowStyle="None" Background="{x:Null}" x:Name="req_DetailTitle" Height="370" Width="320" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" MouseDown="Req_DetailTitle_MouseDown">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
