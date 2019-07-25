@@ -190,13 +190,42 @@ namespace Torun.Database
             return result.ToList<todoList>();
         }
 
-        public int GetRequestCount(byte ReqType, users user)
+        public int GetRequestCount(byte ReqType, users user, CountType countType)
         {
+            DateTime timeStart, timeEnd;
+            switch (countType)
+            {
+                case CountType.Daily:
+                    timeStart = DateTime.Now.Date;
+                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    break;
+
+                case CountType.Weekly:
+                    timeStart = DateTime.Now.AddDays(-7).Date;
+                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    break;
+
+                case CountType.Montly:
+                    timeStart = DateTime.Now.AddMonths(-1).Date;
+                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    break;
+
+                case CountType.Yearly:
+                    timeStart = DateTime.Now.AddYears(-1).Date;
+                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    break;
+
+                default:
+                case CountType.FromTheBeginning:
+                    timeStart = DateTime.Now.AddYears(-100).Date;
+                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    break;
+            }
             switch (ReqType)
             {
-                case 1: return db.todoList.Where(x => x.user_id == user.id).Count();
-                case 2: return db.todoList.Where(x => x.status != (int)StatusType.Closed && x.user_id == user.id).Count();
-                case 3: return db.todoList.Where(x => x.status == (int)StatusType.Closed && x.user_id == user.id).Count();
+                case 1: return db.todoList.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
+                case 2: return db.todoList.Where(x => x.status != (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
+                case 3: return db.todoList.Where(x => x.status == (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
             }
             return 0;
         }

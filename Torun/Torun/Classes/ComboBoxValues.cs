@@ -25,4 +25,12 @@ namespace Torun.Classes
         NameDesc = 3,
         NameAsc = 4,
     }
+    public enum CountType
+    {
+        Daily = 0,
+        Weekly = 1,
+        Montly = 2,
+        Yearly = 3,
+        FromTheBeginning = 4
+    }
 }
