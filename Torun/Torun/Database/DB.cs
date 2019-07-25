@@ -90,10 +90,11 @@ namespace Torun.Database
             };
             return result.ToList<WeeklyPlan>();
         }
-        public void AddPlanDates(plans plans)
+        public int AddPlanDates(plans plans)
         {
             db.plans.Add(plans);
             db.SaveChanges();
+            return plans.id;
         }
         public byte DeleteTodoList(todoList todoList)
         {
@@ -110,7 +111,7 @@ namespace Torun.Database
 
             return 1;
         }
-        public byte AddTodoList(todoList todoList)
+        public int AddTodoList(todoList todoList)
         {
             if(int.TryParse(todoList.request_number, out int req_num))
             {
@@ -121,7 +122,7 @@ namespace Torun.Database
             db.todoList.Add(todoList);
             db.SaveChanges();
 
-            return 1;
+            return todoList.id;
         }
         public List<todoList> GetTodoLists(users user) {
             //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();

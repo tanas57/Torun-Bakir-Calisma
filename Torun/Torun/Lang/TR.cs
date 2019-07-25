@@ -223,6 +223,8 @@ namespace Torun.Lang
 
         public string WeeklyEditPlanTransfered => "Seçili planın tarihi güncellenmiştir";
 
+        public string RequestAddToWorkDone => "Talebi bugün tamamlandı olarak ekle";
+
 
         #endregion
     }
