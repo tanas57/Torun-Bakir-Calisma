@@ -91,7 +91,7 @@
                                     <Label x:Name="lbl_dayMonday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <DataGrid x:Name="Grid_todoList0" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                                    <DataGrid SelectedCellsChanged="Grid_todoList0_CurrentCellChanged" x:Name="Grid_todoList0" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" 
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False">
                                         <DataGrid.Columns>
@@ -111,7 +111,7 @@
                                     <Label x:Name="lbl_dayTuesday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <DataGrid x:Name="Grid_todoList1" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                                    <DataGrid SelectedCellsChanged="Grid_todoList1_SelectedCellsChanged" x:Name="Grid_todoList1" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False"
                               >
@@ -132,7 +132,7 @@
                                     <Label x:Name="lbl_dayWednesday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <DataGrid x:Name="Grid_todoList2" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                                    <DataGrid SelectedCellsChanged="Grid_todoList2_SelectedCellsChanged" x:Name="Grid_todoList2" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False"
                               >
@@ -153,7 +153,7 @@
                                     <Label x:Name="lbl_dayThursday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <DataGrid x:Name="Grid_todoList3" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                                    <DataGrid SelectedCellsChanged="Grid_todoList3_SelectedCellsChanged" x:Name="Grid_todoList3" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False"
                               >
@@ -175,7 +175,7 @@
                                     <Label x:Name="lbl_dayFriday" Content="XXX" Style="{DynamicResource label_weeklyPlan}"/>
                                 </DockPanel>
                                 <DockPanel>
-                                    <DataGrid x:Name="Grid_todoList4" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                                    <DataGrid SelectedCellsChanged="Grid_todoList4_SelectedCellsChanged" x:Name="Grid_todoList4" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="False" Background="{x:Null}" HeadersVisibility="None"  AutoGenerateColumns="False"
                               >

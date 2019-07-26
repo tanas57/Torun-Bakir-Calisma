@@ -144,6 +144,7 @@ namespace Torun.Lang
         string WeeklyDetailTitle { get; }
         string WeeklyDetailDescription { get; }
         string WeeklyDetailCalendar { get; }
+        string WeeklyDetailCalendarOK { get; }
         #endregion
         // weekly completed
         #region

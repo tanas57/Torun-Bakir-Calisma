@@ -22,7 +22,6 @@ namespace Torun.Database
         }
         public List<WorkDone> GetWorkdoneByID(int work_id)
         {
-            //join work in db.todoList on day.work_id equals work.id
             var result = from workdone in db.WorkDone
                          join plan in db.plans on workdone.plan_id equals plan.id
                          where plan.work_id == work_id

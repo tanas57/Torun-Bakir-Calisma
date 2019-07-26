@@ -21,6 +21,7 @@ namespace Torun.UControls
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private DB db; private users currentUser;
         private DateTime planStartDate;
+        private DataGrid SelectedGrid { get; set; }
         private OrderBy Order { get; set; }
         public UCWeeklyPlan()
         {
@@ -97,24 +98,14 @@ namespace Torun.UControls
         {
             date_picker.IsDropDownOpen = true;
         }
-        private DataGrid GridControl()
-        {
-            if (Grid_todoList0.SelectedItem != null) return Grid_todoList0;
-            else if (Grid_todoList1.SelectedItem != null) return Grid_todoList1;
-            else if (Grid_todoList2.SelectedItem != null) return Grid_todoList2;
-            else if (Grid_todoList3.SelectedItem != null) return Grid_todoList3;
-            else if (Grid_todoList4.SelectedItem != null) return Grid_todoList4;
-            else return null;
-        }
 
         private void Btn_GetDetail_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid selectedGrid = GridControl();
-            if (selectedGrid != null)
+            if (SelectedGrid != null)
             {
                 GetDetail getDetail = new GetDetail();
                 getDetail.Owner = mainWindow;
-                getDetail.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                getDetail.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
                 mainWindow.Opacity = 0.5;
                 getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 getDetail.ShowDialog();
@@ -123,12 +114,11 @@ namespace Torun.UControls
 
         private void Btn_doComplated_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid selectedGrid = GridControl();
-            if (selectedGrid != null)
+            if (SelectedGrid != null)
             {
                 MarkCompleted markCompleted = new MarkCompleted();
                 markCompleted.Owner = mainWindow;
-                markCompleted.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                markCompleted.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
                 mainWindow.Opacity = 0.5;
                 markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 if (markCompleted.ShowDialog() == false)
@@ -150,12 +140,11 @@ namespace Torun.UControls
 
         private void Btn_Remove_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid selectedGrid = GridControl();
-            if (selectedGrid != null)
+            if (SelectedGrid != null)
             {
                 RemovePlan removePlan = new RemovePlan();
                 removePlan.Owner = mainWindow;
-                removePlan.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                removePlan.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
                 mainWindow.Opacity = 0.5;
                 removePlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 if (removePlan.ShowDialog() == false)
@@ -168,12 +157,11 @@ namespace Torun.UControls
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid selectedGrid = GridControl();
-            if (selectedGrid != null)
+            if (SelectedGrid != null)
             {
                 EditPlan editPlan = new EditPlan();
                 editPlan.Owner = mainWindow;
-                editPlan.Plan = selectedGrid.SelectedItem as DB.WeeklyPlan;
+                editPlan.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
                 mainWindow.Opacity = 0.5;
                 editPlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 if (editPlan.ShowDialog() == false)
@@ -213,6 +201,31 @@ namespace Torun.UControls
         {
             Order = OrderBy.PriorityDesc;
             Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
+        }
+
+        private void Grid_todoList0_CurrentCellChanged(object sender, EventArgs e)
+        {
+            SelectedGrid = Grid_todoList0;
+        }
+
+        private void Grid_todoList1_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            SelectedGrid = Grid_todoList1;
+        }
+
+        private void Grid_todoList2_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            SelectedGrid = Grid_todoList2;
+        }
+
+        private void Grid_todoList3_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            SelectedGrid = Grid_todoList3;
+        }
+
+        private void Grid_todoList4_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            SelectedGrid = Grid_todoList4;
         }
     }
 }

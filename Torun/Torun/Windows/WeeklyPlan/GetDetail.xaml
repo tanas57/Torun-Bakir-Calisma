@@ -8,12 +8,12 @@
         Loaded="Window_Loaded" Closing="Window_Closing"
         ResizeMode="NoResize" MouseDown="Window_MouseDown"
         WindowStartupLocation="CenterOwner" WindowStyle="None"
-        Title="GetDetail" Height="430" Width="330" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
+        Title="GetDetail" Height="450" Width="390" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="170"></RowDefinition>
-            <RowDefinition Height="210"/>
+            <RowDefinition Height="190"></RowDefinition>
+            <RowDefinition Height="220"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
             <Grid>
@@ -32,15 +32,21 @@
         <Border Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition />
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!-- calendar -->
                 <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="XXX" x:Name="getDetailCalendar"/>
+                    <StackPanel>
+                        <TextBlock Text="XXX" x:Name="getDetailCalendar"/>
+                        <Calendar x:Name="dbCalendar" SelectionMode="MultipleRange" IsTodayHighlighted="False"/>
+                    </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Calendar x:Name="dbCalendar" SelectionMode="MultipleRange" IsTodayHighlighted="False"/>
+                    <StackPanel>
+                        <TextBlock Text="XXX" x:Name="getDetailCalendarOK"/>
+                        <Calendar x:Name="dbCalendarOK" SelectionMode="MultipleRange" IsTodayHighlighted="False"/>
+                    </StackPanel>
                 </Border>
             </Grid>
         </Border>
@@ -48,7 +54,7 @@
         <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
                 <TextBlock Text="XXX" x:Name="getDetailDescription" HorizontalAlignment="Center"/>
-                <TextBox Padding="3" x:Name="dbDescription" Width="290" Height="190" ScrollBar.Scroll="DbDescription_Scroll" TextWrapping="Wrap"/>
+                <TextBox Padding="3" x:Name="dbDescription" Width="380" Height="190" ScrollBar.Scroll="DbDescription_Scroll" TextWrapping="Wrap"/>
             </StackPanel>
             
         </Border>

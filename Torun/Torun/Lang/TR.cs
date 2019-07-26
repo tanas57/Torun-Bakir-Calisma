@@ -169,7 +169,8 @@ namespace Torun.Lang
 
         public string WeeklyDetailDescription => "Açıklama";
 
-        public string WeeklyDetailCalendar => "Plan Tarihleri";
+        public string WeeklyDetailCalendar => "Planlanan";
+        public string WeeklyDetailCalendarOK => "Gerçekleşen";
         #endregion
         // weekly completed
         #region
@@ -236,6 +237,7 @@ namespace Torun.Lang
         public string WeeklyPlanSortPriorityAsc => "Öncelik(Artan)";
 
         public string WeeklyPlanSortPriorityDesc => "Öncelik(Azalan)";
+
 
 
         #endregion

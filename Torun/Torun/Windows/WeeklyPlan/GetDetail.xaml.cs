@@ -36,10 +36,16 @@ namespace Torun.Windows.WeeklyPlan
             dbDescription.Text = todolist.description;
             getDetailDescription.Text = mainWindow.Lang.WeeklyDetailDescription;
             getDetailCalendar.Text = mainWindow.Lang.WeeklyDetailCalendar;
+            getDetailCalendarOK.Text = mainWindow.Lang.WeeklyDetailCalendarOK;
             var work_plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
             for (int i = 0; i < work_plans.Count; i++)
             {
                 dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time.Value);
+            }
+            var workDone = mainWindow.DB.GetWorkdoneByID(Plan.WorkID);
+            for (int i = 0; i < workDone.Count; i++)
+            {
+                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value);
             }
         }
 
