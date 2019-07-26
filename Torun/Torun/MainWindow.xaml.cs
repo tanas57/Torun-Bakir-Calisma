@@ -1,13 +1,12 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Windows.Media.Imaging;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using Torun.Classes;
 using Torun.UControls;
 using Torun.Database;
 using Torun.Lang;
-using System.Windows.Media.Imaging;
-using System;
-using System.Drawing;
 
 namespace Torun
 {

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Input;
 using Torun.Database;
 using Torun.Classes;
-using System.Drawing;
-using System.Windows.Input;
 
 namespace Torun.Windows
 {

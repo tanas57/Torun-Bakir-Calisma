@@ -1,5 +1,4 @@
-﻿
-namespace Torun.Classes
+﻿namespace Torun.Classes
 {
     public enum StatusType
     {

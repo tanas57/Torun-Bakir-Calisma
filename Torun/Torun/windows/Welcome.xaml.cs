@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Classes.Keyboard;
 using Torun.Lang;
-using System.Windows.Input;
 
 namespace Torun.windows
 {
