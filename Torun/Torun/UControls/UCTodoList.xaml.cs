@@ -1,10 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Linq;
 using Torun.Database;
 using Torun.Windows;
 using Torun.Windows.Request;
-using System;
+using Torun.Classes;
 
 namespace Torun.UControls
 {
@@ -35,11 +36,30 @@ namespace Torun.UControls
         private void Btn_requestDelete_Click(object sender, RoutedEventArgs e)
         {
             todoList todoList = Grid_todoList.SelectedItem as todoList;
-            var result = MessageBox.Show(todoList.id + " id numaralı talep silinecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo,MessageBoxImage.Warning);
-            if(result == MessageBoxResult.Yes)
+            if(todoList.status == (int)StatusType.InProcess)
             {
-                db.DeleteTodoList(todoList);
-                mainWindow.UpdateScreens();
+                var result = MessageBox.Show("Bu talebin tamamlanan kısımları var, yinede silinsin mi (tamamlananlarda silinecek) ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    // delete all workdone
+                    var workDone = mainWindow.DB.GetWorkdoneByID(todoList.id);
+                    foreach (var item in workDone) mainWindow.DB.RemoveWorkdone(item);
+                    // delete all plans
+                    var plans = mainWindow.DB.PlanToCalendar(todoList.id);
+                    foreach (var item in plans) mainWindow.DB.RemovePlan(item);
+                    // delete work
+                    db.DeleteTodoList(todoList);
+                    mainWindow.UpdateScreens();
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show(todoList.id + " id numaralı talep silinecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    db.DeleteTodoList(todoList);
+                    mainWindow.UpdateScreens();
+                }
             }
         }
 
@@ -126,8 +146,6 @@ namespace Torun.UControls
                 }
                 
             }
-            
-            
         }
 
         private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

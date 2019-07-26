@@ -29,6 +29,11 @@ namespace Torun.Database
                          select workdone;
             return result.ToList<WorkDone>();
         }
+        public void RemoveWorkdone(WorkDone workdone)
+        {
+            db.WorkDone.Remove(workdone);
+            db.SaveChanges();
+        }
         public void MoveWorkToWorkDone(WorkDone workdone)
         {
             db.WorkDone.Add(workdone);
