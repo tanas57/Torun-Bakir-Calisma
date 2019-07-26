@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Torun.Database;
+using Torun.Classes;
 
 namespace Torun.Windows.WeeklyPlan
 {
@@ -30,28 +31,49 @@ namespace Torun.Windows.WeeklyPlan
         private void RemoveSave_Click(object sender, RoutedEventArgs e)
         {
             todoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
-            plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
-            if(remove_aDay.IsChecked == true)
+            if(remove_aDay.IsChecked == true) // selected plan will remove from plan
             {
-                // only one day
-                if(remove_allDays.IsEnabled == false)
+                plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                if (remove_allDays.IsEnabled == false)
                 {
-                    // todolist has only one plan so todolist can be removed
+                    // todolist has only one plan so work can be transfer back todolist
                     mainWindow.DB.RemovePlan(plan);
-                    if(!(mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0)) mainWindow.DB.DeleteTodoList(todoList);
                 }
                 else
                 {
+                    // only delete selected plan, do not change work
                     mainWindow.DB.RemovePlan(plan);
                 }
-            }
-            else if(remove_allDaysExceptDoit.IsChecked == true)
-            {
-                // all days except workdone
+                if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
+                {
+                    // there are any completed plans, so the work status must be in progress
+                    todoList.status = (int)StatusType.InProcess;
+                }
+                else
+                {
+                    todoList.status = (int)StatusType.Edited;
+                }
+                mainWindow.DB.EditTodoList(todoList);
             }
             else if(remove_allDays.IsChecked == true)
             {
-                // all days && work done
+                // selected work transfers to todolist
+                if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
+                {
+                    // there are any completed plans, so the work status must be in progress
+                    todoList.status = (int)StatusType.InProcess;
+                }
+                else
+                {
+                    todoList.status = (int)StatusType.Edited;
+                }
+                mainWindow.DB.EditTodoList(todoList);
+                // remove all plans that are continued in plans
+                var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID, true);
+                foreach (var item in plans)
+                {
+                    mainWindow.DB.RemovePlan(item);
+                }
             }
             this.Close();
         }
@@ -71,15 +93,10 @@ namespace Torun.Windows.WeeklyPlan
             this.Title = mainWindow.Lang.WeeklyRemoveTitle;
             remove_title.Content = mainWindow.Lang.WeeklyRemoveTitle;
             remove_aDay.Content = mainWindow.Lang.WeeklyRemoveAday;
-            remove_allDaysExceptDoit.Content = mainWindow.Lang.WeeklyRemoveAllDays;
-            remove_allDays.Content = mainWindow.Lang.WeeklyRemoveAllDaysExceptDoit;
+            remove_allDays.Content = mainWindow.Lang.WeeklyRemoveAllDays;
             removeSave.Content = mainWindow.Lang.WeeklyRemoveButtonRemove;
             int workDayCount = mainWindow.DB.PlanToCalendar(Plan.WorkID, true).Count;
-            if (workDayCount == 1)
-            {
-                remove_allDaysExceptDoit.IsEnabled = false;
-                remove_allDays.IsEnabled = false;
-            }
+            if (workDayCount == 1) remove_allDays.IsEnabled = false;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

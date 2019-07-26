@@ -197,7 +197,6 @@ namespace Torun.Lang
         public string WeeklyRemoveTitle => "Plandan Çıkarma";
         public string WeeklyRemoveAday => "Sadece seçili iş";
         public string WeeklyRemoveAllDays => "Tüm talep işlerini çıkar(talep tamamen silinir)";
-        public string WeeklyRemoveAllDaysExceptDoit => "Tüm talep işleri çıkar (tamamlananlar silinmez)";
         public string WeeklyRemoveButtonRemove => "Plandan çıkar";
         public string WeeklyEditPlanTitle => "Plan Düzenleme Sayfası";
         public string WeeklyEditPlanRequestInfo => "Talep Bilgileri";

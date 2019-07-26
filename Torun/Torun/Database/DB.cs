@@ -185,7 +185,7 @@ namespace Torun.Database
         public List<todoList> GetTodoLists(users user) {
             //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
             var result = from todo in db.todoList
-                         where user.id == todo.user_id && ( todo.status == (int)StatusType.Added || todo.status == (int)StatusType.Edited )
+                         where user.id == todo.user_id && ( todo.status != (int)StatusType.Closed  )
                          select todo;
             return result.ToList<todoList>();
         }

@@ -36,7 +36,6 @@
                 <Border Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <StackPanel>
                         <RadioButton Style="{DynamicResource completedRadios}" x:Name="remove_aDay" Content="XXX" IsChecked="True" GroupName="removePlan"/>
-                        <RadioButton Style="{DynamicResource completedRadios}" x:Name="remove_allDaysExceptDoit" Content="XXX" IsChecked="False" GroupName="removePlan"/>
                         <RadioButton Style="{DynamicResource completedRadios}" x:Name="remove_allDays" Content="XXX" IsChecked="False" GroupName="removePlan"/>
                     </StackPanel>
                 </Border>
