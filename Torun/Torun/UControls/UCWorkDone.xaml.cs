@@ -24,7 +24,7 @@ namespace Torun.UControls
             InitializeComponent();
             db = mainWindow.DB;
             currentUser = mainWindow.User;
-            Order = OrderBy.AddedTime;
+            Order = OrderBy.AddedTimeDesc;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -98,19 +98,21 @@ namespace Torun.UControls
 
         private void Sort_AddTime_Click(object sender, RoutedEventArgs e)
         {
-            Order = OrderBy.AddedTime;
+            Order = OrderBy.AddedTimeAsc;
             Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
             sort_AddTime.Background = System.Windows.Media.Brushes.Green;
         }
 
         private void Sort_Priority_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.PriorityAsc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
         }
 
         private void Sort_PriorityDesc_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.PriorityDesc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
         }
 
         private void Sort_NameDesc_Click(object sender, RoutedEventArgs e)
@@ -145,6 +147,7 @@ namespace Torun.UControls
 
             sort_lbl.Content = mainWindow.Lang.WeeklyPlanSortLbl;
             sort_AddTime.Content = mainWindow.Lang.WeeklyPlanSortAddTime;
+            sort_AddTimeDesc.Content = mainWindow.Lang.WeeklyPlanSortAddTimeDesc;
             sort_Priority.Content = mainWindow.Lang.WeeklyPlanSortPriorityAsc;
             sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
             sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
@@ -175,7 +178,13 @@ namespace Torun.UControls
 
         private void Btn_doComplated_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void Sort_AddTimeDesc_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.PriorityAsc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
         }
     }
 }

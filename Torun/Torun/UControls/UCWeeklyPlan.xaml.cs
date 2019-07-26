@@ -25,7 +25,7 @@ namespace Torun.UControls
             InitializeComponent();
             db = mainWindow.DB;
             currentUser = mainWindow.User;
-            Order = OrderBy.AddedTime;
+            Order = OrderBy.AddedTimeDesc;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -48,6 +48,7 @@ namespace Torun.UControls
 
             sort_lbl.Content = mainWindow.Lang.WeeklyPlanSortLbl;
             sort_AddTime.Content = mainWindow.Lang.WeeklyPlanSortAddTime;
+            sort_AddTimeDesc.Content = mainWindow.Lang.WeeklyPlanSortAddTimeDesc;
             sort_Priority.Content = mainWindow.Lang.WeeklyPlanSortPriorityAsc;
             sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
             sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
@@ -172,7 +173,7 @@ namespace Torun.UControls
 
         private void Sort_AddTime_Click(object sender, RoutedEventArgs e)
         {
-            Order = OrderBy.AddedTime;
+            Order = OrderBy.AddedTimeAsc;
             Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
         }
 
@@ -224,5 +225,12 @@ namespace Torun.UControls
         {
             SelectedGrid = Grid_todoList4;
         }
+
+        private void Sort_AddTimeDesc_Click(object sender, RoutedEventArgs e)
+        {
+            Order = OrderBy.AddedTimeDesc;
+            Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
+        }
+
     }
 }

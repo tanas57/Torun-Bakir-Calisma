@@ -18,11 +18,12 @@
     }
     public enum OrderBy
     {
-        AddedTime = 0,
-        PriorityAsc = 1,
-        PriorityDesc = 2,
-        NameDesc = 3,
-        NameAsc = 4,
+        AddedTimeAsc = 0,
+        AddedTimeDesc = 1,
+        PriorityAsc = 2,
+        PriorityDesc = 3,
+        NameDesc = 4,
+        NameAsc = 5,
     }
     public enum CountType
     {

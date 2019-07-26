@@ -194,7 +194,8 @@ Loaded="UserControl_Loaded"
                 <Border Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <DockPanel Width="auto">
                         <Label x:Name="sort_lbl" Content="XXX" Margin="0,5,0,0"/>
-                        <Button x:Name="sort_AddTime" Click="Sort_AddTime_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}"/>
+                        <Button Margin="-10,0,0,0" x:Name="sort_AddTime" Width="125" Click="Sort_AddTime_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}"/>
+                        <Button x:Name="sort_AddTimeDesc" Width="125" Click="Sort_AddTimeDesc_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}"/>
                         <Button x:Name="sort_Priority" Click="Sort_Priority_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}"/>
                         <Button x:Name="sort_PriorityDesc" Click="Sort_PriorityDesc_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}"/>
                         <Button x:Name="sort_NameDesc" Click="Sort_NameDesc_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}"/>

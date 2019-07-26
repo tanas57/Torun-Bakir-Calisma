@@ -221,8 +221,9 @@
 
         public string WeeklyPlanSortLbl => "Sıralama Yöntemi : ";
 
-        public string WeeklyPlanSortAddTime => "Eklenme Zamanı";
+        public string WeeklyPlanSortAddTime => "Eklenme Zamanı(Artan)";
 
+        public string WeeklyPlanSortAddTimeDesc => "Eklenme Tarihi(Azalan)";
 
         public string WeeklyPlanSortNameDesc => "Talep Adı(Azalan)";
 
@@ -231,8 +232,6 @@
         public string WeeklyPlanSortPriorityAsc => "Öncelik(Artan)";
 
         public string WeeklyPlanSortPriorityDesc => "Öncelik(Azalan)";
-
-
 
         #endregion
     }

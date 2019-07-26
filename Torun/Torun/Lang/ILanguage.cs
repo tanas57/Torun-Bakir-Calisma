@@ -185,6 +185,7 @@
 
         string WeeklyPlanSortLbl { get; }
         string WeeklyPlanSortAddTime { get; }
+        string WeeklyPlanSortAddTimeDesc { get; }
         string WeeklyPlanSortPriorityAsc { get; }
         string WeeklyPlanSortPriorityDesc { get; }
         string WeeklyPlanSortNameDesc { get; }
