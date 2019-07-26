@@ -60,7 +60,7 @@ namespace Torun.Windows.WeeklyPlan
                 // move this plan to workdone
                 plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                 WorkDone workDone = new WorkDone();
-                workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now.Date;
                 workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
                 workDone.status = 2; // end of the work
 
@@ -77,7 +77,7 @@ namespace Torun.Windows.WeeklyPlan
                 {
                     plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                     WorkDone workDone = new WorkDone();
-                    workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                    workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now.Date;
                     workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
                     workDone.status = 1; // end of the work
                     mainWindow.DB.MoveWorkToWorkDone(workDone);
@@ -99,7 +99,7 @@ namespace Torun.Windows.WeeklyPlan
                         mainWindow.DB.EditPlan(plan);
 
                         workDone = new WorkDone();
-                        workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now;
+                        workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now.Date;
                         workDone.plan_id = plan.id; workDone.description = DbcompletedNote.Text;
                         workDone.status = 1; // end of the work
                         mainWindow.DB.MoveWorkToWorkDone(workDone);

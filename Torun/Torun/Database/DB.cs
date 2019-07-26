@@ -16,6 +16,12 @@ namespace Torun.Database
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
         }
+        public class WorkDoneList
+        {
+            public int WorkDoneID { get; set; }
+            public int WorkID { get; set; }
+            public string RequestNumber { get; set; }
+        }
         public DB()
         {
             db = new plan_tracerDBEntities();
@@ -81,6 +87,53 @@ namespace Torun.Database
         }
         public plans GetPlanByID(int id) => db.plans.SingleOrDefault(x => x.id == id);
         public todoList GetTodoByID(int id) => db.todoList.SingleOrDefault(x => x.id == id);
+        public List<WorkDoneList> ListWorkDone(users user, DateTime dateTime, OrderBy orderBy)
+        {
+            switch (orderBy)
+            {
+                case OrderBy.NameAsc:
+                    var result = from works in db.WorkDone
+                                 join plan in db.plans on works.plan_id equals plan.id
+                                 join work in db.todoList on plan.work_id equals work.id
+                                 where works.workDoneTime == dateTime && user.id == work.user_id
+                                 orderby work.request_number ascending
+                                 select new WorkDoneList
+                                 {
+                                     WorkDoneID = works.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+
+                case OrderBy.NameDesc:
+                    result = from works in db.WorkDone
+                                 join plan in db.plans on works.plan_id equals plan.id
+                                 join work in db.todoList on plan.work_id equals work.id
+                                 where works.workDoneTime == dateTime && user.id == work.user_id
+                                 orderby work.request_number descending
+                                 select new WorkDoneList
+                                 {
+                                     WorkDoneID = works.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+                default:
+                case OrderBy.AddedTime:
+                     result = from works in db.WorkDone
+                                 join plan in db.plans on works.plan_id equals plan.id
+                                 join work in db.todoList on plan.work_id equals work.id
+                                 where works.workDoneTime == dateTime && work.user_id == user.id
+                                 orderby works.add_time descending
+                                 select new WorkDoneList
+                                 {
+                                     WorkDoneID = works.id,
+                                     WorkID = work.id,
+                                     RequestNumber = work.request_number
+                                 };
+                    return result.ToList();
+            }
+        }
         public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime, OrderBy orderBy)
         {
             switch (orderBy)

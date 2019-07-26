@@ -109,6 +109,9 @@
     <Compile Include="UControls\UCWeeklyPlan.xaml.cs">
       <DependentUpon>UCWeeklyPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UControls\UCWorkDone.xaml.cs">
+      <DependentUpon>UCWorkDone.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Request\RequestAdd.xaml.cs">
       <DependentUpon>RequestAdd.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControls\UCWeeklyPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControls\UCWorkDone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

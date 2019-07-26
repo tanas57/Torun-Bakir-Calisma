@@ -19,6 +19,7 @@ namespace Torun
         public Window welcome;
         public UCTodoList uCTodoList;
         public UCWeeklyPlan ucWeeklyPlan;
+        public UCWorkDone uCWorkDone;
         
         private bool formLogoutControl = false; // for form closing control, and logout button action
         //public users User { get; set; } daha sonra bu şekil değiştir
@@ -144,6 +145,12 @@ namespace Torun
             bitmapImage.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
             bitmapImage.EndInit();
             return bitmapImage;
+        }
+
+        private void BtnWorkDone_Click(object sender, RoutedEventArgs e)
+        {
+            if (uCWorkDone == null) UserControllCall.Add(Grd_Content, uCWorkDone = new UCWorkDone());
+            else UserControllCall.Add(Grd_Content, uCWorkDone);
         }
     }
 }

@@ -177,7 +177,6 @@ namespace Torun.UControls
         {
             Order = OrderBy.AddedTime;
             Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
-            sort_AddTime.Background = System.Windows.Media.Brushes.Green;
         }
 
         private void Sort_Priority_Click(object sender, RoutedEventArgs e)

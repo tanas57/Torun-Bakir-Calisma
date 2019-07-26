@@ -130,7 +130,7 @@
                         <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
-                <Button Height="50" Style="{DynamicResource menuButtons}">
+                <Button x:Name="btnWorkDone" Click="BtnWorkDone_Click" Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/menu_completed.png" Width="32"/>
                         <Label x:Name="mainPage_menuWordDone" Content="XXX" Foreground="White" FontSize="16"/>
