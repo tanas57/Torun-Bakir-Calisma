@@ -270,6 +270,10 @@
                                 <Setter TargetName="border" Property="Background" Value="#FFF1212D"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF47E85D"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
