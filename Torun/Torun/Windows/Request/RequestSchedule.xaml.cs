@@ -34,11 +34,6 @@ namespace Torun.Windows.Request
             this.Close();
         }
 
-        private void Req_Save_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mainWindow.Opacity = 1;
@@ -103,6 +98,11 @@ namespace Torun.Windows.Request
             }
             
             
+        }
+
+        private void Schedule_ReqDatePicker_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Mouse.Capture(null);
         }
     }
 }

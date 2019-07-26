@@ -87,6 +87,7 @@ namespace Torun.UControls
             List<int> numbers = new List<int>();
             for (int i = 1; i <= maxLine; i++) numbers.Add(i);
             numbersGrid.ItemsSource = numbers;
+            SelectedGrid = null; // null error fix
         }
 
         private void Date_picker_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
