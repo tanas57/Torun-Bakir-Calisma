@@ -39,7 +39,15 @@ namespace Torun.UControls
 
         private void Btn_GetDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SelectedGrid != null)
+            {
+                DetailWorkDone detailWorkDone = new DetailWorkDone();
+                detailWorkDone.Owner = mainWindow;
+                detailWorkDone.Work = SelectedGrid.SelectedItem as DB.WorkDoneList;
+                mainWindow.Opacity = 0.5;
+                detailWorkDone.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                detailWorkDone.ShowDialog();
+            }
         }
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)

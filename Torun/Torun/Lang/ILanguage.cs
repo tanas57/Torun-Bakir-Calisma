@@ -200,5 +200,9 @@
         string WorkDoneRemoveSelectADay { get; }
         string WorkDoneRemoveSelectAllDays { get; }
         #endregion
+        // workdone get detail page
+        string WorkDoneDetailTitle { get; }
+        string WorkDoneDetailGroupPlanAndWorkDone { get; }
+        string WorkDoneDetailDescription{ get; }
     }
 }

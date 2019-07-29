@@ -248,6 +248,12 @@
 
         public string UCWorkDoneRemoveWorkDone => "Tamamlanmadı İşaretle";
 
+        public string WorkDoneDetailTitle => "Tamamlanan İş Detayı";
+
+        public string WorkDoneDetailGroupPlanAndWorkDone => "Planlanan ve Tamamlanan Bilgisi";
+
+        public string WorkDoneDetailDescription => "Planlanan ve Tamamlanan Kayıtların Açıklamaları";
+
         #endregion
     }
 }

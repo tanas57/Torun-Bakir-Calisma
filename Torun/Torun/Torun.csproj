@@ -142,6 +142,9 @@
     <Compile Include="Windows\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WorkCompleted\DetailWorkDone.xaml.cs">
+      <DependentUpon>DetailWorkDone.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WorkCompleted\RemoveWorkDone.xaml.cs">
       <DependentUpon>RemoveWorkDone.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WorkCompleted\DetailWorkDone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
