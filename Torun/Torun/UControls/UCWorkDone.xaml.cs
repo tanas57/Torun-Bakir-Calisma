@@ -52,7 +52,15 @@ namespace Torun.UControls
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SelectedGrid != null)
+            {
+                EditWorkDone editWorkDone = new EditWorkDone();
+                editWorkDone.Owner = mainWindow;
+                editWorkDone.Work = SelectedGrid.SelectedItem as DB.WorkDoneList;
+                mainWindow.Opacity = 0.5;
+                editWorkDone.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                editWorkDone.ShowDialog();
+            }
         }
 
         private void Btn_Remove_Click(object sender, RoutedEventArgs e)

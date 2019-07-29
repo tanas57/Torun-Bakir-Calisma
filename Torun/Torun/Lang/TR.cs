@@ -254,6 +254,16 @@
 
         public string WorkDoneDetailDescription => "Planlanan ve Tamamlanan Kayıtların Açıklamaları";
 
+        public string WorkDoneEditTitle => "Tamamlanan İş Düzenleme";
+
+        public string WorkDoneEditCompletedWorks => "Tamamlanan işler";
+
+        public string WorkDoneEditChoosenWorkDescription => "İş açıklaması düzenleme";
+
+        public string WorkDoneEditWorkLabel => "Bir adet iş seçip, ardından işlemi seçin";
+
+        public string WorkDoneEditRequestSaveButton => "Talep Bilgisini Kaydet";
+
         #endregion
     }
 }

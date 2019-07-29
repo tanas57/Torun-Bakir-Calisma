@@ -204,5 +204,10 @@
         string WorkDoneDetailTitle { get; }
         string WorkDoneDetailGroupPlanAndWorkDone { get; }
         string WorkDoneDetailDescription{ get; }
+        string WorkDoneEditTitle { get; }
+        string WorkDoneEditCompletedWorks { get; }
+        string WorkDoneEditChoosenWorkDescription { get; }
+        string WorkDoneEditWorkLabel { get; }
+        string WorkDoneEditRequestSaveButton { get; }
     }
 }
