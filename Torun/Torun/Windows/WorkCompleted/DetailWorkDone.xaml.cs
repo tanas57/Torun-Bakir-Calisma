@@ -69,7 +69,7 @@ namespace Torun.Windows.WorkCompleted
             for (int i = 0; i < workDone.Count; i++)
             {
                 dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime);
-                if (!work_plans[i].Equals(""))
+                if (!workDone[i].description.Equals(String.Empty))
                 {
                     dbDescription.Text += (order) + " - " + workDone[i].description + "\n";
                     order++;

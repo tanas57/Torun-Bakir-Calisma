@@ -8,12 +8,12 @@
         Loaded="Window_Loaded" Closing="Window_Closing"
         ResizeMode="NoResize" MouseDown="Window_MouseDown"
         WindowStartupLocation="CenterOwner" WindowStyle="None"
-        Title="GetDetail" Height="500" Width="680" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
+        Title="GetDetail" Height="445" Width="680" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="220"></RowDefinition>
-            <RowDefinition Height="220"/>
+            <RowDefinition Height="190"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
             <Grid>
@@ -71,13 +71,13 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <!-- calendar -->
-                                <Border Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border Margin="0,7,0,0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <StackPanel>
                                         <TextBlock Text="XXX" x:Name="getDetailCalendar"/>
                                         <Calendar x:Name="dbCalendar" SelectionMode="MultipleRange" IsTodayHighlighted="False"/>
                                     </StackPanel>
                                 </Border>
-                                <Border Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border Margin="0,7,0,0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <StackPanel>
                                         <TextBlock Text="XXX" x:Name="getDetailCalendarOK"/>
                                         <Calendar x:Name="dbCalendarOK" SelectionMode="MultipleRange" IsTodayHighlighted="False"/>
@@ -93,7 +93,7 @@
         <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
                 <TextBlock Text="XXX" x:Name="getDetailDescription" HorizontalAlignment="Center"/>
-                <TextBox Padding="3" x:Name="dbDescription" Width="667" Height="190" TextWrapping="Wrap"/>
+                <TextBox Padding="3" x:Name="dbDescription" Width="667" Height="150" TextWrapping="Wrap"/>
             </StackPanel>
 
         </Border>
