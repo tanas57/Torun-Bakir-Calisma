@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Torun.Classes;
 using Torun.Database;
+using Torun.Windows.WorkCompleted;
 
 namespace Torun.UControls
 {
@@ -48,7 +49,19 @@ namespace Torun.UControls
 
         private void Btn_Remove_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SelectedGrid != null)
+            {
+                RemoveWorkDone removeWorkDone = new RemoveWorkDone();
+                removeWorkDone.Owner = mainWindow;
+                removeWorkDone.Work = SelectedGrid.SelectedItem as DB.WorkDoneList;
+                mainWindow.Opacity = 0.5;
+                removeWorkDone.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (removeWorkDone.ShowDialog() == false)
+                {
+                    Date_picker_CalendarClosed(sender, e);
+                    mainWindow.UpdateScreens();
+                }
+            }
         }
 
         private void Date_picker_MouseEnter(object sender, MouseEventArgs e)
@@ -137,7 +150,7 @@ namespace Torun.UControls
             date_picker.Text = mainWindow.Lang.UCWeeklyPlanCurrentTime;
 
             txt_GetDetail.Text = mainWindow.Lang.UCWeeklyPlanButtonGetDetail;
-            txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
+            txt_RemovePlan.Text = mainWindow.Lang.UCWorkDoneRemoveWorkDone;
             txt_Edit.Text = mainWindow.Lang.UCWeeklyPlanButtonEdit;
             LabelandGridUpdate(DateTime.Now.Date);
 

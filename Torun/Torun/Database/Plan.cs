@@ -9,7 +9,6 @@
 
 namespace Torun.Database
 {
-    using System;
     using System.Collections.Generic;
     
     public partial class Plan

@@ -33,7 +33,7 @@ Loaded="UserControl_Loaded"
                                         <TextBlock x:Name="txt_Edit" Text="XXX"/>
                                     </DockPanel>
                                 </Button>
-                                <Button x:Name="btn_Remove" Click="Btn_Remove_Click" Width="110" Height="33" Style="{DynamicResource btn_weeklyPlan}">
+                                <Button x:Name="btn_Remove" Click="Btn_Remove_Click" Width="150" Height="33" Style="{DynamicResource btn_weeklyPlan}">
                                     <DockPanel>
                                         <Image Source="/images/main_screen/WeeklyPlan/garbage.png" Width="16" Margin="0,0,3,0"/>
                                         <TextBlock x:Name="txt_RemovePlan" Text="XXX"/>

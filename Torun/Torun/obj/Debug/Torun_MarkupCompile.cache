@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\App.xaml
-141114619556
+15-1855107624
 2-1645616557
-35723592996
+361936563669
 20-559953294
-MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;UControls\UCWorkDone.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\EditPlan.xaml;Windows\WeeklyPlan\EditPlanChooseDate.xaml;Windows\WeeklyPlan\EditPlanTransferBtn.xaml;Windows\WeeklyPlan\GetDetail.xaml;Windows\WeeklyPlan\MarkCompleted.xaml;Windows\WeeklyPlan\RemovePlan.xaml;Windows\Welcome.xaml;
+MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;UControls\UCWorkDone.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\EditPlan.xaml;Windows\WeeklyPlan\EditPlanChooseDate.xaml;Windows\WeeklyPlan\EditPlanTransferBtn.xaml;Windows\WeeklyPlan\GetDetail.xaml;Windows\WeeklyPlan\MarkCompleted.xaml;Windows\WeeklyPlan\RemovePlan.xaml;Windows\Welcome.xaml;Windows\WorkCompleted\RemoveWorkDone.xaml;
 
 False
 

@@ -26,6 +26,7 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
+        public WorkDone GetWorkDoneByID(int id) => db.WorkDones.SingleOrDefault(x => x.id == id);
         public List<WorkDone> GetWorkdoneByID(int work_id)
         {
             var result = from workdone in db.WorkDones

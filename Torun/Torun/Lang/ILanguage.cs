@@ -182,7 +182,8 @@
         string WeeklyEditPlanTransferError { get; }
         string WeeklyEditPlanTransfered { get; }
         #endregion
-
+        // weekly plan sort buttons
+        #region
         string WeeklyPlanSortLbl { get; }
         string WeeklyPlanSortAddTime { get; }
         string WeeklyPlanSortAddTimeDesc { get; }
@@ -190,5 +191,14 @@
         string WeeklyPlanSortPriorityDesc { get; }
         string WeeklyPlanSortNameDesc { get; }
         string WeeklyPlanSortNameAsc { get; }
+        #endregion
+        // UC Work done page
+        string UCWorkDoneRemoveWorkDone { get; }
+        // workdone remove page
+        #region
+        string WorkDoneRemoveTitle { get; }
+        string WorkDoneRemoveSelectADay { get; }
+        string WorkDoneRemoveSelectAllDays { get; }
+        #endregion
     }
 }

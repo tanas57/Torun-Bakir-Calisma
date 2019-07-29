@@ -193,6 +193,9 @@
         public string WeeklyRemoveAday => "Sadece seçili iş";
         public string WeeklyRemoveAllDays => "Tüm talep işlerini çıkar(talep tamamen silinir)";
         public string WeeklyRemoveButtonRemove => "Plandan çıkar";
+        #endregion
+        // weekly plan edit page
+        #region
         public string WeeklyEditPlanTitle => "Plan Düzenleme Sayfası";
         public string WeeklyEditPlanRequestInfo => "Talep Bilgileri";
         public string WeeklyEditPlanInfo => "Plan Bilgileri";
@@ -216,7 +219,9 @@
         public string WeeklyEditPlanTransferError => "Seçili plan iş tamamlandığından dolayı transfer edilemiyor." + MainPageWorkDone + " bölümünden düzenlenebilir";
 
         public string WeeklyEditPlanTransfered => "Seçili planın tarihi güncellenmiştir";
-
+        #endregion
+        // weekly plan sort buttons
+        #region
         public string RequestAddToWorkDone => "Talebi bugün tamamlandı olarak ekle";
 
         public string WeeklyPlanSortLbl => "Sıralama Yöntemi : ";
@@ -232,6 +237,16 @@
         public string WeeklyPlanSortPriorityAsc => "Öncelik(Artan)";
 
         public string WeeklyPlanSortPriorityDesc => "Öncelik(Azalan)";
+        #endregion
+        // work done remove page
+        #region
+        public string WorkDoneRemoveTitle => "İşi Tamamlanmadı İşaretle";
+
+        public string WorkDoneRemoveSelectADay => "Seçilen işi yapılmadı olarak işaretle";
+
+        public string WorkDoneRemoveSelectAllDays => "Tüm talebi yapılmadı olarak işaretle";
+
+        public string UCWorkDoneRemoveWorkDone => "Tamamlanmadı İşaretle";
 
         #endregion
     }

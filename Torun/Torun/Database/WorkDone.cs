@@ -9,9 +9,6 @@
 
 namespace Torun.Database
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class WorkDone
     {
         public int id { get; set; }

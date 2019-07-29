@@ -2,6 +2,7 @@
 {
     public enum StatusType
     {
+        Deleted = 0,
         Added = 1,
         InProcess = 2,
         Closed = 3,
