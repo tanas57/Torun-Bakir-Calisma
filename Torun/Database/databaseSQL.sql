@@ -34,7 +34,8 @@ CREATE TABLE Plans(
 	id INT PRIMARY KEY IDENTITY(1,1),
 	work_id INT NOT NULL,
 	add_time DATETIME NOT NULL,
-	work_plan_time DATETIME NOT NULL
+	work_plan_time DATETIME NOT NULL,
+	status byte NOT NULL DEFAULT 0
 );
 
 alter table Plans

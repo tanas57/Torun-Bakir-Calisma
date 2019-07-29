@@ -22,7 +22,7 @@ namespace Torun
         
         private bool formLogoutControl = false; // for form closing control, and logout button action
         //public users User { get; set; } daha sonra bu şekil değiştir
-        public users User { get; set; }
+        public User User { get; set; }
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public CountType CountOrder { get; set; }

@@ -16,7 +16,7 @@ namespace Torun.UControls
     public partial class UCWeeklyPlan : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private DB db; private users currentUser;
+        private DB db; private User currentUser;
         private DateTime planStartDate;
         private DataGrid SelectedGrid { get; set; }
         private OrderBy Order { get; set; }

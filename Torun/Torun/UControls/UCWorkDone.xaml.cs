@@ -15,7 +15,7 @@ namespace Torun.UControls
     public partial class UCWorkDone : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private DB db; private users currentUser;
+        private DB db; private User currentUser;
         private DateTime planStartDate;
         private DataGrid SelectedGrid { get; set; }
         private OrderBy Order { get; set; }
@@ -137,7 +137,6 @@ namespace Torun.UControls
             date_picker.Text = mainWindow.Lang.UCWeeklyPlanCurrentTime;
 
             txt_GetDetail.Text = mainWindow.Lang.UCWeeklyPlanButtonGetDetail;
-            txt_MarkCompleted.Text = mainWindow.Lang.UCWeeklyPlanButtonDoCompleted;
             txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
             txt_Edit.Text = mainWindow.Lang.UCWeeklyPlanButtonEdit;
             LabelandGridUpdate(DateTime.Now.Date);
@@ -174,11 +173,6 @@ namespace Torun.UControls
             for (int i = 1; i <= maxLine; i++) numbers.Add(i);
             numbersGrid.ItemsSource = numbers;
             SelectedGrid = null; // null error fix
-        }
-
-        private void Btn_doComplated_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         private void Sort_AddTimeDesc_Click(object sender, RoutedEventArgs e)

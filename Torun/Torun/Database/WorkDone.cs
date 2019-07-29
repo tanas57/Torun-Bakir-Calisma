@@ -15,12 +15,12 @@ namespace Torun.Database
     public partial class WorkDone
     {
         public int id { get; set; }
-        public Nullable<System.DateTime> workDoneTime { get; set; }
-        public Nullable<System.DateTime> add_time { get; set; }
-        public string description { get; set; }
-        public Nullable<byte> status { get; set; }
         public int plan_id { get; set; }
+        public System.DateTime workDoneTime { get; set; }
+        public System.DateTime add_time { get; set; }
+        public string description { get; set; }
+        public byte status { get; set; }
     
-        public virtual plans plans { get; set; }
+        public virtual Plan Plan { get; set; }
     }
 }

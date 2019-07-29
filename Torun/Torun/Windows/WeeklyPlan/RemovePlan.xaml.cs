@@ -20,10 +20,10 @@ namespace Torun.Windows.WeeklyPlan
 
         private void RemoveSave_Click(object sender, RoutedEventArgs e)
         {
-            todoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
+            TodoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
             if(remove_aDay.IsChecked == true) // selected plan will remove from plan
             {
-                plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                 if (remove_allDays.IsEnabled == false)
                 {
                     // todolist has only one plan so work can be transfer back todolist

@@ -16,8 +16,8 @@ namespace Torun.Windows.WeeklyPlan
         public byte UpdateMode { get; set; }
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         public DB.WeeklyPlan Plan { get; set; }
-        private todoList todoList; // current request
-        private List<plans> plans; // current plans
+        private TodoList todoList; // current request
+        private List<Plan> plans; // current plans
         public EditPlan()
         {
             InitializeComponent();
@@ -109,7 +109,7 @@ namespace Torun.Windows.WeeklyPlan
                     {
                         if (!mainWindow.DB.IsPlanExists(item.Date, todoList.id)) // for the choosen date is found in database, must not add again
                         {
-                            plans plan = new plans();
+                            Plan plan = new Plan();
                             plan.add_time = DateTime.Now; plan.work_id = todoList.id;
                             plan.work_plan_time = item.Date; plan.status = 0;
                             mainWindow.DB.AddPlanDates(plan);
@@ -144,7 +144,7 @@ namespace Torun.Windows.WeeklyPlan
                     }
                     else
                     {
-                        plans plan = mainWindow.DB.GetPlanByID(plan_id);
+                        Plan plan = mainWindow.DB.GetPlanByID(plan_id);
                         mainWindow.DB.RemovePlan(plan);
                         result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
                         result.Background = System.Windows.Media.Brushes.Green;
@@ -193,7 +193,7 @@ namespace Torun.Windows.WeeklyPlan
                                 }
                                 else
                                 {
-                                    plans plan = mainWindow.DB.GetPlanByID(plan_id);
+                                    Plan plan = mainWindow.DB.GetPlanByID(plan_id);
                                     plan.work_plan_time = item.Date;
                                     mainWindow.DB.EditPlan(plan);
                                     result.Content = mainWindow.Lang.WeeklyEditPlanTransfered;
@@ -215,9 +215,9 @@ namespace Torun.Windows.WeeklyPlan
             plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
             for (int i = 0; i < plans.Count; i++)
             {
-                plans temp = plans[i];
-                if (temp.status == 0) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id);
-                else if (temp.status == 1) list_plan.Items.Add(temp.work_plan_time.Value.ToShortDateString() + " - " + temp.id + " - OK");
+                Plan temp = plans[i];
+                if (temp.status == 0) list_plan.Items.Add(temp.work_plan_time.ToShortDateString() + " - " + temp.id);
+                else if (temp.status == 1) list_plan.Items.Add(temp.work_plan_time.ToShortDateString() + " - " + temp.id + " - OK");
             }
         }
     }

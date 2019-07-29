@@ -28,73 +28,73 @@ namespace Torun.Database
         }
         public List<WorkDone> GetWorkdoneByID(int work_id)
         {
-            var result = from workdone in db.WorkDone
-                         join plan in db.plans on workdone.plan_id equals plan.id
+            var result = from workdone in db.WorkDones
+                         join plan in db.Plans on workdone.plan_id equals plan.id
                          where plan.work_id == work_id
                          select workdone;
             return result.ToList<WorkDone>();
         }
         public void RemoveWorkdone(WorkDone workdone)
         {
-            db.WorkDone.Remove(workdone);
+            db.WorkDones.Remove(workdone);
             db.SaveChanges();
         }
         public void MoveWorkToWorkDone(WorkDone workdone)
         {
-            db.WorkDone.Add(workdone);
+            db.WorkDones.Add(workdone);
             db.SaveChanges();
         }
 
-        public void RemovePlan(plans plan)
+        public void RemovePlan(Plan plan)
         {
-            db.plans.Remove(plan);
+            db.Plans.Remove(plan);
             db.SaveChanges();
         }
         public bool IsPlanExists(DateTime dateTime, int work_id)
         {
-            var result = from plan in db.plans
+            var result = from plan in db.Plans
                          where plan.work_plan_time == dateTime.Date && plan.work_id == work_id
                          select plan;
             if (result.Count() == 1) return true;
             else return false;
         }
-        public List<plans> PlanToCalendar(int work_id, bool withoutCompleted = false)
+        public List<Plan> PlanToCalendar(int work_id, bool withoutCompleted = false)
         {
             if (withoutCompleted == false) // all plans list
             {
-                var result = from day in db.plans
+                var result = from day in db.Plans
                              where day.work_id == work_id
                              select day;
-                return result.ToList<plans>();
+                return result.ToList<Plan>();
             }
             else // plans without workdone
             {
-                var result = from day in db.plans
+                var result = from day in db.Plans
                              where day.work_id == work_id && day.status != 1 // 0 : to continue this work
                              select day;
-                return result.ToList<plans>();
+                return result.ToList<Plan>();
             }
                     
         }
-        public byte EditPlan(plans plan)
+        public byte EditPlan(Plan plan)
         {
-            if (!db.plans.Any(x => x.id == plan.id)) return 0;
-            db.plans.Attach(plan);
+            if (!db.Plans.Any(x => x.id == plan.id)) return 0;
+            db.Plans.Attach(plan);
             db.Entry(plan).State = EntityState.Modified;
             db.SaveChanges();
 
             return 1;
         }
-        public plans GetPlanByID(int id) => db.plans.SingleOrDefault(x => x.id == id);
-        public todoList GetTodoByID(int id) => db.todoList.SingleOrDefault(x => x.id == id);
-        public List<WorkDoneList> ListWorkDone(users user, DateTime dateTime, OrderBy orderBy)
+        public Plan GetPlanByID(int id) => db.Plans.SingleOrDefault(x => x.id == id);
+        public TodoList GetTodoByID(int id) => db.TodoLists.SingleOrDefault(x => x.id == id);
+        public List<WorkDoneList> ListWorkDone(User user, DateTime dateTime, OrderBy orderBy)
         {
             switch (orderBy)
             {
                 case OrderBy.PriorityAsc:
-                    var result = from works in db.WorkDone
-                                 join plan in db.plans on works.plan_id equals plan.id
-                                 join work in db.todoList on plan.work_id equals work.id
+                    var result = from works in db.WorkDones
+                                 join plan in db.Plans on works.plan_id equals plan.id
+                                 join work in db.TodoLists on plan.work_id equals work.id
                                  where works.workDoneTime == dateTime && user.id == work.user_id
                                  orderby work.priority ascending
                                  select new WorkDoneList
@@ -106,9 +106,9 @@ namespace Torun.Database
                     return result.ToList();
 
                 case OrderBy.PriorityDesc:
-                    result = from works in db.WorkDone
-                                 join plan in db.plans on works.plan_id equals plan.id
-                                 join work in db.todoList on plan.work_id equals work.id
+                    result = from works in db.WorkDones
+                                 join plan in db.Plans on works.plan_id equals plan.id
+                                 join work in db.TodoLists on plan.work_id equals work.id
                                  where works.workDoneTime == dateTime && user.id == work.user_id
                                  orderby work.priority descending
                                  select new WorkDoneList
@@ -119,9 +119,9 @@ namespace Torun.Database
                                  };
                     return result.ToList();
                 case OrderBy.NameAsc:
-                    result = from works in db.WorkDone
-                                 join plan in db.plans on works.plan_id equals plan.id
-                                 join work in db.todoList on plan.work_id equals work.id
+                    result = from works in db.WorkDones
+                                 join plan in db.Plans on works.plan_id equals plan.id
+                                 join work in db.TodoLists on plan.work_id equals work.id
                                  where works.workDoneTime == dateTime && user.id == work.user_id
                                  orderby work.request_number ascending
                                  select new WorkDoneList
@@ -133,9 +133,9 @@ namespace Torun.Database
                     return result.ToList();
 
                 case OrderBy.NameDesc:
-                    result = from works in db.WorkDone
-                                 join plan in db.plans on works.plan_id equals plan.id
-                                 join work in db.todoList on plan.work_id equals work.id
+                    result = from works in db.WorkDones
+                                 join plan in db.Plans on works.plan_id equals plan.id
+                                 join work in db.TodoLists on plan.work_id equals work.id
                                  where works.workDoneTime == dateTime && user.id == work.user_id
                                  orderby work.request_number descending
                                  select new WorkDoneList
@@ -146,9 +146,9 @@ namespace Torun.Database
                                  };
                     return result.ToList();
                 case OrderBy.AddedTimeAsc:
-                    result = from works in db.WorkDone
-                             join plan in db.plans on works.plan_id equals plan.id
-                             join work in db.todoList on plan.work_id equals work.id
+                    result = from works in db.WorkDones
+                             join plan in db.Plans on works.plan_id equals plan.id
+                             join work in db.TodoLists on plan.work_id equals work.id
                              where works.workDoneTime == dateTime && work.user_id == user.id
                              orderby works.add_time ascending
                              select new WorkDoneList
@@ -160,9 +160,9 @@ namespace Torun.Database
                     return result.ToList();
                 default:
                 case OrderBy.AddedTimeDesc:
-                     result = from works in db.WorkDone
-                                 join plan in db.plans on works.plan_id equals plan.id
-                                 join work in db.todoList on plan.work_id equals work.id
+                     result = from works in db.WorkDones
+                                 join plan in db.Plans on works.plan_id equals plan.id
+                                 join work in db.TodoLists on plan.work_id equals work.id
                                  where works.workDoneTime == dateTime && work.user_id == user.id
                                  orderby works.add_time descending
                                  select new WorkDoneList
@@ -174,13 +174,13 @@ namespace Torun.Database
                     return result.ToList();
             }
         }
-        public List<WeeklyPlan> ListWeeklyPlanDay(users user, DateTime dateTime, OrderBy orderBy)
+        public List<WeeklyPlan> ListWeeklyPlanDay(User user, DateTime dateTime, OrderBy orderBy)
         {
             switch (orderBy)
             {
                 case OrderBy.PriorityAsc:
-                 var result = from day in db.plans
-                                 join work in db.todoList on day.work_id equals work.id
+                 var result = from day in db.Plans
+                                 join work in db.TodoLists on day.work_id equals work.id
                                  where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                                  orderby work.priority ascending
                                  select new WeeklyPlan
@@ -191,8 +191,8 @@ namespace Torun.Database
                                  };
                     return result.ToList();
                 case OrderBy.PriorityDesc:
-                    result = from day in db.plans
-                                 join work in db.todoList on day.work_id equals work.id
+                    result = from day in db.Plans
+                                 join work in db.TodoLists on day.work_id equals work.id
                                  where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                                  orderby work.priority descending
                                  select new WeeklyPlan
@@ -204,8 +204,8 @@ namespace Torun.Database
                     return result.ToList();
 
                 case OrderBy.NameAsc:
-                    result = from day in db.plans
-                                 join work in db.todoList on day.work_id equals work.id
+                    result = from day in db.Plans
+                                 join work in db.TodoLists on day.work_id equals work.id
                                  where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                                  orderby work.request_number ascending
                                  select new WeeklyPlan
@@ -217,8 +217,8 @@ namespace Torun.Database
                     return result.ToList();
 
                 case OrderBy.NameDesc:
-                    result = from day in db.plans
-                                 join work in db.todoList on day.work_id equals work.id
+                    result = from day in db.Plans
+                                 join work in db.TodoLists on day.work_id equals work.id
                                  where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                                  orderby day.add_time descending
                                  select new WeeklyPlan
@@ -229,8 +229,8 @@ namespace Torun.Database
                                  };
                     return result.ToList();
                 case OrderBy.AddedTimeAsc:
-                    result = from day in db.plans
-                             join work in db.todoList on day.work_id equals work.id
+                    result = from day in db.Plans
+                             join work in db.TodoLists on day.work_id equals work.id
                              where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                              orderby day.add_time ascending
                              select new WeeklyPlan
@@ -242,8 +242,8 @@ namespace Torun.Database
                     return result.ToList();
                 default:
                 case OrderBy.AddedTimeDesc:
-                    result = from day in db.plans
-                                 join work in db.todoList on day.work_id equals work.id
+                    result = from day in db.Plans
+                                 join work in db.TodoLists on day.work_id equals work.id
                                  where day.work_plan_time == dateTime && user.id == work.user_id && day.status != 1
                                  orderby day.add_time descending
                                  select new WeeklyPlan
@@ -257,49 +257,49 @@ namespace Torun.Database
             }
 
         }
-        public int AddPlanDates(plans plans)
+        public int AddPlanDates(Plan plans)
         {
-            db.plans.Add(plans);
+            db.Plans.Add(plans);
             db.SaveChanges();
             return plans.id;
         }
-        public byte DeleteTodoList(todoList todoList)
+        public byte DeleteTodoList(TodoList todoList)
         {
-            db.todoList.Remove(todoList);
+            db.TodoLists.Remove(todoList);
             db.SaveChanges();
             return 0;
         }
-        public byte EditTodoList(todoList todoList)
+        public byte EditTodoList(TodoList todoList)
         {
-            if (!db.todoList.Any(x => x.id == todoList.id)) return 0;
-            db.todoList.Attach(todoList);
+            if (!db.TodoLists.Any(x => x.id == todoList.id)) return 0;
+            db.TodoLists.Attach(todoList);
             db.Entry(todoList).State = EntityState.Modified;
             db.SaveChanges();
 
             return 1;
         }
-        public int AddTodoList(todoList todoList)
+        public int AddTodoList(TodoList todoList)
         {
             if(int.TryParse(todoList.request_number, out int req_num))
             {
-                if (db.todoList.Any(x => x.request_number == req_num.ToString())) return 0; // if request is integer, the request number have to identity
+                if (db.TodoLists.Any(x => x.request_number == req_num.ToString())) return 0; // if request is integer, the request number have to identity
             }
             // otherwise any string can add to db
             todoList.add_time = DateTime.Now;
-            db.todoList.Add(todoList);
+            db.TodoLists.Add(todoList);
             db.SaveChanges();
 
             return todoList.id;
         }
-        public List<todoList> GetTodoLists(users user) {
+        public List<TodoList> GetTodoLists(User user) {
             //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
-            var result = from todo in db.todoList
+            var result = from todo in db.TodoLists
                          where user.id == todo.user_id && ( todo.status != (int)StatusType.Closed && todo.status != (int)StatusType.Planned)
                          select todo;
-            return result.ToList<todoList>();
+            return result.ToList<TodoList>();
         }
 
-        public int GetRequestCount(byte ReqType, users user, CountType countType)
+        public int GetRequestCount(byte ReqType, User user, CountType countType)
         {
             DateTime timeStart, timeEnd;
             switch (countType)
@@ -332,30 +332,30 @@ namespace Torun.Database
             }
             switch (ReqType)
             {
-                case 1: return db.todoList.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
-                case 2: return db.todoList.Where(x => x.status != (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
-                case 3: return db.todoList.Where(x => x.status == (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
+                case 1: return db.TodoLists.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
+                case 2: return db.TodoLists.Where(x => x.status != (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
+                case 3: return db.TodoLists.Where(x => x.status == (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
             }
             return 0;
         }
 
-        public users GetUserDetail(users user)
+        public User GetUserDetail(User user)
         {
-            users temp = new users();
-            temp = db.users.SingleOrDefault(x => x.user_name == user.user_name);
+            User temp = new User();
+            temp = db.Users.SingleOrDefault(x => x.user_name == user.user_name);
             return temp;
         }
 
-        public byte Login(users user)
+        public byte Login(User user)
         {
-            if (db.users.Any(x => x.user_name == user.user_name))
+            if (db.Users.Any(x => x.user_name == user.user_name))
             {
-                users tempUser = db.users.FirstOrDefault(x => x.user_name == user.user_name);
+                User tempUser = db.Users.FirstOrDefault(x => x.user_name == user.user_name);
                 if (String.Equals(user.password, tempUser.password))
                 {
                     tempUser.login_status = 1;
                     tempUser.last_login = DateTime.Now;
-                    db.users.Attach(tempUser);
+                    db.Users.Attach(tempUser);
                     db.Entry(tempUser).State = EntityState.Modified;
                     db.SaveChanges();
                    
@@ -366,23 +366,23 @@ namespace Torun.Database
             else return 2; // 2 : user could not find
         }
 
-        public void LogOut(users user)
+        public void LogOut(User user)
         {
-            if (db.users.Any(x => x.id == user.id))
+            if (db.Users.Any(x => x.id == user.id))
             {
-                users tempUser = db.users.FirstOrDefault(x => x.id == user.id);
+                User tempUser = db.Users.FirstOrDefault(x => x.id == user.id);
                 tempUser.login_status = 0;
-                db.users.Attach(tempUser);
+                db.Users.Attach(tempUser);
                 db.Entry(tempUser).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }
 
-        public byte Register(users user)
+        public byte Register(User user)
         {
-            if (db.users.Any(x => x.user_name == user.user_name)) return 0;
+            if (db.Users.Any(x => x.user_name == user.user_name)) return 0;
 
-            db.users.Add(user);
+            db.Users.Add(user);
             db.SaveChanges();
 
             return 1;

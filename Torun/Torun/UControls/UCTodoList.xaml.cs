@@ -15,7 +15,7 @@ namespace Torun.UControls
     public partial class UCTodoList : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private DB db; private users User;
+        private DB db; private User User;
         public bool buttonDetail = false;
         public UCTodoList()
         {
@@ -35,7 +35,7 @@ namespace Torun.UControls
 
         private void Btn_requestDelete_Click(object sender, RoutedEventArgs e)
         {
-            todoList todoList = Grid_todoList.SelectedItem as todoList;
+            TodoList todoList = Grid_todoList.SelectedItem as TodoList;
             if(todoList.status == (int)StatusType.InProcess)
             {
                 var result = MessageBox.Show("Bu talebin tamamlanan kısımları var, yinede silinsin mi (tamamlananlarda silinecek) ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -79,7 +79,7 @@ namespace Torun.UControls
         {
             RequestDetail requestEdit = new RequestDetail();
             requestEdit.Owner = mainWindow;
-            requestEdit.todolist = Grid_todoList.SelectedItem as todoList;
+            requestEdit.todolist = Grid_todoList.SelectedItem as TodoList;
             mainWindow.Opacity = 0.5;
             requestEdit.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             requestEdit.ShowDialog();
@@ -89,7 +89,7 @@ namespace Torun.UControls
         {
             RequestSchedule requestSchedule = new RequestSchedule();
             requestSchedule.Owner = mainWindow;
-            requestSchedule.todolist = Grid_todoList.SelectedItem as todoList;
+            requestSchedule.todolist = Grid_todoList.SelectedItem as TodoList;
             mainWindow.Opacity = 0.5;
             requestSchedule.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             requestSchedule.ShowDialog();
@@ -128,7 +128,7 @@ namespace Torun.UControls
 
         private void DataGridRequestNumber_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            todoList todolist = Grid_todoList.SelectedItem as todoList;
+            TodoList todolist = Grid_todoList.SelectedItem as TodoList;
             int result = 0;
             if (int.TryParse(todolist.request_number,out result))
             {
@@ -145,7 +145,7 @@ namespace Torun.UControls
 
         private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            todoList todolist = Grid_todoList.SelectedItem as todoList;
+            TodoList todolist = Grid_todoList.SelectedItem as TodoList;
             MessageBox.Show(todolist.description, mainWindow.Lang.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }

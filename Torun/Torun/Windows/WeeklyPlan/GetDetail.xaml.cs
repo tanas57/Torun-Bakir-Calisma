@@ -22,8 +22,8 @@ namespace Torun.Windows.WeeklyPlan
             this.Title = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
             weeklyPlan_title.Content = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
 
-            plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID); // selected plan
-            todoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID); // plan's work
+            Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID); // selected plan
+            TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID); // plan's work
             dbDescription.Text = todolist.description;
             getDetailDescription.Text = mainWindow.Lang.WeeklyDetailDescription;
             getDetailCalendar.Text = mainWindow.Lang.WeeklyDetailCalendar;
@@ -31,12 +31,12 @@ namespace Torun.Windows.WeeklyPlan
             var work_plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
             for (int i = 0; i < work_plans.Count; i++)
             {
-                dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time.Value);
+                dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time);
             }
             var workDone = mainWindow.DB.GetWorkdoneByID(Plan.WorkID);
             for (int i = 0; i < workDone.Count; i++)
             {
-                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value);
+                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime);
             }
         }
 

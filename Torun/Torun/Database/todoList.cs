@@ -14,20 +14,21 @@ namespace Torun.Database
     using Torun.Classes;
     using Torun.Lang;
 
-    public partial class todoList
+    public partial class TodoList
     {
-        private byte priorities; private byte statu;
+        private byte priorities;
+        private byte statu;
         private ILanguage language;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public todoList()
+        public TodoList()
         {
-            this.plans = new HashSet<plans>();
+            this.Plans = new HashSet<Plan>();
             language = CurrentLanguage.Language;
         }
     
         public int id { get; set; }
         public string request_number { get; set; }
-        public Nullable<byte> priority
+        public byte priority
         {
             get
             {
@@ -57,9 +58,9 @@ namespace Torun.Database
             }
         }
         public string description { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public Nullable<System.DateTime> add_time { get; set; }
-        public Nullable<byte> status
+        public int user_id { get; set; }
+        public System.DateTime add_time { get; set; }
+        public byte status
         {
             get
             {
@@ -90,8 +91,8 @@ namespace Torun.Database
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<plans> plans { get; set; }
-        public virtual users users { get; set; }
+        public virtual ICollection<Plan> Plans { get; set; }
+        public virtual User User { get; set; }
         public string PriorityString { get; set; }
         public string StatusString { get; set; }
     }

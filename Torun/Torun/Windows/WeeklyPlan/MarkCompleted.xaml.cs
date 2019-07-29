@@ -49,13 +49,13 @@ namespace Torun.Windows.WeeklyPlan
             if (completed_allDays.IsEnabled == false) // the work only one day
             {
                 // move this plan to workdone
-                plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                 WorkDone workDone = new WorkDone();
                 workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now.Date;
                 workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
                 workDone.status = 2; // end of the work
 
-                todoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID);
+                TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID);
                 todolist.status = 3; // todolist item status have to mark 3: closed
                 mainWindow.DB.MoveWorkToWorkDone(workDone);
                 mainWindow.DB.EditTodoList(todolist);
@@ -66,7 +66,7 @@ namespace Torun.Windows.WeeklyPlan
             {
                 if (completed_aDay.IsChecked == true) // only one day completed
                 {
-                    plans plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                    Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                     WorkDone workDone = new WorkDone();
                     workDone.add_time = DateTime.Now; workDone.workDoneTime = DateTime.Now.Date;
                     workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
@@ -85,7 +85,7 @@ namespace Torun.Windows.WeeklyPlan
                     WorkDone workDone;
                     for (int i = 0; i < plans.Count; i++)
                     {
-                        plans plan = plans[i]; // for each plan
+                        Plan plan = plans[i]; // for each plan
                         plan.status = 1;
                         mainWindow.DB.EditPlan(plan);
 
@@ -97,7 +97,7 @@ namespace Torun.Windows.WeeklyPlan
                     }
                     if(plans.Count > 0)
                     {
-                        todoList todolist = mainWindow.DB.GetTodoByID((int)plans[0].work_id); // in here exception error !
+                        TodoList todolist = mainWindow.DB.GetTodoByID((int)plans[0].work_id); // in here exception error !
                         todolist.status = 3; // closed
                         mainWindow.DB.EditTodoList(todolist);
                     }

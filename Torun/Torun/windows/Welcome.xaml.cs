@@ -17,7 +17,7 @@ namespace Torun.windows
     {
         private bool passwordMD5 = false;
         private ILanguage Lang { get; set; }
-        private users User { get; set; }
+        private User User { get; set; }
         public DB DB { get; set; }
         public Welcome()
         {
@@ -33,7 +33,7 @@ namespace Torun.windows
 
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
-            User = new users();
+            User = new User();
             if(register_firstname.Text != String.Empty 
                 && register_lastname.Text != String.Empty 
                 && register_username.Text != String.Empty 
@@ -50,7 +50,7 @@ namespace Torun.windows
                             User.password = MD5Crypt.MD5Hash(register_password.Password);
                             User.user_name = register_username.Text.ToLower();
                             User.pc_name = System.Environment.MachineName;
-                            User.last_login = null;
+                            User.last_login = DateTime.Now;
                             User.login_status = 0;
                             User.user_status = 1;
                             User.register_date = DateTime.Now;
@@ -94,7 +94,7 @@ namespace Torun.windows
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            User = new users();
+            User = new User();
             if (chk_loginSave.IsChecked == true && passwordMD5 == true) User.password = login_password.Password;
             else
                 if (passwordMD5 == false)

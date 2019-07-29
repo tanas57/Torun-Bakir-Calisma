@@ -13,7 +13,7 @@ namespace Torun.Windows.Request
     public partial class RequestDetail : Window
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        public todoList todolist;
+        public TodoList todolist;
         public RequestDetail()
         {
             InitializeComponent();

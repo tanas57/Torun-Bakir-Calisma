@@ -43,7 +43,7 @@ namespace Torun.Windows
         private void Req_Save_Click(object sender, RoutedEventArgs e)
         {
             DB db = mainWindow.DB;
-            todoList todoList = new todoList();
+            TodoList todoList = new TodoList();
             todoList.user_id = mainWindow.User.id;
             if(addWorkDone.IsChecked == true) todoList.status = (byte)StatusType.Closed;
             else todoList.status = (byte)StatusType.Added;
@@ -78,7 +78,7 @@ namespace Torun.Windows
                         req_Result.Background = System.Windows.Media.Brushes.Green;
                         if (addWorkDone.IsChecked == true)
                         {
-                            plans plan = new plans();
+                            Plan plan = new Plan();
                             plan.add_time = DateTime.Now; plan.work_plan_time = DateTime.Now.Date;
                             plan.status = 1; plan.work_id = work_id;
                             int plan_id = mainWindow.DB.AddPlanDates(plan);

@@ -15,7 +15,7 @@ namespace Torun.Windows.Request
     public partial class RequestSchedule : Window
     {
         private readonly MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        public todoList todolist;
+        public TodoList todolist;
         public RequestSchedule()
         {
             InitializeComponent();
@@ -55,13 +55,13 @@ namespace Torun.Windows.Request
         {
             if (schedule_ReqDatePicker.SelectedDate.HasValue)
             {
-                plans plans;
+                Plan plans;
                 lbl_scheduleResult.Background = Brushes.Blue;
                 lbl_scheduleResult.Content = "Planlama kaydediliyor...";
                 int count = schedule_ReqDatePicker.SelectedDates.Count, count2 = 0;
                 foreach (var item in schedule_ReqDatePicker.SelectedDates)
                 {
-                    plans = new plans
+                    plans = new Plan
                     {
                         add_time = DateTime.Now,
                         work_id = todolist.id,

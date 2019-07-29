@@ -12,22 +12,26 @@ namespace Torun.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class plans
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public plans()
+        public User()
         {
-            this.WorkDone = new HashSet<WorkDone>();
+            this.TodoLists = new HashSet<TodoList>();
         }
     
         public int id { get; set; }
-        public Nullable<int> work_id { get; set; }
-        public Nullable<System.DateTime> add_time { get; set; }
-        public Nullable<System.DateTime> work_plan_time { get; set; }
-        public Nullable<byte> status { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string user_name { get; set; }
+        public string password { get; set; }
+        public string pc_name { get; set; }
+        public System.DateTime last_login { get; set; }
+        public byte login_status { get; set; }
+        public byte user_status { get; set; }
+        public System.DateTime register_date { get; set; }
     
-        public virtual todoList todoList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkDone> WorkDone { get; set; }
+        public virtual ICollection<TodoList> TodoLists { get; set; }
     }
 }

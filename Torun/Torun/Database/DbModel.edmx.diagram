@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f8579fd5e6ca4f80ab0939fbab5bbf03" Name="Diagram1" ZoomLevel="99">
-        <EntityTypeShape EntityType="plan_tracerDBModel.plans" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="plan_tracerDBModel.todoList" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="plan_tracerDBModel.users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="db66acc527ca42db8bb429d022601f23" Name="Diagram1">
+        <EntityTypeShape EntityType="plan_tracerDBModel.Plan" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="plan_tracerDBModel.TodoList" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="plan_tracerDBModel.User" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="plan_tracerDBModel.WorkDone" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="plan_tracerDBModel.FK_plan_todoList" ManuallyRouted="false" />
-        <AssociationConnector Association="plan_tracerDBModel.FK_WorkDonePlans" ManuallyRouted="false" />
-        <AssociationConnector Association="plan_tracerDBModel.FK_todoList_user" ManuallyRouted="false" />
+        <AssociationConnector Association="plan_tracerDBModel.FK_plan_TodoList" ManuallyRouted="false" />
+        <AssociationConnector Association="plan_tracerDBModel.FK_WorkDone_TodoList" ManuallyRouted="false" />
+        <AssociationConnector Association="plan_tracerDBModel.FK_TodoList_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

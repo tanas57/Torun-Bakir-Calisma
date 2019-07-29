@@ -88,13 +88,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Database\plans.cs">
+    <Compile Include="Database\Plan.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\todoList.cs">
+    <Compile Include="Database\TodoList.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\users.cs">
+    <Compile Include="Database\User.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\WorkDone.cs">
