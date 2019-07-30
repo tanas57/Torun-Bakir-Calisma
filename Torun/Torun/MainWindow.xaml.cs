@@ -36,6 +36,14 @@ namespace Torun
             requestOpen.Content = DB.GetRequestCount(2, User, CountOrder);  // load count of currently open requests
             requestClosed.Content = DB.GetRequestCount(3, User, CountOrder);// load count of closed request until today
             if(uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = DB.GetTodoLists(User);
+            if (ucWeeklyPlan != null)
+            {
+                ucWeeklyPlan.Date_picker_CalendarClosed(null, null);
+            }
+            if (uCWorkDone != null)
+            {
+                uCWorkDone.Date_picker_CalendarClosed(null, null);
+            }
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
