@@ -92,6 +92,7 @@ namespace Torun.Windows.WeeklyPlan
                 result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
                 result.Background = System.Windows.Media.Brushes.Green;
             }
+            this.Close();
         }
 
         private void Plan_add_Click(object sender, RoutedEventArgs e)

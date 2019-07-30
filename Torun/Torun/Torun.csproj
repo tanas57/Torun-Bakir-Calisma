@@ -324,6 +324,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\icon\settings.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

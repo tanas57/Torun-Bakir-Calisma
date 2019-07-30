@@ -81,7 +81,41 @@ namespace Torun.Windows.WorkCompleted
 
         private void WorkDone_remove_Click(object sender, RoutedEventArgs e)
         {
-
+            result.Visibility = Visibility.Visible;
+            if (list_workdone.SelectedIndex >= 0)
+            {
+                try
+                {
+                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                    int work_id = int.Parse(arr[1].Trim());
+                    if (arr.Length > 2)
+                    {
+                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                        result.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        WorkDone work = DB.GetWorkDoneByID(work_id);
+                        Plan plan = work.Plan;
+                        TodoList todoList = plan.TodoList;
+                        if (DB.GetWorkdoneByID(work_id).Count > 1)
+                        {
+                            todoList.status = (int)StatusType.InProcess;
+                        }
+                        else
+                        {
+                            todoList.status = (int)StatusType.Planned;
+                        }
+                        plan.status = (int)StatusType.Deleted;
+                        mainWindow.DB.RemoveWorkdone(work);
+                        mainWindow.DB.EditPlan(plan);
+                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
+                        result.Background = Brushes.Green;
+                    }
+                }
+                catch (Exception) { }
+                WorkDoneListUpdate();
+            }
         }
         private void WorkDoneListUpdate()
         {
