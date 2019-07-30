@@ -52,7 +52,7 @@ namespace Torun.UControls
             sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
             sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
             sort_NameAsc.Content = mainWindow.Lang.WeeklyPlanSortNameAsc;
-            btn_changeView.Content = mainWindow.Lang.UCWeeklyPlanOpenDetail;
+            txt_closeDetail.Text = mainWindow.Lang.UCWeeklyPlanOpenDetail;
         }
 
         public void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)

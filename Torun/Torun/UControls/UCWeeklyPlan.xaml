@@ -45,7 +45,7 @@
                                         <TextBlock x:Name="txt_RemovePlan" Text="XXX"/>
                                     </DockPanel>
                                 </Button>
-                                <Button x:Name="btn_changeView" Click="Btn_changeView_Click" Width="170" Height="33" Style="{DynamicResource btn_weeklyPlan}">
+                                <Button x:Name="btn_changeView" Click="Btn_changeView_Click" Width="160" Height="33" Style="{DynamicResource btn_weeklyPlan}">
                                     <DockPanel>
                                         <Image Source="/images/main_screen/WeeklyPlan/change.png" Width="16" Margin="0,0,3,0"/>
                                         <TextBlock x:Name="txt_closeDetail" Text="XXX"/>

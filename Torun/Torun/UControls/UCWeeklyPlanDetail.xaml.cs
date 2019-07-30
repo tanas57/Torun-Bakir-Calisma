@@ -9,6 +9,7 @@ using Torun.Windows.WeeklyPlan;
 using Torun.Lang;
 using Torun.Classes;
 using Torun.Database;
+using System.Windows.Data;
 
 namespace Torun.UControls
 {
@@ -32,7 +33,7 @@ namespace Torun.UControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            btn_changeView.Content = Lang.UCWeeklyPlanCloseDetail;
+            lbl_changeView.Text = Lang.UCWeeklyPlanCloseDetail;
             txt_GetDetail.Text = Lang.UCWeeklyPlanButtonGetDetail;
             txt_MarkCompleted.Text = Lang.UCWeeklyPlanButtonDoCompleted;
             txt_RemovePlan.Text = Lang.UCWeeklyPlanButtonRemove;
@@ -47,7 +48,6 @@ namespace Torun.UControls
             sort_PriorityDesc.Content = Lang.WeeklyPlanSortPriorityDesc;
             sort_NameDesc.Content = Lang.WeeklyPlanSortNameDesc;
             sort_NameAsc.Content = Lang.WeeklyPlanSortNameAsc;
-            btn_changeView.Content = Lang.UCWeeklyPlanOpenDetail;
 
             list_requestNumber.Header = Lang.RequestAddRequestNumber;
             list_priority.Header = Lang.RequestAddRequestPriority;
@@ -57,8 +57,8 @@ namespace Torun.UControls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (mainWindow.WindowState == WindowState.Normal) list_planDate.Width = 600;
-            else list_planDate.Width = (int)SystemParameters.WorkArea.Width - 400;
+            if (mainWindow.WindowState == WindowState.Normal) list_planDate.Width = 570;
+            else list_planDate.Width = (int)SystemParameters.WorkArea.Width - 430;
         }
 
         private void Btn_GetDetail_Click(object sender, RoutedEventArgs e)
@@ -127,6 +127,8 @@ namespace Torun.UControls
         private void Plan_list_Loaded(object sender, RoutedEventArgs e)
         {
             plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User);
+           
         }
+
     }
 }

@@ -45,10 +45,10 @@
                                         <TextBlock x:Name="txt_RemovePlan" Text="XXX"/>
                                     </DockPanel>
                                 </Button>
-                                <Button x:Name="btn_changeView" Click="Btn_changeView_Click" Width="170" Height="33" Style="{DynamicResource btn_weeklyPlan}">
+                                <Button x:Name="btn_changeView" Width="160" Height="33" Style="{DynamicResource btn_weeklyPlan}" Click="Btn_changeView_Click">
                                     <DockPanel>
                                         <Image Source="/images/main_screen/WeeklyPlan/change.png" Width="16" Margin="0,0,3,0"/>
-                                        <TextBlock x:Name="txt_closeDetail" Text="XXX"/>
+                                        <TextBlock x:Name="lbl_changeView" Text="XXX"/>
                                     </DockPanel>
                                 </Button>
                             </DockPanel>
@@ -63,11 +63,10 @@
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False" Loaded="Plan_list_Loaded">
                         <DataGrid.Columns>
                             <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                            <DataGridTextColumn x:Name="list_order" CanUserReorder="False" IsReadOnly="True" Header="Sıra" MaxWidth="30"/>
+                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="Sıra" MaxWidth="30"/>
                             <DataGridTextColumn x:Name="list_requestNumber" Width="100" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="60"/>
                             <DataGridTextColumn x:Name="list_priority" Width="80" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
-                            <DataGridTextColumn x:Name="list_planDate" Width="620" CanUserReorder="False" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
+                            <DataGridTextColumn x:Name="list_planDate" Width="570" CanUserReorder="False" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
