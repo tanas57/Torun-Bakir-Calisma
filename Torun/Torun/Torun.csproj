@@ -109,6 +109,9 @@
     <Compile Include="UControls\UCWeeklyPlan.xaml.cs">
       <DependentUpon>UCWeeklyPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UControls\UCWeeklyPlanDetail.xaml.cs">
+      <DependentUpon>UCWeeklyPlanDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UControls\UCWorkDone.xaml.cs">
       <DependentUpon>UCWorkDone.xaml</DependentUpon>
     </Compile>
@@ -171,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControls\UCWeeklyPlan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControls\UCWeeklyPlanDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,6 +331,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\main_screen\WeeklyPlan\change.png" />
     <Resource Include="images\icon\settings.png" />
   </ItemGroup>
   <ItemGroup />

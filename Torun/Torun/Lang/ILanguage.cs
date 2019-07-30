@@ -133,6 +133,8 @@
         string UCWeeklyPlanDaysFriday { get; }
         string UCWeeklyPlanCurrentTime { get; }
         string UCWeeklyPlanNumOfPlans { get; }
+        string UCWeeklyPlanOpenDetail { get; }
+        string UCWeeklyPlanCloseDetail { get; }
         #endregion
         // weekly detail
         #region

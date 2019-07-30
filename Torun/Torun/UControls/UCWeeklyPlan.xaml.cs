@@ -41,7 +41,6 @@ namespace Torun.UControls
             txt_MarkCompleted.Text = mainWindow.Lang.UCWeeklyPlanButtonDoCompleted;
             txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
             txt_Edit.Text = mainWindow.Lang.UCWeeklyPlanButtonEdit;
-            LabelandGridUpdate(DateTime.Now.Date);
 
             UserControl_SizeChanged(sender, null);
             LabelandGridUpdate(DateTime.Now.Date);
@@ -53,6 +52,7 @@ namespace Torun.UControls
             sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
             sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
             sort_NameAsc.Content = mainWindow.Lang.WeeklyPlanSortNameAsc;
+            btn_changeView.Content = mainWindow.Lang.UCWeeklyPlanOpenDetail;
         }
 
         public void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
@@ -232,5 +232,9 @@ namespace Torun.UControls
             Date_picker_CalendarClosed(sender, e); // update weekly plan data grids according to datapicker's date
         }
 
+        private void Btn_changeView_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ChangeViewWeeklyPlan();
+        }
     }
 }

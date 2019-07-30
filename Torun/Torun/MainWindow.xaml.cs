@@ -19,8 +19,10 @@ namespace Torun
         public UCTodoList uCTodoList;
         public UCWeeklyPlan ucWeeklyPlan;
         public UCWorkDone uCWorkDone;
+        public UCWeeklyPlanDetail weeklyPlanDetail;
         
         private bool formLogoutControl = false; // for form closing control, and logout button action
+        private int changeCount = 0; // weekly plan change view changes count
         //public users User { get; set; } daha sonra bu şekil değiştir
         public User User { get; set; }
         public ILanguage Lang { get; set; }
@@ -29,6 +31,20 @@ namespace Torun
         public MainWindow()
         {
             InitializeComponent();
+        }
+        public void ChangeViewWeeklyPlan()
+        {
+            changeCount++;
+            if(changeCount % 2 == 1)
+            {
+                if (weeklyPlanDetail == null) UserControllCall.Add(Grd_Content, weeklyPlanDetail = new UCWeeklyPlanDetail());
+                else UserControllCall.Add(Grd_Content, weeklyPlanDetail);
+            }
+            else
+            {
+                if (ucWeeklyPlan == null) UserControllCall.Add(Grd_Content, ucWeeklyPlan = new UCWeeklyPlan());
+                else UserControllCall.Add(Grd_Content, ucWeeklyPlan);
+            }
         }
         public void UpdateScreens()
         {

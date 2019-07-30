@@ -271,6 +271,10 @@
 
         public string WorkDoneEditWorkDescriptionUpdate => "Seçilen iş açıklaması güncellendi";
 
+        public string UCWeeklyPlanOpenDetail => "Detaylı Görünüme Geç";
+
+        public string UCWeeklyPlanCloseDetail => "Haftalık Görünüme Geç";
+
 
         #endregion
     }
