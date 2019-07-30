@@ -258,7 +258,7 @@
 
         public string WorkDoneEditCompletedWorks => "Tamamlanan işler";
 
-        public string WorkDoneEditChoosenWorkDescription => "İş açıklaması düzenleme";
+        public string WorkDoneEditChoosenWorkDescription => "Tüm İş Açıklamaları(Listeden tek tek seçebilir ve düzenlenebilir)";
 
         public string WorkDoneEditWorkLabel => "Bir adet iş seçip, ardından işlemi seçin";
 
@@ -267,6 +267,8 @@
         public string WorkDoneEditWorkNotSelected => "İşlem için herhangi bir iş seçilmeli";
 
         public string WorkDoneEditFor => "için";
+
+        public string WorkDoneEditWorkDescriptionUpdate => "Seçilen iş açıklaması güncellendi";
 
         #endregion
     }

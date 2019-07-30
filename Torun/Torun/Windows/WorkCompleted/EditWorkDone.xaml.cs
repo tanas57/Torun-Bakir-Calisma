@@ -75,6 +75,7 @@ namespace Torun.Windows.WorkCompleted
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            mainWindow.UpdateScreens();
             Close();
         }
 
@@ -142,9 +143,30 @@ namespace Torun.Windows.WorkCompleted
 
         private void WorkDoneDescriptionSave_Click(object sender, RoutedEventArgs e)
         {
-
+            result.Visibility = Visibility.Visible;
+            if (list_workdone.SelectedIndex >= 0)
+            {
+                try
+                {
+                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                    int work_id = int.Parse(arr[1].Trim());
+                    if (arr.Length > 2)
+                    {
+                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                        result.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        WorkDone work = DB.GetWorkDoneByID(work_id);
+                        work.description = dbDescription.Text;
+                        DB.EditWorkDone(work);
+                        result.Content = mainWindow.Lang.WorkDoneEditWorkDescriptionUpdate;
+                        result.Background = Brushes.Green;
+                    }
+                }
+                catch (Exception) { }
+            }
         }
-
         private void Lbl_reqDescription_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show(todoList.description, mainWindow.Lang.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
