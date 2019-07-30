@@ -103,6 +103,7 @@
         public string MainPageMenuReport => "Rapor";
 
         public string MainPageMenuBackup => "Yedekleme";
+        public string MainPageMenuSettings => "Ayarlar";
         // MAIN PAGE ENDS
         #endregion
         // REQUEST SCHEDULE PAGE STARTS
@@ -269,6 +270,7 @@
         public string WorkDoneEditFor => "için";
 
         public string WorkDoneEditWorkDescriptionUpdate => "Seçilen iş açıklaması güncellendi";
+
 
         #endregion
     }

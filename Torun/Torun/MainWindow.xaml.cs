@@ -98,6 +98,7 @@ namespace Torun
             mainPage_menuWordDone.Content = Lang.MainPageWorkDone;
             mainPage_menuReport.Content = Lang.MainPageMenuReport;
             mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
+            mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
         }
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
         {

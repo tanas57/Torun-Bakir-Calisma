@@ -144,6 +144,12 @@
                 </Button>
                 <Button Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
+                        <Image Source="/images/icon/settings.png" Width="32"/>
+                        <Label x:Name="mainPage_menuSettings" Content="XXX" Foreground="White" FontSize="16"/>
+                    </DockPanel>
+                </Button>
+                <Button Height="50" Style="{DynamicResource menuButtons}">
+                    <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/backup.png" Width="32"/>
                         <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>

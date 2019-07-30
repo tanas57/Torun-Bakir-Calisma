@@ -88,6 +88,7 @@
         string MainPageWorkDone { get; }
         string MainPageMenuReport { get; }
         string MainPageMenuBackup { get; }
+        string MainPageMenuSettings { get; }
         #endregion
         /* MAIN PAGE ENDS */
 
