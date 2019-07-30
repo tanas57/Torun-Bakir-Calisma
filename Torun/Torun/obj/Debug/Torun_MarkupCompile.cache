@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\App.xaml
-191620877468
+21-16917805
 2-1645616557
-401842626079
+42-1679197459
 20-559953294
-MainWindow.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;UControls\UCWeeklyPlanDetail.xaml;UControls\UCWorkDone.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\EditPlan.xaml;Windows\WeeklyPlan\EditPlanChooseDate.xaml;Windows\WeeklyPlan\EditPlanTransferBtn.xaml;Windows\WeeklyPlan\GetDetail.xaml;Windows\WeeklyPlan\MarkCompleted.xaml;Windows\WeeklyPlan\RemovePlan.xaml;Windows\Welcome.xaml;Windows\WorkCompleted\DetailWorkDone.xaml;Windows\WorkCompleted\EditWorkDone.xaml;Windows\WorkCompleted\EditWorkDoneCalendar.xaml;Windows\WorkCompleted\RemoveWorkDone.xaml;
+MainWindow.xaml;UControls\UCReport.xaml;UControls\UCSettings.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;UControls\UCWeeklyPlanDetail.xaml;UControls\UCWorkDone.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\EditPlan.xaml;Windows\WeeklyPlan\EditPlanChooseDate.xaml;Windows\WeeklyPlan\EditPlanTransferBtn.xaml;Windows\WeeklyPlan\GetDetail.xaml;Windows\WeeklyPlan\MarkCompleted.xaml;Windows\WeeklyPlan\RemovePlan.xaml;Windows\Welcome.xaml;Windows\WorkCompleted\DetailWorkDone.xaml;Windows\WorkCompleted\EditWorkDone.xaml;Windows\WorkCompleted\EditWorkDoneCalendar.xaml;Windows\WorkCompleted\RemoveWorkDone.xaml;
 
 False
 

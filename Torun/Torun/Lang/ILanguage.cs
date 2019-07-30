@@ -216,5 +216,11 @@
         string WorkDoneEditFor { get; }
         string WorkDoneEditWorkDescriptionUpdate { get; }
         string WeeklyPlanDetailPlanDate { get; }
+
+        string SettingsGroupMainCount { get; }
+        string SettingsRadioDaily { get; }
+        string SettingsRadioWeekly { get; }
+        string SettingsRadioMonthly { get; }
+        string SettingsRadioBeforeStart { get; }
     }
 }

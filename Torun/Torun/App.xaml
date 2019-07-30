@@ -279,5 +279,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- settings page labels -->
+        <Style TargetType="TextBlock" x:Key="textBlockTitle">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="#FFD41D1D"/>
+            <Setter Property="FontFamily" Value="corbet"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="7"/>
+        </Style>
     </Application.Resources>
 </Application>

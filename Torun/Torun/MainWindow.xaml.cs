@@ -20,7 +20,8 @@ namespace Torun
         public UCWeeklyPlan ucWeeklyPlan;
         public UCWorkDone uCWorkDone;
         public UCWeeklyPlanDetail weeklyPlanDetail;
-        
+        public UCSettings uCSettings;
+
         private bool formLogoutControl = false; // for form closing control, and logout button action
         private int changeCount = 0; // weekly plan change view changes count
         //public users User { get; set; } daha sonra bu şekil değiştir
@@ -175,6 +176,12 @@ namespace Torun
         {
             if (uCWorkDone == null) UserControllCall.Add(Grd_Content, uCWorkDone = new UCWorkDone());
             else UserControllCall.Add(Grd_Content, uCWorkDone);
+        }
+
+        private void MenuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            if (uCSettings == null) UserControllCall.Add(Grd_Content, uCSettings = new UCSettings());
+            else UserControllCall.Add(Grd_Content, uCSettings);
         }
     }
 }

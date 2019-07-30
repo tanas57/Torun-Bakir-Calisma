@@ -98,3 +98,7 @@ C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\WorkCompleted\EditWorkDoneCalendar.baml
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCWeeklyPlanDetail.g.cs
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCWeeklyPlanDetail.baml
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCReport.g.cs
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCSettings.g.cs
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCReport.baml
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCSettings.baml

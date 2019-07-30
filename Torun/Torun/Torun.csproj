@@ -103,6 +103,12 @@
     <Compile Include="Lang\CurrentLanguage.cs" />
     <Compile Include="Lang\ILanguage.cs" />
     <Compile Include="Lang\TR.cs" />
+    <Compile Include="UControls\UCReport.xaml.cs">
+      <DependentUpon>UCReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UControls\UCSettings.xaml.cs">
+      <DependentUpon>UCSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UControls\UCTodoList.xaml.cs">
       <DependentUpon>UCTodoList.xaml</DependentUpon>
     </Compile>
@@ -169,6 +175,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UControls\UCReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControls\UCSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UControls\UCTodoList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

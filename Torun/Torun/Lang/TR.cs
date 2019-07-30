@@ -276,6 +276,16 @@
         public string UCWeeklyPlanCloseDetail => "Haftalık Görünüme Geç";
 
         public string WeeklyPlanDetailPlanDate => "Plandaki Tarih";
+
+        public string SettingsGroupMainCount => "Ana Ekran Talep Sayaç Ayarı";
+
+        public string SettingsRadioDaily => "Günlük";
+
+        public string SettingsRadioWeekly => "Haftalık";
+
+        public string SettingsRadioMonthly => "Aylık";
+
+        public string SettingsRadioBeforeStart => "En baştan beri";
         #endregion
     }
 }

@@ -142,7 +142,7 @@
                         <Label x:Name="mainPage_menuReport" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
-                <Button Height="50" Style="{DynamicResource menuButtons}">
+                <Button x:Name="menuSettings" Click="MenuSettings_Click" Height="50" Style="{DynamicResource menuButtons}">
                     <DockPanel Width="200" Margin="15,0,0,0">
                         <Image Source="/images/icon/settings.png" Width="32"/>
                         <Label x:Name="mainPage_menuSettings" Content="XXX" Foreground="White" FontSize="16"/>
