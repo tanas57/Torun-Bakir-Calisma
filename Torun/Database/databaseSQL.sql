@@ -53,6 +53,13 @@ CREATE TABLE WorkDone(
 	status TINYINT NOT NULL
 );
 
+create table Log(
+	id int IDENTITY(1,1) PRIMARY KEY,
+	log_user INT NOT NULL,
+	error_page VARCHAR(50),
+	error_text TEXT
+);
+
 alter table WorkDone
 add constraint FK_WorkDone_TodoList 
 foreign key  (plan_id) references Plans(id);
