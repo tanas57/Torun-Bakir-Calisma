@@ -76,17 +76,53 @@ namespace Torun.UControls
 
         private void Btn_doComplated_Click(object sender, RoutedEventArgs e)
         {
-
+            if (plan_list.SelectedItem != null)
+            {
+                MarkCompleted markCompleted = new MarkCompleted();
+                markCompleted.Owner = mainWindow;
+                markCompleted.Plan = plan_list.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (markCompleted.ShowDialog() == false)
+                {
+                    mainWindow.UpdateScreens();
+                    plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User, Order);
+                }
+            }
         }
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (plan_list.SelectedItem != null)
+            {
+                EditPlan editPlan = new EditPlan();
+                editPlan.Owner = mainWindow;
+                editPlan.Plan = plan_list.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                editPlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (editPlan.ShowDialog() == false)
+                {
+                    mainWindow.UpdateScreens();
+                    plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User, Order);
+                }
+            }
         }
 
         private void Btn_Remove_Click(object sender, RoutedEventArgs e)
         {
-
+            if (plan_list.SelectedItem != null)
+            {
+                RemovePlan removePlan = new RemovePlan();
+                removePlan.Owner = mainWindow;
+                removePlan.Plan = plan_list.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                removePlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (removePlan.ShowDialog() == false)
+                {
+                    mainWindow.UpdateScreens();
+                    plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User, Order);
+                }
+            }
         }
 
         private void Btn_changeView_Click(object sender, RoutedEventArgs e)
@@ -96,38 +132,37 @@ namespace Torun.UControls
 
         private void Sort_AddTime_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.AddedTimeAsc;
         }
 
         private void Sort_AddTimeDesc_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.AddedTimeDesc;
         }
 
         private void Sort_Priority_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.PriorityAsc;
         }
 
         private void Sort_PriorityDesc_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.PriorityDesc;
         }
 
         private void Sort_NameDesc_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.NameDesc;
         }
 
         private void Sort_NameAsc_Click(object sender, RoutedEventArgs e)
         {
-
+            Order = OrderBy.NameAsc;
         }
 
         private void Plan_list_Loaded(object sender, RoutedEventArgs e)
         {
-            plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User);
-           
+            plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User, Order);
         }
 
     }
