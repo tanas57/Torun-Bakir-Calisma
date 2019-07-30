@@ -5,13 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Torun.Lang;
+using Torun.Classes;
+using Torun.Database;
 
 namespace Torun.UControls
 {
@@ -21,14 +17,20 @@ namespace Torun.UControls
     public partial class UCWeeklyPlanDetail : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+        private DB DB { get; set; }
+        private ILanguage Lang { get; set; }
+        private User User { get; set; }
         public UCWeeklyPlanDetail()
         {
             InitializeComponent();
+            DB = mainWindow.DB;
+            Lang = mainWindow.Lang;
+            User = mainWindow.User;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            btn_changeView.Content = mainWindow.Lang.UCWeeklyPlanCloseDetail;
+            btn_changeView.Content = Lang.UCWeeklyPlanCloseDetail;
             txt_GetDetail.Text = mainWindow.Lang.UCWeeklyPlanButtonGetDetail;
             txt_MarkCompleted.Text = mainWindow.Lang.UCWeeklyPlanButtonDoCompleted;
             txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
@@ -104,6 +106,11 @@ namespace Torun.UControls
         private void Sort_NameAsc_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Plan_list_Loaded(object sender, RoutedEventArgs e)
+        {
+            plan_list.ItemsSource = DB.GetWeeklyPlanDetail(User);
         }
     }
 }

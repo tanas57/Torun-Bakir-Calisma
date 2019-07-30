@@ -60,52 +60,13 @@
                     <!-- req_id, req_number, plan_id, plan_date-->
                     <DataGrid x:Name="plan_list" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
-                              CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False" Loaded="Grid_todoList_Loaded"
-                              
-                              >
+                              CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False" Loaded="Plan_list_Loaded">
                         <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                            <DataGridTemplateColumn Header="XXX" x:Name="ucTodolist_Processes">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <DockPanel>
-                                            <Button x:Name="btn_requestSchedule" Click="Btn_requestSchedule_Click" Style="{DynamicResource gridButtons}">
-                                                <DockPanel>
-                                                    <Image Source="/images/screen/main/schedule.png" Width="19"/>
-                                                    <Label Content="Zamanla"/>
-                                                </DockPanel>
-                                            </Button>
-                                            <Button x:Name="btn_requestEdit" Click="Btn_requestEdit_Click" Style="{DynamicResource gridButtons}">
-                                                <DockPanel>
-                                                    <Image Source="/images/screen/main/edit.png" Width="19"/>
-                                                    <Label Content="Düzenle"/>
-                                                </DockPanel>
-                                            </Button>
-                                            <Button x:Name="btn_requestDelete" Style="{DynamicResource gridButtons}" Click="Btn_requestDelete_Click">
-                                                <DockPanel>
-                                                    <Image Source="/images/screen/main/delete.png" Width="19"/>
-                                                    <Label Content="Sil"/>
-                                                </DockPanel>
-                                            </Button>
-                                        </DockPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn x:Name="ucTodolist_requestNumber" CanUserReorder="False" Binding="{Binding Path=request_number}" IsReadOnly="True" Header="XXX" MinWidth="60">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <EventSetter Event="MouseDoubleClick" Handler="DataGridRequestNumber_MouseDoubleClick"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn x:Name="ucTodolist_Priority" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
-                            <DataGridTextColumn x:Name="ucTodolist_Description" Binding="{Binding Path=description}" CanUserSort="False" IsReadOnly="True" Header="XXX" Width="430">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <EventSetter Event="MouseDoubleClick" x:Name="DatagridDescription" Handler="DataGridCell_MouseDoubleClick"/>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
+                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="" MaxWidth="0"/>
+                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="" MaxWidth="0"/>
+                            <DataGridTextColumn x:Name="list_requestNumber" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="60"/>
+                            <DataGridTextColumn x:Name="list_priority" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
+                            <DataGridTextColumn x:Name="list_planDate" CanUserReorder="False" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

@@ -4,17 +4,61 @@ using System.Data;
 using System.Data.Entity;
 using System;
 using Torun.Classes;
+using Torun.Lang;
 
 namespace Torun.Database
 {
     public class DB
     {
         private readonly plan_tracerDBEntities db;
+        public DB()
+        {
+            db = new plan_tracerDBEntities();
+        }
         public class WeeklyPlan
         {
             public int PlanID { get; set; }
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
+        }
+        public class WeeklyPlanDetail
+        {
+            public ILanguage Lang => CurrentLanguage.Language;
+            private int priorities;
+            public int WorkID { get; set; }
+            public string RequestNumber { get; set; }
+            public int PlanID { get; set; }
+            public DateTime PlanDate { get; set; }
+            public string PriorityString { get; set; }
+            public int Prioritiy
+            {
+                get
+                {
+                    return priorities;
+                }
+                set
+                {
+                    priorities = (byte)value;
+                    switch (value)
+                    {
+                        case (int)PriorityType.Low:
+                            PriorityString = Lang.ComboboxPriorityLow;
+                            break;
+                        case (int)PriorityType.Normal:
+                            PriorityString = Lang.ComboboxPriorityNormal;
+                            break;
+                        case (int)PriorityType.High:
+                            PriorityString = Lang.ComboboxPriorityHigh;
+                            break;
+                        case (int)PriorityType.Urgent:
+                            PriorityString = Lang.ComboboxPriorityUrgent;
+                            break;
+                        case (int)PriorityType.Project:
+                            PriorityString = Lang.ComboboxPriorityProject;
+                            break;
+                    }
+                }
+            }
         }
         public class WorkDoneList
         {
@@ -22,9 +66,20 @@ namespace Torun.Database
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
         }
-        public DB()
+        public List<WeeklyPlanDetail> GetWeeklyPlanDetail(User user)
         {
-            db = new plan_tracerDBEntities();
+            var result = from plans in db.Plans
+                         join work in db.TodoLists on plans.work_id equals work.id
+                         where work.status != 1 && work.user_id == user.id
+                         select new WeeklyPlanDetail
+                         {
+                             WorkID = work.id,
+                             RequestNumber = work.request_number,
+                             PlanID = plans.id,
+                             PlanDate = plans.work_plan_time,
+                             Prioritiy = work.priority
+                         };
+            return result.ToList();
         }
         public WorkDone GetWorkDoneByID(int id) => db.WorkDones.SingleOrDefault(x => x.id == id);
         public List<WorkDone> GetWorkdoneByID(int work_id)
