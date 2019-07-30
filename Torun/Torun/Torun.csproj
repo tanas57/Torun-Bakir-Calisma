@@ -148,6 +148,9 @@
     <Compile Include="Windows\WorkCompleted\EditWorkDone.xaml.cs">
       <DependentUpon>EditWorkDone.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WorkCompleted\EditWorkDoneCalendar.xaml.cs">
+      <DependentUpon>EditWorkDoneCalendar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WorkCompleted\RemoveWorkDone.xaml.cs">
       <DependentUpon>RemoveWorkDone.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\WorkCompleted\EditWorkDone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WorkCompleted\EditWorkDoneCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

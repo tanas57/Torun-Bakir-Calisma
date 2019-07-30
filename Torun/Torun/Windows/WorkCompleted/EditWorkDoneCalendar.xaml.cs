@@ -24,6 +24,7 @@ namespace Torun.Windows.WorkCompleted
         public EditWorkDoneCalendar()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)this.Owner;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -67,7 +67,7 @@ namespace Torun.Windows.WorkCompleted
             req_Priority.SelectedIndex = todoList.priority;
             req_Description.Text = todoList.description;
 
-            PlanListUpdate();
+            WorkDoneListUpdate();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -89,7 +89,7 @@ namespace Torun.Windows.WorkCompleted
         {
             
         }
-        private void PlanListUpdate()
+        private void WorkDoneListUpdate()
         {
             list_workdone.Items.Clear();
             works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
@@ -122,7 +122,7 @@ namespace Torun.Windows.WorkCompleted
                     //result.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddDates;
                     //result.Background = System.Windows.Media.Brushes.Green;
 
-                    PlanListUpdate();
+                    WorkDoneListUpdate();
                 }
             }
         }

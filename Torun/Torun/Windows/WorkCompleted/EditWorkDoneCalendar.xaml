@@ -30,7 +30,7 @@
         <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
                 <Label x:Name="dateChoosetxt" Content="XXX" HorizontalAlignment="Center"/>
-                <Calendar IsTodayHighlighted="False" SelectedDatesChanged="Calendar_SelectedDatesChanged" x:Name="calendar" SelectionMode="MultipleRange"/>
+                <Calendar IsTodayHighlighted="False" SelectedDatesChanged="Calendar_SelectedDatesChanged" x:Name="calendar" SelectionMode="SingleDate"/>
                 <Button Click="Save_Click" IsEnabled="False" x:Name="save" Content="XXX" Style="{DynamicResource planEditButtons}"/>
             </StackPanel>
         </Border>
