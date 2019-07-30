@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Torun.Windows.WeeklyPlan;
 using Torun.Lang;
 using Torun.Classes;
 using Torun.Database;
@@ -20,6 +21,7 @@ namespace Torun.UControls
         private DB DB { get; set; }
         private ILanguage Lang { get; set; }
         private User User { get; set; }
+        private OrderBy Order { get; set; }
         public UCWeeklyPlanDetail()
         {
             InitializeComponent();
@@ -31,31 +33,45 @@ namespace Torun.UControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             btn_changeView.Content = Lang.UCWeeklyPlanCloseDetail;
-            txt_GetDetail.Text = mainWindow.Lang.UCWeeklyPlanButtonGetDetail;
-            txt_MarkCompleted.Text = mainWindow.Lang.UCWeeklyPlanButtonDoCompleted;
-            txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
-            txt_Edit.Text = mainWindow.Lang.UCWeeklyPlanButtonEdit;
+            txt_GetDetail.Text = Lang.UCWeeklyPlanButtonGetDetail;
+            txt_MarkCompleted.Text = Lang.UCWeeklyPlanButtonDoCompleted;
+            txt_RemovePlan.Text = Lang.UCWeeklyPlanButtonRemove;
+            txt_Edit.Text = Lang.UCWeeklyPlanButtonEdit;
 
             UserControl_SizeChanged(sender, null);
 
-            sort_lbl.Content = mainWindow.Lang.WeeklyPlanSortLbl;
-            sort_AddTime.Content = mainWindow.Lang.WeeklyPlanSortAddTime;
-            sort_AddTimeDesc.Content = mainWindow.Lang.WeeklyPlanSortAddTimeDesc;
-            sort_Priority.Content = mainWindow.Lang.WeeklyPlanSortPriorityAsc;
-            sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
-            sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
-            sort_NameAsc.Content = mainWindow.Lang.WeeklyPlanSortNameAsc;
-            btn_changeView.Content = mainWindow.Lang.UCWeeklyPlanOpenDetail;
+            sort_lbl.Content = Lang.WeeklyPlanSortLbl;
+            sort_AddTime.Content = Lang.WeeklyPlanSortAddTime;
+            sort_AddTimeDesc.Content = Lang.WeeklyPlanSortAddTimeDesc;
+            sort_Priority.Content = Lang.WeeklyPlanSortPriorityAsc;
+            sort_PriorityDesc.Content = Lang.WeeklyPlanSortPriorityDesc;
+            sort_NameDesc.Content = Lang.WeeklyPlanSortNameDesc;
+            sort_NameAsc.Content = Lang.WeeklyPlanSortNameAsc;
+            btn_changeView.Content = Lang.UCWeeklyPlanOpenDetail;
+
+            list_requestNumber.Header = Lang.RequestAddRequestNumber;
+            list_priority.Header = Lang.RequestAddRequestPriority;
+            list_planDate.Header = Lang.WeeklyPlanDetailPlanDate;
+
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-
+            if (mainWindow.WindowState == WindowState.Normal) list_planDate.Width = 600;
+            else list_planDate.Width = (int)SystemParameters.WorkArea.Width - 400;
         }
 
         private void Btn_GetDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            if (plan_list.SelectedItem != null)
+            {
+                GetDetail getDetail = new GetDetail();
+                getDetail.Owner = mainWindow;
+                getDetail.Plan = plan_list.SelectedItem as DB.WeeklyPlan;
+                mainWindow.Opacity = 0.5;
+                getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                getDetail.ShowDialog();
+            }
         }
 
         private void Btn_doComplated_Click(object sender, RoutedEventArgs e)

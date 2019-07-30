@@ -104,7 +104,7 @@ namespace Torun.UControls
             {
                 GetDetail getDetail = new GetDetail();
                 getDetail.Owner = mainWindow;
-                getDetail.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
+                getDetail.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlanDetail;
                 mainWindow.Opacity = 0.5;
                 getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 getDetail.ShowDialog();

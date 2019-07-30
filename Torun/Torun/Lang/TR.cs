@@ -275,7 +275,7 @@
 
         public string UCWeeklyPlanCloseDetail => "Haftalık Görünüme Geç";
 
-
+        public string WeeklyPlanDetailPlanDate => "Plandaki Tarih";
         #endregion
     }
 }

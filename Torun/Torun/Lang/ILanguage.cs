@@ -215,5 +215,6 @@
         string WorkDoneEditWorkNotSelected { get; }
         string WorkDoneEditFor { get; }
         string WorkDoneEditWorkDescriptionUpdate { get; }
+        string WeeklyPlanDetailPlanDate { get; }
     }
 }

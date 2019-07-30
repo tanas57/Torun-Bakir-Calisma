@@ -15,19 +15,17 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
+        
         public class WeeklyPlan
         {
             public int PlanID { get; set; }
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
         }
-        public class WeeklyPlanDetail
+        public class WeeklyPlanDetail : WeeklyPlan
         {
             public ILanguage Lang => CurrentLanguage.Language;
             private int priorities;
-            public int WorkID { get; set; }
-            public string RequestNumber { get; set; }
-            public int PlanID { get; set; }
             public DateTime PlanDate { get; set; }
             public string PriorityString { get; set; }
             public int Prioritiy
