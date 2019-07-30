@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Torun.Lang;
 
 namespace Torun.Windows.WorkCompleted
 {
@@ -19,17 +13,17 @@ namespace Torun.Windows.WorkCompleted
     /// </summary>
     public partial class EditWorkDoneCalendar : Window
     {
-        public MainWindow mainWindow; EditWorkDone editWorkDone;
+        private EditWorkDone editWorkDone;
+        private ILanguage Lang { get; set; }
         public List<DateTime> SelectedDates { get; set; }
         public EditWorkDoneCalendar()
         {
             InitializeComponent();
-            mainWindow = (MainWindow)this.Owner;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            mainWindow.Opacity = 1;
+            editWorkDone.Opacity = 1;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -40,10 +34,12 @@ namespace Torun.Windows.WorkCompleted
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             editWorkDone = (EditWorkDone)this.Owner;
-            Title = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
-            calendarTitle.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
-            dateChoosetxt.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddLabel;
-            save.Content = mainWindow.Lang.ButtonSave;
+            Lang = CurrentLanguage.Language;
+
+            Title = Lang.WeeklyEditPlanCalendarAddTitle;
+            calendarTitle.Content = Lang.WeeklyEditPlanCalendarAddTitle;
+            dateChoosetxt.Content = Lang.WeeklyEditPlanCalendarAddLabel;
+            save.Content = Lang.ButtonTransfer;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -59,7 +55,7 @@ namespace Torun.Windows.WorkCompleted
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            editWorkDone.SelectedDates = calendar.SelectedDates.ToList();
+            editWorkDone.SelectedDate = calendar.SelectedDate.Value;
             this.Close();
         }
     }

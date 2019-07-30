@@ -209,5 +209,7 @@
         string WorkDoneEditChoosenWorkDescription { get; }
         string WorkDoneEditWorkLabel { get; }
         string WorkDoneEditRequestSaveButton { get; }
+        string WorkDoneEditWorkNotSelected { get; }
+        string WorkDoneEditFor { get; }
     }
 }

@@ -59,6 +59,16 @@ namespace Torun.Database
             if (result.Count() == 1) return true;
             else return false;
         }
+        public bool IsWorkDoneExists(DateTime dateTime, int work_id)
+        {
+            var result = from work in db.WorkDones
+                         join plans in db.Plans on work.plan_id equals plans.id
+                         join todo in db.TodoLists on plans.work_id equals todo.id
+                         where todo.id == work_id && work.workDoneTime == dateTime.Date
+                         select work;
+            if (result.Count() == 1) return true;
+            else return false;
+        }
         public List<Plan> PlanToCalendar(int work_id, bool withoutCompleted = false)
         {
             if (withoutCompleted == false) // all plans list
@@ -82,6 +92,15 @@ namespace Torun.Database
             if (!db.Plans.Any(x => x.id == plan.id)) return 0;
             db.Plans.Attach(plan);
             db.Entry(plan).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return 1;
+        }
+        public byte EditWorkDone(WorkDone workDone)
+        {
+            if (!db.WorkDones.Any(x => x.id == workDone.id)) return 0;
+            db.WorkDones.Attach(workDone);
+            db.Entry(workDone).State = EntityState.Modified;
             db.SaveChanges();
 
             return 1;

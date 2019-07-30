@@ -8,12 +8,12 @@
         Loaded="Window_Loaded" Closing="Window_Closing"
         ResizeMode="NoResize" MouseDown="Window_MouseDown"
         WindowStartupLocation="CenterOwner" WindowStyle="None"
-        Title="GetDetail" Height="479.333" Width="680" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
-    <Grid Background="WhiteSmoke" Height="495" VerticalAlignment="Top">
+        Title="GetDetail" Height="510" Width="680" BorderBrush="#B0151E" BorderThickness="0,0,0,5">
+    <Grid Background="WhiteSmoke" Height="510" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="250"></RowDefinition>
-            <RowDefinition Height="190"/>
+            <RowDefinition Height="210"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
             <Grid>
@@ -57,7 +57,7 @@
                                         <TextBox TextWrapping="Wrap" Height="90" x:Name="req_Description" Width="222"/>
                                     </TextBlock>
                                 </DockPanel>
-                                <Button x:Name="request_save" HorizontalAlignment="Right" Margin="0,5,0,0" Width="130" Height="30" Content="XXX" Style="{DynamicResource planEditButtons}"></Button>
+                                <Button x:Name="request_save" Click="Request_save_Click" HorizontalAlignment="Right" Margin="0,5,0,0" Width="130" Height="30" Content="XXX" Style="{DynamicResource planEditButtons}"></Button>
                             </ItemsControl>
                         </GroupBox>
 
@@ -75,7 +75,7 @@
                                 <Border Margin="0,7,0,0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <StackPanel>
                                         <TextBlock Text="XXX" x:Name="listWorkdoneLbl"/>
-                                        <ListBox x:Name="list_workdone" Width="200" Height="190"/>
+                                        <ListBox SelectionChanged="List_workdone_SelectionChanged" x:Name="list_workdone" Width="200" Height="190"/>
                                     </StackPanel>
                                 </Border>
                                 <Border Margin="0,7,0,0" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -99,6 +99,7 @@
                     <TextBox Margin="5" Padding="3" x:Name="dbDescription" Width="525" Height="150" TextWrapping="Wrap"/>
                     <Button Width="138" Height="35" x:Name="workDoneDescriptionSave" Click="WorkDoneDescriptionSave_Click" Content="XXX" Style="{DynamicResource planEditButtons}"/>
                 </DockPanel>
+                <Label Margin="6,0,0,0" x:Name="result" Content="XXX" FontFamily="corbet" FontSize="14" Foreground="White"/>
             </StackPanel>
 
         </Border>

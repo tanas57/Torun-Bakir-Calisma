@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Lang;
+using System.Windows.Media;
 
 namespace Torun.Windows.WorkCompleted
 {
@@ -25,7 +18,7 @@ namespace Torun.Windows.WorkCompleted
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private TodoList todoList; // current request
         private List<WorkDone> works; // current plans
-        public List<DateTime> SelectedDates { get; set; }
+        public DateTime SelectedDate { get; set; }
         public DB.WorkDoneList Work { get; set; }
         private ILanguage Lang { get; set; }
         private DB DB { get; set; }
@@ -87,7 +80,7 @@ namespace Torun.Windows.WorkCompleted
 
         private void WorkDone_remove_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
         private void WorkDoneListUpdate()
         {
@@ -101,29 +94,49 @@ namespace Torun.Windows.WorkCompleted
         }
         private void WorkDone_transfer_Click(object sender, RoutedEventArgs e)
         {
-            EditWorkDone editWorkDone = new EditWorkDone();
-            editWorkDone.Owner = this;
-            editWorkDone.mainWindow = mainWindow;
-            this.Opacity = 0.5;
-            if (editWorkDone.ShowDialog() == false)
+            result.Visibility = Visibility.Visible;
+            if (list_workdone.SelectedIndex >= 0)
             {
-                if (SelectedDates != null && SelectedDates.Count > 0)
+                try
                 {
-                    foreach (var item in SelectedDates)
+                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                    int plan_id = int.Parse(arr[1].Trim());
+                    if (arr.Length > 2)
                     {
-                        if (!mainWindow.DB.IsPlanExists(item.Date, todoList.id)) // for the choosen date is found in database, must not add again
+                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                        result.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        EditWorkDoneCalendar editWorkDone = new EditWorkDoneCalendar();
+                        editWorkDone.Owner = this;
+                        this.Opacity = 0.5;
+                        if (editWorkDone.ShowDialog() == false)
                         {
-                            Plan plan = new Plan();
-                            plan.add_time = DateTime.Now; plan.work_id = todoList.id;
-                            plan.work_plan_time = item.Date; plan.status = 0;
-                            mainWindow.DB.AddPlanDates(plan);
+                            if (SelectedDate != null)
+                            {
+                                if (!DB.IsWorkDoneExists(SelectedDate.Date, todoList.id)) // if there is no selected date in database
+                                {
+                                    WorkDone work = DB.GetWorkDoneByID(plan_id);
+                                    work.workDoneTime = SelectedDate.Date;
+                                    DB.EditWorkDone(work);
+                                }
+
+                                result.Content = mainWindow.Lang.WeeklyEditPlanTransfered;
+                                result.Background = Brushes.Green;
+
+                                WorkDoneListUpdate();
+                                mainWindow.UpdateScreens();
+                            }
                         }
                     }
-                    //result.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddDates;
-                    //result.Background = System.Windows.Media.Brushes.Green;
-
-                    WorkDoneListUpdate();
                 }
+                catch (Exception) { }
+            }
+            else
+            {
+                result.Background = Brushes.Red;
+                result.Content = Lang.WorkDoneEditWorkNotSelected;
             }
         }
 
@@ -135,6 +148,59 @@ namespace Torun.Windows.WorkCompleted
         private void Lbl_reqDescription_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show(todoList.description, mainWindow.Lang.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void Request_save_Click(object sender, RoutedEventArgs e)
+        {
+            todoList.priority = (byte)req_Priority.SelectedIndex;
+            todoList.description = req_Description.Text;
+
+            todoList.request_number = req_Number.Text.ToUpper();
+            result.Visibility = Visibility.Visible;
+            if (req_Priority.SelectedIndex == -1)
+            {
+                result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
+                result.Background = Brushes.Red;
+            }
+            else if (req_Description.Text == String.Empty)
+            {
+                result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
+                result.Background = Brushes.Red;
+            }
+            else if (req_Number.Text.Length < 1)
+            {
+                result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
+                result.Background = Brushes.Red;
+            }
+            else
+            {
+                if (DB.EditTodoList(todoList) == 0)
+                {
+                    result.Content = mainWindow.Lang.RequestEditLabelSaveNO;
+                    result.Background = Brushes.Red;
+                }
+                else
+                {
+                    result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
+                    result.Background = Brushes.Green;
+                    mainWindow.UpdateScreens();
+                }
+            }
+        }
+
+        private void List_workdone_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (list_workdone.SelectedIndex >= 0)
+            {
+                try
+                {
+                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                    string work_date = arr[0].Trim();
+
+                    getDetailDescription.Text = work_date + " " + Lang.WorkDoneEditFor + " " + Lang.WorkDoneEditChoosenWorkDescription;
+                }
+                catch (Exception) { }
+            }
         }
     }
 }

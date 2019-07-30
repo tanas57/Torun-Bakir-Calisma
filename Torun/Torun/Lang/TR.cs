@@ -264,6 +264,10 @@
 
         public string WorkDoneEditRequestSaveButton => "Talep Bilgisini Kaydet";
 
+        public string WorkDoneEditWorkNotSelected => "İşlem için herhangi bir iş seçilmeli";
+
+        public string WorkDoneEditFor => "için";
+
         #endregion
     }
 }
