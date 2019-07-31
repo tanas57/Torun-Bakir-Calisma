@@ -14,25 +14,44 @@
         <Border Grid.Column="0">
             <StackPanel>
                 <TextBlock x:Name="titleMainCount" Text="XXX" Style="{DynamicResource textBlockTitle}"/>
-                <GroupBox x:Name="groupMainCount" Header="XXX" Padding="20">
+                <GroupBox x:Name="groupMainCount" Header="XXX" Padding="7,20,7,20">
                     <ItemsControl>
                         <StackPanel>
                             <DockPanel>
-                                <RadioButton Style="{DynamicResource completedRadios}" x:Name="radioDaily" GroupName="mainCount" Content="XXX" />
-                                <RadioButton Style="{DynamicResource completedRadios}" x:Name="radioWeekly" GroupName="mainCount" Content="XXX" />
-                            </DockPanel>
-                            <DockPanel>
-                                <RadioButton Style="{DynamicResource completedRadios}" x:Name="radioMonthly" GroupName="mainCount" Content="XXX" />
-                                <RadioButton Style="{DynamicResource completedRadios}"  x:Name="radioBeforeStart" GroupName="mainCount" Content="XXX" />
+                                <RadioButton IsChecked="True" Style="{DynamicResource radioButtonSettings}" x:Name="radioDaily" GroupName="mainCount" Content="XXX" Checked="RadioDaily_Checked" />
+                                <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="radioWeekly" GroupName="mainCount" Content="XXX" Checked="RadioWeekly_Checked"/>
+                                <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="radioMonthly" GroupName="mainCount" Content="XXX" Checked="RadioMonthly_Checked" />
+                                <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="radioYearly" GroupName="mainCount" Content="XXX" Checked="RadioYearly_Checked" />
+                                <RadioButton Style="{DynamicResource radioButtonSettings}"  x:Name="radioBeforeStart" GroupName="mainCount" Content="XXX" Checked="RadioBeforeStart_Checked"/>
                             </DockPanel>
                         </StackPanel>
                     </ItemsControl>
                 </GroupBox>
+
+                <StackPanel>
+                    <TextBlock x:Name="titleReport" Text="XXX" Style="{DynamicResource textBlockTitle}"/>
+                    <GroupBox x:Name="groupReport" Header="XXX" Padding="7,20,7,20">
+                        <ItemsControl>
+                            <StackPanel>
+                                <DockPanel>
+                                    <RadioButton IsChecked="True" Style="{DynamicResource radioButtonSettings}" x:Name="radioDailyReport" GroupName="mainCount" Content="XXX" Checked="RadioDailyReport_Checked" />
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="radioWeeklyReport" GroupName="mainCount" Content="XXX" Checked="RadioWeeklyReport_Checked"/>
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="radioMonthlyReport" GroupName="mainCount" Content="XXX" Checked="RadioMonthlyReport_Checked" />
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="radioYearlyReport" GroupName="mainCount" Content="XXX" Checked="RadioYearlyReport_Checked" />
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}"  x:Name="radioBeforeStartReport" GroupName="mainCount" Content="XXX" Checked="RadioBeforeStartReport_Checked"/>
+                                </DockPanel>
+                            </StackPanel>
+                        </ItemsControl>
+                    </GroupBox>
+                </StackPanel>
+
             </StackPanel>
             
         </Border>
         <Border Grid.Column="1">
-
+            <StackPanel>
+                <TextBlock x:Name="titleProfile" Text="XXX" Style="{DynamicResource textBlockTitle}"/>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>

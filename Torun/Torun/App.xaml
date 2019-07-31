@@ -282,10 +282,53 @@
         <!-- settings page labels -->
         <Style TargetType="TextBlock" x:Key="textBlockTitle">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#FFD41D1D"/>
+            <Setter Property="Background" Value="#FFAA0C0C"/>
             <Setter Property="FontFamily" Value="corbet"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Padding" Value="7"/>
+            <Setter Property="Margin" Value="0, 7,0,0"/>
+        </Style>
+        <!-- settings radio buttons -->
+        <Style TargetType="RadioButton" x:Key="radioButtonSettings">
+            <Setter Property="BorderBrush" Value="#FFE8E8E8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FFECECEC"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="0,0,7,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <BulletDecorator>
+                            <BulletDecorator.Bullet>
+                                <Grid Height="20" Width="20">
+                                    <!--Define size of the Bullet-->
+                                    <!--The two borders-->
+                                    <Border Name="RadioOuter" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="2" />
+                                    <Border CornerRadius="0" Margin="4" Name="RadioMark" Background="#FFAA0C0C" Visibility="Hidden" />
+                                </Grid>
+                                
+                            </BulletDecorator.Bullet>
+                            <!--Text element-->
+                            <TextBlock Margin="3,4,0,0" Foreground="#FF3E3E3E" FontFamily="corbet" FontSize="12">
+                                <ContentPresenter />
+                            </TextBlock>
+                        </BulletDecorator>
+                        <!--If item is checked, trigger the visibility of the mark-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--If item is checked, trigger the visibility of the mark
+                                and change the color of the selected bullet into a darker gray for better highlighting-->
+                                <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="RadioOuter" Property="BorderBrush" Value="#FFADADAD" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- profile image style -->
+        <Style TargetType="Image" x:Key="asdasd">
+            
         </Style>
     </Application.Resources>
 </Application>
