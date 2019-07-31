@@ -288,6 +288,7 @@
         public string SettingsRadioBeforeStart => "En baştan beri";
         public string SettingsTitleProfile => "Profil Ayarları";
         public string SettingsTitleReport => "Varsayılan Raporlama Zaman Aralığı";
+        public string SettingsTitleTimeInterval => "Varsayılan Raporlama Tipi";
         public string ReportComboTypeOnlyPlan => "Sadece Yapılacaklar";
         public string ReportComboTypeOnlyWorkDone => "Sadece Tamamlananlar";
         public string ReportComboTypeBothofThem => "İkisi Birlikte";

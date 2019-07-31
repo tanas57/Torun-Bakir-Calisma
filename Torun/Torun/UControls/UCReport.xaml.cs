@@ -38,7 +38,8 @@ namespace Torun.UControls
             timeIntervalSelect.Items.Add(Lang.SettingsRadioYearly);
             timeIntervalSelect.Items.Add(Lang.SettingsRadioBeforeStart);
 
-
+            timeIntervalSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
+            planWorkdoneSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
         }
     }
 }

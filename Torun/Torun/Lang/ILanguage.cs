@@ -225,6 +225,7 @@
         string SettingsRadioBeforeStart { get; }
         string SettingsTitleProfile { get; }
         string SettingsTitleReport { get; }
+        string SettingsTitleTimeInterval { get; }
 
         string ReportLabelPlanWorkdone { get; }
         string ReportLabelTimeInterval { get; }

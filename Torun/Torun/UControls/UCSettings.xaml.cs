@@ -42,6 +42,13 @@ namespace Torun.UControls
             radioMonthlyReport.Content = Lang.SettingsRadioMonthly;
             radioYearlyReport.Content = Lang.SettingsRadioYearly;
             radioBeforeStartReport.Content = Lang.SettingsRadioBeforeStart;
+
+            reportOnlyPlan.Content = Lang.ReportComboTypeOnlyPlan;
+            reportOnlyWorkdone.Content = Lang.ReportComboTypeOnlyWorkDone;
+            reportBoth.Content = Lang.ReportComboTypeBothofThem;
+
+            titleReportType.Content = Lang.SettingsTitleTimeInterval;
+            groupReportType.Header = Lang.SettingsTitleTimeInterval;
         }
 
         private void RadioDaily_Checked(object sender, RoutedEventArgs e)

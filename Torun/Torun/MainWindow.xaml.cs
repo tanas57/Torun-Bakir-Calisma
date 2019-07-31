@@ -37,6 +37,7 @@ namespace Torun
         private void GetSettings()
         {
             Settings.MainRequestCountType = CountType.Daily;
+            Settings.DefaultReportInterval = CountType.Daily;
         }
         public void ChangeViewWeeklyPlan()
         {
