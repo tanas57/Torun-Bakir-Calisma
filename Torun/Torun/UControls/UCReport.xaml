@@ -22,29 +22,31 @@
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
                             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Label Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
-                                <ComboBox x:Name="planWorkdoneSelect" Width="130" Margin="5"/>
-                                <Label Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
+                                <Label x:Name="lblType" Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
+                                <ComboBox x:Name="planWorkdoneSelect" Width="150" Margin="5"/>
+                                <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
                                 <ComboBox x:Name="timeIntervalSelect" Width="100" Margin="5"/>
+                                <Button x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="33"/>
                             </DockPanel>
                         </Border>
                     </Grid>
                 </Border>
                 <!-- to do list-->
                 <Border Grid.Row="1">
-                    <DataGrid x:Name="Grid_todoList" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                    <Grid x:Name="ReportGridPlan">
+                        <DataGrid x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
-                              
                               >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
-
-                            <DataGridTextColumn x:Name="ucTodolist_requestNumber" CanUserReorder="False" Binding="{Binding Path=request_number}" IsReadOnly="True" Header="XXX" MinWidth="60"/>
-                            <DataGridTextColumn x:Name="ucTodolist_Priority" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
-                            
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="Sıra" MaxWidth="35"/>
+                                <DataGridTextColumn x:Name="request_number" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
+                                <DataGridTextColumn x:Name="priority" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="80"/>
+                                <DataGridTextColumn x:Name="plan_date" CanUserReorder="False" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" MinWidth="130"/>
+                                <DataGridTextColumn x:Name="add_date" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="130"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </Border>
             </Grid>
         </Border>

@@ -17,13 +17,16 @@ namespace Torun.UControls
     public partial class UCReport : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        public ILanguage Lang { get; set; }
-        public DB DB { get; set; }
+        private ILanguage Lang { get; set; }
+        private DB DB { get; set; }
+        private CountType CountType { get; set; }
+        private User User { get; set; }
         public UCReport()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
+            User = mainWindow.User;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -40,6 +43,27 @@ namespace Torun.UControls
 
             timeIntervalSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
             planWorkdoneSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
+
+            lblType.Content = Lang.ReportLabelPlanWorkdone;
+            lblTime.Content = Lang.ReportLabelTimeInterval;
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            CountType = (CountType)planWorkdoneSelect.SelectedIndex;
+            if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
+            {
+                ReportGridPlan.Visibility = Visibility.Visible;
+                grid_onlyPlan.ItemsSource = DB.GetPlansForReport(User, CountType);
+            }
+            else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
+            {
+
+            }
+            else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
+            {
+
+            }
         }
     }
 }

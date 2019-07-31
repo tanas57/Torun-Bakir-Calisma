@@ -289,8 +289,8 @@
         public string SettingsTitleProfile => "Profil Ayarları";
         public string SettingsTitleReport => "Varsayılan Raporlama Zaman Aralığı";
         public string SettingsTitleTimeInterval => "Varsayılan Raporlama Tipi";
-        public string ReportComboTypeOnlyPlan => "Sadece Yapılacaklar";
-        public string ReportComboTypeOnlyWorkDone => "Sadece Tamamlananlar";
+        public string ReportComboTypeOnlyPlan => "Sadece Haftalık Plan";
+        public string ReportComboTypeOnlyWorkDone => "Sadece Yapılmış İşler";
         public string ReportComboTypeBothofThem => "İkisi Birlikte";
         public string ReportLabelPlanWorkdone => "Listeleme Tipini Seçin : ";
         public string ReportLabelTimeInterval => "Zaman Aralığını Seçin : ";

@@ -34,4 +34,10 @@
         Yearly = 3,
         FromTheBeginning = 4
     }
+    public enum ReportType
+    {
+        OnlyPlan = 0,
+        OnlyWorkDone = 1,
+        Both = 2
+    }
 }

@@ -64,6 +64,27 @@ namespace Torun.Database
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
         }
+        public List<WeeklyPlanDetail> GetPlansForReport(User user, CountType countType)
+        {
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            DateTime start = dateTimes[0];
+            DateTime end = dateTimes[1];
+
+            var result = from plan in db.Plans
+                         join work in db.TodoLists on plan.work_id equals work.id
+                         where work.user_id == user.id && plan.work_plan_time >= start && plan.work_plan_time <= end
+                         select new WeeklyPlanDetail
+                         {
+                             WorkID = work.id,
+                             PlanID = plan.id,
+                             PlanDate = plan.work_plan_time,
+                             Prioritiy = work.priority,
+                             RequestNumber = work.request_number
+                         };
+
+            return result.ToList();
+
+        }
         public List<WeeklyPlanDetail> GetWeeklyPlanDetail(User user, OrderBy order)
         {
             switch (order)
