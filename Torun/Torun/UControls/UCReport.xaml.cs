@@ -28,7 +28,17 @@ namespace Torun.UControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            planWorkdoneSelect.Items.Add(Lang.ReportComboTypeOnlyPlan);
+            planWorkdoneSelect.Items.Add(Lang.ReportComboTypeOnlyWorkDone);
+            planWorkdoneSelect.Items.Add(Lang.ReportComboTypeBothofThem);
+
+            timeIntervalSelect.Items.Add(Lang.SettingsRadioDaily);
+            timeIntervalSelect.Items.Add(Lang.SettingsRadioWeekly);
+            timeIntervalSelect.Items.Add(Lang.SettingsRadioMonthly);
+            timeIntervalSelect.Items.Add(Lang.SettingsRadioYearly);
+            timeIntervalSelect.Items.Add(Lang.SettingsRadioBeforeStart);
+
+
         }
     }
 }

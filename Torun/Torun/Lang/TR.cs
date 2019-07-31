@@ -288,6 +288,11 @@
         public string SettingsRadioBeforeStart => "En baştan beri";
         public string SettingsTitleProfile => "Profil Ayarları";
         public string SettingsTitleReport => "Varsayılan Raporlama Zaman Aralığı";
+        public string ReportComboTypeOnlyPlan => "Sadece Yapılacaklar";
+        public string ReportComboTypeOnlyWorkDone => "Sadece Tamamlananlar";
+        public string ReportComboTypeBothofThem => "İkisi Birlikte";
+        public string ReportLabelPlanWorkdone => "Listeleme Tipini Seçin : ";
+        public string ReportLabelTimeInterval => "Zaman Aralığını Seçin : ";
         #endregion
     }
 }
