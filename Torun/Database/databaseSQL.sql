@@ -53,11 +53,21 @@ CREATE TABLE WorkDone(
 	status TINYINT NOT NULL
 );
 
-create table Log(
-	id int IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE Log(
+	id INT IDENTITY(1,1) PRIMARY KEY,
 	log_user INT NOT NULL,
 	error_page VARCHAR(50),
 	error_text TEXT
+);
+
+CREATE TABLE Settings(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	set_countType TINYINT NOT NULL DEFAULT 4, -- 4 : FROM THE BEGINNING
+	set_autoOpen BIT NOT NULL DEFAULT 0,
+	set_autoBackup BIT NOT NULL DEFAULT 0,
+	set_backupTimeInterval TINYINT NOT NULL DEFAULT 1, -- 1 : WEEKLY
+	set_defaultReportInterval TINYINT NOT NULL DEFAULT 2, -- 2 : MONTHLY
 );
 
 alter table WorkDone

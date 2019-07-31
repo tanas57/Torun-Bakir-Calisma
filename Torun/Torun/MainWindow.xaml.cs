@@ -28,10 +28,14 @@ namespace Torun
         public User User { get; set; }
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
-        public CountType CountOrder { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+            GetSettings();
+        }
+        private void GetSettings()
+        {
+            Settings.MainRequestCountType = CountType.Daily;
         }
         public void ChangeViewWeeklyPlan()
         {
@@ -49,9 +53,9 @@ namespace Torun
         }
         public void UpdateScreens()
         {
-            requestCount.Content = DB.GetRequestCount(1, User, CountOrder); // load count of all request
-            requestOpen.Content = DB.GetRequestCount(2, User, CountOrder);  // load count of currently open requests
-            requestClosed.Content = DB.GetRequestCount(3, User, CountOrder);// load count of closed request until today
+            requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
+            requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
+            requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today
             if(uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = DB.GetTodoLists(User);
             if (ucWeeklyPlan != null)
             {
@@ -93,12 +97,11 @@ namespace Torun
             // set maximum screen size
             this.MaxWidth = SystemParameters.PrimaryScreenWidth;
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
-            this.CountOrder = CountType.Montly; // default count order
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             User = DB.GetUserDetail(User);
-            requestCount.Content = DB.GetRequestCount(1, User, CountOrder); // load count of all request
-            requestOpen.Content = DB.GetRequestCount(2, User, CountOrder);  // load count of currently open requests
-            requestClosed.Content = DB.GetRequestCount(3, User, CountOrder);// load count of closed request until today
+            requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
+            requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
+            requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today
             menuUsername.Content = User.firstname + " " + User.lastname;
 
             if (FileOperation.isProfileExists())

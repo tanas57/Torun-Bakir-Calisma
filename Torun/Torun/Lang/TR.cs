@@ -284,8 +284,10 @@
         public string SettingsRadioWeekly => "Haftalık";
 
         public string SettingsRadioMonthly => "Aylık";
-
+        public string SettingsRadioYearly => "Yıllık";
         public string SettingsRadioBeforeStart => "En baştan beri";
+        public string SettingsTitleProfile => "Profil Ayarları";
+        public string SettingsTitleReport => "Varsayılan Raporlama Zaman Aralığı";
         #endregion
     }
 }

@@ -221,6 +221,9 @@
         string SettingsRadioDaily { get; }
         string SettingsRadioWeekly { get; }
         string SettingsRadioMonthly { get; }
+        string SettingsRadioYearly { get; }
         string SettingsRadioBeforeStart { get; }
+        string SettingsTitleProfile { get; }
+        string SettingsTitleReport { get; }
     }
 }
