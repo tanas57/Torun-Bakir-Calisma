@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0">
             <StackPanel>
-                <TextBlock x:Name="titleMainCount" Text="XXX" Style="{DynamicResource textBlockTitle}"/>
+                <Label x:Name="titleMainCount" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
                 <GroupBox x:Name="groupMainCount" Header="XXX" Padding="7,20,7,20">
                     <ItemsControl>
                         <StackPanel>
@@ -29,7 +29,7 @@
                 </GroupBox>
 
                 <StackPanel>
-                    <TextBlock x:Name="titleReport" Text="XXX" Style="{DynamicResource textBlockTitle}"/>
+                    <Label x:Name="titleReport" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
                     <GroupBox x:Name="groupReport" Header="XXX" Padding="7,20,7,20">
                         <ItemsControl>
                             <StackPanel>
@@ -50,7 +50,7 @@
         </Border>
         <Border Grid.Column="1">
             <StackPanel>
-                <TextBlock x:Name="titleProfile" Text="XXX" Style="{DynamicResource textBlockTitle}"/>
+                <Label x:Name="titleProfile" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
             </StackPanel>
         </Border>
     </Grid>

@@ -280,13 +280,15 @@
             </Setter>
         </Style>
         <!-- settings page labels -->
-        <Style TargetType="TextBlock" x:Key="textBlockTitle">
+        <Style TargetType="Label" x:Key="textBlockTitle">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="#FFAA0C0C"/>
             <Setter Property="FontFamily" Value="corbet"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Padding" Value="7"/>
             <Setter Property="Margin" Value="0, 7,0,0"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="5,0,0,0"/>
         </Style>
         <!-- settings radio buttons -->
         <Style TargetType="RadioButton" x:Key="radioButtonSettings">

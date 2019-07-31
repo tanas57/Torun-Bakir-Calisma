@@ -25,9 +25,9 @@ namespace Torun.UControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            titleMainCount.Text = Lang.SettingsGroupMainCount;
-            titleProfile.Text = Lang.SettingsTitleProfile;
-            titleReport.Text = Lang.SettingsTitleReport;
+            titleMainCount.Content = Lang.SettingsGroupMainCount;
+            titleProfile.Content = Lang.SettingsTitleProfile;
+            titleReport.Content = Lang.SettingsTitleReport;
 
             groupMainCount.Header = Lang.SettingsGroupMainCount;
             radioDaily.Content = Lang.SettingsRadioDaily;

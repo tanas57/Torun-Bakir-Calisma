@@ -53,12 +53,20 @@ CREATE TABLE WorkDone(
 	status TINYINT NOT NULL
 );
 
+alter table WorkDone
+add constraint FK_WorkDone_TodoList 
+foreign key  (plan_id) references Plans(id);
+
 CREATE TABLE Log(
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	log_user INT NOT NULL,
 	error_page VARCHAR(50),
 	error_text TEXT
 );
+
+alter table Log
+add constraint FK_Log_Users
+foreign key  (log_user) references Users(id);
 
 CREATE TABLE Settings(
 	id INT IDENTITY(1,1) PRIMARY KEY,
@@ -70,14 +78,6 @@ CREATE TABLE Settings(
 	set_defaultReportInterval TINYINT NOT NULL DEFAULT 2, -- 2 : MONTHLY
 );
 
-alter table WorkDone
-add constraint FK_WorkDone_TodoList 
-foreign key  (plan_id) references Plans(id);
-
-insert into Users (firstname, lastname, user_name, password, pc_name, last_login, login_status, user_status, register_date) values ('M.Tayyip', 'Muslu', 'tanas57', '68053af2923e00204c3ca7c6a3150cf7', 'MusluNET', '2019-07-08', 0, 1,'2019-07-08');
-
-insert into TodoList(request_number, priority, description, user_id, add_time, status)
-values('2900', 2, 'Talep açıklaması gelecek', 1, '2019-07-07', 1);
-
-insert into TodoList(request_number, priority, description, user_id, add_time, status)
-values('2905', 2, 'Talep açıklaması gelecek', 1, '2019-07-29', 1);
+alter table Settings
+add constraint FK_Settings_Users
+foreign key  (user_id) references Users(id);
