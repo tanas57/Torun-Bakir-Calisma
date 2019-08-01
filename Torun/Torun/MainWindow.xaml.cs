@@ -39,7 +39,7 @@ namespace Torun
             Settings.MainRequestCountType = CountType.Daily;
             Settings.DefaultReportInterval = CountType.Daily;
             Settings.DefaultReportInterval = CountType.Weekly;
-            Settings.DefaultReportListType = ReportType.OnlyWorkDone;
+            Settings.DefaultReportListType = ReportType.Both;
         }
         public void ChangeViewWeeklyPlan()
         {

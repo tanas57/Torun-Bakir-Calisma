@@ -45,7 +45,7 @@ namespace Torun.UControls
             timeIntervalSelect.Items.Add(Lang.SettingsRadioBeforeStart);
 
             timeIntervalSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
-            planWorkdoneSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
+            planWorkdoneSelect.SelectedIndex = (int)Settings.DefaultReportListType;
 
             lblType.Content = Lang.ReportLabelPlanWorkdone;
             lblTime.Content = Lang.ReportLabelTimeInterval;

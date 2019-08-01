@@ -89,7 +89,7 @@ namespace Torun.Database
             var wDone = from done in db.WorkDones
                        join plan in db.Plans on done.plan_id equals plan.id
                         join work in db.TodoLists on plan.id equals work.id
-                        where work.user_id == user.id && (done.workDoneTime >= start && done.workDoneTime <= end)
+                        where work.user_id == user.id && (done.workDoneTime >= start && end <= done.workDoneTime)
                         select new WorkDoneandPlans
                         {
                             RequestNumber = work.request_number,
@@ -97,10 +97,7 @@ namespace Torun.Database
                             PlanDate = plan.work_plan_time,
                             WorkDoneDate = done.workDoneTime
                         };
-            List<WorkDoneandPlans> combine = new List<WorkDoneandPlans>();
-            combine.AddRange(plans.ToList());
-            combine.AddRange(wDone.ToList());
-            return combine;
+            return plans.ToList();
 
         }
         public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType)
@@ -112,7 +109,7 @@ namespace Torun.Database
             var result = from done in db.WorkDones
                          join plan in db.Plans on done.plan_id equals plan.id
                          join work in db.TodoLists on plan.work_id equals work.id
-                         where work.user_id == user.id && done.workDoneTime >= start && done.workDoneTime <= end
+                         where work.user_id == user.id && done.workDoneTime >= start && end <= done.workDoneTime
                          select new WorkDoneList
                          {
                              WorkDoneID = done.id,
@@ -131,7 +128,7 @@ namespace Torun.Database
 
             var result = from plan in db.Plans
                          join work in db.TodoLists on plan.work_id equals work.id
-                         where work.user_id == user.id && plan.work_plan_time >= start && plan.work_plan_time <= end
+                         where work.user_id == user.id && plan.work_plan_time >= start && end <= plan.work_plan_time
                          select new WeeklyPlanDetail
                          {
                              WorkID = work.id,
