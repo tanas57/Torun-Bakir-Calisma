@@ -15,11 +15,13 @@ namespace Torun.UControls
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
+        public Setting UserSettings { get; set; }
         public UCSettings()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
+            UserSettings = mainWindow.UserSettings;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -48,6 +50,23 @@ namespace Torun.UControls
 
             titleReportType.Content = Lang.SettingsTitleTimeInterval;
             groupReportType.Header = Lang.SettingsTitleTimeInterval;
+
+            switch ((CountType)UserSettings.set_countType)
+            {
+                case CountType.Daily: radioDaily.IsChecked = true;break;
+                case CountType.Weekly: radioWeekly.IsChecked = true; break;
+                case CountType.Montly: radioMonthly.IsChecked = true; break;
+                case CountType.Yearly: radioYearly.IsChecked = true; break;
+                case CountType.FromTheBeginning : radioBeforeStart.IsChecked = true; break;
+            }
+            switch ((CountType)UserSettings.set_defaultReportInterval)
+            {
+                case CountType.Daily: radioDailyReport.IsChecked = true; break;
+                case CountType.Weekly: radioWeeklyReport.IsChecked = true; break;
+                case CountType.Montly: radioMonthlyReport.IsChecked = true; break;
+                case CountType.Yearly: radioYearlyReport.IsChecked = true; break;
+                case CountType.FromTheBeginning: radioBeforeStartReport.IsChecked = true; break;
+            }
         }
 
         private void RadioDaily_Checked(object sender, RoutedEventArgs e)

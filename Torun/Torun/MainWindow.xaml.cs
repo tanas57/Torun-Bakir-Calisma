@@ -22,7 +22,7 @@ namespace Torun
         public UCWeeklyPlanDetail weeklyPlanDetail;
         public UCSettings uCSettings;
         public UCReport uCReport;
-
+        public Setting UserSettings { get; set; }
         private bool formLogoutControl = false; // for form closing control, and logout button action
         private int changeCount = 0; // weekly plan change view changes count
         //public users User { get; set; } daha sonra bu şekil değiştir
@@ -32,14 +32,13 @@ namespace Torun
         public MainWindow()
         {
             InitializeComponent();
-            GetSettings();
         }
         private void GetSettings()
         {
-            Settings.MainRequestCountType = CountType.Daily;
-            Settings.DefaultReportInterval = CountType.Daily;
-            Settings.DefaultReportInterval = CountType.Weekly;
-            Settings.DefaultReportListType = ReportType.OnlyPlan;
+            UserSettings = DB.GetUserSettings(User);
+            Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
+            Settings.DefaultReportInterval = (CountType)UserSettings.set_defaultReportInterval;
+            Settings.DefaultReportListType = (ReportType)UserSettings.set_backupTimeInterval; // THE WRONG SETTING, WILL BE CHANGED
         }
         public void ChangeViewWeeklyPlan()
         {
@@ -103,6 +102,8 @@ namespace Torun
             this.MaxHeight = SystemParameters.PrimaryScreenHeight;
             MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             User = DB.GetUserDetail(User);
+            GetSettings();
+
             requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
             requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
             requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today

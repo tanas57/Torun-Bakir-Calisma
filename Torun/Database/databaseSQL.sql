@@ -76,6 +76,7 @@ CREATE TABLE Settings(
 	set_autoBackup BIT NOT NULL DEFAULT 0,
 	set_backupTimeInterval TINYINT NOT NULL DEFAULT 1, -- 1 : WEEKLY
 	set_defaultReportInterval TINYINT NOT NULL DEFAULT 2, -- 2 : MONTHLY
+	set_defaultReportType TINYINT NOT NULL DEFAULT 2, -- 2 : TODOLIST AND WORKDONE
 );
 
 alter table Settings

@@ -71,6 +71,7 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public Setting GetUserSettings(User user) => db.Settings.SingleOrDefault(x => x.user_id == user.id);
         public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType)
         {
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
