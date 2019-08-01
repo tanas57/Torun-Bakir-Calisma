@@ -77,19 +77,30 @@ namespace Torun.Database
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
-            var result = from plan in db.Plans
+            var plans = from plan in db.Plans
                          join work in db.TodoLists on plan.id equals work.id
-                         join done in db.WorkDones on plan.id equals done.plan_id
-                         where work.user_id == user.id && ((done.workDoneTime >= start && done.workDoneTime <= end) || (plan.work_plan_time >= start && plan.work_plan_time <= end))
+                         where work.user_id == user.id && (plan.work_plan_time >= start && plan.work_plan_time <= end)
                          select new WorkDoneandPlans
                          {
                              RequestNumber = work.request_number,
                              Prioritiy = work.priority,
-                             PlanDate = plan.work_plan_time,
-                             WorkDoneDate = done.workDoneTime
+                             PlanDate = plan.work_plan_time
                          };
-
-            return result.ToList();
+            var wDone = from done in db.WorkDones
+                       join plan in db.Plans on done.plan_id equals plan.id
+                        join work in db.TodoLists on plan.id equals work.id
+                        where work.user_id == user.id && (done.workDoneTime >= start && done.workDoneTime <= end)
+                        select new WorkDoneandPlans
+                        {
+                            RequestNumber = work.request_number,
+                            Prioritiy = work.priority,
+                            PlanDate = plan.work_plan_time,
+                            WorkDoneDate = done.workDoneTime
+                        };
+            List<WorkDoneandPlans> combine = new List<WorkDoneandPlans>();
+            combine.AddRange(plans.ToList());
+            combine.AddRange(wDone.ToList());
+            return combine;
 
         }
         public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType)

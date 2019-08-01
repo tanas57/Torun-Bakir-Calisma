@@ -9,5 +9,6 @@ namespace Torun.Classes
         public static bool AutoBackup { get; set; }
         public static CountType BackupTimeInterval { get; set; }
         public static CountType DefaultReportInterval { get; set; }
+        public static ReportType DefaultReportListType { get; set; }
     }
 }
