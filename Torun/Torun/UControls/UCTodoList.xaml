@@ -78,6 +78,8 @@
                             <DataGridTextColumn x:Name="ucTodolist_requestNumber" CanUserReorder="False" Binding="{Binding Path=request_number}" IsReadOnly="True" Header="XXX" MinWidth="60">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
+                                        <Setter Property="Foreground" Value="#FF6BBAFF"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
                                         <EventSetter Event="MouseDoubleClick" Handler="DataGridRequestNumber_MouseDoubleClick"/>
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
