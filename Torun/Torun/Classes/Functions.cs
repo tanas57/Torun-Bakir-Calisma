@@ -12,28 +12,28 @@ namespace Torun.Classes
             {
                 case CountType.Daily:
                     timeStart = DateTime.Now.Date;
-                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    timeEnd = DateTime.Now.Date;
                     break;
 
                 case CountType.Weekly:
-                    timeStart = DateTime.Now.AddDays(-7).Date;
-                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    timeStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + (int)DayOfWeek.Monday).Date;
+                    timeEnd = timeStart.AddDays(5).Date;
                     break;
 
                 case CountType.Montly:
-                    timeStart = DateTime.Now.AddMonths(-1).Date;
-                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    timeStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1).Date;
+                    timeEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 31).Date;
                     break;
 
                 case CountType.Yearly:
-                    timeStart = DateTime.Now.AddYears(-1).Date;
-                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    timeStart = new DateTime(DateTime.Now.Year, 1, 1).Date;
+                    timeEnd = new DateTime(DateTime.Now.Year, 12, 31).Date;
                     break;
 
                 default:
                 case CountType.FromTheBeginning:
-                    timeStart = DateTime.Now.AddYears(-100).Date;
-                    timeEnd = DateTime.Now.AddDays(1).Date;
+                    timeStart = new DateTime(DateTime.Now.AddYears(-100).Year, 1, 1).Date;
+                    timeEnd = new DateTime(DateTime.Now.Year,12, 31).Date;
                     break;
             }
             List<DateTime> dateTimes = new List<DateTime>();
