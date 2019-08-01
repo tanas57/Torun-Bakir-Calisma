@@ -158,6 +158,7 @@
         string ButtonRemove { get; }
         string ButtonTransfer { get; }
         string ButtonAdd { get; }
+        string ButtonGet { get; }
         #endregion
         // weekly remove
         #region
@@ -214,6 +215,7 @@
         string WorkDoneEditRequestSaveButton { get; }
         string WorkDoneEditWorkNotSelected { get; }
         string WorkDoneEditFor { get; }
+        string WorkDoneTime { get; }
         string WorkDoneEditWorkDescriptionUpdate { get; }
         string WeeklyPlanDetailPlanDate { get; }
 

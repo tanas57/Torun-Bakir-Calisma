@@ -26,7 +26,7 @@
                                 <ComboBox x:Name="planWorkdoneSelect" Width="150" Margin="5"/>
                                 <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
                                 <ComboBox x:Name="timeIntervalSelect" Width="100" Margin="5"/>
-                                <Button x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="33"/>
+                                <Button Width="50" x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="31"/>
                             </DockPanel>
                         </Border>
                     </Grid>
@@ -34,30 +34,39 @@
                 <!-- to do list-->
                 <Border Grid.Row="1">
                     <StackPanel>
-                        <Grid x:Name="ReportGridPlan" Visibility="Visible">
+                        <Grid x:Name="ReportGridPlan">
                             <DataGrid x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
-                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
+                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="Sıra" MaxWidth="35"/>
-                                    <DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
-                                    <DataGridTextColumn CanUserReorder="True" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="80"/>
-                                    <DataGridTextColumn x:Name="planbig1" CanUserReorder="True" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" Width="285"/>
-                                    <DataGridTextColumn x:Name="planbig2" CanUserReorder="True" Binding="{Binding Path=AddDate}" IsReadOnly="True" Header="XXX" Width="285"/>
+                                    <DataGridTextColumn x:Name="grid1ReqNum" CanUserReorder="True" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
+                                    <DataGridTextColumn x:Name="grid1Priority" CanUserReorder="True" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="80"/>
+                                    <DataGridTextColumn x:Name="grid1PlanDate" CanUserReorder="True" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" Width="285"/>
+                                    <DataGridTextColumn x:Name="grid1AddDate" CanUserReorder="True" Binding="{Binding Path=AddDate}" IsReadOnly="True" Header="XXX" Width="285"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                        </Grid>
-                        <Grid x:Name="ReportGridWorkdone" Visibility="Hidden">
                             <DataGrid x:Name="grid_onlyWorkdone" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
-                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
+                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
+                              CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
+                              >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkDoneID}" IsReadOnly="True" Header="Sıra" MaxWidth="35"/>
+                                    <DataGridTextColumn x:Name="grid2workDoneReqNum" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
+                                    <DataGridTextColumn x:Name="grid2workDoneWorkDoneTime" CanUserReorder="False" Binding="{Binding Path=WorkDoneTime}" IsReadOnly="True" Header="XXX" MinWidth="650"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid x:Name="grid_both" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="Sıra" MaxWidth="35"/>
-                                    <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
-                                    <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="80"/>
-                                    <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" MinWidth="345"/>
+                                    <DataGridTextColumn x:Name="grid2ReqNum" CanUserReorder="True" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
+                                    <DataGridTextColumn x:Name="grid2Priority" CanUserReorder="True" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="80"/>
+                                    <DataGridTextColumn x:Name="grid2PlanDate" CanUserReorder="True" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" Width="285"/>
+                                    <DataGridTextColumn x:Name="grid2DoneDate" CanUserReorder="True" Binding="{Binding Path=WorkDoneDate}" IsReadOnly="True" Header="XXX" Width="285"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>

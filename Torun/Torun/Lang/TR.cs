@@ -186,6 +186,7 @@
         public string ButtonRemove => "Kaldır";
         public string ButtonTransfer => "Taşı";
         public string ButtonAdd => "Ekle";
+        public string ButtonGet => "Getir";
 
         #endregion
         // wekkly remove
@@ -250,6 +251,7 @@
         public string UCWorkDoneRemoveWorkDone => "Tamamlanmadı İşaretle";
 
         public string WorkDoneDetailTitle => "Tamamlanan İş Detayı";
+        public string WorkDoneTime => "Tamamlanma Zamanı";
 
         public string WorkDoneDetailGroupPlanAndWorkDone => "Planlanan ve Tamamlanan Bilgisi";
 

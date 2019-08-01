@@ -49,6 +49,20 @@ namespace Torun.UControls
 
             lblType.Content = Lang.ReportLabelPlanWorkdone;
             lblTime.Content = Lang.ReportLabelTimeInterval;
+
+            grid1ReqNum.Header = Lang.RequestAddRequestNumber;
+            grid1AddDate.Header = Lang.UCTodoListAddedTime;
+            grid1PlanDate.Header = Lang.WeeklyPlanDetailPlanDate;
+            grid1Priority.Header = Lang.RequestAddRequestPriority;
+
+            grid2ReqNum.Header = Lang.RequestAddRequestNumber;
+            grid2DoneDate.Header = Lang.WorkDoneTime;
+            grid2PlanDate.Header = Lang.WeeklyPlanDetailPlanDate;
+            grid2Priority.Header = Lang.RequestAddRequestPriority;
+
+            grid2workDoneReqNum.Header = Lang.RequestAddRequestNumber;
+            grid2workDoneWorkDoneTime.Header = Lang.WorkDoneTime;
+            search.Content = Lang.ButtonGet;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -56,16 +70,24 @@ namespace Torun.UControls
             CountType = (CountType)planWorkdoneSelect.SelectedIndex;
             if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
             {
-                ReportGridPlan.Visibility = Visibility.Visible;
+                grid_onlyPlan.Visibility = Visibility.Visible;
+                grid_onlyWorkdone.Visibility = Visibility.Hidden;
+                grid_both.Visibility = Visibility.Hidden;
                 grid_onlyPlan.ItemsSource = DB.GetPlansForReport(User, CountType);
             }
             else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
             {
-
+                grid_onlyPlan.Visibility = Visibility.Hidden;
+                grid_onlyWorkdone.Visibility = Visibility.Visible;
+                grid_both.Visibility = Visibility.Hidden;
+                grid_onlyWorkdone.ItemsSource = DB.GetWorkDoneForReport(User, CountType);
             }
             else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
             {
-
+                grid_onlyPlan.Visibility = Visibility.Hidden;
+                grid_onlyWorkdone.Visibility = Visibility.Hidden;
+                grid_both.Visibility = Visibility.Visible;
+                grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(User, CountType);
             }
         }
 
@@ -73,13 +95,17 @@ namespace Torun.UControls
         {
             if (mainWindow.WindowState == WindowState.Normal)
             {
-                planbig1.Width = 285;
-                planbig2.Width = 285;
+                grid1PlanDate.Width = 285;
+                grid1AddDate.Width = 285;
+                grid2PlanDate.Width = 285;
+                grid2DoneDate.Width = 285;
             }
             else
             {
-                planbig1.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
-                planbig2.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
+                grid1PlanDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
+                grid1AddDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
+                grid2PlanDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
+                grid2DoneDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
             }
         }
     }
