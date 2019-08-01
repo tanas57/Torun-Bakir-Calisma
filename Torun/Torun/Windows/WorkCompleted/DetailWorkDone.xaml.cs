@@ -68,7 +68,7 @@ namespace Torun.Windows.WorkCompleted
             var workDone = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
             for (int i = 0; i < workDone.Count; i++)
             {
-                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime);
+                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value.Date);
                 if (!workDone[i].description.Equals(String.Empty))
                 {
                     dbDescription.Text += (order) + " - " + workDone[i].description + "\n";

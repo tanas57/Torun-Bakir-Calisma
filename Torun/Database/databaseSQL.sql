@@ -47,7 +47,7 @@ foreign key  (work_id) references TodoList (id);
 CREATE TABLE WorkDone(
 	id INT PRIMARY KEY IDENTITY(1,1),
 	plan_id INT NOT NULL,
-	workDoneTime DATE NOT NULL,
+	workDoneTime DATE,
 	add_time DATETIME NOT NULL,
 	description TEXT,
 	status TINYINT NOT NULL

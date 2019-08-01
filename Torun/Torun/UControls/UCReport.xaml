@@ -62,7 +62,6 @@
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=PlanID}" IsReadOnly="True" Header="Sıra" MaxWidth="35"/>
                                     <DataGridTextColumn x:Name="grid2ReqNum" CanUserReorder="True" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
                                     <DataGridTextColumn x:Name="grid2Priority" CanUserReorder="True" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="80"/>
                                     <DataGridTextColumn x:Name="grid2PlanDate" CanUserReorder="True" Binding="{Binding Path=PlanDate}" IsReadOnly="True" Header="XXX" Width="285"/>

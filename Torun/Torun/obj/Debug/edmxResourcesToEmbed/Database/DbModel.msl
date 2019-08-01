@@ -53,5 +53,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="error_text" ColumnName="error_text" />
+          <ScalarProperty Name="error_page" ColumnName="error_page" />
+          <ScalarProperty Name="log_user" ColumnName="log_user" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
+          <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
+          <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
+          <ScalarProperty Name="set_autoOpen" ColumnName="set_autoOpen" />
+          <ScalarProperty Name="set_countType" ColumnName="set_countType" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

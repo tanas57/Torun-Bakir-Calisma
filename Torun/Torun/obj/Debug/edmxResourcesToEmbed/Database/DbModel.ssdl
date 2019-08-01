@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="log_user" Type="int" Nullable="false" />
+    <Property Name="error_page" Type="varchar" MaxLength="50" />
+    <Property Name="error_text" Type="text" />
+  </EntityType>
   <EntityType Name="Plans">
     <Key>
       <PropertyRef Name="id" />
@@ -7,8 +16,20 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="work_id" Type="int" Nullable="false" />
     <Property Name="add_time" Type="datetime" Nullable="false" />
-    <Property Name="work_plan_time" Type="datetime" Nullable="false" />
+    <Property Name="work_plan_time" Type="date" Nullable="false" />
     <Property Name="status" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="set_countType" Type="tinyint" Nullable="false" />
+    <Property Name="set_autoOpen" Type="bit" Nullable="false" />
+    <Property Name="set_autoBackup" Type="bit" Nullable="false" />
+    <Property Name="set_backupTimeInterval" Type="tinyint" Nullable="false" />
+    <Property Name="set_defaultReportInterval" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="TodoList">
     <Key>
@@ -43,11 +64,23 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="plan_id" Type="int" Nullable="false" />
-    <Property Name="workDoneTime" Type="datetime" Nullable="false" />
+    <Property Name="workDoneTime" Type="date" />
     <Property Name="add_time" Type="datetime" Nullable="false" />
     <Property Name="description" Type="text" />
     <Property Name="status" Type="tinyint" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Log_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Log" Type="Self.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="log_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_plan_TodoList">
     <End Role="TodoList" Type="Self.TodoList" Multiplicity="1" />
     <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
@@ -57,6 +90,18 @@
       </Principal>
       <Dependent Role="Plans">
         <PropertyRef Name="work_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Settings_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Settings" Type="Self.Settings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Settings">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -85,13 +130,23 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="plan_tracerDBModelStoreContainer">
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TodoList" EntityType="Self.TodoList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkDone" EntityType="Self.WorkDone" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Log_Users" Association="Self.FK_Log_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
     <AssociationSet Name="FK_plan_TodoList" Association="Self.FK_plan_TodoList">
       <End Role="TodoList" EntitySet="TodoList" />
       <End Role="Plans" EntitySet="Plans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Settings_Users" Association="Self.FK_Settings_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Settings" EntitySet="Settings" />
     </AssociationSet>
     <AssociationSet Name="FK_TodoList_Users" Association="Self.FK_TodoList_Users">
       <End Role="Users" EntitySet="Users" />

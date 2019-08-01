@@ -36,7 +36,7 @@ namespace Torun.Windows.WeeklyPlan
             var workDone = mainWindow.DB.GetWorkdoneByID(Plan.WorkID);
             for (int i = 0; i < workDone.Count; i++)
             {
-                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime);
+                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value.Date);
             }
         }
 

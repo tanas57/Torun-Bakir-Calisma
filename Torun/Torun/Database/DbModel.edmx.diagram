@@ -12,6 +12,10 @@
         <AssociationConnector Association="plan_tracerDBModel.FK_plan_TodoList" ManuallyRouted="false" />
         <AssociationConnector Association="plan_tracerDBModel.FK_WorkDone_TodoList" ManuallyRouted="false" />
         <AssociationConnector Association="plan_tracerDBModel.FK_TodoList_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="plan_tracerDBModel.Log" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="plan_tracerDBModel.Setting" Width="1.5" PointX="3" PointY="9" />
+        <AssociationConnector Association="plan_tracerDBModel.FK_Log_Users" />
+        <AssociationConnector Association="plan_tracerDBModel.FK_Settings_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

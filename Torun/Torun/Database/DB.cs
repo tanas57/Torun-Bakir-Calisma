@@ -78,26 +78,33 @@ namespace Torun.Database
             DateTime end = dateTimes[1];
 
             var plans = from plan in db.Plans
-                         join work in db.TodoLists on plan.id equals work.id
-                         where work.user_id == user.id && (plan.work_plan_time >= start && plan.work_plan_time <= end)
-                         select new WorkDoneandPlans
-                         {
-                             RequestNumber = work.request_number,
-                             Prioritiy = work.priority,
-                             PlanDate = plan.work_plan_time
-                         };
-            var wDone = from done in db.WorkDones
-                       join plan in db.Plans on done.plan_id equals plan.id
-                        join work in db.TodoLists on plan.id equals work.id
-                        where work.user_id == user.id && (done.workDoneTime >= start && done.workDoneTime <= end )
+                        join work in db.TodoLists on plan.work_id equals work.id
+                        where work.user_id == user.id
+                        where plan.work_plan_time >= start && plan.work_plan_time <= end
+                        orderby plan.id ascending
                         select new WorkDoneandPlans
                         {
-                            RequestNumber = work.request_number,
-                            Prioritiy = work.priority,
                             PlanDate = plan.work_plan_time,
-                            WorkDoneDate = done.workDoneTime
+                            Prioritiy = work.priority,
+                            RequestNumber = work.request_number,
+                            AddDate = plan.add_time
                         };
-            return plans.ToList();
+
+            var wDone = from done in db.WorkDones
+                         join plan in db.Plans on done.plan_id equals plan.id
+                         join work in db.TodoLists on plan.work_id equals work.id
+                         where work.user_id == user.id && done.workDoneTime >= start && done.workDoneTime <= end
+                         select new WorkDoneandPlans
+                         {
+                             PlanDate = plan.work_plan_time,
+                             Prioritiy = work.priority,
+                             RequestNumber = work.request_number,
+                             WorkDoneDate = done.workDoneTime.Value
+                         };
+            List<WorkDoneandPlans> merge = new List<WorkDoneandPlans>();
+            merge.AddRange(plans.ToList());
+            merge.AddRange(wDone.ToList());
+            return merge;
 
         }
         public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType)
@@ -114,7 +121,7 @@ namespace Torun.Database
                          {
                              WorkDoneID = done.id,
                              RequestNumber = work.request_number,
-                             WorkDoneTime = done.workDoneTime
+                             WorkDoneTime = done.workDoneTime.Value
                          };
 
             return result.ToList();

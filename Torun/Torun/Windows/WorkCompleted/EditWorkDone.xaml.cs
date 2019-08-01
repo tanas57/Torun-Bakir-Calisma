@@ -124,7 +124,7 @@ namespace Torun.Windows.WorkCompleted
             for (int i = 0; i < works.Count; i++)
             {
                 WorkDone temp = works[i];
-                list_workdone.Items.Add(temp.workDoneTime.ToShortDateString() + " - " + temp.id);
+                list_workdone.Items.Add(temp.workDoneTime.Value.Date.ToShortDateString() + " - " + temp.id);
             }
         }
         private void WorkDone_transfer_Click(object sender, RoutedEventArgs e)

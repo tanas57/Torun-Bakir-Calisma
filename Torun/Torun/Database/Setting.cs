@@ -12,15 +12,16 @@ namespace Torun.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkDone
+    public partial class Setting
     {
         public int id { get; set; }
-        public int plan_id { get; set; }
-        public Nullable<System.DateTime> workDoneTime { get; set; }
-        public System.DateTime add_time { get; set; }
-        public string description { get; set; }
-        public byte status { get; set; }
+        public int user_id { get; set; }
+        public byte set_countType { get; set; }
+        public bool set_autoOpen { get; set; }
+        public bool set_autoBackup { get; set; }
+        public byte set_backupTimeInterval { get; set; }
+        public byte set_defaultReportInterval { get; set; }
     
-        public virtual Plan Plan { get; set; }
+        public virtual User User { get; set; }
     }
 }
