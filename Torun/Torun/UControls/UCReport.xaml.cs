@@ -67,7 +67,7 @@ namespace Torun.UControls
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            CountType = (CountType)planWorkdoneSelect.SelectedIndex;
+            CountType = (CountType)timeIntervalSelect.SelectedIndex;
             if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
             {
                 grid_onlyPlan.Visibility = Visibility.Visible;
