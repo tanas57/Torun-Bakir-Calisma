@@ -24,7 +24,7 @@ namespace Torun.Database
         }
         public class WeeklyPlanDetail : WeeklyPlan
         {
-            public ILanguage Lang => CurrentLanguage.Language;
+            private ILanguage Lang => CurrentLanguage.Language;
             private int priorities;
             public DateTime PlanDate { get; set; }
             public string PriorityString { get; set; }
@@ -57,12 +57,37 @@ namespace Torun.Database
                     }
                 }
             }
+            public DateTime AddDate { get; set; }
         }
         public class WorkDoneList
         {
             public int WorkDoneID { get; set; }
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
+            public DateTime WorkDoneTime {
+                set => WorkDoneTime = value.Date;
+                get { return WorkDoneTime; }
+            }
+        }
+        public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType)
+        {
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            DateTime start = dateTimes[0];
+            DateTime end = dateTimes[1];
+
+            var result = from done in db.WorkDones
+                         join plan in db.Plans on done.plan_id equals plan.id
+                         join work in db.TodoLists on plan.work_id equals work.id
+                         where work.user_id == user.id && done.workDoneTime >= start && done.workDoneTime <= end
+                         select new WorkDoneList
+                         {
+                             WorkDoneID = done.id,
+                             RequestNumber = work.request_number,
+                             WorkDoneTime = done.workDoneTime
+                         };
+
+            return result.ToList();
+
         }
         public List<WeeklyPlanDetail> GetPlansForReport(User user, CountType countType)
         {
@@ -79,7 +104,8 @@ namespace Torun.Database
                              PlanID = plan.id,
                              PlanDate = plan.work_plan_time,
                              Prioritiy = work.priority,
-                             RequestNumber = work.request_number
+                             RequestNumber = work.request_number,
+                             AddDate = plan.add_time
                          };
 
             return result.ToList();

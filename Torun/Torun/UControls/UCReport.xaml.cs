@@ -31,6 +31,9 @@ namespace Torun.UControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            planWorkdoneSelect.Items.Clear();
+            timeIntervalSelect.Items.Clear();
+
             planWorkdoneSelect.Items.Add(Lang.ReportComboTypeOnlyPlan);
             planWorkdoneSelect.Items.Add(Lang.ReportComboTypeOnlyWorkDone);
             planWorkdoneSelect.Items.Add(Lang.ReportComboTypeBothofThem);
@@ -63,6 +66,20 @@ namespace Torun.UControls
             else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
             {
 
+            }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (mainWindow.WindowState == WindowState.Normal)
+            {
+                planbig1.Width = 285;
+                planbig2.Width = 285;
+            }
+            else
+            {
+                planbig1.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
+                planbig2.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
             }
         }
     }
