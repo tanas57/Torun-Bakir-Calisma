@@ -34,7 +34,7 @@ CREATE TABLE Plans(
 	id INT PRIMARY KEY IDENTITY(1,1),
 	work_id INT NOT NULL,
 	add_time DATETIME NOT NULL,
-	work_plan_time DATETIME NOT NULL,
+	work_plan_time DATE NOT NULL,
 	status byte NOT NULL DEFAULT 0
 );
 
@@ -47,7 +47,7 @@ foreign key  (work_id) references TodoList (id);
 CREATE TABLE WorkDone(
 	id INT PRIMARY KEY IDENTITY(1,1),
 	plan_id INT NOT NULL,
-	workDoneTime DATETIME NOT NULL,
+	workDoneTime DATE NOT NULL,
 	add_time DATETIME NOT NULL,
 	description TEXT,
 	status TINYINT NOT NULL
