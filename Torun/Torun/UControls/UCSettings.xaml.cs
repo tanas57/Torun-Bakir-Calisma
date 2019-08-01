@@ -73,60 +73,70 @@ namespace Torun.UControls
         {
             Settings.MainRequestCountType = CountType.Daily;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioWeekly_Checked(object sender, RoutedEventArgs e)
         {
             Settings.MainRequestCountType = CountType.Weekly;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioMonthly_Checked(object sender, RoutedEventArgs e)
         {
             Settings.MainRequestCountType = CountType.Montly;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioBeforeStart_Checked(object sender, RoutedEventArgs e)
         {
             Settings.MainRequestCountType = CountType.FromTheBeginning;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioYearly_Checked(object sender, RoutedEventArgs e)
         {
             Settings.MainRequestCountType = CountType.Yearly;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioDailyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Daily;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioWeeklyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Weekly;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioMonthlyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Montly;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioYearlyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Yearly;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
 
         private void RadioBeforeStartReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.FromTheBeginning;
             mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
         }
     }
 }

@@ -71,6 +71,14 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public int UpdateUserSettings(User user, Setting setting)
+        {
+            if (!db.Settings.Any(x => x.user_id == user.id)) return 0;
+            db.Settings.Attach(setting);
+            db.Entry(setting).State = EntityState.Modified;
+            db.SaveChanges();
+            return 1;
+        }
         public Setting GetUserSettings(User user) => db.Settings.SingleOrDefault(x => x.user_id == user.id);
         public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType)
         {
@@ -538,7 +546,6 @@ namespace Torun.Database
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
             DateTime timeStart = dateTimes[0];
             DateTime timeEnd = dateTimes[1];
-
             switch (ReqType)
             {
                 case 1: return db.TodoLists.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
