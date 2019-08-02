@@ -311,6 +311,9 @@
         public string ReportToPDF => "PDF'e Aktar";
 
         public string ReportToExcel => "Excel'e Aktar";
+        public string ReportHasDate => "Tarihli";
+        public string ReportCreatedBy => "Tarafından oluşturuldu";
+
 
         #endregion
     }

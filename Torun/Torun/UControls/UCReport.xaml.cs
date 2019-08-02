@@ -21,6 +21,7 @@ namespace Torun.UControls
         private DB DB { get; set; }
         private CountType CountType { get; set; }
         private User User { get; set; }
+        private List<DB.WorkDoneList> workDoneLists;
         public UCReport()
         {
             InitializeComponent();
@@ -83,7 +84,8 @@ namespace Torun.UControls
                 grid_onlyPlan.Visibility = Visibility.Hidden;
                 grid_onlyWorkdone.Visibility = Visibility.Visible;
                 grid_both.Visibility = Visibility.Hidden;
-                grid_onlyWorkdone.ItemsSource = DB.GetWorkDoneForReport(User, CountType);
+                workDoneLists = DB.GetWorkDoneForReport(User, CountType);
+                grid_onlyWorkdone.ItemsSource = workDoneLists;
             }
             else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
             {
@@ -116,7 +118,14 @@ namespace Torun.UControls
 
         private void Btn_pdf_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
+                {
+                    FileOperation.ExportAsPDF(User, CountType, workDoneLists);
+                }
+            }
+            catch(Exception ex) { }
         }
 
         private void Btn_excel_Click(object sender, RoutedEventArgs e)

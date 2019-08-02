@@ -6,5 +6,6 @@
         public const string FILENAME_PASSWORD = "password.txt";
         public const string IS_LOGGED = "last_login";
         public const string FILENAME_PROFILE = "profile.jpg";
+        public const string FILENAME_REPORT = "rapor.pdf";
     }
 }

@@ -1,11 +1,62 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Torun.Classes.FileOperations;
+using Torun.Database;
+using Torun.Lang;
+
 namespace Torun.Classes
 {
     public static class FileOperation
     {
+        public static ILanguage Lang => CurrentLanguage.Language;
+        public static void ExportAsPDF(User user, CountType countType, List<DB.WorkDoneList> workDoneList)
+        {
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            var Renderer = new IronPdf.HtmlToPdf();
+            string html = @"<html>
+	<head>
+	<style type='text/css'>
+		.dayTitle{
+			background:green; color:white; padding:5px; text-align:center; font-family:tahoma; font-size:17px;
+			margin-top: 10px;
+			}
+		table tr td{
+			border: 1px solid #ccc;
+			padding:5px;
+		}
+	</style>
+	</head>
+	<body>
+	<div style='border:1px solid #ccc;'>
+		<div>" + DateTime.Now.ToShortDateString() + " " + Lang.ReportHasDate + " " + user.firstname + " " + user.lastname + " " + Lang.ReportCreatedBy + " " + Functions.ConvertCountTypeToString(countType) + " " + Lang.MainPageMenuReport + @"</div>
+		<div></div>
+		<div>";
+            foreach (var item in workDoneList)
+            {
+                html += @"<div class='dayTitle'>Pazartesi (29.07.2019)</div>
+				<table width='100%'>
+					<tr style='width:98%' >
+						<td style='width:25%'>" + item.RequestNumber +@"</td>
+						<td style='width:75%'>"+ item.Description +@"</td>
+					</tr>
+				</table>
+			</div>";
+            }
+            html += @"
+		</div>
+	</div>
+	</body>
+</html>";
+            MessageBox.Show(html);
+            var PDF = Renderer.RenderHtmlAsPdf(html);
+            var OutputPath = getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORT);
+            PDF.SaveAs(OutputPath);
+            // This neat trick opens our PDF file so we can see the result in our default PDF viewer
+            System.Diagnostics.Process.Start(OutputPath);
+
+        }
         public static string ProfilePhotoPath()
         {
             return getFilePath(FileNames.FILENAME_PROFILE);

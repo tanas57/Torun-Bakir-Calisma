@@ -243,5 +243,7 @@
         string SettingsOpenSetting { get; }
         string ReportToPDF { get; }
         string ReportToExcel { get; }
+        string ReportHasDate { get; }
+        string ReportCreatedBy { get; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Torun.Lang;
 namespace Torun.Classes
 {
     public static class Functions
     {
+        public static ILanguage Lang => CurrentLanguage.Language;
         public static List<DateTime> GetDateInterval(CountType countType)
         {
             DateTime timeStart, timeEnd;
@@ -40,6 +41,18 @@ namespace Torun.Classes
             dateTimes.Add(timeStart);
             dateTimes.Add(timeEnd);
             return dateTimes;
+        }
+        public static string ConvertCountTypeToString(CountType countType)
+        {
+            switch (countType)
+            {
+                case CountType.Daily: return Lang.SettingsRadioDaily;
+                case CountType.Weekly: return Lang.SettingsRadioWeekly;
+                case CountType.Montly: return Lang.SettingsRadioMonthly;
+                case CountType.Yearly: return Lang.SettingsRadioYearly;
+                default:
+                case CountType.FromTheBeginning: return Lang.SettingsRadioBeforeStart;
+            }
         }
     }
 }

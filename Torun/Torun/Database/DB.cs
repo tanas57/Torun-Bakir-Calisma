@@ -65,6 +65,7 @@ namespace Torun.Database
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
             public DateTime WorkDoneTime { get;set; }
+            public string Description { get; set; }
         }
         public class WorkDoneandPlans : WeeklyPlanDetail
         {
@@ -129,7 +130,8 @@ namespace Torun.Database
                          {
                              WorkDoneID = done.id,
                              RequestNumber = work.request_number,
-                             WorkDoneTime = done.workDoneTime.Value
+                             WorkDoneTime = done.workDoneTime.Value,
+                             Description = done.description
                          };
 
             return result.ToList();
