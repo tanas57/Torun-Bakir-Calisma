@@ -22,15 +22,22 @@
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
                             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Label x:Name="lblType" Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
-                                <ComboBox x:Name="planWorkdoneSelect" Width="150" Margin="5"/>
-                                <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
+                                <Label x:Name="lblType" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="0" BorderThickness="0"/>
+                                <ComboBox x:Name="planWorkdoneSelect" Width="140" Margin="5"/>
+                                <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="5" BorderThickness="0"/>
                                 <ComboBox x:Name="timeIntervalSelect" Width="100" Margin="5"/>
-                                <Button Width="50" x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="31"/>
-                                <Button x:Name="btn_pdf" Click="Btn_pdf_Click" Width="80" Height="33" Style="{DynamicResource btn_weeklyPlan}">
+                                <Button Width="50" x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="33"/>
+                                
+                                <Button Visibility="Hidden" x:Name="btn_pdf" Width="90" Height="33" Style="{DynamicResource btn_weeklyPlan}" Click="Btn_pdf_Click">
                                     <DockPanel>
-                                        <Image Source="/images/main_screen/Report/pdf.png" Width="25" Margin="0,0,3,0"/>
-                                        <TextBlock x:Name="txt_Edit1" Text="XXX"/>
+                                        <Image Source="/images/main_screen/Report/pdf.png" Width="22" Margin="0,0,3,0"/>
+                                        <TextBlock x:Name="btnPdfText" Text="XXX"/>
+                                    </DockPanel>
+                                </Button>
+                                <Button Visibility="Hidden" x:Name="btn_excel" Width="95" Height="33" Style="{DynamicResource btn_weeklyPlan}" Click="Btn_excel_Click">
+                                    <DockPanel>
+                                        <Image Source="/images/main_screen/Report/excel.png" Width="22" Margin="0,0,3,0"/>
+                                        <TextBlock x:Name="btntxtexcel" Text="XXX"/>
                                     </DockPanel>
                                 </Button>
                             </DockPanel>

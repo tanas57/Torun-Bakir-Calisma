@@ -63,7 +63,9 @@ namespace Torun.UControls
             grid2workDoneReqNum.Header = Lang.RequestAddRequestNumber;
             grid2workDoneWorkDoneTime.Header = Lang.WorkDoneTime;
             search.Content = Lang.ButtonGet;
-            btn_pdf.Content = Lang.ReportToPDF;
+
+            btnPdfText.Text = Lang.ReportToPDF;
+            btntxtexcel.Text = Lang.ReportToExcel;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -90,6 +92,8 @@ namespace Torun.UControls
                 grid_both.Visibility = Visibility.Visible;
                 grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(User, CountType);
             }
+            btn_excel.Visibility = Visibility.Visible;
+            btn_pdf.Visibility = Visibility.Visible;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -111,6 +115,11 @@ namespace Torun.UControls
         }
 
         private void Btn_pdf_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_excel_Click(object sender, RoutedEventArgs e)
         {
 
         }

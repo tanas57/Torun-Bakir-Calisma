@@ -266,7 +266,6 @@ namespace Torun.Database
             db.WorkDones.Add(workdone);
             db.SaveChanges();
         }
-
         public void RemovePlan(Plan plan)
         {
             db.Plans.Remove(plan);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 namespace Torun.Classes
 {
     public static class Functions
@@ -16,7 +17,7 @@ namespace Torun.Classes
 
                 case CountType.Weekly:
                     timeStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + (int)DayOfWeek.Monday).Date;
-                    timeEnd = timeStart.AddDays(5).Date;
+                    timeEnd = timeStart.AddDays(5).Date.AddSeconds(-1);
                     break;
 
                 case CountType.Montly:
