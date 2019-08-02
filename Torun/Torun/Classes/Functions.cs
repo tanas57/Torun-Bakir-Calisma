@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 namespace Torun.Classes
 {
     public static class Functions
@@ -11,8 +10,8 @@ namespace Torun.Classes
             switch (countType)
             {
                 case CountType.Daily:
-                    timeStart = DateTime.Now.Date;
-                    timeEnd = DateTime.Now.Date;
+                    timeStart = DateTime.Now.Date.AddSeconds(0);
+                    timeEnd = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
                     break;
 
                 case CountType.Weekly:
@@ -22,18 +21,18 @@ namespace Torun.Classes
 
                 case CountType.Montly:
                     timeStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1).Date;
-                    timeEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 31).Date;
+                    timeEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 31).AddDays(1).AddSeconds(-1);
                     break;
 
                 case CountType.Yearly:
                     timeStart = new DateTime(DateTime.Now.Year, 1, 1).Date;
-                    timeEnd = new DateTime(DateTime.Now.Year, 12, 31).Date;
+                    timeEnd = new DateTime(DateTime.Now.Year, 12, 31).AddDays(1).AddSeconds(-1);
                     break;
 
                 default:
                 case CountType.FromTheBeginning:
                     timeStart = new DateTime(DateTime.Now.AddYears(-100).Year, 1, 1).Date;
-                    timeEnd = new DateTime(DateTime.Now.Year,12, 31).Date;
+                    timeEnd = new DateTime(DateTime.Now.Year,12, 31).AddDays(1).AddSeconds(-1);
                     break;
             }
             List<DateTime> dateTimes = new List<DateTime>();

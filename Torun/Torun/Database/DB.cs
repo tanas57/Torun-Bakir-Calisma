@@ -121,7 +121,6 @@ namespace Torun.Database
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
-
             var result = from done in db.WorkDones
                          join plan in db.Plans on done.plan_id equals plan.id
                          join work in db.TodoLists on plan.work_id equals work.id
