@@ -35,6 +35,7 @@
           <Property Name="set_autoBackup" Type="bit" Nullable="false" />
           <Property Name="set_backupTimeInterval" Type="tinyint" Nullable="false" />
           <Property Name="set_defaultReportInterval" Type="tinyint" Nullable="false" />
+          <Property Name="set_defaultReportType" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="TodoList">
           <Key>
@@ -308,6 +309,7 @@
           <Property Name="set_backupTimeInterval" Type="Byte" Nullable="false" />
           <Property Name="set_defaultReportInterval" Type="Byte" Nullable="false" />
           <NavigationProperty Name="User" Relationship="plan_tracerDBModel.FK_Settings_Users" FromRole="Setting" ToRole="User" />
+          <Property Name="set_defaultReportType" Type="Byte" Nullable="false" />
         </EntityType>
         <Association Name="FK_Log_Users">
           <End Type="plan_tracerDBModel.User" Role="User" Multiplicity="1" />
@@ -404,6 +406,7 @@
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="plan_tracerDBModel.Setting">
               <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
                 <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
                 <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
                 <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />

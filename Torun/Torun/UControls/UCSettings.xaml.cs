@@ -67,6 +67,12 @@ namespace Torun.UControls
                 case CountType.Yearly: radioYearlyReport.IsChecked = true; break;
                 case CountType.FromTheBeginning: radioBeforeStartReport.IsChecked = true; break;
             }
+            switch ((ReportType)UserSettings.set_defaultReportType)
+            {
+                case ReportType.OnlyPlan: reportOnlyPlan.IsChecked = true; break;
+                case ReportType.OnlyWorkDone: reportOnlyWorkdone.IsChecked = true; break;
+                case ReportType.Both: reportBoth.IsChecked = true; break;
+            }
         }
 
         private void RadioDaily_Checked(object sender, RoutedEventArgs e)
@@ -107,35 +113,48 @@ namespace Torun.UControls
         private void RadioDailyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Daily;
-            mainWindow.UpdateScreens();
             mainWindow.UpdateSettings();
         }
 
         private void RadioWeeklyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Weekly;
-            mainWindow.UpdateScreens();
             mainWindow.UpdateSettings();
         }
 
         private void RadioMonthlyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Montly;
-            mainWindow.UpdateScreens();
             mainWindow.UpdateSettings();
         }
 
         private void RadioYearlyReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.Yearly;
-            mainWindow.UpdateScreens();
             mainWindow.UpdateSettings();
         }
 
         private void RadioBeforeStartReport_Checked(object sender, RoutedEventArgs e)
         {
             Settings.DefaultReportInterval = CountType.FromTheBeginning;
-            mainWindow.UpdateScreens();
+            mainWindow.UpdateSettings();
+        }
+
+        private void ReportOnlyPlan_Checked(object sender, RoutedEventArgs e)
+        {
+            Settings.DefaultReportListType = ReportType.OnlyPlan;
+            mainWindow.UpdateSettings();
+        }
+
+        private void ReportOnlyWorkdone_Checked(object sender, RoutedEventArgs e)
+        {
+            Settings.DefaultReportListType = ReportType.OnlyWorkDone;
+            mainWindow.UpdateSettings();
+        }
+
+        private void ReportBoth_Checked(object sender, RoutedEventArgs e)
+        {
+            Settings.DefaultReportListType = ReportType.Both;
             mainWindow.UpdateSettings();
         }
     }

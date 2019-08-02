@@ -51,9 +51,9 @@
                         <ItemsControl>
                             <StackPanel>
                                 <DockPanel>
-                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="reportOnlyPlan" GroupName="reportType" Content="XXX" Checked="RadioDailyReport_Checked" />
-                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="reportOnlyWorkdone" GroupName="reportType" Content="XXX" Checked="RadioWeeklyReport_Checked"/>
-                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="reportBoth" GroupName="reportType" Content="XXX" Checked="RadioMonthlyReport_Checked" />
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="reportOnlyPlan" GroupName="reportType" Content="XXX" Checked="ReportOnlyPlan_Checked" />
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="reportOnlyWorkdone" GroupName="reportType" Content="XXX" Checked="ReportOnlyWorkdone_Checked"/>
+                                    <RadioButton Style="{DynamicResource radioButtonSettings}" x:Name="reportBoth" GroupName="reportType" Content="XXX" Checked="ReportBoth_Checked" />
                                 </DockPanel>
                             </StackPanel>
                         </ItemsControl>

@@ -30,6 +30,7 @@
     <Property Name="set_autoBackup" Type="bit" Nullable="false" />
     <Property Name="set_backupTimeInterval" Type="tinyint" Nullable="false" />
     <Property Name="set_defaultReportInterval" Type="tinyint" Nullable="false" />
+    <Property Name="set_defaultReportType" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="TodoList">
     <Key>

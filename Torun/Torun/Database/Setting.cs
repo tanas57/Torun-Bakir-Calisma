@@ -21,6 +21,7 @@ namespace Torun.Database
         public bool set_autoBackup { get; set; }
         public byte set_backupTimeInterval { get; set; }
         public byte set_defaultReportInterval { get; set; }
+        public byte set_defaultReportType { get; set; }
     
         public virtual User User { get; set; }
     }

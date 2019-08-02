@@ -66,6 +66,7 @@
     <EntitySetMapping Name="Settings">
       <EntityTypeMapping TypeName="plan_tracerDBModel.Setting">
         <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
           <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
           <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
           <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
