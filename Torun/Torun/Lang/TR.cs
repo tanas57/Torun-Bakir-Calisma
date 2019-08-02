@@ -291,11 +291,23 @@
         public string SettingsTitleProfile => "Profil Ayarları";
         public string SettingsTitleReport => "Varsayılan Raporlama Zaman Aralığı";
         public string SettingsTitleTimeInterval => "Varsayılan Raporlama Tipi";
+        public string SettingsTitleAutoBackup => "Otomatik Yedekleme Ayarı";
+        public string SettingsAutoBackupActive => "Otomatik yedekleme aktif et";
+        public string SettignsAutoBackup => "Otomatik yedekleme";
+        public string SettingsApplied => "Olarak Ayarlandı";
+
+
         public string ReportComboTypeOnlyPlan => "Sadece Haftalık Plan";
         public string ReportComboTypeOnlyWorkDone => "Sadece Yapılmış İşler";
         public string ReportComboTypeBothofThem => "İkisi Birlikte";
         public string ReportLabelPlanWorkdone => "Listeleme Tipini Seçin : ";
         public string ReportLabelTimeInterval => "Zaman Aralığını Seçin : ";
+
+        public string SettingsActive => "Aktif";
+
+        public string SettingsPasive => "Pasif";
+        public string SettingsOpenSetting => "Otomatik Açılma";
+        
         #endregion
     }
 }

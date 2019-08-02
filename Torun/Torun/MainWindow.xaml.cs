@@ -38,13 +38,20 @@ namespace Torun
             UserSettings = DB.GetUserSettings(User);
             Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
             Settings.DefaultReportInterval = (CountType)UserSettings.set_defaultReportInterval;
-            Settings.DefaultReportListType = (ReportType)UserSettings.set_defaultReportType; 
+            Settings.DefaultReportListType = (ReportType)UserSettings.set_defaultReportType;
+            Settings.AutoOpen = UserSettings.set_autoOpen;
+            Settings.AutoBackup = UserSettings.set_autoBackup;
+            Settings.BackupTimeInterval = (CountType)UserSettings.set_backupTimeInterval;
+
         }
         public void UpdateSettings()
         {
             UserSettings.set_countType = (byte)Settings.MainRequestCountType;
             UserSettings.set_defaultReportInterval = (byte)Settings.DefaultReportInterval;
             UserSettings.set_defaultReportType = (byte)Settings.DefaultReportListType;
+            UserSettings.set_autoOpen = Settings.AutoOpen;
+            UserSettings.set_autoBackup = Settings.AutoBackup;
+            UserSettings.set_backupTimeInterval = (byte)Settings.BackupTimeInterval;
             DB.UpdateUserSettings(User, UserSettings);
         }
         public void ChangeViewWeeklyPlan()

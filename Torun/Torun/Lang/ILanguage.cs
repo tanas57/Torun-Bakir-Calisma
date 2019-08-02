@@ -228,11 +228,18 @@
         string SettingsTitleProfile { get; }
         string SettingsTitleReport { get; }
         string SettingsTitleTimeInterval { get; }
+        string SettingsTitleAutoBackup { get; }
+        string SettingsAutoBackupActive { get; }
 
         string ReportLabelPlanWorkdone { get; }
         string ReportLabelTimeInterval { get; }
         string ReportComboTypeOnlyPlan { get; }
         string ReportComboTypeOnlyWorkDone { get; }
         string ReportComboTypeBothofThem { get; }
+        string SettingsApplied { get; }
+        string SettignsAutoBackup { get; }
+        string SettingsActive { get; }
+        string SettingsPasive { get; }
+        string SettingsOpenSetting { get; }
     }
 }
