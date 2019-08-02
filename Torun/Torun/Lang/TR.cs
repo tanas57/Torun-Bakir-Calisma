@@ -307,7 +307,11 @@
 
         public string SettingsPasive => "Pasif";
         public string SettingsOpenSetting => "Otomatik Açılma";
-        
+
+        public string ReportToPDF => "PDF'e Aktar";
+
+        public string ReportToExcel => "Excel'e Aktar";
+
         #endregion
     }
 }

@@ -27,6 +27,12 @@
                                 <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" Margin="5" BorderThickness="0"/>
                                 <ComboBox x:Name="timeIntervalSelect" Width="100" Margin="5"/>
                                 <Button Width="50" x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="31"/>
+                                <Button x:Name="btn_pdf" Click="Btn_pdf_Click" Width="80" Height="33" Style="{DynamicResource btn_weeklyPlan}">
+                                    <DockPanel>
+                                        <Image Source="/images/main_screen/Report/pdf.png" Width="25" Margin="0,0,3,0"/>
+                                        <TextBlock x:Name="txt_Edit1" Text="XXX"/>
+                                    </DockPanel>
+                                </Button>
                             </DockPanel>
                         </Border>
                     </Grid>

@@ -353,6 +353,8 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\main_screen\Report\excel.png" />
+    <Resource Include="images\main_screen\Report\pdf.png" />
     <Resource Include="images\main_screen\WeeklyPlan\change.png" />
     <Resource Include="images\icon\settings.png" />
   </ItemGroup>

@@ -63,6 +63,7 @@ namespace Torun.UControls
             grid2workDoneReqNum.Header = Lang.RequestAddRequestNumber;
             grid2workDoneWorkDoneTime.Header = Lang.WorkDoneTime;
             search.Content = Lang.ButtonGet;
+            btn_pdf.Content = Lang.ReportToPDF;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -107,6 +108,11 @@ namespace Torun.UControls
                 grid2PlanDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
                 grid2DoneDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
             }
+        }
+
+        private void Btn_pdf_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

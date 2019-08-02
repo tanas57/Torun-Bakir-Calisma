@@ -241,5 +241,7 @@
         string SettingsActive { get; }
         string SettingsPasive { get; }
         string SettingsOpenSetting { get; }
+        string ReportToPDF { get; }
+        string ReportToExcel { get; }
     }
 }
