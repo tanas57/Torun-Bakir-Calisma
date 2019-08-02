@@ -163,7 +163,7 @@ namespace Torun.Database
                 case OrderBy.NameAsc:
                     var result = from plans in db.Plans
                                  join work in db.TodoLists on plans.work_id equals work.id
-                                 where work.status != 1 && work.user_id == user.id
+                                 where plans.status != 1 && work.user_id == user.id
                                  orderby work.request_number ascending
                                  select new WeeklyPlanDetail
                                  {
@@ -177,7 +177,7 @@ namespace Torun.Database
                 case OrderBy.NameDesc:
                     result = from plans in db.Plans
                              join work in db.TodoLists on plans.work_id equals work.id
-                             where work.status != 1 && work.user_id == user.id
+                             where plans.status != 1 && work.user_id == user.id
                              orderby work.request_number descending
                              select new WeeklyPlanDetail
                              {
@@ -191,7 +191,7 @@ namespace Torun.Database
                 case OrderBy.PriorityAsc:
                     result = from plans in db.Plans
                              join work in db.TodoLists on plans.work_id equals work.id
-                             where work.status != 1 && work.user_id == user.id
+                             where plans.status != 1 && work.user_id == user.id
                              orderby work.priority ascending
                              select new WeeklyPlanDetail
                              {
@@ -205,7 +205,7 @@ namespace Torun.Database
                 case OrderBy.PriorityDesc:
                     result = from plans in db.Plans
                              join work in db.TodoLists on plans.work_id equals work.id
-                             where work.status != 1 && work.user_id == user.id
+                             where plans.status != 1 && work.user_id == user.id
                              orderby work.priority descending
                              select new WeeklyPlanDetail
                              {
@@ -219,7 +219,7 @@ namespace Torun.Database
                 case OrderBy.AddedTimeAsc:
                     result = from plans in db.Plans
                              join work in db.TodoLists on plans.work_id equals work.id
-                             where work.status != 1 && work.user_id == user.id
+                             where plans.status != 1 && work.user_id == user.id
                              orderby plans.work_plan_time ascending
                              select new WeeklyPlanDetail
                              {
@@ -234,7 +234,7 @@ namespace Torun.Database
                 case OrderBy.AddedTimeDesc:
                     result = from plans in db.Plans
                              join work in db.TodoLists on plans.work_id equals work.id
-                             where work.status != 1 && work.user_id == user.id
+                             where plans.status != 1 && work.user_id == user.id
                              orderby plans.work_plan_time descending
                              select new WeeklyPlanDetail
                              {
