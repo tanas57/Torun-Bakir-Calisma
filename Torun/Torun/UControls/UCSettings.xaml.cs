@@ -96,6 +96,7 @@ namespace Torun.UControls
                 case CountType.Montly: radioMonthlyBackup.IsChecked = true; break;
                 case CountType.Yearly: radioYearlyBackup.IsChecked = true; break;
             }
+            result.Visibility = Visibility.Hidden;
         }
 
         private void RadioDaily_Checked(object sender, RoutedEventArgs e)
