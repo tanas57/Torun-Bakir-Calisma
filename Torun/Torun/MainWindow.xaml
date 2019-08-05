@@ -181,7 +181,7 @@
         <!-- content -->
         <Border Grid.Column="3" Grid.Row="1">
             <Grid x:Name="Grd_Content">
-                
+                <Image Source="/images/torun-logo-2.png" Opacity="0.8"/>
             </Grid>
         </Border>
     </Grid>

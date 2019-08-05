@@ -17,6 +17,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                
                 <Border Grid.Column="0">
                     <StackPanel>
                         <Label x:Name="titleMainCount" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
@@ -74,6 +75,7 @@
 
                 </Border>
                 <Border Grid.Column="1">
+                    
                     <StackPanel>
                         <StackPanel>
                             <Label x:Name="titleAutoBackup" Content="XXX" Style="{DynamicResource textBlockTitle}"/>

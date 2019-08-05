@@ -46,6 +46,7 @@
                 </Border>
                 <!-- to do list-->
                 <Border Grid.Row="1">
+                    
                     <StackPanel>
                         <Grid x:Name="ReportGridPlan">
                             <DataGrid VerticalScrollBarVisibility="Visible" x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
