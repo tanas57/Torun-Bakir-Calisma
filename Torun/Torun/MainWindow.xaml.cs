@@ -125,7 +125,7 @@ namespace Torun
 
             if (FileOperation.isProfileExists())
             {
-                photoChange.Source = GetImage(FileOperation.ProfilePhotoPath());
+                ellipsePhoto.ImageSource = GetImage(FileOperation.ProfilePhotoPath());
             }
             mainPage_title.Content = Lang.MainPageTitle;
             mainPage_totalRequest.Content = Lang.MainPageTotalRequest;
@@ -181,7 +181,7 @@ namespace Torun
         {
             // hatalar var.
             FileOperation.ChangeUserPhoto();
-            photoChange.Source = GetImage(FileOperation.ProfilePhotoPath());
+            ellipsePhoto.ImageSource = GetImage(FileOperation.ProfilePhotoPath());
         }
         private BitmapImage GetImage(string imageUri)
         {
