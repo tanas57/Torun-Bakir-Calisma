@@ -252,8 +252,9 @@ namespace Torun.Windows.WorkCompleted
                 {
                     string[] arr = list_workdone.SelectedValue.ToString().Split('-');
                     string work_date = arr[0].Trim();
-
+                    WorkDone temp = DB.GetWorkDoneByID(int.Parse(arr[1]));
                     getDetailDescription.Text = work_date + " " + Lang.WorkDoneEditFor + " " + Lang.WorkDoneEditChoosenWorkDescription;
+                    dbDescription.Text = temp.description;
                 }
                 catch (Exception) { }
             }
