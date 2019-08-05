@@ -96,8 +96,13 @@
                         <Border Grid.Column="1">
                             <StackPanel Margin="30,15,10,0">
                                 <DockPanel>
-                                    <Image Cursor="Hand" x:Name="photoChange" MouseDown="PhotoChange_MouseDown" Source="/images/icon/employee.png" Height="100" Width="100" Margin="50,0,0,0"/>
-                                    <Label Margin="0,-10,0,0" x:Name="menuUsername" Content="XXX" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Left" />
+                                    <Ellipse Width="100" Height="100" x:Name="photoChange" MouseDown="PhotoChange_MouseDown" Cursor="Hand" HorizontalAlignment="Right">
+                                        <Ellipse.Fill>
+                                            <ImageBrush x:Name="ellipsePhoto" ImageSource="/images/icon/employee.png"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    
+                                    <Label Margin="0,-10,0,0" x:Name="menuUsername" Content="XXX" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
                                 </DockPanel>
                                 <DockPanel Margin="110, -35, 0,0">
                                     <Button Style="{DynamicResource buttonRedBorder2}" x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">
