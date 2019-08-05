@@ -87,6 +87,7 @@ namespace Torun.Windows
                             workDone.plan_id = plan_id;
                             workDone.workDoneTime = DateTime.Now.Date; workDone.add_time = DateTime.Now;
                             workDone.status = 2;
+                            workDone.description = req_Description.Text;
                             mainWindow.DB.MoveWorkToWorkDone(workDone);
                         }
                         mainWindow.UpdateScreens();
