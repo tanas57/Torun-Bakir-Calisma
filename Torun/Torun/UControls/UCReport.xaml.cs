@@ -120,10 +120,7 @@ namespace Torun.UControls
         {
             try
             {
-                if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
-                {
-                    FileOperation.ExportAsPDF(User, CountType, workDoneLists);
-                }
+                FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
             }
             catch(Exception ex) { }
         }

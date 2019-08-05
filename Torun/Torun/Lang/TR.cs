@@ -313,7 +313,13 @@
         public string ReportToExcel => "Excel'e Aktar";
         public string ReportHasDate => "Tarihli";
         public string ReportCreatedBy => "Tarafından oluşturuldu";
+        public string ReportSelectDay => "Günü";
 
+        public string ReportSelectWeek => "Hafta";
+
+        public string ReportSelectMonth => "Ay";
+
+        public string ReportSelectYear => "Yıl";
 
         #endregion
     }

@@ -245,5 +245,9 @@
         string ReportToExcel { get; }
         string ReportHasDate { get; }
         string ReportCreatedBy { get; }
+        string ReportSelectDay { get; }
+        string ReportSelectWeek { get; }
+        string ReportSelectMonth { get; }
+        string ReportSelectYear { get; }
     }
 }

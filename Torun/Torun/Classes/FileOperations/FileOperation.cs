@@ -1,5 +1,7 @@
-﻿using System;
+﻿using IronPdf;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using Torun.Classes.FileOperations;
@@ -11,45 +13,165 @@ namespace Torun.Classes
     public static class FileOperation
     {
         public static ILanguage Lang => CurrentLanguage.Language;
-        public static void ExportAsPDF(User user, CountType countType, List<DB.WorkDoneList> workDoneList)
+        public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db)
         {
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            DateTime start = dateTimes[0];
+            DateTime end = dateTimes[1];
+
+            string fullname = user.firstname + " " + user.lastname;
+
+            // use to print selected day, week, month, or year on the screen and PDF
+            string strReportType = String.Empty;
+            switch (reportType)
+            {
+                case ReportType.OnlyPlan: strReportType = Lang.ReportComboTypeOnlyPlan; break;
+                case ReportType.OnlyWorkDone: strReportType = Lang.ReportComboTypeOnlyWorkDone; break;
+                case ReportType.Both: strReportType = Lang.ReportComboTypeBothofThem; break;
+            }
+            // get the week number or day number according to selected address interval
+            string timeString = String.Empty;
+            CultureInfo myCI = new CultureInfo("tr-TR");
+            Calendar myCal = myCI.Calendar;
+
+            switch (countType)
+            {
+                case CountType.Daily: timeString = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)DateTime.Now.DayOfWeek] + " " + Lang.ReportSelectDay + " " + strReportType;  break;
+                case CountType.Yearly: timeString = DateTime.Now.Year.ToString() + "." + Lang.ReportSelectYear + " " + strReportType; break;
+                case CountType.Montly: timeString = DateTime.Now.Month.ToString() + "." + Lang.ReportSelectMonth + " " + strReportType; break;
+                case CountType.Weekly: timeString = myCal.GetWeekOfYear(DateTime.Now, myCI.DateTimeFormat.CalendarWeekRule, myCI.DateTimeFormat.FirstDayOfWeek) + "." + Lang.ReportSelectWeek + " " + strReportType; break;
+            }
             var Renderer = new IronPdf.HtmlToPdf();
+
+            string torunLogoPath = Application.StartupPath.ToString() + "//torun-logo-2.png";
+
             string html = @"<html>
 	<head>
 	<style type='text/css'>
 		.dayTitle{
-			background:green; color:white; padding:5px; text-align:center; font-family:tahoma; font-size:17px;
-			margin-top: 10px;
+			background:#B0151E; color:white; padding:5px; font-family:tahoma; font-size:17px;
+			margin-top: 10px; width:95%;  height:auto; margin-left:auto; margin-right:auto;
 			}
 		table tr td{
-			border: 1px solid #ccc;
-			padding:5px;
+			padding:5px; margin-left:auto; margin-right:auto;
 		}
+		.bolder{
+			font-weight:bold; font-size:17px;
+			}
+			#main{
+			text-align:center;
+			border:1px solid #ccc; margin-left:auto; margin-right:auto;
+			}
+			.clas{
+				margin-left:auto; margin-right:auto;text-align:center;
+				
+			}
+			.clas table{
+				margin-left:25px;}
 	</style>
 	</head>
 	<body>
-	<div style='border:1px solid #ccc;'>
-		<div>" + DateTime.Now.ToShortDateString() + " " + Lang.ReportHasDate + " " + user.firstname + " " + user.lastname + " " + Lang.ReportCreatedBy + " " + Functions.ConvertCountTypeToString(countType) + " " + Lang.MainPageMenuReport + @"</div>
-		<div></div>
-		<div>";
-            foreach (var item in workDoneList)
+	<div id='main'>
+		<table border='0' width='100%'>
+			<tr>
+				<td width='33%'><img src='" + torunLogoPath + @"' height='70' /></td>
+				<td width='33%'>
+					<table border='0'>
+						<tr><td class='bolder'>" + fullname + @"</td></tr>
+						<tr><td class='bolder'>" + timeString + @"</td></tr>
+					</table>
+				</td>
+				<td width='11%'>
+					<table border='0'>
+						<tr><td class='bolder'>" + DateTime.Now.ToShortDateString() + @"</td></tr>
+						<tr><td class='bolder'>" + DateTime.Now.ToShortTimeString() + @"</td></tr>
+					</table>
+				</td>
+			</tr>
+		</table>";
+            if(reportType == ReportType.OnlyWorkDone)
             {
-                html += @"<div class='dayTitle'>Pazartesi (29.07.2019)</div>
-				<table width='100%'>
-					<tr style='width:98%' >
-						<td style='width:25%'>" + item.RequestNumber +@"</td>
-						<td style='width:75%'>"+ item.Description +@"</td>
-					</tr>
-				</table>
-			</div>";
+                while (end >= start)
+                {
+                    List<DB.WorkDoneList> workDone = db.ListWorkDone(user, start.Date, OrderBy.AddedTimeAsc);
+                    if (workDone.Count >= 1)
+                    {
+                        html += @"<div class='clas'>
+				<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
+					<table width='100%'>";
+                        foreach (var item in workDone)
+                        {
+                            html += @"<tr>
+							<td style='width:30%'>" + item.RequestNumber + @"</td>
+							<td style='width:70%'>" + item.Description + @"</td>
+						</tr>";
+                        }
+                        html += @"
+					</table>";
+                    }
+                    start = start.AddDays(1);
+                }
+            }
+            else if(reportType == ReportType.OnlyPlan)
+            {
+                start = new DateTime(2019, 07, 28);
+                while (end >= start)
+                {
+                    List<DB.WeeklyPlan> weeklyPlans = db.ListWeeklyPlanbyDate(user, start.Date);
+                    if (weeklyPlans.Count >= 1)
+                    {
+                        html += @"<div class='clas'>
+				<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
+					<table width='100%'>";
+                        foreach (var item in weeklyPlans)
+                        {
+                            html += @"<tr>
+							<td style='width:30%'>" + item.RequestNumber + @"</td>
+							<td style='width:70%'>" + item.WorkDescription + @"</td>
+						</tr>";
+                        }
+                        html += @"
+					</table>";
+                    }
+                    start = start.AddDays(1);
+                }
+            }
+            else if (reportType == ReportType.Both)
+            {
+    //            while (end >= start)
+    //            {
+    //                List<DB.WeeklyPlan> workDone = db.GetWorkDoneAndPlansForReport(user, start.Date, OrderBy.AddedTimeAsc);
+    //                if (workDone.Count >= 1)
+    //                {
+    //                    html += @"<div class='clas'>
+				//<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
+				//	<table width='100%'>";
+    //                    foreach (var item in workDone)
+    //                    {
+    //                        html += @"<tr>
+				//			<td style='width:30%'>" + item.RequestNumber + @"</td>
+				//			<td style='width:70%'>" + item.WorkDescription + @"</td>
+				//		</tr>";
+    //                    }
+    //                    html += @"
+				//	</table>";
+    //                }
+    //                start = start.AddDays(1);
+    //            }
             }
             html += @"
+			</div>
+
 		</div>
 	</div>
 	</body>
 </html>";
-            MessageBox.Show(html);
+            Renderer.PrintOptions.Footer = new HtmlHeaderFooter()
+            {
+                Height = 15,
+                HtmlFragment = "<center><i>{page} of {total-pages}<i></center>",
+                DrawDividerLine = true
+            };
             var PDF = Renderer.RenderHtmlAsPdf(html);
             var OutputPath = getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORT);
             PDF.SaveAs(OutputPath);

@@ -21,6 +21,7 @@ namespace Torun.Database
             public int PlanID { get; set; }
             public int WorkID { get; set; }
             public string RequestNumber { get; set; }
+            public string WorkDescription { get; set; }
         }
         public class WeeklyPlanDetail : WeeklyPlan
         {
@@ -81,6 +82,59 @@ namespace Torun.Database
             return 1;
         }
         public Setting GetUserSettings(User user) => db.Settings.SingleOrDefault(x => x.user_id == user.id);
+        public List<WorkDoneandPlans> GetWorkDoneAndPlansbyDate(User user,DateTime dateTime, CountType countType)
+        {
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            DateTime start = dateTimes[0];
+            DateTime end = dateTimes[1];
+
+            var plans = from plan in db.Plans
+                        join work in db.TodoLists on plan.work_id equals work.id
+                        where work.user_id == user.id
+                        where plan.work_plan_time >= start && plan.work_plan_time <= end
+                        orderby plan.id ascending
+                        select new WorkDoneandPlans
+                        {
+                            PlanDate = plan.work_plan_time,
+                            Prioritiy = work.priority,
+                            RequestNumber = work.request_number,
+                            AddDate = plan.add_time
+                        };
+
+            var wDone = from done in db.WorkDones
+                        join plan in db.Plans on done.plan_id equals plan.id
+                        join work in db.TodoLists on plan.work_id equals work.id
+                        where work.user_id == user.id && done.workDoneTime >= start && done.workDoneTime <= end
+                        select new WorkDoneandPlans
+                        {
+                            PlanDate = plan.work_plan_time,
+                            Prioritiy = work.priority,
+                            RequestNumber = work.request_number,
+                            WorkDoneDate = done.workDoneTime.Value
+                        };
+            List<WorkDoneandPlans> merge = new List<WorkDoneandPlans>();
+            merge.AddRange(plans.ToList());
+            merge.AddRange(wDone.ToList());
+            return merge;
+
+        }
+        public List<WeeklyPlan> ListWeeklyPlanbyDate(User user, DateTime dateTime)
+        {
+            var result = from day in db.Plans
+                         join work in db.TodoLists on day.work_id equals work.id
+                         where day.work_plan_time == dateTime && user.id == work.user_id
+                         orderby day.add_time ascending
+                         select new WeeklyPlan
+                         {
+                             PlanID = day.id,
+                             WorkID = work.id,
+                             RequestNumber = work.request_number,
+                             WorkDescription = work.description
+                         };
+            return result.ToList();
+
+        }
+
         public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType)
         {
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
@@ -343,7 +397,8 @@ namespace Torun.Database
                                  {
                                      WorkDoneID = works.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     Description = works.description
                                  };
                     return result.ToList();
 
@@ -357,7 +412,8 @@ namespace Torun.Database
                                  {
                                      WorkDoneID = works.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     Description = works.description
                                  };
                     return result.ToList();
                 case OrderBy.NameAsc:
@@ -370,7 +426,8 @@ namespace Torun.Database
                                  {
                                      WorkDoneID = works.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     Description = works.description
                                  };
                     return result.ToList();
 
@@ -384,7 +441,8 @@ namespace Torun.Database
                                  {
                                      WorkDoneID = works.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     Description = works.description
                                  };
                     return result.ToList();
                 case OrderBy.AddedTimeAsc:
@@ -397,7 +455,8 @@ namespace Torun.Database
                              {
                                  WorkDoneID = works.id,
                                  WorkID = work.id,
-                                 RequestNumber = work.request_number
+                                 RequestNumber = work.request_number,
+                                 Description = works.description
                              };
                     return result.ToList();
                 default:
@@ -411,7 +470,8 @@ namespace Torun.Database
                                  {
                                      WorkDoneID = works.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     Description = works.description
                                  };
                     return result.ToList();
             }
@@ -429,7 +489,8 @@ namespace Torun.Database
                                  {
                                      PlanID = day.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     WorkDescription = work.description
                                  };
                     return result.ToList();
                 case OrderBy.PriorityDesc:
@@ -441,7 +502,8 @@ namespace Torun.Database
                                  {
                                      PlanID = day.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     WorkDescription = work.description
                                  };
                     return result.ToList();
 
@@ -454,7 +516,8 @@ namespace Torun.Database
                                  {
                                      PlanID = day.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     WorkDescription = work.description
                                  };
                     return result.ToList();
 
@@ -467,7 +530,8 @@ namespace Torun.Database
                                  {
                                      PlanID = day.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     WorkDescription = work.description
                                  };
                     return result.ToList();
                 case OrderBy.AddedTimeAsc:
@@ -479,7 +543,8 @@ namespace Torun.Database
                              {
                                  PlanID = day.id,
                                  WorkID = work.id,
-                                 RequestNumber = work.request_number
+                                 RequestNumber = work.request_number,
+                                 WorkDescription = work.description
                              };
                     return result.ToList();
                 default:
@@ -492,7 +557,8 @@ namespace Torun.Database
                                  {
                                      PlanID = day.id,
                                      WorkID = work.id,
-                                     RequestNumber = work.request_number
+                                     RequestNumber = work.request_number,
+                                     WorkDescription = work.description
                                  };
                     return result.ToList();
 
