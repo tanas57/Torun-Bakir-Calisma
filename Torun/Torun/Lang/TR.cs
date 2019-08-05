@@ -321,6 +321,11 @@
 
         public string ReportSelectYear => "Yıl";
 
+        public string RequestAddDoTimed => "Talep zamanlayarak kaydedilsin mi ?";
+        public string RequestAddWorkDone => "Talebi tamamlandı olarak kaydet ?";
+        public string RequestAddCompletedTimeSelect => "İş Tamamlanma Zamanı Seçin";
+        public string RequestAddDoScheduled => "İş Zamanını Seçiniz";
+        
         #endregion
     }
 }

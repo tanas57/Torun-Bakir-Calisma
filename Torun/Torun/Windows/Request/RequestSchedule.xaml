@@ -55,7 +55,7 @@
                             <Label Margin="70,0,0,0" x:Name="schedule_chooseDate" Content="XXX"/>
                         </DockPanel>
                         <DockPanel HorizontalAlignment="Center">
-                            <Calendar SelectedDatesChanged="Schedule_ReqDatePicker_SelectedDatesChanged" x:Name="schedule_ReqDatePicker" Style="{DynamicResource DatePickers}"/>
+                            <Calendar IsTodayHighlighted="False" SelectedDatesChanged="Schedule_ReqDatePicker_SelectedDatesChanged" x:Name="schedule_ReqDatePicker" Style="{DynamicResource DatePickers}"/>
                         </DockPanel>
                     </StackPanel>
                 </Border>

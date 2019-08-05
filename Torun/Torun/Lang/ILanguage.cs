@@ -249,5 +249,10 @@
         string ReportSelectWeek { get; }
         string ReportSelectMonth { get; }
         string ReportSelectYear { get; }
+
+        string RequestAddDoTimed { get; }
+        string RequestAddWorkDone { get; }
+        string RequestAddCompletedTimeSelect { get; }
+        string RequestAddDoScheduled { get; }
     }
 }
