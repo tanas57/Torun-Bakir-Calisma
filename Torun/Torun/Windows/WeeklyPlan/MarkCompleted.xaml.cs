@@ -106,5 +106,9 @@ namespace Torun.Windows.WeeklyPlan
             this.Close();
         }
 
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Completed_save_Click(sender, e);
+        }
     }
 }

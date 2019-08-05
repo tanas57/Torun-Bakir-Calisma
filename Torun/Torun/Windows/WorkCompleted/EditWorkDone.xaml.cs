@@ -259,5 +259,10 @@ namespace Torun.Windows.WorkCompleted
                 catch (Exception) { }
             }
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Request_save_Click(sender, e);
+        }
     }
 }

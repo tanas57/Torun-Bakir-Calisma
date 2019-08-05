@@ -96,5 +96,10 @@ namespace Torun.Windows.WeeklyPlan
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) RemoveSave_Click(sender, e);
+        }
     }
 }

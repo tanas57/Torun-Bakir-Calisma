@@ -50,5 +50,10 @@ namespace Torun.Windows.WeeklyPlan
             editPlan.SelectedDates = calendar.SelectedDates.ToList();
             this.Close();
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Save_Click(sender, e);
+        }
     }
 }

@@ -97,5 +97,10 @@ namespace Torun.Windows.Request
         {
             Mouse.Capture(null);
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Schedule_Save_Click(sender, e);
+        }
     }
 }

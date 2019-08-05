@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torun.Windows.WorkCompleted"
         mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
-        BorderBrush="#B0151E" BorderThickness="0,0,0,5"
+        BorderBrush="#B0151E" BorderThickness="0,0,0,5" KeyUp="Window_KeyUp"
         Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown"
         Title="RemoveWorkDone" Height="150" Width="420">
     <Grid Background="WhiteSmoke">

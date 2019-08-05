@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        mc:Ignorable="d" KeyUp="Window_KeyUp"
         Title="RequestAdd" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="385" Width="520" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
@@ -56,8 +56,8 @@
                 </Border>
                 <Border Grid.Column="1">
                     <StackPanel>
-                        <CheckBox IsChecked="False" x:Name="addCompletedRequest" Checked="AddCompletedRequest_Checked" Unchecked="AddCompletedRequest_Unchecked" Content="XXX" Margin="5"/>
-                        <CheckBox IsChecked="False" x:Name="doTimed" Content="XXX" Margin="5" Checked="DoTimed_Checked" Unchecked="DoTimed_Unchecked"/>
+                        <CheckBox TabIndex="4" IsChecked="False" x:Name="addCompletedRequest" Checked="AddCompletedRequest_Checked" Unchecked="AddCompletedRequest_Unchecked" Content="XXX" Margin="5"/>
+                        <CheckBox TabIndex="5" IsChecked="False" x:Name="doTimed" Content="XXX" Margin="5" Checked="DoTimed_Checked" Unchecked="DoTimed_Unchecked"/>
                         <GroupBox Visibility="Hidden" x:Name="group">
                             <ItemsControl>
                                 <CheckBox IsChecked="False" x:Name="addWorkDone" Checked="AddWorkDone_Checked" Unchecked="AddWorkDone_Unchecked" Content="XXX" Margin="5"/>
@@ -70,7 +70,7 @@
             
         </Border>
         <Border Grid.Row="2">
-            <Button Cursor="Hand" x:Name="req_Save" Click="Req_Save_Click" HorizontalAlignment="Right">
+            <Button TabIndex="6" Cursor="Hand" x:Name="req_Save" Click="Req_Save_Click" HorizontalAlignment="Right">
                 <DockPanel>
                     <Image Source="{x:Null}" />
                     <Label Margin="0,0,0,0" Content="XXX" x:Name="lbl_req_Button" Style="{DynamicResource label_weeklyPlan}" Height="33" Width="80"/>

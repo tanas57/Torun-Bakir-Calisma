@@ -94,5 +94,10 @@ namespace Torun.Windows.Request
         {
             mainWindow.Opacity = 1;
         }
+
+        private void Req_DetailTitle_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Req_Save_Click(sender, e);
+        }
     }
 }

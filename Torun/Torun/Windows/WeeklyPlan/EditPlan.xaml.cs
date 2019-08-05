@@ -220,5 +220,10 @@ namespace Torun.Windows.WeeklyPlan
                 else if (temp.status == 1) list_plan.Items.Add(temp.work_plan_time.ToShortDateString() + " - " + temp.id + " - OK");
             }
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Savechanges_Click(sender, e);
+        }
     }
 }

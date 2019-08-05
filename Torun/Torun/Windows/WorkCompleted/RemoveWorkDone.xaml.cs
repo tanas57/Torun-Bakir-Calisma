@@ -88,5 +88,10 @@ namespace Torun.Windows.WorkCompleted
             }
             this.Close();
         }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) RemoveSave_Click(sender, e);
+        }
     }
 }

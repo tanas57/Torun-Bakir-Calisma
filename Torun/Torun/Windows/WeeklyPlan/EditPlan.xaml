@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Torun.Windows.WeeklyPlan"
         mc:Ignorable="d" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
-        BorderBrush="#B0151E" BorderThickness="0,0,0,5"
+        BorderBrush="#B0151E" BorderThickness="0,0,0,5" KeyUp="Window_KeyUp"
         Closing="Window_Closing" MouseDown="Window_MouseDown" Loaded="Window_Loaded"
         Title="MarkCompleted" Height="315" Width="602">
     <Grid Background="WhiteSmoke">
