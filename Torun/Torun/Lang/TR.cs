@@ -325,6 +325,8 @@
         public string RequestAddWorkDone => "Talebi tamamlandı olarak kaydet ?";
         public string RequestAddCompletedTimeSelect => "İş Tamamlanma Zamanı Seçin";
         public string RequestAddDoScheduled => "İş Zamanını Seçiniz";
+        public string RequestAddFinishDate => "Bugün bitirildi işaretleyin ya da tarih seçin";
+        public string RequestAddScheduleDate => "Talep zamanlanıcak ise takvimden tarih seçin";
         
         #endregion
     }

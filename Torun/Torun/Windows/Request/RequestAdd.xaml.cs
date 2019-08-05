@@ -66,6 +66,16 @@ namespace Torun.Windows
                     req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
                     req_Result.Background = System.Windows.Media.Brushes.Red;
                 }
+                else if(doTimed.IsChecked == true && workDoneDatePicker.SelectedDate == null)
+                {
+                    req_Result.Content = mainWindow.Lang.RequestAddScheduleDate;
+                    req_Result.Background = System.Windows.Media.Brushes.Red;
+                }
+                else if(addCompletedRequest.IsChecked == true && workDoneDatePicker.SelectedDate == null && addWorkDone.IsChecked == false)
+                {
+                    req_Result.Content = mainWindow.Lang.RequestAddFinishDate;
+                    req_Result.Background = System.Windows.Media.Brushes.Red;
+                }
                 else
                 {
                     int work_id = db.AddTodoList(todoList);
@@ -215,6 +225,11 @@ namespace Torun.Windows
         {
             group.Visibility = Visibility.Hidden;
             addCompletedRequest.IsEnabled = true;
+        }
+
+        private void WorkDoneDatePicker_SelectedDatesChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Mouse.Capture(null);
         }
     }
 }

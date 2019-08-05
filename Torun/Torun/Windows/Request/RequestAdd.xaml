@@ -10,6 +10,7 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0">
             <Grid>
@@ -60,23 +61,23 @@
                         <GroupBox Visibility="Hidden" x:Name="group">
                             <ItemsControl>
                                 <CheckBox IsChecked="False" x:Name="addWorkDone" Checked="AddWorkDone_Checked" Unchecked="AddWorkDone_Unchecked" Content="XXX" Margin="5"/>
-                                <Calendar IsTodayHighlighted="False" x:Name="workDoneDatePicker" Style="{DynamicResource DatePickers}" Height="172"/>
+                                <Calendar SelectedDatesChanged="WorkDoneDatePicker_SelectedDatesChanged" IsTodayHighlighted="False" x:Name="workDoneDatePicker" Style="{DynamicResource DatePickers}" Height="172"/>
                             </ItemsControl>
                         </GroupBox>
-                        <DockPanel Margin="0,15,0,0">
-                            <Button x:Name="req_Save" Click="Req_Save_Click" HorizontalAlignment="Right">
-                                <DockPanel>
-                                    <Image Source="{x:Null}" />
-                                    <Label Margin="0,-15,0,0" Content="XXX" x:Name="lbl_req_Button" Style="{DynamicResource label_weeklyPlan}" Height="33" Width="80"/>
-                                </DockPanel>
-                            </Button>
-                        </DockPanel>
                     </StackPanel>
                 </Border>
             </Grid>
             
         </Border>
         <Border Grid.Row="2">
+            <Button Cursor="Hand" x:Name="req_Save" Click="Req_Save_Click" HorizontalAlignment="Right">
+                <DockPanel>
+                    <Image Source="{x:Null}" />
+                    <Label Margin="0,0,0,0" Content="XXX" x:Name="lbl_req_Button" Style="{DynamicResource label_weeklyPlan}" Height="33" Width="80"/>
+                </DockPanel>
+            </Button>
+        </Border>
+        <Border Grid.Row="3">
             <Label x:Name="req_Result" Content="XXX" Background="Red" Margin="0,10,0,0" Foreground="White" Visibility="Hidden"/>
         </Border>
     </Grid>

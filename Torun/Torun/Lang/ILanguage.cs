@@ -207,7 +207,7 @@
         // workdone get detail page
         string WorkDoneDetailTitle { get; }
         string WorkDoneDetailGroupPlanAndWorkDone { get; }
-        string WorkDoneDetailDescription{ get; }
+        string WorkDoneDetailDescription { get; }
         string WorkDoneEditTitle { get; }
         string WorkDoneEditCompletedWorks { get; }
         string WorkDoneEditChoosenWorkDescription { get; }
@@ -254,5 +254,7 @@
         string RequestAddWorkDone { get; }
         string RequestAddCompletedTimeSelect { get; }
         string RequestAddDoScheduled { get; }
+        string RequestAddFinishDate { get; }
+        string RequestAddScheduleDate { get; }
     }
 }
