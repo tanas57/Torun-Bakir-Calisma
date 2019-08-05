@@ -114,7 +114,6 @@ namespace Torun.Classes
             }
             else if(reportType == ReportType.OnlyPlan)
             {
-                start = new DateTime(2019, 07, 28);
                 while (end >= start)
                 {
                     List<DB.WeeklyPlan> weeklyPlans = db.ListWeeklyPlanbyDate(user, start.Date);
@@ -138,26 +137,29 @@ namespace Torun.Classes
             }
             else if (reportType == ReportType.Both)
             {
-    //            while (end >= start)
-    //            {
-    //                List<DB.WeeklyPlan> workDone = db.GetWorkDoneAndPlansForReport(user, start.Date, OrderBy.AddedTimeAsc);
-    //                if (workDone.Count >= 1)
-    //                {
-    //                    html += @"<div class='clas'>
-				//<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
-				//	<table width='100%'>";
-    //                    foreach (var item in workDone)
-    //                    {
-    //                        html += @"<tr>
-				//			<td style='width:30%'>" + item.RequestNumber + @"</td>
-				//			<td style='width:70%'>" + item.WorkDescription + @"</td>
-				//		</tr>";
-    //                    }
-    //                    html += @"
-				//	</table>";
-    //                }
-    //                start = start.AddDays(1);
-    //            }
+                //start = new DateTime(2019, 07, 31);
+                while (end >= start)
+                {
+                    List<DB.WorkDoneandPlans> workPlans = db.GetWorkDoneAndPlansbyDate(user, start.Date);
+                    if (workPlans.Count >= 1)
+                    {
+                        html += @"<div class='clas'>
+				<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
+					<table width='100%'>";
+                        foreach (var item in workPlans)
+                        {
+                            html += @"<tr>
+							<td style='width:30%'>" + item.RequestNumber + @"</td>
+                            <td style='width:18%'>Planlanan : " + item.PlanDate.ToShortDateString() + " Gerçekleşen: "+ (item.WorkDoneDate.ToShortDateString() == "1.01.0001"
+? " - ": item.WorkDoneDate.ToShortDateString()) + @"</td>
+							<td style='width:52%'>" + item.WorkDescription + @"</td>
+						</tr>";
+                        }
+                        html += @"
+					</table>";
+                    }
+                    start = start.AddDays(1);
+                }
             }
             html += @"
 			</div>

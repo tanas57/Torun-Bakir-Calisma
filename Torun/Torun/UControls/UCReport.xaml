@@ -48,7 +48,7 @@
                 <Border Grid.Row="1">
                     <StackPanel>
                         <Grid x:Name="ReportGridPlan">
-                            <DataGrid x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                            <DataGrid VerticalScrollBarVisibility="Visible" x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >

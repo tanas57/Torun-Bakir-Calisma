@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System;
 using Torun.Classes;
 using Torun.Lang;
+using System.Windows;
 
 namespace Torun.Database
 {
@@ -82,40 +83,31 @@ namespace Torun.Database
             return 1;
         }
         public Setting GetUserSettings(User user) => db.Settings.SingleOrDefault(x => x.user_id == user.id);
-        public List<WorkDoneandPlans> GetWorkDoneAndPlansbyDate(User user,DateTime dateTime, CountType countType)
+        public List<WorkDoneandPlans> GetWorkDoneAndPlansbyDate(User user,DateTime dateTime)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
-            DateTime start = dateTimes[0];
-            DateTime end = dateTimes[1];
-
             var plans = from plan in db.Plans
                         join work in db.TodoLists on plan.work_id equals work.id
-                        where work.user_id == user.id
-                        where plan.work_plan_time >= start && plan.work_plan_time <= end
+                        where plan.work_plan_time == dateTime.Date && work.user_id == user.id
                         orderby plan.id ascending
                         select new WorkDoneandPlans
                         {
                             PlanDate = plan.work_plan_time,
                             Prioritiy = work.priority,
                             RequestNumber = work.request_number,
-                            AddDate = plan.add_time
+                            AddDate = plan.add_time,
+                            PlanID = plan.id
                         };
-
-            var wDone = from done in db.WorkDones
-                        join plan in db.Plans on done.plan_id equals plan.id
-                        join work in db.TodoLists on plan.work_id equals work.id
-                        where work.user_id == user.id && done.workDoneTime >= start && done.workDoneTime <= end
-                        select new WorkDoneandPlans
-                        {
-                            PlanDate = plan.work_plan_time,
-                            Prioritiy = work.priority,
-                            RequestNumber = work.request_number,
-                            WorkDoneDate = done.workDoneTime.Value
-                        };
-            List<WorkDoneandPlans> merge = new List<WorkDoneandPlans>();
-            merge.AddRange(plans.ToList());
-            merge.AddRange(wDone.ToList());
-            return merge;
+            List<WorkDoneandPlans>workDoneandPlans =  plans.ToList();
+            for (int i = 0; i < workDoneandPlans.Count(); i++)
+            {
+                WorkDone workDone = GetWorkDoneByPlanID(workDoneandPlans[i].PlanID);
+                if (workDone != null)
+                {
+                    workDoneandPlans[i].WorkDescription = workDone.description;
+                    workDoneandPlans[i].WorkDoneDate = workDone.workDoneTime.Value;
+                }
+            }
+            return workDoneandPlans;
 
         }
         public List<WeeklyPlan> ListWeeklyPlanbyDate(User user, DateTime dateTime)
@@ -304,6 +296,7 @@ namespace Torun.Database
             }
         }
         public WorkDone GetWorkDoneByID(int id) => db.WorkDones.SingleOrDefault(x => x.id == id);
+        public WorkDone GetWorkDoneByPlanID(int plan_id) => db.WorkDones.SingleOrDefault(x => x.plan_id == plan_id);
         public List<WorkDone> GetWorkdoneByID(int work_id)
         {
             var result = from workdone in db.WorkDones
