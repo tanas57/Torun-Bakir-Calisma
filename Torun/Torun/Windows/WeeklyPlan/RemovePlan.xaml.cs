@@ -23,25 +23,28 @@ namespace Torun.Windows.WeeklyPlan
             TodoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
             if(remove_aDay.IsChecked == true) // selected plan will remove from plan
             {
+                // tek gün seçili ise planda aktif halen iş var ise yapılacak listesine atılmayacak !!! // planned
+                // eğer tek iş o olupta remove edilirse yapılacaklara gönderelim // düzenlendi olsun
                 Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                 if (remove_allDays.IsEnabled == false)
                 {
                     // todolist has only one plan so work can be transfer back todolist
                     mainWindow.DB.RemovePlan(plan);
+                    if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
+                    {
+                        // there are any completed plans, so the work status must be in progress
+                        todoList.status = (int)StatusType.Planned;
+                    }
+                    else
+                    {
+                        todoList.status = (int)StatusType.Edited;
+                    }
                 }
                 else
                 {
                     // only delete selected plan, do not change work
+                    todoList.status = (int)StatusType.Planned;
                     mainWindow.DB.RemovePlan(plan);
-                }
-                if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
-                {
-                    // there are any completed plans, so the work status must be in progress
-                    todoList.status = (int)StatusType.InProcess;
-                }
-                else
-                {
-                    todoList.status = (int)StatusType.Edited;
                 }
                 mainWindow.DB.EditTodoList(todoList);
             }
