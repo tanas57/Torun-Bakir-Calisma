@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System;
 using Torun.Classes;
 using Torun.Lang;
-using System.Windows;
 
 namespace Torun.Database
 {
@@ -16,7 +15,6 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
-        
         public class WeeklyPlan
         {
             public int PlanID { get; set; }
@@ -126,7 +124,6 @@ namespace Torun.Database
             return result.ToList();
 
         }
-
         public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType)
         {
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
@@ -599,7 +596,6 @@ namespace Torun.Database
                          select todo;
             return result.ToList<TodoList>();
         }
-
         public int GetRequestCount(byte ReqType, User user, CountType countType)
         {
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
@@ -613,14 +609,12 @@ namespace Torun.Database
             }
             return 0;
         }
-
         public User GetUserDetail(User user)
         {
             User temp = new User();
             temp = db.Users.SingleOrDefault(x => x.user_name == user.user_name);
             return temp;
         }
-
         public byte Login(User user)
         {
             if (db.Users.Any(x => x.user_name == user.user_name))
@@ -640,7 +634,6 @@ namespace Torun.Database
             }
             else return 2; // 2 : user could not find
         }
-
         public void LogOut(User user)
         {
             if (db.Users.Any(x => x.id == user.id))
@@ -652,7 +645,6 @@ namespace Torun.Database
                 db.SaveChanges();
             }
         }
-
         public byte Register(User user)
         {
             if (db.Users.Any(x => x.user_name == user.user_name)) return 0;
@@ -663,5 +655,4 @@ namespace Torun.Database
             return 1;
         }
     }
-
 }

@@ -83,7 +83,7 @@
                             <StackPanel Margin="30,20,0,0">
                                 <DockPanel>
                                     <Label x:Name="mainPage_totalRequest" Content="XXX : " Foreground="White" FontSize="19"/>
-                                    <Label x:Name="requestCount" Content="125" Foreground="#FFEEB8B8" FontSize="19" Background="#00000000"/>
+                                    <Label x:Name="requestCount" Content="XXX" Foreground="#FFEEB8B8" FontSize="19" Background="#00000000"/>
                                 </DockPanel>
                                 <DockPanel>
                                     <Label x:Name="mainPage_openRequest" Content="XXX : " Foreground="White" FontSize="14"/>

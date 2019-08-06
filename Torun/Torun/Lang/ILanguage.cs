@@ -31,10 +31,7 @@
         string WelcomeRegisterTitleLastName { get; }
         string WelcomeCapsLock { get; }
         #endregion
-
-        /* WELCOME PAGE ENDS*/
-
-        /* COMBOBOX ITEMS */
+        // COMBOBOX ITEMS */
         #region
 
         // PRIORITY
@@ -51,8 +48,7 @@
         string ComboboxStatusPlanned { get; }
         /* COMBOBOX ITEMS */
         #endregion
-
-        /* REQUEST ADD WINDOWS STARTS */
+        // REQUEST ADD 
         #region
         string RequestAddRequestNumber { get; }
         string RequestAddRequestPriority { get; }
@@ -65,10 +61,15 @@
         string RequestAddRequestTitle { get; }
         string RequestAddReqNumEmpty { get; }
         string RequestAddToWorkDone { get; }
+        string RequestAddDoTimed { get; }
+        string RequestAddWorkDone { get; }
+        string RequestAddCompletedTimeSelect { get; }
+        string RequestAddDoScheduled { get; }
+        string RequestAddFinishDate { get; }
+        string RequestAddScheduleDate { get; }
         /* REQUEST ADD WINDOWS ENDS */
         #endregion
-
-        /* REQUEST EDIT WINDOWS ENDS */
+        // REQUEST EDIT 
         #region
         string RequestEditTitle { get; }
         string RequestEditButton { get; }
@@ -76,7 +77,7 @@
         string RequestEditLabelSaveNO { get; }
         /* REQUEST EDIT WINDOWS ENDS */
         #endregion
-        /* MAIN PAGE STARTS */
+        // MAIN PAGE
         #region
         string MainPageTitle { get; }
         string MainPageTotalRequest { get; }
@@ -90,9 +91,6 @@
         string MainPageMenuBackup { get; }
         string MainPageMenuSettings { get; }
         #endregion
-        /* MAIN PAGE ENDS */
-
-        /* REQUEST SCHEDULE PAGE STARTS*/
         #region
         string RequestScheduleTitle { get; }
         string RequestScheduleReqNumber { get; }
@@ -101,8 +99,6 @@
         string RequestScheduleSaveChooseDateError { get; }
         string RequestScheduleSaveFailed { get; }
         #endregion
-
-        /* REQUEST SCHEDULE PAGE ENDS */
         // Todolist page
         #region
         string UCTodoListAddRequest { get; }
@@ -135,6 +131,7 @@
         string UCWeeklyPlanNumOfPlans { get; }
         string UCWeeklyPlanOpenDetail { get; }
         string UCWeeklyPlanCloseDetail { get; }
+        string WeeklyPlanDetailPlanDate { get; }
         #endregion
         // weekly detail
         #region
@@ -197,17 +194,21 @@
         string WeeklyPlanSortNameAsc { get; }
         #endregion
         // UC Work done page
-        string UCWorkDoneRemoveWorkDone { get; }
         // workdone remove page
         #region
         string WorkDoneRemoveTitle { get; }
         string WorkDoneRemoveSelectADay { get; }
         string WorkDoneRemoveSelectAllDays { get; }
+        string UCWorkDoneRemoveWorkDone { get; }
         #endregion
         // workdone get detail page
+        #region
         string WorkDoneDetailTitle { get; }
         string WorkDoneDetailGroupPlanAndWorkDone { get; }
         string WorkDoneDetailDescription { get; }
+        #endregion
+        // workdone edit page
+        #region
         string WorkDoneEditTitle { get; }
         string WorkDoneEditCompletedWorks { get; }
         string WorkDoneEditChoosenWorkDescription { get; }
@@ -217,8 +218,9 @@
         string WorkDoneEditFor { get; }
         string WorkDoneTime { get; }
         string WorkDoneEditWorkDescriptionUpdate { get; }
-        string WeeklyPlanDetailPlanDate { get; }
-
+        #endregion
+        // Settings page
+        #region
         string SettingsGroupMainCount { get; }
         string SettingsRadioDaily { get; }
         string SettingsRadioWeekly { get; }
@@ -230,17 +232,19 @@
         string SettingsTitleTimeInterval { get; }
         string SettingsTitleAutoBackup { get; }
         string SettingsAutoBackupActive { get; }
-
-        string ReportLabelPlanWorkdone { get; }
-        string ReportLabelTimeInterval { get; }
-        string ReportComboTypeOnlyPlan { get; }
-        string ReportComboTypeOnlyWorkDone { get; }
-        string ReportComboTypeBothofThem { get; }
         string SettingsApplied { get; }
         string SettignsAutoBackup { get; }
         string SettingsActive { get; }
         string SettingsPasive { get; }
         string SettingsOpenSetting { get; }
+        #endregion
+        //Report page
+        #region
+        string ReportLabelPlanWorkdone { get; }
+        string ReportLabelTimeInterval { get; }
+        string ReportComboTypeOnlyPlan { get; }
+        string ReportComboTypeOnlyWorkDone { get; }
+        string ReportComboTypeBothofThem { get; }
         string ReportToPDF { get; }
         string ReportToExcel { get; }
         string ReportHasDate { get; }
@@ -249,12 +253,6 @@
         string ReportSelectWeek { get; }
         string ReportSelectMonth { get; }
         string ReportSelectYear { get; }
-
-        string RequestAddDoTimed { get; }
-        string RequestAddWorkDone { get; }
-        string RequestAddCompletedTimeSelect { get; }
-        string RequestAddDoScheduled { get; }
-        string RequestAddFinishDate { get; }
-        string RequestAddScheduleDate { get; }
+        #endregion
     }
 }

@@ -51,26 +51,21 @@
         /* REQUEST PAGES */
         // REQUEST ADD PAGE 
         #region
-
         public string RequestAddRequestNumber => "Talep numarası";
-
         public string RequestAddRequestPriority => "Öncelik";
-
         public string RequestAddRequestDescription => "Açıklama";
-
         public string RequestAddRequestButton => "Talep Ekle";
-
         public string RequestAddRequestResultOk => "Talep başarıyla eklendi";
-
         public string RequestAddRequestResultNo => "Talep numarası sistemde kayıtlı";
-
         public string RequestAddRequestResultNotSelected => "Öncelik seçilmedi";
-
         public string RequestAddRequestResultNoDescription => "Açıklama girilmedi";
-
         public string RequestAddRequestTitle => "Yeni Talep Ekle";
-
-        public string RequestAddReqNumEmpty => "Talep numarası boş olamaz";
+        public string RequestAddReqNumEmpty => "Talep numarası boş olamaz"; public string RequestAddDoTimed => "Talep zamanlayarak kaydedilsin mi ?";
+        public string RequestAddWorkDone => "Talebi tamamlandı olarak kaydet ?";
+        public string RequestAddCompletedTimeSelect => "İş Tamamlanma Zamanı Seçin";
+        public string RequestAddDoScheduled => "İş Zamanını Seçiniz";
+        public string RequestAddFinishDate => "Bugün bitirildi işaretleyin ya da tarih seçin";
+        public string RequestAddScheduleDate => "Talep zamanlanıcak ise takvimden tarih seçin";
         #endregion
         /* REQUEST EDIT WINDOWS ENDS */
         #region
@@ -157,6 +152,9 @@
 
         public string UCWeeklyPlanCurrentTime => "Geçerli Zaman Dilimi";
         public string UCWeeklyPlanNumOfPlans => "adet kayıt";
+        public string UCWeeklyPlanOpenDetail => "Detaylı Görünüme Geç";
+        public string UCWeeklyPlanCloseDetail => "Haftalık Görünüme Geç";
+        public string WeeklyPlanDetailPlanDate => "Plandaki Tarih";
         #endregion
         // Wekkly detail
         #region
@@ -273,18 +271,12 @@
 
         public string WorkDoneEditWorkDescriptionUpdate => "Seçilen iş açıklaması güncellendi";
 
-        public string UCWeeklyPlanOpenDetail => "Detaylı Görünüme Geç";
-
-        public string UCWeeklyPlanCloseDetail => "Haftalık Görünüme Geç";
-
-        public string WeeklyPlanDetailPlanDate => "Plandaki Tarih";
-
+        #endregion
+        // Settings page
+        #region
         public string SettingsGroupMainCount => "Ana Ekran Talep Sayaç Ayarı";
-
         public string SettingsRadioDaily => "Günlük";
-
         public string SettingsRadioWeekly => "Haftalık";
-
         public string SettingsRadioMonthly => "Aylık";
         public string SettingsRadioYearly => "Yıllık";
         public string SettingsRadioBeforeStart => "En baştan beri";
@@ -295,39 +287,25 @@
         public string SettingsAutoBackupActive => "Otomatik yedekleme aktif et";
         public string SettignsAutoBackup => "Otomatik yedekleme";
         public string SettingsApplied => "Olarak Ayarlandı";
-
-
+        public string SettingsActive => "Aktif";
+        public string SettingsPasive => "Pasif";
+        public string SettingsOpenSetting => "Otomatik Açılma";
+        #endregion
+        // Report page
+        #region
         public string ReportComboTypeOnlyPlan => "Sadece Haftalık Plan";
         public string ReportComboTypeOnlyWorkDone => "Sadece Yapılmış İşler";
         public string ReportComboTypeBothofThem => "İkisi Birlikte";
         public string ReportLabelPlanWorkdone => "Listeleme Tipini Seçin : ";
         public string ReportLabelTimeInterval => "Zaman Aralığını Seçin : ";
-
-        public string SettingsActive => "Aktif";
-
-        public string SettingsPasive => "Pasif";
-        public string SettingsOpenSetting => "Otomatik Açılma";
-
         public string ReportToPDF => "PDF'e Aktar";
-
         public string ReportToExcel => "Excel'e Aktar";
         public string ReportHasDate => "Tarihli";
         public string ReportCreatedBy => "Tarafından oluşturuldu";
         public string ReportSelectDay => "Günü";
-
         public string ReportSelectWeek => "Hafta";
-
         public string ReportSelectMonth => "Ay";
-
         public string ReportSelectYear => "Yıl";
-
-        public string RequestAddDoTimed => "Talep zamanlayarak kaydedilsin mi ?";
-        public string RequestAddWorkDone => "Talebi tamamlandı olarak kaydet ?";
-        public string RequestAddCompletedTimeSelect => "İş Tamamlanma Zamanı Seçin";
-        public string RequestAddDoScheduled => "İş Zamanını Seçiniz";
-        public string RequestAddFinishDate => "Bugün bitirildi işaretleyin ya da tarih seçin";
-        public string RequestAddScheduleDate => "Talep zamanlanıcak ise takvimden tarih seçin";
-        
         #endregion
     }
 }
