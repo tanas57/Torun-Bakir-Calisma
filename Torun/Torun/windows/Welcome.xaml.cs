@@ -24,6 +24,7 @@ namespace Torun.windows
         {
             InitializeComponent();
             DB = new DB();
+            CurrentLanguage.SetLanguage((TorunLanguage)Properties.Settings.Default.set_language); // set language from user settings
             Lang = CurrentLanguage.Language;
         }
 
