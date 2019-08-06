@@ -7,6 +7,7 @@ using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Classes.Keyboard;
 using Torun.Lang;
+using System.Windows.Threading;
 
 namespace Torun.windows
 {
@@ -198,6 +199,15 @@ namespace Torun.windows
                         passwordMD5 = true;
                     }
                 }
+
+                // update process
+                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
+                timer.Tick += delegate
+                {
+                    Update.Check();
+                };
+                timer.Start();
+                // update process
             }
             catch (Exception ex)
             {

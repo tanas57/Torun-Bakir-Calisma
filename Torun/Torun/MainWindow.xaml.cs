@@ -160,6 +160,7 @@ namespace Torun
                 mainPage_menuReport.Content = Lang.MainPageMenuReport;
                 mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
                 mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
+
             }
             catch (Exception ex)
             {

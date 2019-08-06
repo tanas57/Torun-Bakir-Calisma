@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoUpdater.NET, Version=1.5.4.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.5.4\lib\net40\AutoUpdater.NET.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
     <Compile Include="Classes\MD5Crypt.cs" />
     <Compile Include="Classes\FileOperations\FileOperation.cs" />
     <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Classes\Update.cs" />
     <Compile Include="Classes\UserControllCall.cs" />
     <Compile Include="Database\DB.cs" />
     <Compile Include="Database\DbModel.Context.cs">
