@@ -9,90 +9,26 @@
 
 namespace Torun.Database
 {
-    using System;
     using System.Collections.Generic;
-    using Torun.Classes;
-    using Torun.Lang;
 
     public partial class TodoList
     {
-        private byte priorities; private byte statu;
-        private ILanguage language;
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TodoList()
         {
             this.Plans = new HashSet<Plan>();
-            language = CurrentLanguage.Language;
         }
     
         public int id { get; set; }
         public string request_number { get; set; }
-        public byte priority
-        {
-            get
-            {
-                return priorities;
-            }
-            set
-            {
-                priorities = (byte)value;
-                switch (value)
-                {
-                    case (int)PriorityType.Low:
-                        PriorityString = language.ComboboxPriorityLow;
-                        break;
-                    case (int)PriorityType.Normal:
-                        PriorityString = language.ComboboxPriorityNormal;
-                        break;
-                    case (int)PriorityType.High:
-                        PriorityString = language.ComboboxPriorityHigh;
-                        break;
-                    case (int)PriorityType.Urgent:
-                        PriorityString = language.ComboboxPriorityUrgent;
-                        break;
-                    case (int)PriorityType.Project:
-                        PriorityString = language.ComboboxPriorityProject;
-                        break;
-                }
-            }
-        }
+        public byte priority { get; set; }
         public string description { get; set; }
         public int user_id { get; set; }
         public System.DateTime add_time { get; set; }
-        public byte status
-        {
-            get
-            {
-                return statu;
-            }
-            set
-            {
-                statu = (byte)value;
-                switch (value)
-                {
-                    case (int)StatusType.Added:
-                        StatusString = language.ComboboxStatusNew;
-                        break;
-                    case (int)StatusType.InProcess:
-                        StatusString = language.ComboboxStatusInProcess;
-                        break;
-                    case (int)StatusType.Closed:
-                        StatusString = language.ComboboxStatusClosed;
-                        break;
-                    case (int)StatusType.Edited:
-                        StatusString = language.ComboboxStatusEdited;
-                        break;
-                    case (int)StatusType.Planned:
-                        StatusString = language.ComboboxStatusPlanned;
-                        break;
-                }
-            }
-        }
+        public byte status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Plan> Plans { get; set; }
         public virtual User User { get; set; }
-        public string PriorityString { get; set; }
-        public string StatusString { get; set; }
     }
 }

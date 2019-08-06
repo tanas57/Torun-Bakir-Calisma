@@ -15,6 +15,17 @@ namespace Torun.Database
         {
             db = new plan_tracerDBEntities();
         }
+        public class TodoListGrid
+        {
+            public int WorkID { get; set; }
+            public string RequestNumber { get; set; }
+            public int Priority { get; set; }
+            public string PriorityString => Functions.PriorityString((PriorityType)Priority);
+            public string Description { get; set; }
+            public DateTime AddTime { get; set; }
+            public int Status { get; set; }
+            public string StatusString =>  Functions.StatusString((StatusType)Status);
+        }
         public class WeeklyPlan
         {
             public int PlanID { get; set; }
@@ -25,38 +36,9 @@ namespace Torun.Database
         public class WeeklyPlanDetail : WeeklyPlan
         {
             private ILanguage Lang => CurrentLanguage.Language;
-            private int priorities;
             public DateTime PlanDate { get; set; }
-            public string PriorityString { get; set; }
-            public int Prioritiy
-            {
-                get
-                {
-                    return priorities;
-                }
-                set
-                {
-                    priorities = (byte)value;
-                    switch (value)
-                    {
-                        case (int)PriorityType.Low:
-                            PriorityString = Lang.ComboboxPriorityLow;
-                            break;
-                        case (int)PriorityType.Normal:
-                            PriorityString = Lang.ComboboxPriorityNormal;
-                            break;
-                        case (int)PriorityType.High:
-                            PriorityString = Lang.ComboboxPriorityHigh;
-                            break;
-                        case (int)PriorityType.Urgent:
-                            PriorityString = Lang.ComboboxPriorityUrgent;
-                            break;
-                        case (int)PriorityType.Project:
-                            PriorityString = Lang.ComboboxPriorityProject;
-                            break;
-                    }
-                }
-            }
+            public string PriorityString => Functions.PriorityString((PriorityType)Priority);
+            public int Priority { get; set; }
             public DateTime AddDate { get; set; }
         }
         public class WorkDoneList
@@ -103,7 +85,7 @@ namespace Torun.Database
                         select new WorkDoneandPlans
                         {
                             PlanDate = plan.work_plan_time,
-                            Prioritiy = work.priority,
+                            Priority = work.priority,
                             RequestNumber = work.request_number,
                             AddDate = plan.add_time,
                             PlanID = plan.id
@@ -151,7 +133,7 @@ namespace Torun.Database
                         select new WorkDoneandPlans
                         {
                             PlanDate = plan.work_plan_time,
-                            Prioritiy = work.priority,
+                            Priority = work.priority,
                             RequestNumber = work.request_number,
                             AddDate = plan.add_time
                         };
@@ -163,7 +145,7 @@ namespace Torun.Database
                          select new WorkDoneandPlans
                          {
                              PlanDate = plan.work_plan_time,
-                             Prioritiy = work.priority,
+                             Priority = work.priority,
                              RequestNumber = work.request_number,
                              WorkDoneDate = done.workDoneTime.Value
                          };
@@ -208,7 +190,7 @@ namespace Torun.Database
                              WorkID = work.id,
                              PlanID = plan.id,
                              PlanDate = plan.work_plan_time,
-                             Prioritiy = work.priority,
+                             Priority = work.priority,
                              RequestNumber = work.request_number,
                              AddDate = plan.add_time
                          };
@@ -229,7 +211,7 @@ namespace Torun.Database
                                      RequestNumber = work.request_number,
                                      PlanID = plans.id,
                                      PlanDate = plans.work_plan_time,
-                                     Prioritiy = work.priority
+                                     Priority = work.priority
                                  };
                     return result.ToList();
                 case OrderBy.NameDesc:
@@ -243,7 +225,7 @@ namespace Torun.Database
                                  RequestNumber = work.request_number,
                                  PlanID = plans.id,
                                  PlanDate = plans.work_plan_time,
-                                 Prioritiy = work.priority
+                                 Priority = work.priority
                              };
                     return result.ToList();
                 case OrderBy.PriorityAsc:
@@ -257,7 +239,7 @@ namespace Torun.Database
                                  RequestNumber = work.request_number,
                                  PlanID = plans.id,
                                  PlanDate = plans.work_plan_time,
-                                 Prioritiy = work.priority
+                                 Priority = work.priority
                              };
                     return result.ToList();
                 case OrderBy.PriorityDesc:
@@ -271,7 +253,7 @@ namespace Torun.Database
                                  RequestNumber = work.request_number,
                                  PlanID = plans.id,
                                  PlanDate = plans.work_plan_time,
-                                 Prioritiy = work.priority
+                                 Priority = work.priority
                              };
                     return result.ToList();
                 case OrderBy.AddedTimeAsc:
@@ -285,7 +267,7 @@ namespace Torun.Database
                                  RequestNumber = work.request_number,
                                  PlanID = plans.id,
                                  PlanDate = plans.work_plan_time,
-                                 Prioritiy = work.priority
+                                 Priority = work.priority
                              };
                     return result.ToList(); 
                 default:
@@ -300,7 +282,7 @@ namespace Torun.Database
                                  RequestNumber = work.request_number,
                                  PlanID = plans.id,
                                  PlanDate = plans.work_plan_time,
-                                 Prioritiy = work.priority
+                                 Priority = work.priority
                              };
                     return result.ToList();
             }
@@ -602,12 +584,20 @@ namespace Torun.Database
 
             return todoList.id;
         }
-        public List<TodoList> GetTodoLists(User user) {
+        public List<TodoListGrid> GetTodoLists(User user) {
             //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
             var result = from todo in db.TodoLists
-                         where user.id == todo.user_id && ( todo.status != (int)StatusType.Closed && todo.status != (int)StatusType.Planned)
-                         select todo;
-            return result.ToList<TodoList>();
+                         where user.id == todo.user_id && (todo.status != (int)StatusType.Closed && todo.status != (int)StatusType.Planned)
+                         select new TodoListGrid
+                         {
+                             WorkID = todo.id,
+                             RequestNumber = todo.request_number,
+                             Status = todo.status,
+                             AddTime = todo.add_time,
+                             Description = todo.description,
+                             Priority = todo.priority
+                         };
+            return result.ToList<TodoListGrid>();
         }
         public int GetRequestCount(byte ReqType, User user, CountType countType)
         {

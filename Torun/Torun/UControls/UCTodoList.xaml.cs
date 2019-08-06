@@ -44,7 +44,8 @@ namespace Torun.UControls
         {
             try
             {
-                TodoList todoList = Grid_todoList.SelectedItem as TodoList;
+                DB.TodoListGrid temp = Grid_todoList.SelectedItem as DB.TodoListGrid;
+                TodoList todoList = mainWindow.DB.GetTodoByID(temp.WorkID);
                 if (todoList.status == (int)StatusType.InProcess)
                 {
                     var result = MessageBox.Show("Bu talebin tamamlanan kısımları var, yinede silinsin mi (tamamlananlarda silinecek) ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -95,7 +96,9 @@ namespace Torun.UControls
             {
                 RequestDetail requestEdit = new RequestDetail();
                 requestEdit.Owner = mainWindow;
-                requestEdit.todolist = Grid_todoList.SelectedItem as TodoList;
+                DB.TodoListGrid temp = Grid_todoList.SelectedItem as DB.TodoListGrid;
+                TodoList todoList = mainWindow.DB.GetTodoByID(temp.WorkID);
+                requestEdit.todolist = todoList;
                 mainWindow.Opacity = 0.5;
                 requestEdit.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 requestEdit.ShowDialog();
@@ -111,8 +114,10 @@ namespace Torun.UControls
             try
             {
                 RequestSchedule requestSchedule = new RequestSchedule();
+                DB.TodoListGrid temp = Grid_todoList.SelectedItem as DB.TodoListGrid;
+                TodoList todoList = mainWindow.DB.GetTodoByID(temp.WorkID);
                 requestSchedule.Owner = mainWindow;
-                requestSchedule.todolist = Grid_todoList.SelectedItem as TodoList;
+                requestSchedule.todolist = todoList;
                 mainWindow.Opacity = 0.5;
                 requestSchedule.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 requestSchedule.ShowDialog();
@@ -134,7 +139,7 @@ namespace Torun.UControls
                     add_time.Header = mainWindow.Lang.UCTodoListAddedTime;
                     add_time.Width = 120;
                     add_time.IsReadOnly = true;
-                    add_time.Binding = new System.Windows.Data.Binding("add_time");
+                    add_time.Binding = new System.Windows.Data.Binding("AddTime");
                     Grid_todoList.Columns.Add(add_time);
 
                     DataGridTextColumn status = new DataGridTextColumn();

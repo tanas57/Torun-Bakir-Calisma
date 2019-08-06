@@ -54,5 +54,29 @@ namespace Torun.Classes
                 case CountType.FromTheBeginning: return Lang.SettingsRadioBeforeStart;
             }
         }
+        public static string PriorityString(PriorityType priorityType)
+        {
+            switch (priorityType)
+            {
+                case PriorityType.Low: return Lang.ComboboxPriorityLow;
+                default:
+                case PriorityType.Normal: return Lang.ComboboxPriorityNormal;
+                case PriorityType.High: return Lang.ComboboxPriorityHigh;
+                case PriorityType.Urgent: return Lang.ComboboxPriorityUrgent;
+                case PriorityType.Project: return Lang.ComboboxPriorityProject;
+            }
+        }
+        public static string StatusString(StatusType statusType)
+        {
+            switch (statusType)
+            {
+                default:
+                case StatusType.Added: return Lang.ComboboxStatusNew;
+                case StatusType.InProcess: return Lang.ComboboxStatusInProcess;
+                case StatusType.Closed: return Lang.ComboboxStatusClosed;
+                case StatusType.Edited: return Lang.ComboboxStatusEdited;
+                case StatusType.Planned: return Lang.ComboboxStatusPlanned;
+            }
+        }
     }
 }
