@@ -36,7 +36,7 @@ namespace Torun.Windows.WeeklyPlan
                         if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
                         {
                             // there are any completed plans, so the work status must be in progress
-                            todoList.status = (int)StatusType.Planned;
+                            todoList.status = (int)StatusType.Closed;
                         }
                         else
                         {
