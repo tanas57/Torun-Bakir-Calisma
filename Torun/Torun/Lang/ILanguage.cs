@@ -237,6 +237,13 @@
         string SettingsActive { get; }
         string SettingsPasive { get; }
         string SettingsOpenSetting { get; }
+        string SettingsCurrentPassword { get; }
+        string SettingsNameUpdate { get; }
+        string SettingsPasswordUpdate { get; }
+        string SettingsResultNameUp { get; }
+        string SettingsResultPasswordUp { get; }
+        string SettingsNameMustGreaterThanThreeChars { get; }
+        string SettingsPasswordMustGreaterThanThreeChars { get; }
         #endregion
         //Report page
         #region

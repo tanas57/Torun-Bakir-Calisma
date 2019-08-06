@@ -72,10 +72,8 @@
                             <CheckBox Content="XXX" x:Name="autoOpen" Margin="5,10,0,15" Checked="AutoOpen_Checked" Unchecked="AutoOpen_Unchecked"/>
                         </StackPanel>
                     </StackPanel>
-
                 </Border>
                 <Border Grid.Column="1">
-                    
                     <StackPanel>
                         <StackPanel>
                             <Label x:Name="titleAutoBackup" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
@@ -96,6 +94,36 @@
                             </GroupBox>
                         </StackPanel>
                         <Label x:Name="titleProfile" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0">
+                                <StackPanel Margin="10">
+                                    <Label Content="XXX" x:Name="lblFirstName"/>
+                                    <TextBox Text="" x:Name="txtFirstName" Height="27"/>
+
+                                    <Label Content="XXX" x:Name="lblLastName"/>
+                                    <TextBox Text="" x:Name="txtLastName" Height="27"/>
+                                    <Button Margin="0,7,0,0" x:Name="saveName" Content="XXX" Style="{DynamicResource planEditButtons}" Click="SaveName_Click"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1">
+                                <StackPanel Margin="10">
+                                    <Label Content="XXX" x:Name="lblCurrentPassword"/>
+                                    <PasswordBox x:Name="txtCurrentPassword" Height="27"/>
+
+                                    <Label Content="XXX" x:Name="lblNewPassword"/>
+                                    <PasswordBox x:Name="txtNewPassword" Height="27"/>
+
+                                    <Label Content="XXX" x:Name="lblNewPassword2"/>
+                                    <PasswordBox x:Name="txtNewPassword2" Height="27"/>
+
+                                    <Button Margin="0,7,0,0" x:Name="savePassword" Content="XXX" Style="{DynamicResource planEditButtons}" Click="SavePassword_Click"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
                     </StackPanel>
                 </Border>
             </Grid>

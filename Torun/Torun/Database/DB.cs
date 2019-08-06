@@ -72,6 +72,14 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public int UpdateUser(User user)
+        {
+            if (!db.Users.Any(x => x.id == user.id)) return 0;
+            db.Users.Attach(user);
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            return 1;
+        }
         public int UpdateUserSettings(User user, Setting setting)
         {
             if (!db.Settings.Any(x => x.user_id == user.id)) return 0;

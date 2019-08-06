@@ -11,7 +11,7 @@
         public string WelcomeLoginTitle { get => "Giriş"; }
         public string WelcomeLoginFailedNotEnoughUserOrPassword { get => "Kullanıcı adı veya şifre yanlış"; }
         public string WelcomeLoginFailedUserNotFind { get => "Kullanıcı bulunamadı"; }
-        public string WelcomeLoginFailedWrongPassword { get => "Şifre yanlış"; }
+        public string WelcomeLoginFailedWrongPassword { get => "Şifre yanlış girildi"; }
         public string WelcomeLoginSuccess { get => "Giriş başarılı"; }
         public string WelcomeLoginRemember { get => "Beni hatırla"; }
         public string WelcomeLoginButton { get => "Giriş yap"; }
@@ -290,6 +290,15 @@
         public string SettingsActive => "Aktif";
         public string SettingsPasive => "Pasif";
         public string SettingsOpenSetting => "Otomatik Açılma";
+        public string SettingsCurrentPassword => "Şuanki şifreniz";
+
+        public string SettingsNameUpdate => "İsmi Güncelle";
+        public string SettingsPasswordUpdate => "Şifre Güncelle";
+        public string SettingsResultNameUp => "İsim bilgileri güncellenmiştir";
+        public string SettingsResultPasswordUp => "Şifre bilgisi güncellenmiştir";
+        public string SettingsNameMustGreaterThanThreeChars => "İsim bilgileri en az 3 karakter olabilir";
+        public string SettingsPasswordMustGreaterThanThreeChars => "Şifreniz en az 3 karakter olabilir";
+
         #endregion
         // Report page
         #region
@@ -306,6 +315,7 @@
         public string ReportSelectWeek => "Hafta";
         public string ReportSelectMonth => "Ay";
         public string ReportSelectYear => "Yıl";
+
         #endregion
     }
 }

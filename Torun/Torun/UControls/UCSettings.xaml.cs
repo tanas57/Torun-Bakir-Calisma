@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Lang;
+using System.Windows.Media;
 
 namespace Torun.UControls
 {
@@ -16,12 +17,14 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public Setting UserSettings { get; set; }
+        public User User { get; set; }
         public UCSettings()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             UserSettings = mainWindow.UserSettings;
+            User = mainWindow.User;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -97,6 +100,17 @@ namespace Torun.UControls
                 case CountType.Yearly: radioYearlyBackup.IsChecked = true; break;
             }
             result.Visibility = Visibility.Hidden;
+
+            lblFirstName.Content = Lang.WelcomeRegisterTitleFirstName;
+            lblLastName.Content = Lang.WelcomeRegisterTitleLastName;
+            lblNewPassword.Content = Lang.WelcomeRegisterTitlePassword;
+            lblNewPassword2.Content = Lang.WelcomeRegisterTitlePasswordAgain;
+            lblCurrentPassword.Content = Lang.SettingsCurrentPassword;
+
+            txtFirstName.Text = User.firstname;
+            txtLastName.Text = User.lastname;
+            saveName.Content = Lang.SettingsNameUpdate;
+            savePassword.Content = Lang.SettingsPasswordUpdate;
         }
 
         private void RadioDaily_Checked(object sender, RoutedEventArgs e)
@@ -106,6 +120,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsGroupMainCount + " " + Lang.SettingsRadioDaily + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioWeekly_Checked(object sender, RoutedEventArgs e)
@@ -115,6 +130,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsGroupMainCount + " " + Lang.SettingsRadioWeekly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioMonthly_Checked(object sender, RoutedEventArgs e)
@@ -124,6 +140,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsGroupMainCount + " " + Lang.SettingsRadioMonthly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioBeforeStart_Checked(object sender, RoutedEventArgs e)
@@ -133,6 +150,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsGroupMainCount + " " + Lang.SettingsRadioBeforeStart + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioYearly_Checked(object sender, RoutedEventArgs e)
@@ -142,6 +160,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsGroupMainCount + " " + Lang.SettingsRadioYearly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioDailyReport_Checked(object sender, RoutedEventArgs e)
@@ -150,6 +169,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleReport + " " + Lang.SettingsRadioDaily + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioWeeklyReport_Checked(object sender, RoutedEventArgs e)
@@ -158,6 +178,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleReport + " " + Lang.SettingsRadioWeekly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioMonthlyReport_Checked(object sender, RoutedEventArgs e)
@@ -166,6 +187,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleReport + " " + Lang.SettingsRadioMonthly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioYearlyReport_Checked(object sender, RoutedEventArgs e)
@@ -174,6 +196,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleReport + " " + Lang.SettingsRadioYearly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioBeforeStartReport_Checked(object sender, RoutedEventArgs e)
@@ -182,6 +205,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleReport + " " + Lang.SettingsRadioBeforeStart + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void ReportOnlyPlan_Checked(object sender, RoutedEventArgs e)
@@ -190,6 +214,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleTimeInterval + " " + Lang.ReportComboTypeOnlyPlan + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void ReportOnlyWorkdone_Checked(object sender, RoutedEventArgs e)
@@ -198,6 +223,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleTimeInterval + " " + Lang.ReportComboTypeOnlyWorkDone + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void ReportBoth_Checked(object sender, RoutedEventArgs e)
@@ -206,6 +232,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleTimeInterval + " " + Lang.ReportComboTypeBothofThem + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioDailyBackup_Checked(object sender, RoutedEventArgs e)
@@ -214,6 +241,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleAutoBackup + " " + Lang.SettingsRadioDaily + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioWeeklyBackup_Checked(object sender, RoutedEventArgs e)
@@ -222,6 +250,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleAutoBackup + " " + Lang.SettingsRadioWeekly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioMonthlyBackup_Checked(object sender, RoutedEventArgs e)
@@ -230,6 +259,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleAutoBackup + " " + Lang.SettingsRadioMonthly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void RadioYearlyBackup_Checked(object sender, RoutedEventArgs e)
@@ -238,6 +268,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsTitleAutoBackup + " " + Lang.SettingsRadioYearly + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
 
@@ -248,6 +279,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettignsAutoBackup + " " + Lang.SettingsActive + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
 
         }
 
@@ -257,6 +289,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings(); 
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsOpenSetting + " " + Lang.SettingsActive + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void AutoOpen_Unchecked(object sender, RoutedEventArgs e)
@@ -265,6 +298,7 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsOpenSetting + " " + Lang.SettingsPasive + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
         }
 
         private void AutoBackupCheck_Unchecked(object sender, RoutedEventArgs e)
@@ -274,6 +308,62 @@ namespace Torun.UControls
             mainWindow.UpdateSettings();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettignsAutoBackup + " " + Lang.SettingsPasive + " " + Lang.SettingsApplied;
+            result.Background = Brushes.Green;
+        }
+
+        private void SaveName_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtFirstName.Text.Length >= 3 && txtLastName.Text.Length >= 3)
+            {
+                User.firstname = txtFirstName.Text;
+                User.lastname = txtLastName.Text;
+                DB.UpdateUser(User);
+                result.Visibility = Visibility.Visible;
+                result.Content = Lang.SettingsResultNameUp;
+                result.Background = Brushes.Green;
+            }
+            else
+            {
+                result.Visibility = Visibility.Visible;
+                result.Content = Lang.SettingsNameMustGreaterThanThreeChars;
+                result.Background = Brushes.Red;
+            }
+        }
+
+        private void SavePassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtCurrentPassword.Password.Length >= 3 && txtNewPassword.Password.Length >= 3 && txtNewPassword2.Password.Length >= 3)
+            {
+                if (txtNewPassword.Password.Equals(txtNewPassword2.Password))
+                {
+                    if (User.password.Equals(MD5Crypt.MD5Hash(txtCurrentPassword.Password)))
+                    {
+                        User.password = MD5Crypt.MD5Hash(txtNewPassword.Password);
+                        DB.UpdateUser(User);
+                        result.Visibility = Visibility.Visible;
+                        result.Content = Lang.SettingsResultPasswordUp;
+                        result.Background = Brushes.Green;
+                    }
+                    else
+                    {
+                        result.Visibility = Visibility.Visible;
+                        result.Content = Lang.WelcomeLoginFailedWrongPassword;
+                        result.Background = Brushes.Red;
+                    }
+                }
+                else
+                {
+                    result.Visibility = Visibility.Visible;
+                    result.Content = Lang.WelcomeSignPasswordsNotMatch;
+                    result.Background = Brushes.Red;
+                }
+            }
+            else
+            {
+                result.Visibility = Visibility.Visible;
+                result.Content = Lang.SettingsPasswordMustGreaterThanThreeChars;
+                result.Background = Brushes.Red;
+            }
         }
     }
 }
