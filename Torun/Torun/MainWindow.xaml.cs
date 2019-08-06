@@ -22,6 +22,7 @@ namespace Torun
         public UCWeeklyPlanDetail weeklyPlanDetail;
         public UCSettings uCSettings;
         public UCReport uCReport;
+        public UCBackup uCBackup;
         public Setting UserSettings { get; set; }
         private bool formLogoutControl = false; // for form closing control, and logout button action
         private int changeCount = 0; // weekly plan change view changes count
@@ -244,6 +245,12 @@ namespace Torun
         {
             if (uCReport == null) UserControllCall.Add(Grd_Content, uCReport = new UCReport());
             else UserControllCall.Add(Grd_Content, uCReport);
+        }
+
+        private void BtnBackup_Click(object sender, RoutedEventArgs e)
+        {
+            if (uCBackup == null) UserControllCall.Add(Grd_Content, uCBackup = new UCBackup());
+            else UserControllCall.Add(Grd_Content, uCBackup);
         }
     }
 }

@@ -321,6 +321,7 @@ namespace Torun.UControls
                 result.Visibility = Visibility.Visible;
                 result.Content = Lang.SettingsResultNameUp;
                 result.Background = Brushes.Green;
+                mainWindow.menuUsername.Content = User.firstname + " " + User.lastname;
             }
             else
             {
