@@ -201,7 +201,7 @@ namespace Torun.windows
                 }
 
                 // update process
-                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
+                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(60) };
                 timer.Tick += delegate
                 {
                     Update.Check();

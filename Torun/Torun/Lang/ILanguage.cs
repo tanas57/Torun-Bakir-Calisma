@@ -244,6 +244,8 @@
         string SettingsResultPasswordUp { get; }
         string SettingsNameMustGreaterThanThreeChars { get; }
         string SettingsPasswordMustGreaterThanThreeChars { get; }
+        string SettingsCheckUpdate { get; }
+        string SettingsUpdateChecked { get; }
         #endregion
         //Report page
         #region

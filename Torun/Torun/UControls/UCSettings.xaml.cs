@@ -111,6 +111,7 @@ namespace Torun.UControls
             txtLastName.Text = User.lastname;
             saveName.Content = Lang.SettingsNameUpdate;
             savePassword.Content = Lang.SettingsPasswordUpdate;
+            updateChck.Content = Lang.SettingsCheckUpdate;
         }
 
         private void RadioDaily_Checked(object sender, RoutedEventArgs e)
@@ -365,6 +366,14 @@ namespace Torun.UControls
                 result.Content = Lang.SettingsPasswordMustGreaterThanThreeChars;
                 result.Background = Brushes.Red;
             }
+        }
+
+        private void UpdateChck_Click(object sender, RoutedEventArgs e)
+        {
+            Update.Check();
+            result.Visibility = Visibility.Visible;
+            result.Content = Lang.SettingsUpdateChecked;
+            result.Background = Brushes.Green;
         }
     }
 }

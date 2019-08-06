@@ -17,7 +17,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Border Grid.Column="0">
                     <StackPanel>
                         <Label x:Name="titleMainCount" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
@@ -129,8 +129,11 @@
             </Grid>
         </Border>
         <Border Grid.Row="1">
-            <Label x:Name="result" Content="XXX" Background="Green" Foreground="White" FontFamily="corbet" FontSize="14" Visibility="Hidden" Height="27" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <DockPanel>
+                <Label x:Name="result" Content="XXX" Background="Green" Foreground="White" FontFamily="corbet" FontSize="14" Visibility="Hidden" Height="27" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button HorizontalAlignment="Right" x:Name="updateChck" Click="UpdateChck_Click" Content="XXX" Style="{DynamicResource planEditButtons}" Width="180" Height="27" />
+            </DockPanel>
         </Border>
     </Grid>
-   
+
 </UserControl>

@@ -298,7 +298,9 @@
         public string SettingsResultPasswordUp => "Şifre bilgisi güncellenmiştir";
         public string SettingsNameMustGreaterThanThreeChars => "İsim bilgileri en az 3 karakter olabilir";
         public string SettingsPasswordMustGreaterThanThreeChars => "Şifreniz en az 3 karakter olabilir";
-
+        public string SettingsCheckUpdate => "Güncelleştirmeleri Denetle";
+        public string SettingsUpdateChecked => "Güncelleştirmeler kontrol edildi.";
+        
         #endregion
         // Report page
         #region
