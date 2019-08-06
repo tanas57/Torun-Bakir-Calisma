@@ -68,7 +68,6 @@
                         </StackPanel>
                         <StackPanel>
                             <Label x:Name="titleAutoStart" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
-
                             <CheckBox Content="XXX" x:Name="autoOpen" Margin="5,10,0,15" Checked="AutoOpen_Checked" Unchecked="AutoOpen_Unchecked"/>
                         </StackPanel>
                     </StackPanel>

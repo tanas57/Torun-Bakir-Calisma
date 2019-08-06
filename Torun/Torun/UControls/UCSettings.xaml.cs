@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
 using Torun.Database;
 using Torun.Classes;
+using Torun.Classes.FileOperations;
 using Torun.Lang;
-using System.Windows.Media;
+using Microsoft.Win32;
 
 namespace Torun.UControls
 {
@@ -18,6 +20,7 @@ namespace Torun.UControls
         public DB DB { get; set; }
         public Setting UserSettings { get; set; }
         public User User { get; set; }
+        private RegistryKey TorunApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         public UCSettings()
         {
             InitializeComponent();
@@ -291,6 +294,7 @@ namespace Torun.UControls
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsOpenSetting + " " + Lang.SettingsActive + " " + Lang.SettingsApplied;
             result.Background = Brushes.Green;
+            TorunApp.SetValue(FileNames.FILENAME_TORUN, System.Windows.Forms.Application.ExecutablePath);
         }
 
         private void AutoOpen_Unchecked(object sender, RoutedEventArgs e)
@@ -300,6 +304,7 @@ namespace Torun.UControls
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsOpenSetting + " " + Lang.SettingsPasive + " " + Lang.SettingsApplied;
             result.Background = Brushes.Green;
+            TorunApp.DeleteValue(FileNames.FILENAME_TORUN, false);
         }
 
         private void AutoBackupCheck_Unchecked(object sender, RoutedEventArgs e)
