@@ -43,6 +43,7 @@ namespace Torun.Windows.WeeklyPlan
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             save.IsEnabled = true;
+            Mouse.Capture(null);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

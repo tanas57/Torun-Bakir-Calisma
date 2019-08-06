@@ -122,7 +122,10 @@ namespace Torun.UControls
             {
                 FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
             }
-            catch(Exception ex) { }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucreport", error_text = ex.Message, log_user = User.id });
+            }
         }
 
         private void Btn_excel_Click(object sender, RoutedEventArgs e)

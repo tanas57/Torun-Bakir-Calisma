@@ -48,88 +48,95 @@ namespace Torun.Windows.WeeklyPlan
         }
         private void Completed_save_Click(object sender, RoutedEventArgs e)
         {
-            // initial values
-            DateTime dateTime = new DateTime(1,1,1);
-            bool flag = false;
-            if(todayCompleted.IsChecked == true)
+            try
             {
-                dateTime = DateTime.Now.Date;
-                flag = true;
-            }
-            else
-            {
-                if(chooseDate.SelectedDate != null)
+                // initial values
+                DateTime dateTime = new DateTime(1, 1, 1);
+                bool flag = false;
+                if (todayCompleted.IsChecked == true)
                 {
-                    dateTime = chooseDate.SelectedDate.Value;
+                    dateTime = DateTime.Now.Date;
                     flag = true;
                 }
                 else
                 {
-                    result.Visibility = Visibility.Visible;
-                    result.Content = mainWindow.Lang.RequestScheduleChooseDate;
-                }
-            }
-            if (flag)
-            {
-                if (completed_allDays.IsEnabled == false) // the work only one day
-                {
-                    // move this plan to workdone
-                    Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
-                    WorkDone workDone = new WorkDone();
-                    workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
-                    workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
-                    workDone.status = 2; // end of the work
-
-                    TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID);
-                    todolist.status = 3; // todolist item status have to mark 3: closed
-                    mainWindow.DB.MoveWorkToWorkDone(workDone);
-                    mainWindow.DB.EditTodoList(todolist);
-                    plan.status = 1;
-                    mainWindow.DB.EditPlan(plan);
-                }
-                else // work has many days
-                {
-                    if (completed_aDay.IsChecked == true) // only one day completed
+                    if (chooseDate.SelectedDate != null)
                     {
+                        dateTime = chooseDate.SelectedDate.Value;
+                        flag = true;
+                    }
+                    else
+                    {
+                        result.Visibility = Visibility.Visible;
+                        result.Content = mainWindow.Lang.RequestScheduleChooseDate;
+                    }
+                }
+                if (flag)
+                {
+                    if (completed_allDays.IsEnabled == false) // the work only one day
+                    {
+                        // move this plan to workdone
                         Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                         WorkDone workDone = new WorkDone();
                         workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
                         workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
-                        workDone.status = 1; // end of the work
+                        workDone.status = 2; // end of the work
+
+                        TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID);
+                        todolist.status = 3; // todolist item status have to mark 3: closed
                         mainWindow.DB.MoveWorkToWorkDone(workDone);
+                        mainWindow.DB.EditTodoList(todolist);
                         plan.status = 1;
                         mainWindow.DB.EditPlan(plan);
                     }
-                    else // all work completed
+                    else // work has many days
                     {
-                        // a work has a lot of plans
-                        // the plans that have current work_id status must be 1
-                        // at the same time the plan_id's transfers to workDone table
-                        // and finally, todolist work_id status must be 3 : closed
-                        var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID, true);
-                        WorkDone workDone;
-                        for (int i = 0; i < plans.Count; i++)
+                        if (completed_aDay.IsChecked == true) // only one day completed
                         {
-                            Plan plan = plans[i]; // for each plan
-                            plan.status = 1;
-                            mainWindow.DB.EditPlan(plan);
-
-                            workDone = new WorkDone();
+                            Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                            WorkDone workDone = new WorkDone();
                             workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
-                            workDone.plan_id = plan.id; workDone.description = DbcompletedNote.Text;
+                            workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
                             workDone.status = 1; // end of the work
                             mainWindow.DB.MoveWorkToWorkDone(workDone);
+                            plan.status = 1;
+                            mainWindow.DB.EditPlan(plan);
                         }
-                        if (plans.Count > 0)
+                        else // all work completed
                         {
-                            TodoList todolist = mainWindow.DB.GetTodoByID((int)plans[0].work_id); // in here exception error !
-                            todolist.status = 3; // closed
-                            mainWindow.DB.EditTodoList(todolist);
+                            // a work has a lot of plans
+                            // the plans that have current work_id status must be 1
+                            // at the same time the plan_id's transfers to workDone table
+                            // and finally, todolist work_id status must be 3 : closed
+                            var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID, true);
+                            WorkDone workDone;
+                            for (int i = 0; i < plans.Count; i++)
+                            {
+                                Plan plan = plans[i]; // for each plan
+                                plan.status = 1;
+                                mainWindow.DB.EditPlan(plan);
+
+                                workDone = new WorkDone();
+                                workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
+                                workDone.plan_id = plan.id; workDone.description = DbcompletedNote.Text;
+                                workDone.status = 1; // end of the work
+                                mainWindow.DB.MoveWorkToWorkDone(workDone);
+                            }
+                            if (plans.Count > 0)
+                            {
+                                TodoList todolist = mainWindow.DB.GetTodoByID((int)plans[0].work_id); // in here exception error !
+                                todolist.status = 3; // closed
+                                mainWindow.DB.EditTodoList(todolist);
+                            }
                         }
                     }
                 }
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+            }
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)

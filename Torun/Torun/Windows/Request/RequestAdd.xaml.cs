@@ -25,107 +25,146 @@ namespace Torun.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
+            try
+            {
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
 
-            lbl_reqNumber.Content = mainWindow.Lang.RequestAddRequestNumber;
-            lbl_reqPriority.Content = mainWindow.Lang.RequestAddRequestPriority;
-            lbl_reqDescription.Content = mainWindow.Lang.RequestAddRequestDescription;
-            lbl_req_Button.Content = mainWindow.Lang.RequestAddRequestButton;
-            req_RequestAdd.Content = mainWindow.Lang.RequestAddRequestTitle;
-            this.Title = mainWindow.Lang.RequestAddRequestTitle;
-            addWorkDone.Content = mainWindow.Lang.RequestAddToWorkDone;
-            doTimed.Content = mainWindow.Lang.RequestAddDoTimed;
-            addCompletedRequest.Content = mainWindow.Lang.RequestAddWorkDone;
+                lbl_reqNumber.Content = mainWindow.Lang.RequestAddRequestNumber;
+                lbl_reqPriority.Content = mainWindow.Lang.RequestAddRequestPriority;
+                lbl_reqDescription.Content = mainWindow.Lang.RequestAddRequestDescription;
+                lbl_req_Button.Content = mainWindow.Lang.RequestAddRequestButton;
+                req_RequestAdd.Content = mainWindow.Lang.RequestAddRequestTitle;
+                this.Title = mainWindow.Lang.RequestAddRequestTitle;
+                addWorkDone.Content = mainWindow.Lang.RequestAddToWorkDone;
+                doTimed.Content = mainWindow.Lang.RequestAddDoTimed;
+                addCompletedRequest.Content = mainWindow.Lang.RequestAddWorkDone;
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+            }
         }
 
         private void Req_Save_Click(object sender, RoutedEventArgs e)
         {
-            DB db = mainWindow.DB;
-            TodoList todoList = new TodoList();
-            todoList.user_id = mainWindow.User.id;
-            if(addWorkDone.IsChecked == true) todoList.status = (byte)StatusType.Closed;
-            else todoList.status = (byte)StatusType.Added;
-            todoList.priority = (byte)req_Priority.SelectedIndex;
-            todoList.description = req_Description.Text;
-
-            todoList.request_number = req_Number.Text.ToUpper();
-            req_Result.Visibility = Visibility.Visible;
-            if(req_Number.Text.ToUpper() != String.Empty)
+            try
             {
-                if (req_Priority.SelectedIndex == -1)
+                DB db = mainWindow.DB;
+                TodoList todoList = new TodoList();
+                todoList.user_id = mainWindow.User.id;
+                if (addWorkDone.IsChecked == true) todoList.status = (byte)StatusType.Closed;
+                else todoList.status = (byte)StatusType.Added;
+                todoList.priority = (byte)req_Priority.SelectedIndex;
+                todoList.description = req_Description.Text;
+
+                todoList.request_number = req_Number.Text.ToUpper();
+                req_Result.Visibility = Visibility.Visible;
+                if (req_Number.Text.ToUpper() != String.Empty)
                 {
-                    req_Result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
-                    req_Result.Background = System.Windows.Media.Brushes.Red;
-                }
-                else if (req_Description.Text == String.Empty)
-                {
-                    req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
-                    req_Result.Background = System.Windows.Media.Brushes.Red;
-                }
-                else if(doTimed.IsChecked == true && workDoneDatePicker.SelectedDate == null)
-                {
-                    req_Result.Content = mainWindow.Lang.RequestAddScheduleDate;
-                    req_Result.Background = System.Windows.Media.Brushes.Red;
-                }
-                else if(addCompletedRequest.IsChecked == true && workDoneDatePicker.SelectedDate == null && addWorkDone.IsChecked == false)
-                {
-                    req_Result.Content = mainWindow.Lang.RequestAddFinishDate;
-                    req_Result.Background = System.Windows.Media.Brushes.Red;
-                }
-                else
-                {
-                    int work_id = db.AddTodoList(todoList);
-                    if (work_id == 0)
+                    if (req_Priority.SelectedIndex == -1)
                     {
-                        req_Result.Content = mainWindow.Lang.RequestAddRequestResultNo;
+                        req_Result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
+                        req_Result.Background = System.Windows.Media.Brushes.Red;
+                    }
+                    else if (req_Description.Text == String.Empty)
+                    {
+                        req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
+                        req_Result.Background = System.Windows.Media.Brushes.Red;
+                    }
+                    else if (doTimed.IsChecked == true && workDoneDatePicker.SelectedDate == null)
+                    {
+                        req_Result.Content = mainWindow.Lang.RequestAddScheduleDate;
+                        req_Result.Background = System.Windows.Media.Brushes.Red;
+                    }
+                    else if (addCompletedRequest.IsChecked == true && workDoneDatePicker.SelectedDate == null && addWorkDone.IsChecked == false)
+                    {
+                        req_Result.Content = mainWindow.Lang.RequestAddFinishDate;
                         req_Result.Background = System.Windows.Media.Brushes.Red;
                     }
                     else
                     {
-                        req_Result.Content = mainWindow.Lang.RequestAddRequestResultOk;
-                        req_Result.Background = System.Windows.Media.Brushes.Green;
-                        if (addCompletedRequest.IsChecked == true)
+                        int work_id = db.AddTodoList(todoList);
+                        if (work_id == 0)
                         {
-                            // tamamlandı işaretle
-                            if(addWorkDone.IsChecked == true)
-                            { // sadece bugün tamamlandı olarak işaretle
-                                Plan plan = new Plan();
-                                plan.add_time = DateTime.Now; plan.work_plan_time = DateTime.Now.Date;
-                                plan.status = 1; plan.work_id = work_id;
-                                int plan_id = mainWindow.DB.AddPlanDates(plan);
+                            req_Result.Content = mainWindow.Lang.RequestAddRequestResultNo;
+                            req_Result.Background = System.Windows.Media.Brushes.Red;
+                        }
+                        else
+                        {
+                            req_Result.Content = mainWindow.Lang.RequestAddRequestResultOk;
+                            req_Result.Background = System.Windows.Media.Brushes.Green;
+                            if (addCompletedRequest.IsChecked == true)
+                            {
+                                // tamamlandı işaretle
+                                if (addWorkDone.IsChecked == true)
+                                { // sadece bugün tamamlandı olarak işaretle
+                                    Plan plan = new Plan();
+                                    plan.add_time = DateTime.Now; plan.work_plan_time = DateTime.Now.Date;
+                                    plan.status = 1; plan.work_id = work_id;
+                                    int plan_id = mainWindow.DB.AddPlanDates(plan);
 
-                                WorkDone workDone = new WorkDone();
-                                workDone.plan_id = plan_id;
-                                workDone.workDoneTime = DateTime.Now.Date; workDone.add_time = DateTime.Now;
-                                workDone.status = 2;
-                                workDone.description = req_Description.Text;
-                                mainWindow.DB.MoveWorkToWorkDone(workDone);
+                                    WorkDone workDone = new WorkDone();
+                                    workDone.plan_id = plan_id;
+                                    workDone.workDoneTime = DateTime.Now.Date; workDone.add_time = DateTime.Now;
+                                    workDone.status = 2;
+                                    workDone.description = req_Description.Text;
+                                    mainWindow.DB.MoveWorkToWorkDone(workDone);
+                                }
+                                else
+                                { // seçilen günleri tamamlandı işaretle
+                                    if (workDoneDatePicker.SelectedDate != null)
+                                    {
+                                        foreach (var item in workDoneDatePicker.SelectedDates)
+                                        {
+                                            Plan plan = new Plan();
+                                            plan.add_time = DateTime.Now; plan.work_plan_time = workDoneDatePicker.SelectedDate.Value.Date;
+                                            plan.status = 1; plan.work_id = work_id;
+                                            int plan_id = mainWindow.DB.AddPlanDates(plan);
+
+                                            WorkDone workDone = new WorkDone();
+                                            workDone.plan_id = plan_id;
+                                            workDone.workDoneTime = workDoneDatePicker.SelectedDate.Value.Date; workDone.add_time = DateTime.Now;
+                                            workDone.status = 2;
+                                            workDone.description = req_Description.Text;
+                                            mainWindow.DB.MoveWorkToWorkDone(workDone);
+                                        }
+                                        TodoList temp = mainWindow.DB.GetTodoByID(work_id);
+                                        temp.status = (int)StatusType.Closed;
+                                        mainWindow.DB.EditTodoList(temp);
+                                    }
+                                    else
+                                    {
+                                        // zaman seçiniz hatası
+                                        req_Result.Content = mainWindow.Lang.RequestScheduleChooseDate;
+                                        req_Result.Background = System.Windows.Media.Brushes.Red;
+                                    }
+                                }
+
                             }
-                            else
-                            { // seçilen günleri tamamlandı işaretle
-                                if(workDoneDatePicker.SelectedDate != null)
+                            else if (doTimed.IsChecked == true)
+                            {
+                                // zamanlı olarak kaydet
+                                TodoList temp = mainWindow.DB.GetTodoByID(work_id);
+                                temp.status = (int)StatusType.Planned;
+                                mainWindow.DB.EditTodoList(temp);
+                                if (workDoneDatePicker.SelectedDate != null)
                                 {
+                                    Plan plan;
                                     foreach (var item in workDoneDatePicker.SelectedDates)
                                     {
-                                        Plan plan = new Plan();
-                                        plan.add_time = DateTime.Now; plan.work_plan_time = workDoneDatePicker.SelectedDate.Value.Date;
-                                        plan.status = 1; plan.work_id = work_id;
-                                        int plan_id = mainWindow.DB.AddPlanDates(plan);
-
-                                        WorkDone workDone = new WorkDone();
-                                        workDone.plan_id = plan_id;
-                                        workDone.workDoneTime = workDoneDatePicker.SelectedDate.Value.Date; workDone.add_time = DateTime.Now;
-                                        workDone.status = 2;
-                                        workDone.description = req_Description.Text;
-                                        mainWindow.DB.MoveWorkToWorkDone(workDone);
+                                        plan = new Plan
+                                        {
+                                            add_time = DateTime.Now,
+                                            work_id = work_id,
+                                            status = (byte)StatusType.Deleted,
+                                            work_plan_time = item.Date
+                                        };
+                                        mainWindow.DB.AddPlanDates(plan);
                                     }
-                                    TodoList temp = mainWindow.DB.GetTodoByID(work_id);
-                                    temp.status = (int)StatusType.Closed;
-                                    mainWindow.DB.EditTodoList(temp);
                                 }
                                 else
                                 {
@@ -134,45 +173,20 @@ namespace Torun.Windows
                                     req_Result.Background = System.Windows.Media.Brushes.Red;
                                 }
                             }
-                            
+                            mainWindow.UpdateScreens();
+                            this.Close();
                         }
-                        else if(doTimed.IsChecked == true)
-                        {
-                            // zamanlı olarak kaydet
-                            TodoList temp = mainWindow.DB.GetTodoByID(work_id);
-                            temp.status = (int)StatusType.Planned;
-                            mainWindow.DB.EditTodoList(temp);
-                            if(workDoneDatePicker.SelectedDate != null)
-                            {
-                                Plan plan;
-                                foreach (var item in workDoneDatePicker.SelectedDates)
-                                {
-                                    plan = new Plan
-                                    {
-                                        add_time = DateTime.Now,
-                                        work_id = work_id,
-                                        status = (byte)StatusType.Deleted,
-                                        work_plan_time = item.Date
-                                    };
-                                    mainWindow.DB.AddPlanDates(plan);
-                                }
-                            }
-                            else
-                            {
-                                // zaman seçiniz hatası
-                                req_Result.Content = mainWindow.Lang.RequestScheduleChooseDate;
-                                req_Result.Background = System.Windows.Media.Brushes.Red;
-                            }
-                        }
-                        mainWindow.UpdateScreens();
-                        this.Close();
                     }
                 }
+                else
+                {
+                    req_Result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
+                    req_Result.Background = System.Windows.Media.Brushes.Red;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                req_Result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
-                req_Result.Background = System.Windows.Media.Brushes.Red;
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 

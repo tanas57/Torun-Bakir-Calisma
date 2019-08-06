@@ -48,45 +48,52 @@ namespace Torun.Windows.WorkCompleted
 
         private void RemoveSave_Click(object sender, RoutedEventArgs e)
         {
-            WorkDone work = mainWindow.DB.GetWorkDoneByID(Work.WorkDoneID);
-            int workDoneCount = mainWindow.DB.GetWorkdoneByID(Work.WorkID).Count;
-            int plansCount = mainWindow.DB.PlanToCalendar(Work.WorkID, true).Count; // status continue of works
-            
-            if(remove_aDay.IsChecked == true) // only selected work done
+            try
             {
-                Plan plan = work.Plan;
-                TodoList todoList = plan.TodoList;
-                if(remove_allDays.IsEnabled == false) 
+                WorkDone work = mainWindow.DB.GetWorkDoneByID(Work.WorkDoneID);
+                int workDoneCount = mainWindow.DB.GetWorkdoneByID(Work.WorkID).Count;
+                int plansCount = mainWindow.DB.PlanToCalendar(Work.WorkID, true).Count; // status continue of works
+
+                if (remove_aDay.IsChecked == true) // only selected work done
                 {
-                    if (workDoneCount > 0) // there is any completed works so the work is being process
+                    Plan plan = work.Plan;
+                    TodoList todoList = plan.TodoList;
+                    if (remove_allDays.IsEnabled == false)
+                    {
+                        if (workDoneCount > 0) // there is any completed works so the work is being process
+                        {
+                            todoList.status = (int)StatusType.InProcess;
+                        }
+                        else todoList.status = (int)StatusType.Planned;
+                    }
+                    else
                     {
                         todoList.status = (int)StatusType.InProcess;
                     }
-                    else todoList.status = (int)StatusType.Planned;
+                    plan.status = (int)StatusType.Deleted;
+                    mainWindow.DB.RemoveWorkdone(work);
+                    mainWindow.DB.EditPlan(plan);
                 }
-                else 
+                else if (remove_allDays.IsChecked == true)
                 {
-                    todoList.status = (int)StatusType.InProcess;
+                    var works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
+                    if (works.Count > 0)
+                    {
+                        works[0].Plan.TodoList.status = (int)StatusType.Planned;
+                    }
+                    foreach (var item in works)
+                    {
+                        item.Plan.status = (int)StatusType.Deleted;
+                        mainWindow.DB.EditPlan(item.Plan);
+                        mainWindow.DB.RemoveWorkdone(item);
+                    }
                 }
-                plan.status = (int)StatusType.Deleted;
-                mainWindow.DB.RemoveWorkdone(work);
-                mainWindow.DB.EditPlan(plan);
+                this.Close();
             }
-            else if(remove_allDays.IsChecked == true)
+            catch (Exception ex)
             {
-                var works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
-                if(works.Count > 0)
-                {
-                    works[0].Plan.TodoList.status = (int)StatusType.Planned;
-                }
-                foreach (var item in works)
-                {
-                    item.Plan.status = (int)StatusType.Deleted;
-                    mainWindow.DB.EditPlan(item.Plan);
-                    mainWindow.DB.RemoveWorkdone(item);
-                }
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
-            this.Close();
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)

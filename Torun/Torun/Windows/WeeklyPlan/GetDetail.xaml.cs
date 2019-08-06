@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using Torun.Database;
@@ -19,25 +20,33 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
-            weeklyPlan_title.Content = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
+            try
+            {
+                this.Title = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
+                weeklyPlan_title.Content = mainWindow.Lang.WeeklyDetailTitle + " " + Plan.RequestNumber;
 
-            Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID); // selected plan
-            TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID); // plan's work
-            dbDescription.Text = todolist.description;
-            getDetailDescription.Text = mainWindow.Lang.WeeklyDetailDescription;
-            getDetailCalendar.Text = mainWindow.Lang.WeeklyDetailCalendar;
-            getDetailCalendarOK.Text = mainWindow.Lang.WeeklyDetailCalendarOK;
-            var work_plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
-            for (int i = 0; i < work_plans.Count; i++)
-            {
-                dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time);
+                Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID); // selected plan
+                TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID); // plan's work
+                dbDescription.Text = todolist.description;
+                getDetailDescription.Text = mainWindow.Lang.WeeklyDetailDescription;
+                getDetailCalendar.Text = mainWindow.Lang.WeeklyDetailCalendar;
+                getDetailCalendarOK.Text = mainWindow.Lang.WeeklyDetailCalendarOK;
+                var work_plans = mainWindow.DB.PlanToCalendar(Plan.WorkID);
+                for (int i = 0; i < work_plans.Count; i++)
+                {
+                    dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time);
+                }
+                var workDone = mainWindow.DB.GetWorkdoneByID(Plan.WorkID);
+                for (int i = 0; i < workDone.Count; i++)
+                {
+                    dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value.Date);
+                }
             }
-            var workDone = mainWindow.DB.GetWorkdoneByID(Plan.WorkID);
-            for (int i = 0; i < workDone.Count; i++)
+            catch (Exception ex)
             {
-                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value.Date);
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

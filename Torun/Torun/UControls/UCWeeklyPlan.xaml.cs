@@ -20,72 +20,97 @@ namespace Torun.UControls
         private DateTime planStartDate;
         private DataGrid SelectedGrid { get; set; }
         private OrderBy Order { get; set; }
+        private User User { get; set; }
+        private DB DB { get; set; }
         public UCWeeklyPlan()
         {
             InitializeComponent();
             db = mainWindow.DB;
             currentUser = mainWindow.User;
             Order = OrderBy.AddedTimeDesc;
+            User = mainWindow.User;
+            DB = mainWindow.DB;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            lbl_dayMonday.Content = mainWindow.Lang.UCWeeklyPlanDaysMonday;
-            lbl_dayTuesday.Content = mainWindow.Lang.UCWeeklyPlanDaysTuesday;
-            lbl_dayWednesday.Content = mainWindow.Lang.UCWeeklyPlanDaysWednesday;
-            lbl_dayThursday.Content = mainWindow.Lang.UCWeeklyPlanDaysThursday;
-            lbl_dayFriday.Content = mainWindow.Lang.UCWeeklyPlanDaysFriday;
-            date_picker.Text = mainWindow.Lang.UCWeeklyPlanCurrentTime;
+            try
+            {
+                lbl_dayMonday.Content = mainWindow.Lang.UCWeeklyPlanDaysMonday;
+                lbl_dayTuesday.Content = mainWindow.Lang.UCWeeklyPlanDaysTuesday;
+                lbl_dayWednesday.Content = mainWindow.Lang.UCWeeklyPlanDaysWednesday;
+                lbl_dayThursday.Content = mainWindow.Lang.UCWeeklyPlanDaysThursday;
+                lbl_dayFriday.Content = mainWindow.Lang.UCWeeklyPlanDaysFriday;
+                date_picker.Text = mainWindow.Lang.UCWeeklyPlanCurrentTime;
 
-            txt_GetDetail.Text = mainWindow.Lang.UCWeeklyPlanButtonGetDetail;
-            txt_MarkCompleted.Text = mainWindow.Lang.UCWeeklyPlanButtonDoCompleted;
-            txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
-            txt_Edit.Text = mainWindow.Lang.UCWeeklyPlanButtonEdit;
+                txt_GetDetail.Text = mainWindow.Lang.UCWeeklyPlanButtonGetDetail;
+                txt_MarkCompleted.Text = mainWindow.Lang.UCWeeklyPlanButtonDoCompleted;
+                txt_RemovePlan.Text = mainWindow.Lang.UCWeeklyPlanButtonRemove;
+                txt_Edit.Text = mainWindow.Lang.UCWeeklyPlanButtonEdit;
 
-            UserControl_SizeChanged(sender, null);
-            LabelandGridUpdate(DateTime.Now.Date);
+                UserControl_SizeChanged(sender, null);
+                LabelandGridUpdate(DateTime.Now.Date);
 
-            sort_lbl.Content = mainWindow.Lang.WeeklyPlanSortLbl;
-            sort_AddTime.Content = mainWindow.Lang.WeeklyPlanSortAddTime;
-            sort_AddTimeDesc.Content = mainWindow.Lang.WeeklyPlanSortAddTimeDesc;
-            sort_Priority.Content = mainWindow.Lang.WeeklyPlanSortPriorityAsc;
-            sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
-            sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
-            sort_NameAsc.Content = mainWindow.Lang.WeeklyPlanSortNameAsc;
-            txt_closeDetail.Text = mainWindow.Lang.UCWeeklyPlanOpenDetail;
+                sort_lbl.Content = mainWindow.Lang.WeeklyPlanSortLbl;
+                sort_AddTime.Content = mainWindow.Lang.WeeklyPlanSortAddTime;
+                sort_AddTimeDesc.Content = mainWindow.Lang.WeeklyPlanSortAddTimeDesc;
+                sort_Priority.Content = mainWindow.Lang.WeeklyPlanSortPriorityAsc;
+                sort_PriorityDesc.Content = mainWindow.Lang.WeeklyPlanSortPriorityDesc;
+                sort_NameDesc.Content = mainWindow.Lang.WeeklyPlanSortNameDesc;
+                sort_NameAsc.Content = mainWindow.Lang.WeeklyPlanSortNameAsc;
+                txt_closeDetail.Text = mainWindow.Lang.UCWeeklyPlanOpenDetail;
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
+            }
         }
 
         public void Date_picker_CalendarClosed(object sender, RoutedEventArgs e)
         {
-            if (date_picker.SelectedDate.HasValue)
+            try
             {
-                DateTime value = date_picker.SelectedDate.Value;
-                LabelandGridUpdate(value);
+                if (date_picker.SelectedDate.HasValue)
+                {
+                    DateTime value = date_picker.SelectedDate.Value;
+                    LabelandGridUpdate(value);
+                }
+                else LabelandGridUpdate(DateTime.Now.Date);
             }
-            else LabelandGridUpdate(DateTime.Now.Date);
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
+            }
         }
 
         private void LabelandGridUpdate(DateTime datetime)
         {
-            planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
-            lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
-            int maxLine = 0;
-            Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            try
+            {
+                planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
+                lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
+                int maxLine = 0;
+                Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
 
-            if (Grid_todoList0.Items.Count >= maxLine) maxLine = Grid_todoList0.Items.Count;
-            if (Grid_todoList1.Items.Count >= maxLine) maxLine = Grid_todoList1.Items.Count;
-            if (Grid_todoList2.Items.Count >= maxLine) maxLine = Grid_todoList2.Items.Count;
-            if (Grid_todoList3.Items.Count >= maxLine) maxLine = Grid_todoList3.Items.Count;
-            if (Grid_todoList4.Items.Count >= maxLine) maxLine = Grid_todoList4.Items.Count;
-            order.Header = "Sıra";
-            List<int> numbers = new List<int>();
-            for (int i = 1; i <= maxLine; i++) numbers.Add(i);
-            numbersGrid.ItemsSource = numbers;
-            SelectedGrid = null; // null error fix
+                if (Grid_todoList0.Items.Count >= maxLine) maxLine = Grid_todoList0.Items.Count;
+                if (Grid_todoList1.Items.Count >= maxLine) maxLine = Grid_todoList1.Items.Count;
+                if (Grid_todoList2.Items.Count >= maxLine) maxLine = Grid_todoList2.Items.Count;
+                if (Grid_todoList3.Items.Count >= maxLine) maxLine = Grid_todoList3.Items.Count;
+                if (Grid_todoList4.Items.Count >= maxLine) maxLine = Grid_todoList4.Items.Count;
+                order.Header = "Sıra";
+                List<int> numbers = new List<int>();
+                for (int i = 1; i <= maxLine; i++) numbers.Add(i);
+                numbersGrid.ItemsSource = numbers;
+                SelectedGrid = null; // null error fix
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
+            }
         }
 
         private void Date_picker_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -100,31 +125,45 @@ namespace Torun.UControls
 
         private void Btn_GetDetail_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGrid != null)
+            try
             {
-                GetDetail getDetail = new GetDetail();
-                getDetail.Owner = mainWindow;
-                getDetail.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
-                mainWindow.Opacity = 0.5;
-                getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                getDetail.ShowDialog();
+                if (SelectedGrid != null)
+                {
+                    GetDetail getDetail = new GetDetail();
+                    getDetail.Owner = mainWindow;
+                    getDetail.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
+                    mainWindow.Opacity = 0.5;
+                    getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    getDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
             }
         }
 
         private void Btn_doComplated_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGrid != null)
+            try
             {
-                MarkCompleted markCompleted = new MarkCompleted();
-                markCompleted.Owner = mainWindow;
-                markCompleted.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
-                mainWindow.Opacity = 0.5;
-                markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                if (markCompleted.ShowDialog() == false)
+                if (SelectedGrid != null)
                 {
-                    Date_picker_CalendarClosed(sender, e);
-                    mainWindow.UpdateScreens();
+                    MarkCompleted markCompleted = new MarkCompleted();
+                    markCompleted.Owner = mainWindow;
+                    markCompleted.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
+                    mainWindow.Opacity = 0.5;
+                    markCompleted.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    if (markCompleted.ShowDialog() == false)
+                    {
+                        Date_picker_CalendarClosed(sender, e);
+                        mainWindow.UpdateScreens();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -139,35 +178,49 @@ namespace Torun.UControls
 
         private void Btn_Remove_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGrid != null)
+            try
             {
-                RemovePlan removePlan = new RemovePlan();
-                removePlan.Owner = mainWindow;
-                removePlan.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
-                mainWindow.Opacity = 0.5;
-                removePlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                if (removePlan.ShowDialog() == false)
+                if (SelectedGrid != null)
                 {
-                    Date_picker_CalendarClosed(sender, e);
-                    mainWindow.UpdateScreens();
+                    RemovePlan removePlan = new RemovePlan();
+                    removePlan.Owner = mainWindow;
+                    removePlan.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
+                    mainWindow.Opacity = 0.5;
+                    removePlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    if (removePlan.ShowDialog() == false)
+                    {
+                        Date_picker_CalendarClosed(sender, e);
+                        mainWindow.UpdateScreens();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
             }
         }
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedGrid != null)
+            try
             {
-                EditPlan editPlan = new EditPlan();
-                editPlan.Owner = mainWindow;
-                editPlan.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
-                mainWindow.Opacity = 0.5;
-                editPlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                if (editPlan.ShowDialog() == false)
+                if (SelectedGrid != null)
                 {
-                    Date_picker_CalendarClosed(sender, e);
-                    mainWindow.UpdateScreens();
+                    EditPlan editPlan = new EditPlan();
+                    editPlan.Owner = mainWindow;
+                    editPlan.Plan = SelectedGrid.SelectedItem as DB.WeeklyPlan;
+                    mainWindow.Opacity = 0.5;
+                    editPlan.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    if (editPlan.ShowDialog() == false)
+                    {
+                        Date_picker_CalendarClosed(sender, e);
+                        mainWindow.UpdateScreens();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucweeklyplan", error_text = ex.Message, log_user = User.id });
             }
         }
 

@@ -31,7 +31,7 @@
                     <TextBlock FontFamily="MS Outlook" FontSize="14">
                         <DockPanel>
                             <Image Source="/images/welcome_screen/password.png" Width="32" Height="32"/>
-                            <PasswordBox x:Name="login_password" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" SizeChanged="Login_password_SizeChanged" PasswordChanged="Login_password_PasswordChanged"/>
+                            <PasswordBox x:Name="login_password" Width="200" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Verdana" PasswordChanged="Login_password_PasswordChanged"/>
                         </DockPanel>
                     </TextBlock>
                 </DockPanel>

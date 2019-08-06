@@ -35,24 +35,36 @@ namespace Torun
         }
         private void GetSettings()
         {
-            UserSettings = DB.GetUserSettings(User);
-            Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
-            Settings.DefaultReportInterval = (CountType)UserSettings.set_defaultReportInterval;
-            Settings.DefaultReportListType = (ReportType)UserSettings.set_defaultReportType;
-            Settings.AutoOpen = UserSettings.set_autoOpen;
-            Settings.AutoBackup = UserSettings.set_autoBackup;
-            Settings.BackupTimeInterval = (CountType)UserSettings.set_backupTimeInterval;
-
+            try
+            {
+                UserSettings = DB.GetUserSettings(User);
+                Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
+                Settings.DefaultReportInterval = (CountType)UserSettings.set_defaultReportInterval;
+                Settings.DefaultReportListType = (ReportType)UserSettings.set_defaultReportType;
+                Settings.AutoOpen = UserSettings.set_autoOpen;
+                Settings.AutoBackup = UserSettings.set_autoBackup;
+                Settings.BackupTimeInterval = (CountType)UserSettings.set_backupTimeInterval;
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+            }
         }
         public void UpdateSettings()
         {
-            UserSettings.set_countType = (byte)Settings.MainRequestCountType;
-            UserSettings.set_defaultReportInterval = (byte)Settings.DefaultReportInterval;
-            UserSettings.set_defaultReportType = (byte)Settings.DefaultReportListType;
-            UserSettings.set_autoOpen = Settings.AutoOpen;
-            UserSettings.set_autoBackup = Settings.AutoBackup;
-            UserSettings.set_backupTimeInterval = (byte)Settings.BackupTimeInterval;
-            DB.UpdateUserSettings(User, UserSettings);
+            try
+            {
+                UserSettings.set_countType = (byte)Settings.MainRequestCountType;
+                UserSettings.set_defaultReportInterval = (byte)Settings.DefaultReportInterval;
+                UserSettings.set_defaultReportType = (byte)Settings.DefaultReportListType;
+                UserSettings.set_autoOpen = Settings.AutoOpen;
+                UserSettings.set_autoBackup = Settings.AutoBackup;
+                UserSettings.set_backupTimeInterval = (byte)Settings.BackupTimeInterval;
+                DB.UpdateUserSettings(User, UserSettings);
+            }catch(Exception ex)
+            {
+                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id});
+            }
         }
         public void ChangeViewWeeklyPlan()
         {
@@ -70,17 +82,24 @@ namespace Torun
         }
         public void UpdateScreens()
         {
-            requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
-            requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
-            requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today
-            if(uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = DB.GetTodoLists(User);
-            if (ucWeeklyPlan != null)
+            try
             {
-                ucWeeklyPlan.Date_picker_CalendarClosed(null, null);
+                requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
+                requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
+                requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today
+                if (uCTodoList != null) uCTodoList.Grid_todoList.ItemsSource = DB.GetTodoLists(User);
+                if (ucWeeklyPlan != null)
+                {
+                    ucWeeklyPlan.Date_picker_CalendarClosed(null, null);
+                }
+                if (uCWorkDone != null)
+                {
+                    uCWorkDone.Date_picker_CalendarClosed(null, null);
+                }
             }
-            if (uCWorkDone != null)
+            catch (Exception ex)
             {
-                uCWorkDone.Date_picker_CalendarClosed(null, null);
+                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
             }
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -111,33 +130,40 @@ namespace Torun
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // set maximum screen size
-            this.MaxWidth = SystemParameters.PrimaryScreenWidth;
-            this.MaxHeight = SystemParameters.PrimaryScreenHeight;
-            MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            User = DB.GetUserDetail(User);
-            GetSettings();
-
-            requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
-            requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
-            requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today
-            menuUsername.Content = User.firstname + " " + User.lastname;
-
-            if (FileOperation.isProfileExists())
+            try
             {
-                ellipsePhoto.ImageSource = GetImage(FileOperation.ProfilePhotoPath());
+                // set maximum screen size
+                this.MaxWidth = SystemParameters.PrimaryScreenWidth;
+                this.MaxHeight = SystemParameters.PrimaryScreenHeight;
+                MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                User = DB.GetUserDetail(User);
+                GetSettings();
+
+                requestCount.Content = DB.GetRequestCount(1, User, Settings.MainRequestCountType); // load count of all request
+                requestOpen.Content = DB.GetRequestCount(2, User, Settings.MainRequestCountType);  // load count of currently open requests
+                requestClosed.Content = DB.GetRequestCount(3, User, Settings.MainRequestCountType);// load count of closed request until today
+                menuUsername.Content = User.firstname + " " + User.lastname;
+
+                if (FileOperation.isProfileExists())
+                {
+                    ellipsePhoto.ImageSource = GetImage(FileOperation.ProfilePhotoPath());
+                }
+                mainPage_title.Content = Lang.MainPageTitle;
+                mainPage_totalRequest.Content = Lang.MainPageTotalRequest;
+                mainPage_openRequest.Content = Lang.MainPageOpenRequest;
+                mainPage_closedRequest.Content = Lang.MainPageClosedRequest;
+                mainPage_logOut.Content = Lang.MainPageLogOut;
+                mainPage_menuTodo.Content = Lang.MainPageMenuToDo;
+                mainPage_menuWeeklyPlan.Content = Lang.MainPageMenuWeeklyPlan;
+                mainPage_menuWordDone.Content = Lang.MainPageWorkDone;
+                mainPage_menuReport.Content = Lang.MainPageMenuReport;
+                mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
+                mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
             }
-            mainPage_title.Content = Lang.MainPageTitle;
-            mainPage_totalRequest.Content = Lang.MainPageTotalRequest;
-            mainPage_openRequest.Content = Lang.MainPageOpenRequest;
-            mainPage_closedRequest.Content = Lang.MainPageClosedRequest;
-            mainPage_logOut.Content = Lang.MainPageLogOut;
-            mainPage_menuTodo.Content = Lang.MainPageMenuToDo;
-            mainPage_menuWeeklyPlan.Content = Lang.MainPageMenuWeeklyPlan;
-            mainPage_menuWordDone.Content = Lang.MainPageWorkDone;
-            mainPage_menuReport.Content = Lang.MainPageMenuReport;
-            mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
-            mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+            }
         }
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
         {
@@ -185,13 +211,21 @@ namespace Torun
         }
         private BitmapImage GetImage(string imageUri)
         {
-            var bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri( imageUri, UriKind.RelativeOrAbsolute);
-            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            bitmapImage.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-            bitmapImage.EndInit();
-            return bitmapImage;
+            try
+            {
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(imageUri, UriKind.RelativeOrAbsolute);
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                bitmapImage.EndInit();
+                return bitmapImage;
+            }
+            catch(Exception ex)
+            {
+                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+                return null;
+            }
         }
 
         private void BtnWorkDone_Click(object sender, RoutedEventArgs e)

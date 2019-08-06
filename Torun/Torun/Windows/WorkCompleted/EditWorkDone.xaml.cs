@@ -31,36 +31,43 @@ namespace Torun.Windows.WorkCompleted
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = Lang.WorkDoneEditTitle;
-            workDoneDetail_title.Content = Lang.WorkDoneEditTitle;
-            lbl_reqDescription.Content = Lang.RequestAddRequestDescription;
-            lbl_reqPriority.Content = Lang.RequestAddRequestPriority;
-            lbl_reqNumber.Content = Lang.RequestAddRequestNumber;
+            try
+            {
+                this.Title = Lang.WorkDoneEditTitle;
+                workDoneDetail_title.Content = Lang.WorkDoneEditTitle;
+                lbl_reqDescription.Content = Lang.RequestAddRequestDescription;
+                lbl_reqPriority.Content = Lang.RequestAddRequestPriority;
+                lbl_reqNumber.Content = Lang.RequestAddRequestNumber;
 
-            groupPlan.Header = Lang.WorkDoneDetailGroupPlanAndWorkDone;
-            groupRequest.Header = Lang.RequestAddRequestNumber;
-            getDetailDescription.Text = Lang.WorkDoneEditChoosenWorkDescription;
+                groupPlan.Header = Lang.WorkDoneDetailGroupPlanAndWorkDone;
+                groupRequest.Header = Lang.RequestAddRequestNumber;
+                getDetailDescription.Text = Lang.WorkDoneEditChoosenWorkDescription;
 
-            workDone_remove.Content = Lang.ButtonRemove;
-            workDone_transfer.Content = Lang.ButtonTransfer;
-            request_save.Content = Lang.WorkDoneEditRequestSaveButton;
+                workDone_remove.Content = Lang.ButtonRemove;
+                workDone_transfer.Content = Lang.ButtonTransfer;
+                request_save.Content = Lang.WorkDoneEditRequestSaveButton;
 
-            getDetailCalendarOK.Text = Lang.WorkDoneEditCompletedWorks;
-            listWorkdoneLbl.Text = Lang.WorkDoneEditWorkLabel;
-            workDoneDescriptionSave.Content = Lang.WorkDoneEditChoosenWorkDescription;
+                getDetailCalendarOK.Text = Lang.WorkDoneEditCompletedWorks;
+                listWorkdoneLbl.Text = Lang.WorkDoneEditWorkLabel;
+                workDoneDescriptionSave.Content = Lang.WorkDoneEditChoosenWorkDescription;
 
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
 
-            todoList = DB.GetTodoByID(Work.WorkID);
-            req_Number.Text = todoList.request_number;
-            req_Priority.SelectedIndex = todoList.priority;
-            req_Description.Text = todoList.description;
+                todoList = DB.GetTodoByID(Work.WorkID);
+                req_Number.Text = todoList.request_number;
+                req_Priority.SelectedIndex = todoList.priority;
+                req_Description.Text = todoList.description;
 
-            WorkDoneListUpdate();
+                WorkDoneListUpdate();
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -113,92 +120,122 @@ namespace Torun.Windows.WorkCompleted
                         result.Background = Brushes.Green;
                     }
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                }
                 WorkDoneListUpdate();
             }
         }
         private void WorkDoneListUpdate()
         {
-            list_workdone.Items.Clear();
-            works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
-            for (int i = 0; i < works.Count; i++)
+            try
             {
-                WorkDone temp = works[i];
-                list_workdone.Items.Add(temp.workDoneTime.Value.Date.ToShortDateString() + " - " + temp.id);
+                list_workdone.Items.Clear();
+                works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
+                for (int i = 0; i < works.Count; i++)
+                {
+                    WorkDone temp = works[i];
+                    list_workdone.Items.Add(temp.workDoneTime.Value.Date.ToShortDateString() + " - " + temp.id);
+                }
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
         private void WorkDone_transfer_Click(object sender, RoutedEventArgs e)
         {
-            result.Visibility = Visibility.Visible;
-            if (list_workdone.SelectedIndex >= 0)
+            try
             {
-                try
+                result.Visibility = Visibility.Visible;
+                if (list_workdone.SelectedIndex >= 0)
                 {
-                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
-                    int plan_id = int.Parse(arr[1].Trim());
-                    if (arr.Length > 2)
+                    try
                     {
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
-                        result.Background = Brushes.Red;
-                    }
-                    else
-                    {
-                        EditWorkDoneCalendar editWorkDone = new EditWorkDoneCalendar();
-                        editWorkDone.Owner = this;
-                        this.Opacity = 0.5;
-                        if (editWorkDone.ShowDialog() == false)
+                        string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                        int plan_id = int.Parse(arr[1].Trim());
+                        if (arr.Length > 2)
                         {
-                            if (SelectedDate != null)
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                            result.Background = Brushes.Red;
+                        }
+                        else
+                        {
+                            EditWorkDoneCalendar editWorkDone = new EditWorkDoneCalendar();
+                            editWorkDone.Owner = this;
+                            this.Opacity = 0.5;
+                            if (editWorkDone.ShowDialog() == false)
                             {
-                                if (!DB.IsWorkDoneExists(SelectedDate.Date, todoList.id)) // if there is no selected date in database
+                                if (SelectedDate != null)
                                 {
-                                    WorkDone work = DB.GetWorkDoneByID(plan_id);
-                                    work.workDoneTime = SelectedDate.Date;
-                                    DB.EditWorkDone(work);
+                                    if (!DB.IsWorkDoneExists(SelectedDate.Date, todoList.id)) // if there is no selected date in database
+                                    {
+                                        WorkDone work = DB.GetWorkDoneByID(plan_id);
+                                        work.workDoneTime = SelectedDate.Date;
+                                        DB.EditWorkDone(work);
+                                    }
+
+                                    result.Content = mainWindow.Lang.WeeklyEditPlanTransfered;
+                                    result.Background = Brushes.Green;
+
+                                    WorkDoneListUpdate();
+                                    mainWindow.UpdateScreens();
                                 }
-
-                                result.Content = mainWindow.Lang.WeeklyEditPlanTransfered;
-                                result.Background = Brushes.Green;
-
-                                WorkDoneListUpdate();
-                                mainWindow.UpdateScreens();
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                    }
                 }
-                catch (Exception) { }
+                else
+                {
+                    result.Background = Brushes.Red;
+                    result.Content = Lang.WorkDoneEditWorkNotSelected;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                result.Background = Brushes.Red;
-                result.Content = Lang.WorkDoneEditWorkNotSelected;
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 
         private void WorkDoneDescriptionSave_Click(object sender, RoutedEventArgs e)
         {
-            result.Visibility = Visibility.Visible;
-            if (list_workdone.SelectedIndex >= 0)
+            try
             {
-                try
+                result.Visibility = Visibility.Visible;
+                if (list_workdone.SelectedIndex >= 0)
                 {
-                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
-                    int work_id = int.Parse(arr[1].Trim());
-                    if (arr.Length > 2)
+                    try
                     {
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
-                        result.Background = Brushes.Red;
+                        string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                        int work_id = int.Parse(arr[1].Trim());
+                        if (arr.Length > 2)
+                        {
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                            result.Background = Brushes.Red;
+                        }
+                        else
+                        {
+                            WorkDone work = DB.GetWorkDoneByID(work_id);
+                            work.description = dbDescription.Text;
+                            DB.EditWorkDone(work);
+                            result.Content = mainWindow.Lang.WorkDoneEditWorkDescriptionUpdate;
+                            result.Background = Brushes.Green;
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        WorkDone work = DB.GetWorkDoneByID(work_id);
-                        work.description = dbDescription.Text;
-                        DB.EditWorkDone(work);
-                        result.Content = mainWindow.Lang.WorkDoneEditWorkDescriptionUpdate;
-                        result.Background = Brushes.Green;
+                        mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
                     }
                 }
-                catch (Exception) { }
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
         private void Lbl_reqDescription_MouseDown(object sender, MouseButtonEventArgs e)
@@ -208,39 +245,46 @@ namespace Torun.Windows.WorkCompleted
 
         private void Request_save_Click(object sender, RoutedEventArgs e)
         {
-            todoList.priority = (byte)req_Priority.SelectedIndex;
-            todoList.description = req_Description.Text;
+            try
+            {
+                todoList.priority = (byte)req_Priority.SelectedIndex;
+                todoList.description = req_Description.Text;
 
-            todoList.request_number = req_Number.Text.ToUpper();
-            result.Visibility = Visibility.Visible;
-            if (req_Priority.SelectedIndex == -1)
-            {
-                result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
-                result.Background = Brushes.Red;
-            }
-            else if (req_Description.Text == String.Empty)
-            {
-                result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
-                result.Background = Brushes.Red;
-            }
-            else if (req_Number.Text.Length < 1)
-            {
-                result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
-                result.Background = Brushes.Red;
-            }
-            else
-            {
-                if (DB.EditTodoList(todoList) == 0)
+                todoList.request_number = req_Number.Text.ToUpper();
+                result.Visibility = Visibility.Visible;
+                if (req_Priority.SelectedIndex == -1)
                 {
-                    result.Content = mainWindow.Lang.RequestEditLabelSaveNO;
+                    result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
+                    result.Background = Brushes.Red;
+                }
+                else if (req_Description.Text == String.Empty)
+                {
+                    result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
+                    result.Background = Brushes.Red;
+                }
+                else if (req_Number.Text.Length < 1)
+                {
+                    result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
                     result.Background = Brushes.Red;
                 }
                 else
                 {
-                    result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
-                    result.Background = Brushes.Green;
-                    mainWindow.UpdateScreens();
+                    if (DB.EditTodoList(todoList) == 0)
+                    {
+                        result.Content = mainWindow.Lang.RequestEditLabelSaveNO;
+                        result.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
+                        result.Background = Brushes.Green;
+                        mainWindow.UpdateScreens();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 
@@ -256,7 +300,10 @@ namespace Torun.Windows.WorkCompleted
                     getDetailDescription.Text = work_date + " " + Lang.WorkDoneEditFor + " " + Lang.WorkDoneEditChoosenWorkDescription;
                     dbDescription.Text = temp.description;
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                }
             }
         }
 

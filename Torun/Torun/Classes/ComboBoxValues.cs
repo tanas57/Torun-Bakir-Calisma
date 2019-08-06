@@ -40,4 +40,9 @@
         OnlyWorkDone = 1,
         Both = 2
     }
+    public enum TorunLanguage
+    {
+        TR = 0,
+        EN = 1
+    }
 }

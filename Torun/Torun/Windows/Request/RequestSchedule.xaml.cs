@@ -53,44 +53,49 @@ namespace Torun.Windows.Request
 
         private void Schedule_Save_Click(object sender, RoutedEventArgs e)
         {
-            if (schedule_ReqDatePicker.SelectedDate.HasValue)
+            try
             {
-                Plan plans;
-                lbl_scheduleResult.Background = Brushes.Blue;
-                lbl_scheduleResult.Content = "Planlama kaydediliyor...";
-                int count = schedule_ReqDatePicker.SelectedDates.Count, count2 = 0;
-                foreach (var item in schedule_ReqDatePicker.SelectedDates)
+                if (schedule_ReqDatePicker.SelectedDate.HasValue)
                 {
-                    plans = new Plan
+                    Plan plans;
+                    lbl_scheduleResult.Background = Brushes.Blue;
+                    lbl_scheduleResult.Content = "Planlama kaydediliyor...";
+                    int count = schedule_ReqDatePicker.SelectedDates.Count, count2 = 0;
+                    foreach (var item in schedule_ReqDatePicker.SelectedDates)
                     {
-                        add_time = DateTime.Now,
-                        work_id = todolist.id,
-                        status = 0,
-                        work_plan_time = item
-                    };
-                    mainWindow.DB.AddPlanDates(plans);
-                    count2++;
-                }
-                if(count == count2)
-                {
-                    todolist.status = (int)StatusType.Planned;
-                    mainWindow.DB.EditTodoList(todolist);
-                    mainWindow.UpdateScreens();
-                    this.Close();
+                        plans = new Plan
+                        {
+                            add_time = DateTime.Now,
+                            work_id = todolist.id,
+                            status = 0,
+                            work_plan_time = item
+                        };
+                        mainWindow.DB.AddPlanDates(plans);
+                        count2++;
+                    }
+                    if (count == count2)
+                    {
+                        todolist.status = (int)StatusType.Planned;
+                        mainWindow.DB.EditTodoList(todolist);
+                        mainWindow.UpdateScreens();
+                        this.Close();
+                    }
+                    else
+                    {
+                        lbl_scheduleResult.Background = Brushes.Red;
+                        lbl_scheduleResult.Content = mainWindow.Lang.RequestScheduleSaveFailed;
+                    }
                 }
                 else
                 {
                     lbl_scheduleResult.Background = Brushes.Red;
-                    lbl_scheduleResult.Content = mainWindow.Lang.RequestScheduleSaveFailed;
+                    lbl_scheduleResult.Content = mainWindow.Lang.RequestScheduleSaveChooseDateError;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                lbl_scheduleResult.Background = Brushes.Red;
-                lbl_scheduleResult.Content = mainWindow.Lang.RequestScheduleSaveChooseDateError;
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
-            
-            
         }
 
         private void Schedule_ReqDatePicker_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

@@ -36,44 +36,51 @@ namespace Torun.Windows.WorkCompleted
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Title = Lang.WorkDoneDetailTitle;
-            workDoneDetail_title.Content = Lang.WorkDoneDetailTitle;
-            lbl_reqDescription.Content = Lang.RequestAddRequestDescription;
-            lbl_reqPriority.Content = Lang.RequestAddRequestPriority;
-            lbl_reqNumber.Content = Lang.RequestAddRequestNumber;
-
-            groupPlan.Header = Lang.WorkDoneDetailGroupPlanAndWorkDone;
-            groupRequest.Header = Lang.RequestAddRequestNumber;
-            getDetailCalendar.Text = Lang.WeeklyDetailCalendar;
-            getDetailCalendarOK.Text = Lang.WeeklyDetailCalendarOK;
-            getDetailDescription.Text = Lang.WorkDoneDetailDescription;
-
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
-            req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
-
-            todoList = DB.GetTodoByID(Work.WorkID);
-            req_Number.Text = todoList.request_number;
-            req_Priority.SelectedIndex = todoList.priority;
-            req_Description.Text = todoList.description;
-
-            var work_plans = mainWindow.DB.PlanToCalendar(Work.WorkID);
-            int order = 1;
-            for (int i = 0; i < work_plans.Count; i++)
+            try
             {
-                dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time);
-            }
-            var workDone = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
-            for (int i = 0; i < workDone.Count; i++)
-            {
-                dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value.Date);
-                if (!workDone[i].description.Equals(String.Empty))
+                this.Title = Lang.WorkDoneDetailTitle;
+                workDoneDetail_title.Content = Lang.WorkDoneDetailTitle;
+                lbl_reqDescription.Content = Lang.RequestAddRequestDescription;
+                lbl_reqPriority.Content = Lang.RequestAddRequestPriority;
+                lbl_reqNumber.Content = Lang.RequestAddRequestNumber;
+
+                groupPlan.Header = Lang.WorkDoneDetailGroupPlanAndWorkDone;
+                groupRequest.Header = Lang.RequestAddRequestNumber;
+                getDetailCalendar.Text = Lang.WeeklyDetailCalendar;
+                getDetailCalendarOK.Text = Lang.WeeklyDetailCalendarOK;
+                getDetailDescription.Text = Lang.WorkDoneDetailDescription;
+
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityLow);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityNormal);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityHigh);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityUrgent);
+                req_Priority.Items.Add(mainWindow.Lang.ComboboxPriorityProject);
+
+                todoList = DB.GetTodoByID(Work.WorkID);
+                req_Number.Text = todoList.request_number;
+                req_Priority.SelectedIndex = todoList.priority;
+                req_Description.Text = todoList.description;
+
+                var work_plans = mainWindow.DB.PlanToCalendar(Work.WorkID);
+                int order = 1;
+                for (int i = 0; i < work_plans.Count; i++)
                 {
-                    dbDescription.Text += (order) + " - " + workDone[i].description + "\n";
-                    order++;
+                    dbCalendar.SelectedDates.Add(work_plans[i].work_plan_time);
                 }
+                var workDone = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
+                for (int i = 0; i < workDone.Count; i++)
+                {
+                    dbCalendarOK.SelectedDates.Add(workDone[i].workDoneTime.Value.Date);
+                    if (!workDone[i].description.Equals(String.Empty))
+                    {
+                        dbDescription.Text += (order) + " - " + workDone[i].description + "\n";
+                        order++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 
