@@ -8,10 +8,10 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Torun")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Firma içerisinde kullanılan destek talep sisteminin kullanıcıların kendileri için takibi ve raporlamasını sağlayan uygulama.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Torun")]
+[assembly: AssemblyCompany("Torun Bakır Alaşımları Metal San. Ve Tic. A.Ş.")]
+[assembly: AssemblyProduct("Torun Plan Tracer System")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -53,3 +53,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("tr")]
+
