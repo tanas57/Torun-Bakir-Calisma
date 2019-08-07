@@ -44,11 +44,11 @@
                         </Border>
                     </Grid>
                 </Border>
-                <!-- to do list-->
+                <!-- report output -->
                 <Border Grid.Row="1">
 
                     <StackPanel>
-                        <Grid x:Name="ReportGridPlan">
+                        <Grid x:Name="ReportGridPlan" MaxWidth="780" MaxHeight="430">
 
                             <Image Source="/images/torun-logo-2.png" Opacity="0.8" Margin="0,80,0,0"/>
                             <DataGrid VerticalScrollBarVisibility="Visible" x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
