@@ -8,6 +8,7 @@
     <Property Name="log_user" Type="int" Nullable="false" />
     <Property Name="error_page" Type="varchar" MaxLength="50" />
     <Property Name="error_text" Type="text" />
+    <Property Name="log_date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Plans">
     <Key>

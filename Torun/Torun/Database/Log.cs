@@ -18,6 +18,7 @@ namespace Torun.Database
         public int log_user { get; set; }
         public string error_page { get; set; }
         public string error_text { get; set; }
+        public System.DateTime log_date { get; set; }
     
         public virtual User User { get; set; }
     }

@@ -56,6 +56,7 @@
     <EntitySetMapping Name="Logs">
       <EntityTypeMapping TypeName="plan_tracerDBModel.Log">
         <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="log_date" ColumnName="log_date" />
           <ScalarProperty Name="error_text" ColumnName="error_text" />
           <ScalarProperty Name="error_page" ColumnName="error_page" />
           <ScalarProperty Name="log_user" ColumnName="log_user" />

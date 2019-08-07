@@ -129,6 +129,7 @@
     <Property Name="error_page" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="error_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="User" Relationship="plan_tracerDBModel.FK_Log_Users" FromRole="Log" ToRole="User" />
+    <Property Name="log_date" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Setting">
     <Key>

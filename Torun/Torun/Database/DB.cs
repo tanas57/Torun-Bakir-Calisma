@@ -56,6 +56,7 @@ namespace Torun.Database
         }
         public void AddLog(Log log)
         {
+            log.log_date = DateTime.Now;
             db.Logs.Add(log);
             db.SaveChanges();
         }
