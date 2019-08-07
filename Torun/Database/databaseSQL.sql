@@ -35,7 +35,7 @@ CREATE TABLE Plans(
 	work_id INT NOT NULL,
 	add_time DATETIME NOT NULL,
 	work_plan_time DATE NOT NULL,
-	status byte NOT NULL DEFAULT 0
+	status TINYINT NOT NULL DEFAULT 0
 );
 
 alter table Plans
@@ -61,7 +61,8 @@ CREATE TABLE Log(
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	log_user INT NOT NULL,
 	error_page VARCHAR(50),
-	error_text TEXT
+	error_text TEXT,
+	log_date DATETIME NOT NULL
 );
 
 alter table Log
@@ -77,7 +78,6 @@ CREATE TABLE Settings(
 	set_backupTimeInterval TINYINT NOT NULL DEFAULT 1, -- 1 : WEEKLY
 	set_defaultReportInterval TINYINT NOT NULL DEFAULT 2, -- 2 : MONTHLY
 	set_defaultReportType TINYINT NOT NULL DEFAULT 2, -- 2 : TODOLIST AND WORKDONE
-	set_lang TINYINT NOT NULL DEFAULT 0 -- 0 : TR
 );
 
 alter table Settings
