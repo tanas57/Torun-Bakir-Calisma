@@ -44,9 +44,8 @@ namespace Torun.Windows.WeeklyPlan
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "getdetail_Window_Loaded", error_text = ex.Message, log_user = mainWindow.User.id });
             }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -62,11 +61,6 @@ namespace Torun.Windows.WeeklyPlan
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
-        }
-
-        private void DbDescription_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
         }
     }
 }

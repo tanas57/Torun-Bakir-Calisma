@@ -98,7 +98,7 @@ namespace Torun.windows
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "welcome_BtnSignUp_Click", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -168,7 +168,7 @@ namespace Torun.windows
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "welcome_BtnSignUp_Click", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -216,7 +216,7 @@ namespace Torun.windows
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "welcome_Window_Loaded", error_text = ex.Message, log_user = User.id });
             }
         }
 

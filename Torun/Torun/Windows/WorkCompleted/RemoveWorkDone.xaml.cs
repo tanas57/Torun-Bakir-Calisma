@@ -92,7 +92,7 @@ namespace Torun.Windows.WorkCompleted
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "removeworkdone_RemoveSave_Click", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 

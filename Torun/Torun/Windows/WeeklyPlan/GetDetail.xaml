@@ -54,7 +54,7 @@
         <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel>
                 <TextBlock Text="XXX" x:Name="getDetailDescription" HorizontalAlignment="Center"/>
-                <TextBox Padding="3" x:Name="dbDescription" Width="380" Height="190" ScrollBar.Scroll="DbDescription_Scroll" TextWrapping="Wrap"/>
+                <TextBox Padding="3" x:Name="dbDescription" Width="380" Height="190" TextWrapping="Wrap"/>
             </StackPanel>
             
         </Border>

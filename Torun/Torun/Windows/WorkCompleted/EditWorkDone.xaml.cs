@@ -122,7 +122,7 @@ namespace Torun.Windows.WorkCompleted
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                    mainWindow.DB.AddLog(new Log { error_page = "editworkdoneRemoveClick", error_text = ex.Message, log_user = mainWindow.User.id });
                 }
                 WorkDoneListUpdate();
             }
@@ -141,7 +141,7 @@ namespace Torun.Windows.WorkCompleted
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "editworkdone_workdonelistupdate", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
         private void WorkDone_transfer_Click(object sender, RoutedEventArgs e)
@@ -187,8 +187,8 @@ namespace Torun.Windows.WorkCompleted
                     }
                     catch (Exception ex)
                     {
-                        mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
-                    }
+                        mainWindow.DB.AddLog(new Log { error_page = "editworkdone_WorkDone_transfer_Click", error_text = ex.Message, log_user = mainWindow.User.id });
+                        }
                 }
                 else
                 {
@@ -229,8 +229,8 @@ namespace Torun.Windows.WorkCompleted
                     }
                     catch (Exception ex)
                     {
-                        mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
-                    }
+                        mainWindow.DB.AddLog(new Log { error_page = "editworkdone_WorkDoneDescriptionSave_Click", error_text = ex.Message, log_user = mainWindow.User.id });
+                        }
                 }
             }
             catch (Exception ex)
@@ -302,8 +302,8 @@ namespace Torun.Windows.WorkCompleted
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
-                }
+                    mainWindow.DB.AddLog(new Log { error_page = "editworkdone_List_workdone_SelectionChanged", error_text = ex.Message, log_user = mainWindow.User.id });
+                    }
             }
         }
 

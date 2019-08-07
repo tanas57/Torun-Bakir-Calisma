@@ -46,42 +46,49 @@ namespace Torun.Windows.Request
 
         private void Req_Save_Click(object sender, RoutedEventArgs e)
         {
-            DB db = mainWindow.DB;
-            todolist.status = (byte)StatusType.Edited;
-            todolist.priority = (byte)req_Priority.SelectedIndex;
-            todolist.description = req_Description.Text;
+            try
+            {
+                DB db = mainWindow.DB;
+                todolist.status = (byte)StatusType.Edited;
+                todolist.priority = (byte)req_Priority.SelectedIndex;
+                todolist.description = req_Description.Text;
 
-            todolist.request_number = req_Number.Text.ToUpper();
-            req_Result.Visibility = Visibility.Visible;
-            if (req_Priority.SelectedIndex == -1)
-            {
-                req_Result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
-                req_Result.Background = Brushes.Red;
-            }
-            else if (req_Description.Text == String.Empty)
-            {
-                req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
-                req_Result.Background = Brushes.Red;
-            }
-            else if(req_Number.Text.Length < 1)
-            {
-                req_Result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
-                req_Result.Background = Brushes.Red;
-            }
-            else
-            {
-                if (db.EditTodoList(todolist) == 0)
+                todolist.request_number = req_Number.Text.ToUpper();
+                req_Result.Visibility = Visibility.Visible;
+                if (req_Priority.SelectedIndex == -1)
                 {
-                    req_Result.Content = mainWindow.Lang.RequestEditLabelSaveNO;
+                    req_Result.Content = mainWindow.Lang.RequestAddRequestResultNotSelected;
+                    req_Result.Background = Brushes.Red;
+                }
+                else if (req_Description.Text == String.Empty)
+                {
+                    req_Result.Content = mainWindow.Lang.RequestAddRequestResultNoDescription;
+                    req_Result.Background = Brushes.Red;
+                }
+                else if (req_Number.Text.Length < 1)
+                {
+                    req_Result.Content = mainWindow.Lang.RequestAddReqNumEmpty;
                     req_Result.Background = Brushes.Red;
                 }
                 else
                 {
-                    req_Result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
-                    req_Result.Background = Brushes.Green;
-                    mainWindow.UpdateScreens();
-                    this.Close();
+                    if (db.EditTodoList(todolist) == 0)
+                    {
+                        req_Result.Content = mainWindow.Lang.RequestEditLabelSaveNO;
+                        req_Result.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        req_Result.Content = mainWindow.Lang.RequestEditLabelSaveOK;
+                        req_Result.Background = Brushes.Green;
+                        mainWindow.UpdateScreens();
+                        this.Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                mainWindow.DB.AddLog(new Log { error_page = "requestdetail_Req_save_Click", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 

@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Torun.Database;
-using Torun.Windows.WeeklyPlan;
-using Torun.Classes;
 using Torun.Lang;
+
 namespace Torun.Windows.WorkCompleted
 {
     /// <summary>
@@ -80,7 +70,7 @@ namespace Torun.Windows.WorkCompleted
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "detailworkdone_windowload", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 

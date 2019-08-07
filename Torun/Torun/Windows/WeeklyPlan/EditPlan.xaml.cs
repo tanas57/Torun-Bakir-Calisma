@@ -59,8 +59,8 @@ namespace Torun.Windows.WeeklyPlan
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
-            }
+                mainWindow.DB.AddLog(new Log { error_page = "editplan_Window_Loaded", error_text = ex.Message, log_user = mainWindow.User.id });
+                }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -105,8 +105,8 @@ namespace Torun.Windows.WeeklyPlan
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
-            }
+                mainWindow.DB.AddLog(new Log { error_page = "editplan_Savechanges_Click", error_text = ex.Message, log_user = mainWindow.User.id });
+                }
         }
 
         private void Plan_add_Click(object sender, RoutedEventArgs e)
@@ -140,7 +140,7 @@ namespace Torun.Windows.WeeklyPlan
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "editplan_Plan_add_Click", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 
@@ -158,7 +158,7 @@ namespace Torun.Windows.WeeklyPlan
                 {
                     string[] arr = list_plan.SelectedValue.ToString().Split('-');
                     int plan_id = int.Parse(arr[1].Trim());
-                    if(arr.Length > 2)
+                    if (arr.Length > 2)
                     {
                         result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
                         result.Background = System.Windows.Media.Brushes.Red;
@@ -181,7 +181,7 @@ namespace Torun.Windows.WeeklyPlan
                 }
                 catch (Exception ex)
                 {
-                    mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                    mainWindow.DB.AddLog(new Log { error_page = "editplan_Plan_remove_Click", error_text = ex.Message, log_user = mainWindow.User.id });
                 }
             }
         }
@@ -237,7 +237,7 @@ namespace Torun.Windows.WeeklyPlan
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "editplan_Plan_transfer_Click", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
         private void PlanListUpdate()
@@ -255,7 +255,7 @@ namespace Torun.Windows.WeeklyPlan
             }
             catch (Exception ex)
             {
-                mainWindow.DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = mainWindow.User.id });
+                mainWindow.DB.AddLog(new Log { error_page = "editplan_PlanListUpdate", error_text = ex.Message, log_user = mainWindow.User.id });
             }
         }
 

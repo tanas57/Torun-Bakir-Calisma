@@ -48,8 +48,8 @@ namespace Torun
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
-            }
+                DB.AddLog(new Log { error_page = "mainwindow_GetSettings", error_text = ex.Message, log_user = User.id });
+                }
         }
         public void UpdateSettings()
         {
@@ -64,8 +64,8 @@ namespace Torun
                 DB.UpdateUserSettings(User, UserSettings);
             }catch(Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id});
-            }
+                DB.AddLog(new Log { error_page = "mainwindow_UpdateSettings", error_text = ex.Message, log_user = User.id});
+                }
         }
         public void ChangeViewWeeklyPlan()
         {
@@ -100,8 +100,8 @@ namespace Torun
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
-            }
+                DB.AddLog(new Log { error_page = "mainwindow_UpdateScreens", error_text = ex.Message, log_user = User.id });
+                }
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -164,7 +164,7 @@ namespace Torun
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "mainwindow_Window_Loaded", error_text = ex.Message, log_user = User.id });
             }
         }
         private void BtnFormUp_Click(object sender, RoutedEventArgs e)
@@ -207,9 +207,15 @@ namespace Torun
         }
         private void PhotoChange_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // hatalar var.
-            FileOperation.ChangeUserPhoto();
-            ellipsePhoto.ImageSource = GetImage(FileOperation.ProfilePhotoPath());
+            try
+            {
+                FileOperation.ChangeUserPhoto();
+                ellipsePhoto.ImageSource = GetImage(FileOperation.ProfilePhotoPath());
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "mainwindow_PhotoChange_MouseDown", error_text = ex.Message, log_user = User.id });
+                }
         }
         private BitmapImage GetImage(string imageUri)
         {
@@ -225,7 +231,7 @@ namespace Torun
             }
             catch(Exception ex)
             {
-                DB.AddLog(new Log { error_page = this.Title, error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "mainwindow_GetImage", error_text = ex.Message, log_user = User.id });
                 return null;
             }
         }
