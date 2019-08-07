@@ -7,6 +7,7 @@ using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Classes.Keyboard;
 using Torun.Lang;
+using System.Threading;
 using System.Windows.Threading;
 
 namespace Torun.windows
@@ -175,6 +176,9 @@ namespace Torun.windows
         {
             try
             {
+                // check update
+                Thread thread = new Thread(Update.Check);
+                thread.Start();
                 CapsLockControl();
                 capslockControl.Content = Lang.WelcomeCapsLock;
                 // form items names from Lang
@@ -202,7 +206,7 @@ namespace Torun.windows
                 }
 
                 // update process
-                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(60) };
+                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromHours(8) };
                 timer.Tick += delegate
                 {
                     Update.Check();

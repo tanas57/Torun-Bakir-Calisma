@@ -7,6 +7,7 @@ using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Lang;
 using Microsoft.Win32;
+using System.Threading;
 
 namespace Torun.UControls
 {
@@ -375,7 +376,9 @@ namespace Torun.UControls
 
         private void UpdateChck_Click(object sender, RoutedEventArgs e)
         {
-            Update.Check();
+            // check update
+            Thread thread = new Thread(Update.Check);
+            thread.Start();
             result.Visibility = Visibility.Visible;
             result.Content = Lang.SettingsUpdateChecked;
             result.Background = Brushes.Green;
