@@ -136,7 +136,7 @@ namespace Torun
                 // set maximum screen size
                 this.MaxWidth = SystemParameters.PrimaryScreenWidth;
                 this.MaxHeight = SystemParameters.PrimaryScreenHeight;
-                MenuVersion.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                MenuVersion.Content = "Ver : " + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " @Muslu.NET" ;
                 User = DB.GetUserDetail(User);
                 GetSettings();
 
@@ -258,6 +258,11 @@ namespace Torun
         {
             if (uCBackup == null) UserControllCall.Add(Grd_Content, uCBackup = new UCBackup());
             else UserControllCall.Add(Grd_Content, uCBackup);
+        }
+
+        private void MenuVersion_MouseEnter(object sender, MouseEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://muslu.net");
         }
     }
 }

@@ -159,10 +159,10 @@
                         <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="White" FontSize="16"/>
                     </DockPanel>
                 </Button>
-
+                
                 <Canvas>
-                    <Border Canvas.Left="70" CornerRadius="10,10,10,10">
-                        <Label x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="71" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
+                    <Border Canvas.Left="35" CornerRadius="10,10,10,10">
+                        <Label MouseEnter="MenuVersion_MouseEnter" x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#99384757"/>
