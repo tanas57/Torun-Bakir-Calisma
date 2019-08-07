@@ -170,7 +170,8 @@ namespace Torun.UControls
         {
             try
             {
-                TodoList todolist = Grid_todoList.SelectedItem as TodoList;
+                DB.TodoListGrid temp = Grid_todoList.SelectedItem as DB.TodoListGrid;
+                TodoList todolist = mainWindow.DB.GetTodoByID(temp.WorkID);
                 int result = 0;
                 if (int.TryParse(todolist.request_number, out result))
                 {
@@ -193,8 +194,9 @@ namespace Torun.UControls
 
         private void DataGridCell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            TodoList todolist = Grid_todoList.SelectedItem as TodoList;
-            MessageBox.Show(todolist.description, mainWindow.Lang.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
+            DB.TodoListGrid temp = Grid_todoList.SelectedItem as DB.TodoListGrid;
+            TodoList todoList = mainWindow.DB.GetTodoByID(temp.WorkID);
+            MessageBox.Show(todoList.description, mainWindow.Lang.UCTodoListInfoMessage, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

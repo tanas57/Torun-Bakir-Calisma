@@ -96,6 +96,7 @@ namespace Torun.UControls
             }
             btn_excel.Visibility = Visibility.Visible;
             btn_pdf.Visibility = Visibility.Visible;
+            TorunLogo.Visibility = Visibility.Hidden;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -106,6 +107,7 @@ namespace Torun.UControls
                 grid1AddDate.Width = 285;
                 grid2PlanDate.Width = 285;
                 grid2DoneDate.Width = 285;
+                grid2workDoneWorkDoneTime.Width = 650;
                 ReportGridPlan.MaxWidth = 780;
                 ReportGridPlan.MaxHeight = 430;
             }
@@ -117,6 +119,7 @@ namespace Torun.UControls
                 grid2DoneDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
                 ReportGridPlan.MaxWidth = 780 + ((int)(SystemParameters.WorkArea.Width - 1000));
                 ReportGridPlan.MaxHeight = 430 + ((int)(SystemParameters.WorkArea.Height - 610));
+                grid2workDoneWorkDoneTime.Width = 650 + ((int)(SystemParameters.WorkArea.Width - 1093));
             }
         }
 
