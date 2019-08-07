@@ -162,7 +162,7 @@
                 
                 <Canvas>
                     <Border Canvas.Left="35" CornerRadius="10,10,10,10">
-                        <Label MouseEnter="MenuVersion_MouseEnter" x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
+                        <Label MouseDown="MenuVersion_MouseEnter" x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="Background" Value="#99384757"/>
