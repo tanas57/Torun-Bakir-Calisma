@@ -98,7 +98,7 @@ namespace Torun.Classes
                     {
                         html += @"<div class='clas'>
 				<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
-					<table width='100%'>";
+					<table width='97%'>";
                         foreach (var item in workDone)
                         {
                             html += @"<tr>
@@ -121,7 +121,7 @@ namespace Torun.Classes
                     {
                         html += @"<div class='clas'>
 				<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
-					<table width='100%'>";
+					<table width='97%'>";
                         foreach (var item in weeklyPlans)
                         {
                             html += @"<tr>
@@ -145,7 +145,7 @@ namespace Torun.Classes
                     {
                         html += @"<div class='clas'>
 				<div class='dayTitle'>" + CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")</div>
-					<table width='100%'>";
+					<table width='97%'>";
                         foreach (var item in workPlans)
                         {
                             html += @"<tr>
