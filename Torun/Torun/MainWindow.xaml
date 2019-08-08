@@ -160,8 +160,8 @@
                     </DockPanel>
                 </Button>
                 
-                <Canvas>
-                    <Border Canvas.Left="35" CornerRadius="10,10,10,10">
+                <Canvas x:Name="version">
+                    <Border Canvas.Left="35" Canvas.Top="143" CornerRadius="10,10,10,10">
                         <Label MouseDown="MenuVersion_MouseEnter" x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
                         <Border.Style>
                             <Style TargetType="Border">
