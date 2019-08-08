@@ -52,7 +52,7 @@ namespace Torun
             catch (Exception ex)
             {
                 DB.AddLog(new Log { error_page = "mainwindow_GetSettings", error_text = ex.Message, log_user = User.id });
-            }
+                }
         }
         public void UpdateSettings()
         {

@@ -76,6 +76,11 @@ namespace Torun.Database
             db.SaveChanges();
             return 1;
         }
+        public void AddSettings(User user)
+        {
+            db.Settings.Add(new Setting() { user_id = user.id});
+            db.SaveChanges();
+        }
         public Setting GetUserSettings(User user) => db.Settings.SingleOrDefault(x => x.user_id == user.id);
         public List<WorkDoneandPlans> GetWorkDoneAndPlansbyDate(User user,DateTime dateTime)
         {

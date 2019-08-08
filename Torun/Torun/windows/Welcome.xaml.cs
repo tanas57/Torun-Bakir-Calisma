@@ -62,6 +62,7 @@ namespace Torun.windows
                                 switch (DB.Register(User))
                                 {
                                     case 1:
+                                        DB.AddSettings(User);
                                         lbl_RegResult.Content = Lang.WelcomeSignSuccess;
                                         lbl_RegResult.Background = Brushes.Green;
                                         register_firstname.Text = ""; register_lastname.Text = "";
