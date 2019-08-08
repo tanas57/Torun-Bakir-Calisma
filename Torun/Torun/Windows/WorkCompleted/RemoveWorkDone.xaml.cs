@@ -60,7 +60,7 @@ namespace Torun.Windows.WorkCompleted
                     TodoList todoList = plan.TodoList;
                     if (remove_allDays.IsEnabled == false)
                     {
-                        if (workDoneCount > 0) // there is any completed works so the work is being process
+                        if (workDoneCount > 1) // there is any completed works so the work is being process
                         {
                             todoList.status = (int)StatusType.InProcess;
                         }
