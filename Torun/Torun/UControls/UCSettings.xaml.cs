@@ -21,7 +21,7 @@ namespace Torun.UControls
         public DB DB { get; set; }
         public Setting UserSettings { get; set; }
         public User User { get; set; }
-        private RegistryKey TorunApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        private readonly RegistryKey TorunApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
         public UCSettings()
         {
             InitializeComponent();

@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>torun.ico</ApplicationIcon>
+    <ApplicationIcon>torunn.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoUpdater.NET, Version=1.5.4.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
@@ -378,7 +378,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="torun.ico" />
-    <Resource Include="images\torun.ico" />
     <Resource Include="images\torun-logo-2.png" />
     <Resource Include="images\main_screen\Report\excel.png" />
     <Resource Include="images\main_screen\Report\pdf.png" />
@@ -408,6 +407,8 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="torunn.ico" />
+    <Resource Include="images\torun.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
