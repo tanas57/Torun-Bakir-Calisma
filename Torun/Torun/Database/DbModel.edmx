@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Torun_PlanTracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="id" />
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="plan_tracerDBModelStoreContainer">
+        <EntityContainer Name="Torun_PlanTracerDBModelStoreContainer">
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
@@ -164,10 +164,22 @@
             <End Role="WorkDone" EntitySet="WorkDone" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="plan_tracerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Torun_PlanTracerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="log_user" Type="Int32" Nullable="false" />
+          <Property Name="error_page" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="error_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="log_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Log_Users" FromRole="Log" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Plan">
           <Key>
             <PropertyRef Name="id" />
@@ -179,6 +191,20 @@
           <Property Name="status" Type="Byte" Nullable="false" />
           <NavigationProperty Name="TodoList" Relationship="Self.FK_plan_TodoList" FromRole="Plans" ToRole="TodoList" />
           <NavigationProperty Name="WorkDones" Relationship="Self.FK_WorkDone_TodoList" FromRole="Plans" ToRole="WorkDone" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="set_countType" Type="Byte" Nullable="false" />
+          <Property Name="set_autoOpen" Type="Boolean" Nullable="false" />
+          <Property Name="set_autoBackup" Type="Boolean" Nullable="false" />
+          <Property Name="set_backupTimeInterval" Type="Byte" Nullable="false" />
+          <Property Name="set_defaultReportInterval" Type="Byte" Nullable="false" />
+          <Property Name="set_defaultReportType" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Settings_Users" FromRole="Settings" ToRole="Users" />
         </EntityType>
         <EntityType Name="TodoList">
           <Key>
@@ -208,9 +234,9 @@
           <Property Name="login_status" Type="Byte" Nullable="false" />
           <Property Name="user_status" Type="Byte" Nullable="false" />
           <Property Name="register_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Logs" Relationship="Self.FK_Log_Users" FromRole="Users" ToRole="Log" />
+          <NavigationProperty Name="Settings" Relationship="Self.FK_Settings_Users" FromRole="Users" ToRole="Settings" />
           <NavigationProperty Name="TodoLists" Relationship="Self.FK_TodoList_Users" FromRole="Users" ToRole="TodoList" />
-          <NavigationProperty Name="Logs" Relationship="plan_tracerDBModel.FK_Log_Users" FromRole="User" ToRole="Log" />
-          <NavigationProperty Name="Settings" Relationship="plan_tracerDBModel.FK_Settings_Users" FromRole="User" ToRole="Setting" />
         </EntityType>
         <EntityType Name="WorkDone">
           <Key>
@@ -224,6 +250,18 @@
           <Property Name="status" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Plan" Relationship="Self.FK_WorkDone_TodoList" FromRole="WorkDone" ToRole="Plans" />
         </EntityType>
+        <Association Name="FK_Log_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="log_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_plan_TodoList">
           <End Role="TodoList" Type="Self.TodoList" Multiplicity="1" />
           <End Role="Plans" Type="Self.Plan" Multiplicity="*" />
@@ -248,6 +286,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Settings_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Settings" Type="Self.Setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Settings">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TodoList_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="TodoList" Type="Self.TodoList" Multiplicity="*" />
@@ -261,10 +311,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="plan_tracerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logs" EntityType="Self.Log" />
           <EntitySet Name="Plans" EntityType="Self.Plan" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
           <EntitySet Name="TodoLists" EntityType="Self.TodoList" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="WorkDones" EntityType="Self.WorkDone" />
+          <AssociationSet Name="FK_Log_Users" Association="Self.FK_Log_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
           <AssociationSet Name="FK_plan_TodoList" Association="Self.FK_plan_TodoList">
             <End Role="TodoList" EntitySet="TodoLists" />
             <End Role="Plans" EntitySet="Plans" />
@@ -273,78 +329,34 @@
             <End Role="Plans" EntitySet="Plans" />
             <End Role="WorkDone" EntitySet="WorkDones" />
           </AssociationSet>
+          <AssociationSet Name="FK_Settings_Users" Association="Self.FK_Settings_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Settings" EntitySet="Settings" />
+          </AssociationSet>
           <AssociationSet Name="FK_TodoList_Users" Association="Self.FK_TodoList_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="TodoList" EntitySet="TodoLists" />
           </AssociationSet>
-          <EntitySet Name="Logs" EntityType="plan_tracerDBModel.Log" />
-          <EntitySet Name="Settings" EntityType="plan_tracerDBModel.Setting" />
-          <AssociationSet Name="FK_Log_Users" Association="plan_tracerDBModel.FK_Log_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Log" EntitySet="Logs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Settings_Users" Association="plan_tracerDBModel.FK_Settings_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Setting" EntitySet="Settings" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Log">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="log_user" Type="Int32" Nullable="false" />
-          <Property Name="error_page" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="error_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="plan_tracerDBModel.FK_Log_Users" FromRole="Log" ToRole="User" />
-          <Property Name="log_date" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="Setting">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="set_countType" Type="Byte" Nullable="false" />
-          <Property Name="set_autoOpen" Type="Boolean" Nullable="false" />
-          <Property Name="set_autoBackup" Type="Boolean" Nullable="false" />
-          <Property Name="set_backupTimeInterval" Type="Byte" Nullable="false" />
-          <Property Name="set_defaultReportInterval" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="plan_tracerDBModel.FK_Settings_Users" FromRole="Setting" ToRole="User" />
-          <Property Name="set_defaultReportType" Type="Byte" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Log_Users">
-          <End Type="plan_tracerDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="plan_tracerDBModel.Log" Role="Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Log">
-              <PropertyRef Name="log_user" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Settings_Users">
-          <End Type="plan_tracerDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="plan_tracerDBModel.Setting" Role="Setting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Setting">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="plan_tracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
+        <EntityContainerMapping StorageEntityContainer="Torun_PlanTracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="log_user" ColumnName="log_user" />
+                <ScalarProperty Name="error_page" ColumnName="error_page" />
+                <ScalarProperty Name="error_text" ColumnName="error_text" />
+                <ScalarProperty Name="log_date" ColumnName="log_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Plans">
-            <EntityTypeMapping TypeName="plan_tracerDBModel.Plan">
+            <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Plan">
               <MappingFragment StoreEntitySet="Plans">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="work_id" ColumnName="work_id" />
@@ -354,8 +366,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="set_countType" ColumnName="set_countType" />
+                <ScalarProperty Name="set_autoOpen" ColumnName="set_autoOpen" />
+                <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
+                <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
+                <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
+                <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TodoLists">
-            <EntityTypeMapping TypeName="plan_tracerDBModel.TodoList">
+            <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.TodoList">
               <MappingFragment StoreEntitySet="TodoList">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="request_number" ColumnName="request_number" />
@@ -368,7 +394,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="plan_tracerDBModel.User">
+            <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
@@ -384,7 +410,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WorkDones">
-            <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
+            <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.WorkDone">
               <MappingFragment StoreEntitySet="WorkDone">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="plan_id" ColumnName="plan_id" />
@@ -392,31 +418,6 @@
                 <ScalarProperty Name="add_time" ColumnName="add_time" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Logs">
-            <EntityTypeMapping TypeName="plan_tracerDBModel.Log">
-              <MappingFragment StoreEntitySet="Log">
-                <ScalarProperty Name="log_date" ColumnName="log_date" />
-                <ScalarProperty Name="error_text" ColumnName="error_text" />
-                <ScalarProperty Name="error_page" ColumnName="error_page" />
-                <ScalarProperty Name="log_user" ColumnName="log_user" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Settings">
-            <EntityTypeMapping TypeName="plan_tracerDBModel.Setting">
-              <MappingFragment StoreEntitySet="Settings">
-                <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
-                <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
-                <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
-                <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
-                <ScalarProperty Name="set_autoOpen" ColumnName="set_autoOpen" />
-                <ScalarProperty Name="set_countType" ColumnName="set_countType" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

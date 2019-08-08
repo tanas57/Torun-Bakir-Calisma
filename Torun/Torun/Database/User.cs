@@ -17,9 +17,9 @@ namespace Torun.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.TodoLists = new HashSet<TodoList>();
             this.Logs = new HashSet<Log>();
             this.Settings = new HashSet<Setting>();
+            this.TodoLists = new HashSet<TodoList>();
         }
     
         public int id { get; set; }
@@ -34,10 +34,10 @@ namespace Torun.Database
         public System.DateTime register_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TodoList> TodoLists { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Log> Logs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Setting> Settings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TodoList> TodoLists { get; set; }
     }
 }
