@@ -38,18 +38,21 @@ namespace Torun
         {
             try
             {
-                UserSettings = DB.GetUserSettings(User);
-                Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
-                Settings.DefaultReportInterval = (CountType)UserSettings.set_defaultReportInterval;
-                Settings.DefaultReportListType = (ReportType)UserSettings.set_defaultReportType;
-                Settings.AutoOpen = UserSettings.set_autoOpen;
-                Settings.AutoBackup = UserSettings.set_autoBackup;
-                Settings.BackupTimeInterval = (CountType)UserSettings.set_backupTimeInterval;
+                if(User != null)
+                {
+                    UserSettings = DB.GetUserSettings(User);
+                    Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
+                    Settings.DefaultReportInterval = (CountType)UserSettings.set_defaultReportInterval;
+                    Settings.DefaultReportListType = (ReportType)UserSettings.set_defaultReportType;
+                    Settings.AutoOpen = UserSettings.set_autoOpen;
+                    Settings.AutoBackup = UserSettings.set_autoBackup;
+                    Settings.BackupTimeInterval = (CountType)UserSettings.set_backupTimeInterval;
+                }
             }
             catch (Exception ex)
             {
                 DB.AddLog(new Log { error_page = "mainwindow_GetSettings", error_text = ex.Message, log_user = User.id });
-                }
+            }
         }
         public void UpdateSettings()
         {
