@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" KeyUp="Window_KeyUp"
+        mc:Ignorable="d" KeyUp="Window_KeyUp" Icon="/images/torun.ico"
         Title="RequestAdd" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="385" Width="520" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>

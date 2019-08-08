@@ -8,7 +8,7 @@
         BorderBrush="LightSlateGray"
         KeyDown="Window_KeyDown"
         BorderThickness="1,1,1,1"
-        Title="Giriş - Plan Takip" Height="400" Width="650" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Torun;component/images/icon/topbarlogo.png" Foreground="{x:Null}" Background="White" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
+        Title="Giriş - Plan Takip" Height="400" Width="650" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/images/torun.ico" Foreground="{x:Null}" Background="White" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"></ColumnDefinition>

@@ -7,7 +7,7 @@
         mc:Ignorable="d" KeyUp="Window_KeyUp"
         Closing="Window_Closing"
         MouseDown="Window_MouseDown"
-        Loaded="Window_Loaded"
+        Loaded="Window_Loaded" Icon="/images/torun.ico"
         Title="RequestSchedule" Height="300" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None">
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
