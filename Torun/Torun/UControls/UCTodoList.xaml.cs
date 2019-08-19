@@ -15,14 +15,16 @@ namespace Torun.UControls
     public partial class UCTodoList : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private DB db; private User User;
+        
         public bool buttonDetail = false;
+        private DB DB { get; set; }
+        private User User;
         public UCTodoList()
         {
             InitializeComponent();
-            db = mainWindow.DB;
+            DB = mainWindow.DB;
             User = mainWindow.User;
-            Grid_todoList.ItemsSource = db.GetTodoLists(User);
+            Grid_todoList.ItemsSource = DB.GetTodoLists(User);
         }
         private void btn_adddRequest_Click(object sender, RoutedEventArgs e)
         {
@@ -36,7 +38,7 @@ namespace Torun.UControls
             }
             catch (Exception ex)
             {
-                db.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -58,7 +60,7 @@ namespace Torun.UControls
                         var plans = mainWindow.DB.PlanToCalendar(todoList.id);
                         foreach (var item in plans) mainWindow.DB.RemovePlan(item);
                         // delete work
-                        db.DeleteTodoList(todoList);
+                        DB.DeleteTodoList(todoList);
                         mainWindow.UpdateScreens();
                     }
                 }
@@ -67,14 +69,14 @@ namespace Torun.UControls
                     var result = MessageBox.Show(todoList.id + " id numaralı talep silinecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (result == MessageBoxResult.Yes)
                     {
-                        db.DeleteTodoList(todoList);
+                        DB.DeleteTodoList(todoList);
                         mainWindow.UpdateScreens();
                     }
                 }
             }
             catch (Exception ex)
             {
-                db.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -105,7 +107,7 @@ namespace Torun.UControls
             }
             catch (Exception ex)
             {
-                db.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -124,7 +126,7 @@ namespace Torun.UControls
             }
             catch (Exception ex)
             {
-                db.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -162,7 +164,7 @@ namespace Torun.UControls
             }
             catch (Exception ex)
             {
-                db.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
             }
         }
 
@@ -188,7 +190,7 @@ namespace Torun.UControls
             }
             catch (Exception ex)
             {
-                db.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "uctodolist", error_text = ex.Message, log_user = User.id });
             }
         }
 

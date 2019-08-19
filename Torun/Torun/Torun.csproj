@@ -400,6 +400,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="torunn.ico" />
+    <Resource Include="images\torun.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Database\DbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DbModel.edmx</DependentUpon>
@@ -410,8 +414,6 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="torunn.ico" />
-    <Resource Include="images\torun.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

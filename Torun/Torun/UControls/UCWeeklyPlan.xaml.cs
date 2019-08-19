@@ -16,7 +16,7 @@ namespace Torun.UControls
     public partial class UCWeeklyPlan : UserControl
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private DB db; private User currentUser;
+       
         private DateTime planStartDate;
         private DataGrid SelectedGrid { get; set; }
         private OrderBy Order { get; set; }
@@ -25,8 +25,6 @@ namespace Torun.UControls
         public UCWeeklyPlan()
         {
             InitializeComponent();
-            db = mainWindow.DB;
-            currentUser = mainWindow.User;
             Order = OrderBy.AddedTimeDesc;
             User = mainWindow.User;
             DB = mainWindow.DB;
@@ -90,11 +88,11 @@ namespace Torun.UControls
                 planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
                 lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
                 int maxLine = 0;
-                Grid_todoList0.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-                Grid_todoList1.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-                Grid_todoList2.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-                Grid_todoList3.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-                Grid_todoList4.ItemsSource = db.ListWeeklyPlanDay(currentUser, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList0.ItemsSource = DB.ListWeeklyPlanDay(User, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList1.ItemsSource = DB.ListWeeklyPlanDay(User, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList2.ItemsSource = DB.ListWeeklyPlanDay(User, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList3.ItemsSource = DB.ListWeeklyPlanDay(User, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList4.ItemsSource = DB.ListWeeklyPlanDay(User, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
 
                 if (Grid_todoList0.Items.Count >= maxLine) maxLine = Grid_todoList0.Items.Count;
                 if (Grid_todoList1.Items.Count >= maxLine) maxLine = Grid_todoList1.Items.Count;

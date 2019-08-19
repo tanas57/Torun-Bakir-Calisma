@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Torun_PlanTracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
+  <EntityContainerMapping StorageEntityContainer="plan_tracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
     <EntitySetMapping Name="Logs">
-      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Log">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.Log">
         <MappingFragment StoreEntitySet="Log">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="log_user" ColumnName="log_user" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Plans">
-      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Plan">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.Plan">
         <MappingFragment StoreEntitySet="Plans">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="work_id" ColumnName="work_id" />
@@ -24,7 +24,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Settings">
-      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Setting">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.Setting">
         <MappingFragment StoreEntitySet="Settings">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TodoLists">
-      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.TodoList">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.TodoList">
         <MappingFragment StoreEntitySet="TodoList">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="request_number" ColumnName="request_number" />
@@ -51,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.User">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
@@ -67,7 +67,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WorkDones">
-      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.WorkDone">
+      <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
         <MappingFragment StoreEntitySet="WorkDone">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="plan_id" ColumnName="plan_id" />

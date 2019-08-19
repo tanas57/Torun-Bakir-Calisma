@@ -38,7 +38,7 @@ namespace Torun
         {
             try
             {
-                if(User != null)
+                if (User != null)
                 {
                     UserSettings = DB.GetUserSettings(User);
                     Settings.MainRequestCountType = (CountType)UserSettings.set_countType;
@@ -52,7 +52,7 @@ namespace Torun
             catch (Exception ex)
             {
                 DB.AddLog(new Log { error_page = "mainwindow_GetSettings", error_text = ex.Message, log_user = User.id });
-                }
+            }
         }
         public void UpdateSettings()
         {
@@ -65,10 +65,11 @@ namespace Torun
                 UserSettings.set_autoBackup = Settings.AutoBackup;
                 UserSettings.set_backupTimeInterval = (byte)Settings.BackupTimeInterval;
                 DB.UpdateUserSettings(User, UserSettings);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = "mainwindow_UpdateSettings", error_text = ex.Message, log_user = User.id});
-                }
+                DB.AddLog(new Log { error_page = "mainwindow_UpdateSettings", error_text = ex.Message, log_user = User.id });
+            }
         }
         public void ChangeViewWeeklyPlan()
         {
