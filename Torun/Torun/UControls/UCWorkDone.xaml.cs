@@ -185,27 +185,33 @@ namespace Torun.UControls
         }
         private void LabelandGridUpdate(DateTime datetime)
         {
-            planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
-            lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
-            int maxLine = 0;
-            Grid_todoList0.ItemsSource = DB.ListWorkDone(User, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList1.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList2.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList3.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
-            Grid_todoList4.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+            try
+            {
+                planStartDate = datetime.AddDays(-(int)datetime.DayOfWeek + (int)DayOfWeek.Monday);
+                lbl_dates.Text = planStartDate.ToShortDateString() + " - " + planStartDate.AddDays(4).ToShortDateString();
+                int maxLine = 0;
+                Grid_todoList0.ItemsSource = DB.ListWorkDone(User, planStartDate, Order); txt_Count0.Text = Grid_todoList0.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList1.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(1), Order); txt_Count1.Text = Grid_todoList1.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList2.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(2), Order); txt_Count2.Text = Grid_todoList2.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList3.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(3), Order); txt_Count3.Text = Grid_todoList3.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
+                Grid_todoList4.ItemsSource = DB.ListWorkDone(User, planStartDate.AddDays(4), Order); txt_Count4.Text = Grid_todoList4.Items.Count.ToString() + " " + mainWindow.Lang.UCWeeklyPlanNumOfPlans;
 
-            if (Grid_todoList0.Items.Count >= maxLine) maxLine = Grid_todoList0.Items.Count;
-            if (Grid_todoList1.Items.Count >= maxLine) maxLine = Grid_todoList1.Items.Count;
-            if (Grid_todoList2.Items.Count >= maxLine) maxLine = Grid_todoList2.Items.Count;
-            if (Grid_todoList3.Items.Count >= maxLine) maxLine = Grid_todoList3.Items.Count;
-            if (Grid_todoList4.Items.Count >= maxLine) maxLine = Grid_todoList4.Items.Count;
-            order.Header = "Sıra";
-            List<int> numbers = new List<int>();
-            for (int i = 1; i <= maxLine; i++) numbers.Add(i);
-            numbersGrid.ItemsSource = numbers;
-            SelectedGrid = null; // null error fix
+                if (Grid_todoList0.Items.Count >= maxLine) maxLine = Grid_todoList0.Items.Count;
+                if (Grid_todoList1.Items.Count >= maxLine) maxLine = Grid_todoList1.Items.Count;
+                if (Grid_todoList2.Items.Count >= maxLine) maxLine = Grid_todoList2.Items.Count;
+                if (Grid_todoList3.Items.Count >= maxLine) maxLine = Grid_todoList3.Items.Count;
+                if (Grid_todoList4.Items.Count >= maxLine) maxLine = Grid_todoList4.Items.Count;
+                order.Header = "Sıra";
+                List<int> numbers = new List<int>();
+                for (int i = 1; i <= maxLine; i++) numbers.Add(i);
+                numbersGrid.ItemsSource = numbers;
+                SelectedGrid = null; // null error fix
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucworkdone_labelandgridupdate", error_text = ex.Message, log_user = User.id });
+            }
         }
-
         private void Sort_AddTimeDesc_Click(object sender, RoutedEventArgs e)
         {
             Order = OrderBy.PriorityAsc;
