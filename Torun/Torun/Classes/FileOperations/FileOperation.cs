@@ -211,29 +211,31 @@ namespace Torun.Classes
                 case CountType.Montly: timeString = DateTime.Now.Month.ToString() + "." + Lang.ReportSelectMonth + " " + strReportType; break;
                 case CountType.Weekly: timeString = myCal.GetWeekOfYear(DateTime.Now, myCI.DateTimeFormat.CalendarWeekRule, myCI.DateTimeFormat.FirstDayOfWeek) + "." + Lang.ReportSelectWeek + " " + strReportType; break;
             }
-            var Renderer = new IronPdf.HtmlToPdf();
 
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + "//torun-logo-2.png";
 
             Microsoft.Office.Interop.Excel.Application excelPage = new Microsoft.Office.Interop.Excel.Application();
 
-            excelPage.Visible = true;
             Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
             Worksheet worksheet = workbook.Sheets[1];
 
             int startColumn = 1, startRow = 1;
+
             string[] columnNames = { "Sıra", "Talep No", "Açıklama" };
             int[] columnWidths = { 11, 35, 120 };
             for (int i = 0; i < columnNames.Length; i++)
             {
-                Range range = worksheet.Cells[startRow, startColumn];
-                range.Value2 = columnNames[i];
-                range.ColumnWidth = columnWidths[i];
-                range.WrapText = true;
-                range.VerticalAlignment = true;
+                Range rangeRequest = worksheet.Cells[startRow, startColumn];
+                rangeRequest.Value2 = columnNames[i];
+                rangeRequest.ColumnWidth = columnWidths[i];
+                rangeRequest.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                rangeRequest.Font.Size = 13;
+                rangeRequest.Font.Bold = true;
+                rangeRequest.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
                 startColumn++;
             }
-            startColumn = 1; startRow++;
+            startRow++;
+
             if (reportType == ReportType.OnlyWorkDone)
             {
                 while (end >= start)
@@ -241,13 +243,24 @@ namespace Torun.Classes
                     List<DB.WorkDoneList> workDone = db.ListWorkDone(user, start.Date, OrderBy.AddedTimeAsc);
                     if (workDone.Count >= 1)
                     {
+                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
+                        rang.Value2 = start.ToShortDateString();
+                        rang.Font.Size = 15;
+                        rang.Font.Bold = true;
+                        rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                        rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                        rang.Select();
+                        rang.Merge();
+                        startRow++;
+
                         foreach (var item in workDone)
                         {
+                            startColumn = 1; //startRow++;
+
                             Range range = worksheet.Cells[startRow, startColumn];
                             range.Cells[startRow, 1] = item.WorkDoneID;
                             range.Cells[startRow, 2] = item.RequestNumber;
                             range.Cells[startRow, 3] = item.Description;
-                            range.Select();
                             startRow++;
                         }
                     }
@@ -285,6 +298,7 @@ namespace Torun.Classes
                 }
             }
 
+            excelPage.Visible = true;
             // This neat trick opens our PDF file so we can see the result in our default PDF viewer
             System.Diagnostics.Process.Start("");
 
