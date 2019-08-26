@@ -221,6 +221,26 @@ namespace Torun.Classes
 
             int startColumn = 1, startRow = 1;
 
+            Range rang = worksheet.Cells[startRow, startColumn];
+            worksheet.Cells[startRow, 3] = start.ToShortDateString();
+            rang.Font.Size = 15;
+            rang.Font.Bold = true;
+            rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+            rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+            rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+            rang.Merge();
+            startRow++;
+
+            Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
+            worksheet.Cells[startRow, 3] = start.ToShortDateString();
+            rang.Font.Size = 15;
+            rang.Font.Bold = true;
+            rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+            rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+            rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+            rang.Merge();
+            startRow++;
+
             string[] columnNames = { "Sıra", "Talep No", "Açıklama" };
             int[] columnWidths = { 11, 35, 120 };
             for (int i = 0; i < columnNames.Length; i++)
@@ -244,23 +264,21 @@ namespace Torun.Classes
                     if (workDone.Count >= 1)
                     {
                         Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
-                        rang.Value2 = start.ToShortDateString();
+                        worksheet.Cells[startRow, 3] = start.ToShortDateString();
                         rang.Font.Size = 15;
                         rang.Font.Bold = true;
                         rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
                         rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
-                        rang.Select();
+                        rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
                         rang.Merge();
                         startRow++;
 
                         foreach (var item in workDone)
                         {
-                            startColumn = 1; //startRow++;
-
-                            Range range = worksheet.Cells[startRow, startColumn];
-                            range.Cells[startRow, 1] = item.WorkDoneID;
-                            range.Cells[startRow, 2] = item.RequestNumber;
-                            range.Cells[startRow, 3] = item.Description;
+                            worksheet.Cells[startRow, 1] = item.WorkDoneID;
+                            worksheet.Cells[startRow, 2] = item.RequestNumber;
+                            worksheet.Cells[startRow, 3] = item.Description;
+                            worksheet.Cells[startRow, 4] = item.WorkDoneTime.ToShortDateString();
                             startRow++;
                         }
                     }
