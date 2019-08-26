@@ -131,13 +131,20 @@ namespace Torun.UControls
             }
             catch (Exception ex)
             {
-                DB.AddLog(new Log { error_page = "ucreport", error_text = ex.Message, log_user = User.id });
+                DB.AddLog(new Log { error_page = "ucreport_pdfbutton", error_text = ex.Message, log_user = User.id });
             }
         }
 
         private void Btn_excel_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                FileOperation.ExportAsEXCEL(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucreport_excelbutton", error_text = ex.Message, log_user = User.id });
+            }
         }
     }
 }
