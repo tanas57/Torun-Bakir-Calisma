@@ -221,25 +221,19 @@ namespace Torun.Classes
 
             int startColumn = 1, startRow = 1;
 
-            Range rang = worksheet.Cells[startRow, startColumn];
-            worksheet.Cells[startRow, 3] = start.ToShortDateString();
-            rang.Font.Size = 15;
-            rang.Font.Bold = true;
-            rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-            rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
-            rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
-            rang.Merge();
-            startRow++;
+            Range rang2 = worksheet.Cells[startRow, startColumn];
+            worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0,0,180,60);
+            rang2.RowHeight = 58;
 
-            Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
-            worksheet.Cells[startRow, 3] = start.ToShortDateString();
-            rang.Font.Size = 15;
-            rang.Font.Bold = true;
-            rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-            rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
-            rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
-            rang.Merge();
-            startRow++;
+            Range rang3 = worksheet.Range[worksheet.Cells[startRow, 2], worksheet.Cells[startRow, 3]];
+            worksheet.Cells[startRow, 3] = timeString + " " + fullname + " tarafından " + DateTime.Now.ToShortDateString() + " tarihinde oluşturulan rapor.";
+            rang3.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+            rang3.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+            rang3.Merge();
+            rang2.RowHeight = 55;
+            startRow++; startColumn = 1;
+
+
 
             string[] columnNames = { "Sıra", "Talep No", "Açıklama" };
             int[] columnWidths = { 11, 35, 120 };
@@ -264,12 +258,13 @@ namespace Torun.Classes
                     if (workDone.Count >= 1)
                     {
                         Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
-                        worksheet.Cells[startRow, 3] = start.ToShortDateString();
+                        worksheet.Cells[startRow, 3] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
                         rang.Font.Size = 15;
                         rang.Font.Bold = true;
                         rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
                         rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
                         rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                        rang.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
                         rang.Merge();
                         startRow++;
 
@@ -278,7 +273,6 @@ namespace Torun.Classes
                             worksheet.Cells[startRow, 1] = item.WorkDoneID;
                             worksheet.Cells[startRow, 2] = item.RequestNumber;
                             worksheet.Cells[startRow, 3] = item.Description;
-                            worksheet.Cells[startRow, 4] = item.WorkDoneTime.ToShortDateString();
                             startRow++;
                         }
                     }
