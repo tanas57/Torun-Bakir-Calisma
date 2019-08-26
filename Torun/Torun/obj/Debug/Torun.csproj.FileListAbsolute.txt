@@ -152,3 +152,5 @@ C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Win
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\WorkCompleted\EditWorkDone.baml
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\WorkCompleted\EditWorkDoneCalendar.baml
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\WorkCompleted\RemoveWorkDone.baml
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Interop.Office.dll
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.csproj.ResolveComReference.cache

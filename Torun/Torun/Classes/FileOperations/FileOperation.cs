@@ -215,6 +215,25 @@ namespace Torun.Classes
 
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + "//torun-logo-2.png";
 
+            Microsoft.Office.Interop.Excel.Application excelPage = new Microsoft.Office.Interop.Excel.Application();
+
+            excelPage.Visible = true;
+            Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
+            Worksheet worksheet = workbook.Sheets[1];
+
+            int startColumn = 1, startRow = 1;
+            string[] columnNames = { "Sıra", "Talep No", "Açıklama" };
+            int[] columnWidths = { 11, 35, 120 };
+            for (int i = 0; i < columnNames.Length; i++)
+            {
+                Range range = worksheet.Cells[startRow, startColumn];
+                range.Value2 = columnNames[i];
+                range.ColumnWidth = columnWidths[i];
+                range.WrapText = true;
+                range.VerticalAlignment = true;
+                startColumn++;
+            }
+            startColumn = 1; startRow++;
             if (reportType == ReportType.OnlyWorkDone)
             {
                 while (end >= start)
@@ -222,7 +241,15 @@ namespace Torun.Classes
                     List<DB.WorkDoneList> workDone = db.ListWorkDone(user, start.Date, OrderBy.AddedTimeAsc);
                     if (workDone.Count >= 1)
                     {
-                       
+                        foreach (var item in workDone)
+                        {
+                            Range range = worksheet.Cells[startRow, startColumn];
+                            range.Cells[startRow, 1] = item.WorkDoneID;
+                            range.Cells[startRow, 2] = item.RequestNumber;
+                            range.Cells[startRow, 3] = item.Description;
+                            range.Select();
+                            startRow++;
+                        }
                     }
                     start = start.AddDays(1);
                 }
