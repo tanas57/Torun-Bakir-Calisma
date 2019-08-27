@@ -230,12 +230,12 @@ namespace Torun.Classes
             if (reportType == ReportType.Both)
             {
                 rang3 = worksheet.Range[worksheet.Cells[startRow, 2], worksheet.Cells[startRow, 5]];
-                worksheet.Cells[startRow, 5] = timeString + " " + fullname + " tarafından " + DateTime.Now.ToShortDateString() + " tarihinde oluşturulan rapor.";
+                worksheet.Cells[startRow, 5] = DateTime.Now.ToShortDateString() + " " + Lang.ReportHasDate + " "  + timeString  + " " + Lang.MainPageMenuReport  + " " +  fullname + " " + Lang.ReportCreatedBy;
             }
             else
             {
                 rang3 = worksheet.Range[worksheet.Cells[startRow, 2], worksheet.Cells[startRow, 3]];
-                worksheet.Cells[startRow, 3] = timeString + " " + fullname + " tarafından " + DateTime.Now.ToShortDateString() + " tarihinde oluşturulan rapor.";
+                worksheet.Cells[startRow, 3] = DateTime.Now.ToShortDateString() + " " + Lang.ReportHasDate + " " + timeString + " " + Lang.MainPageMenuReport + " " + fullname + " " + Lang.ReportCreatedBy;
             }
             rang3.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
             rang3.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
