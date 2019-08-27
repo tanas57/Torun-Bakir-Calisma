@@ -177,7 +177,9 @@ namespace Torun.Classes
                 DrawDividerLine = true
             };
             var PDF = Renderer.RenderHtmlAsPdf(html);
-            var OutputPath = getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTPDF);
+            // control are the year and month directories exists
+            var OutputPath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + FileNames.FILENAME_REPORTPDF; // create outputfile path
+
             PDF.SaveAs(OutputPath);
             // This neat trick opens our PDF file so we can see the result in our default PDF viewer
             System.Diagnostics.Process.Start(OutputPath);
@@ -369,7 +371,9 @@ namespace Torun.Classes
 
             Range select = worksheet.Cells[7, 1];
             select.Select(); // select empty a cell 
-            string outputFilePath = FileOperation.getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTEXCEL, false); // create outputfile path
+
+            // control are the year and month directories exists
+            string outputFilePath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + FileNames.FILENAME_REPORTEXCEL; // create outputfile path
 
             if (File.Exists(outputFilePath)) File.Delete(outputFilePath);
             // save excel file to user folder
@@ -381,6 +385,18 @@ namespace Torun.Classes
             workbook.Close();
             excelPage.Quit();
             System.Diagnostics.Process.Start(outputFilePath);
+        }
+        private static string ReportFolderProcess()
+        {
+            if (!Directory.Exists(getFilePath(FileNames.FILENAME_REPORT_FOLDER)))
+                Directory.CreateDirectory(getFilePath(FileNames.FILENAME_REPORT_FOLDER));
+
+            if (!Directory.Exists(getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString())))
+                Directory.CreateDirectory(getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString()));
+
+            if (!Directory.Exists(getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString())))
+                Directory.CreateDirectory(getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString()));
+            return getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString());
         }
         public static string ProfilePhotoPath()
         {
