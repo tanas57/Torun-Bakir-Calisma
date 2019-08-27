@@ -177,7 +177,7 @@ namespace Torun.Classes
                 DrawDividerLine = true
             };
             var PDF = Renderer.RenderHtmlAsPdf(html);
-            var OutputPath = getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORT);
+            var OutputPath = getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTPDF);
             PDF.SaveAs(OutputPath);
             // This neat trick opens our PDF file so we can see the result in our default PDF viewer
             System.Diagnostics.Process.Start(OutputPath);
@@ -262,7 +262,7 @@ namespace Torun.Classes
                         rang.Font.Size = 15;
                         rang.Font.Bold = true;
                         rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
-                        rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+                        rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.IndianRed);
                         rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
                         rang.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
                         rang.Merge();
@@ -310,10 +310,17 @@ namespace Torun.Classes
                 }
             }
 
-            excelPage.Visible = true;
-            // This neat trick opens our PDF file so we can see the result in our default PDF viewer
-            System.Diagnostics.Process.Start("");
+            Range select = worksheet.Cells[5, 5];
+            select.Select();
+            string outputFilePath = FileOperation.getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTEXCEL, false);
 
+            if (FileOperation.FileExists(outputFilePath)) File.Delete(outputFilePath);
+            workbook.SaveAs(outputFilePath, XlFileFormat.xlOpenXMLWorkbook, Type.Missing,
+            Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange,
+            XlSaveConflictResolution.xlUserResolution, true,
+            Type.Missing, Type.Missing, Type.Missing);
+
+            System.Diagnostics.Process.Start(outputFilePath);
         }
         public static string ProfilePhotoPath()
         {
