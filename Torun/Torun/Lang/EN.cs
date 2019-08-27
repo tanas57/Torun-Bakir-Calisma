@@ -407,5 +407,7 @@ namespace Torun.Lang
         public string BackupRestoreFailed => throw new NotImplementedException();
 
         public string BackupAutoBackupCompleted => throw new NotImplementedException();
+
+        public string BackupChangePathLabel => throw new NotImplementedException();
     }
 }

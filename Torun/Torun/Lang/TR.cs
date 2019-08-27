@@ -322,6 +322,7 @@
         // Backup page
         #region
         public string BackupListLblTitle => "Sistemde Bulunan Yedekler";
+        public string BackupChangePathLabel => "Yedek Dizini Ayarı";
         public string BackupChangePath => "1.Yedek Dizini";
         public string BackupChangePath2 => "2.Yedek Dizini";
         public string BackupDoit => "Yedek Oluştur";

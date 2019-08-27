@@ -265,6 +265,7 @@
         #endregion
         #region
         string BackupListLblTitle { get; }
+        string BackupChangePathLabel { get; }
         string BackupChangePath { get; }
         string BackupChangePath2 { get; }
         string BackupDoit { get; }
