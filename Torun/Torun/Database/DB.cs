@@ -186,6 +186,9 @@ namespace Torun.Database
             List<DateTime> dateTimes = Functions.GetDateInterval(countType);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
+
+            if (countType == CountType.FromTheBeginning) start = user.register_date;  // report date bug fix.
+
             var result = from plan in db.Plans
                          join work in db.TodoLists on plan.work_id equals work.id
                          where work.user_id == user.id

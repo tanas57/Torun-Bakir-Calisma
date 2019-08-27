@@ -42,6 +42,8 @@ namespace Torun.Classes
                 case CountType.Yearly: timeString = DateTime.Now.Year.ToString() + "." + Lang.ReportSelectYear + " " + strReportType; break;
                 case CountType.Montly: timeString = DateTime.Now.Month.ToString() + "." + Lang.ReportSelectMonth + " " + strReportType; break;
                 case CountType.Weekly: timeString = myCal.GetWeekOfYear(DateTime.Now, myCI.DateTimeFormat.CalendarWeekRule, myCI.DateTimeFormat.FirstDayOfWeek) + "." + Lang.ReportSelectWeek + " " + strReportType; break;
+                // report date bug fix.
+                case CountType.FromTheBeginning: start = user.register_date; break;
             }
             var Renderer = new IronPdf.HtmlToPdf();
 
@@ -212,6 +214,8 @@ namespace Torun.Classes
                 case CountType.Yearly: timeString = DateTime.Now.Year.ToString() + "." + Lang.ReportSelectYear + " " + strReportType; break;
                 case CountType.Montly: timeString = DateTime.Now.Month.ToString() + "." + Lang.ReportSelectMonth + " " + strReportType; break;
                 case CountType.Weekly: timeString = myCal.GetWeekOfYear(DateTime.Now, myCI.DateTimeFormat.CalendarWeekRule, myCI.DateTimeFormat.FirstDayOfWeek) + "." + Lang.ReportSelectWeek + " " + strReportType; break;
+                // report date bug fix.
+                case CountType.FromTheBeginning: start = user.register_date;  break;
             }
 
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + "//torun-logo-2.png";
