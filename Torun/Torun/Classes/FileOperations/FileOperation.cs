@@ -225,18 +225,42 @@ namespace Torun.Classes
             worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0,0,180,60);
             rang2.RowHeight = 58;
 
-            Range rang3 = worksheet.Range[worksheet.Cells[startRow, 2], worksheet.Cells[startRow, 3]];
-            worksheet.Cells[startRow, 3] = timeString + " " + fullname + " tarafından " + DateTime.Now.ToShortDateString() + " tarihinde oluşturulan rapor.";
+            Range rang3;
+
+            if (reportType == ReportType.Both)
+            {
+                rang3 = worksheet.Range[worksheet.Cells[startRow, 2], worksheet.Cells[startRow, 5]];
+                worksheet.Cells[startRow, 5] = timeString + " " + fullname + " tarafından " + DateTime.Now.ToShortDateString() + " tarihinde oluşturulan rapor.";
+            }
+            else
+            {
+                rang3 = worksheet.Range[worksheet.Cells[startRow, 2], worksheet.Cells[startRow, 3]];
+                worksheet.Cells[startRow, 3] = timeString + " " + fullname + " tarafından " + DateTime.Now.ToShortDateString() + " tarihinde oluşturulan rapor.";
+            }
             rang3.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
             rang3.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
             rang3.Merge();
             rang2.RowHeight = 55;
             startRow++; startColumn = 1;
 
+            string[] columnNames;
+            int[] columnWidths;
 
-
-            string[] columnNames = { "Sıra", "Talep No", "Açıklama" };
-            int[] columnWidths = { 11, 35, 120 };
+            if (reportType == ReportType.OnlyWorkDone)
+            {
+                columnNames = new string[] { "Sıra", "Talep No", "Açıklama" };
+                columnWidths = new int[] { 11, 30, 145 };
+            }
+            else if(reportType == ReportType.OnlyPlan)
+            {
+                columnNames = new string[] { "Sıra", "Talep No", "Açıklama" };
+                columnWidths = new int[] { 11, 30, 145 };
+            }
+            else
+            {
+                columnNames = new string[] { "Sıra", "Talep No", "Plan Tarih", "Gerçekleşme Tarih", "Açıklama" };
+                columnWidths = new int[] { 11, 30, 10, 19, 115 };
+            }
             for (int i = 0; i < columnNames.Length; i++)
             {
                 Range rangeRequest = worksheet.Cells[startRow, startColumn];
@@ -286,31 +310,64 @@ namespace Torun.Classes
                     List<DB.WeeklyPlan> weeklyPlans = db.ListWeeklyPlanbyDate(user, start.Date);
                     if (weeklyPlans.Count >= 1)
                     {
-                        
+                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
+                        worksheet.Cells[startRow, 3] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
+                        rang.Font.Size = 15;
+                        rang.Font.Bold = true;
+                        rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                        rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.IndianRed);
+                        rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                        rang.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                        rang.Merge();
+                        startRow++;
+
+                        foreach (var item in weeklyPlans)
+                        {
+                            worksheet.Cells[startRow, 1] = item.PlanID;
+                            worksheet.Cells[startRow, 2] = item.RequestNumber;
+                            worksheet.Cells[startRow, 3] = item.WorkDescription;
+                            startRow++;
+                        }
                     }
                     start = start.AddDays(1);
                 }
             }
             else if (reportType == ReportType.Both)
             {
-                //start = new DateTime(2019, 07, 31);
                 while (end >= start)
                 {
                     List<DB.WorkDoneandPlans> workPlans = db.GetWorkDoneAndPlansbyDate(user, start.Date);
                     if (workPlans.Count >= 1)
                     {
-                       
+                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 5]];
+                        worksheet.Cells[startRow, 5] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
+                        rang.Font.Size = 15;
+                        rang.Font.Bold = true;
+                        rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                        rang.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.IndianRed);
+                        rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                        rang.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                        rang.Merge();
+                        startRow++;
+
+                        Range rng = worksheet.Cells[startRow, 1];
+                        rng.RowHeight = 15;
+
                         foreach (var item in workPlans)
                         {
-                            
+                            worksheet.Cells[startRow, 1] = item.PlanID;
+                            worksheet.Cells[startRow, 2] = item.RequestNumber;
+                            worksheet.Cells[startRow, 3] = item.PlanDate;
+                            worksheet.Cells[startRow, 4] = item.WorkDoneDate;
+                            worksheet.Cells[startRow, 5] = item.WorkDescription;
+                            startRow++;
                         }
-                        
                     }
                     start = start.AddDays(1);
                 }
             }
 
-            Range select = worksheet.Cells[1, 4];
+            Range select = worksheet.Cells[7, 1];
             select.Select(); // select empty a cell 
             string outputFilePath = FileOperation.getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTEXCEL, false); // create outputfile path
 
