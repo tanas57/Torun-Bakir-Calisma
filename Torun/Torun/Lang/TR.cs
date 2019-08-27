@@ -191,7 +191,7 @@
         #region
         public string WeeklyRemoveTitle => "Plandan Çıkarma";
         public string WeeklyRemoveAday => "Sadece seçili iş";
-        public string WeeklyRemoveAllDays => "Tüm talep işlerini çıkar(talep tamamen silinir)";
+        public string WeeklyRemoveAllDays => "Tüm talep işlerini çıkar(talep yapılcaklar listesine gider)";
         public string WeeklyRemoveButtonRemove => "Plandan çıkar";
         #endregion
         // weekly plan edit page

@@ -310,16 +310,19 @@ namespace Torun.Classes
                 }
             }
 
-            Range select = worksheet.Cells[5, 5];
-            select.Select();
-            string outputFilePath = FileOperation.getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTEXCEL, false);
+            Range select = worksheet.Cells[1, 4];
+            select.Select(); // select empty a cell 
+            string outputFilePath = FileOperation.getFilePath(DateTime.Now.ToShortDateString() + "-" + FileNames.FILENAME_REPORTEXCEL, false); // create outputfile path
 
-            if (FileOperation.FileExists(outputFilePath)) File.Delete(outputFilePath);
+            if (File.Exists(outputFilePath)) File.Delete(outputFilePath);
+            // save excel file to user folder
             workbook.SaveAs(outputFilePath, XlFileFormat.xlOpenXMLWorkbook, Type.Missing,
             Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange,
             XlSaveConflictResolution.xlUserResolution, true,
             Type.Missing, Type.Missing, Type.Missing);
 
+            workbook.Close();
+            excelPage.Quit();
             System.Diagnostics.Process.Start(outputFilePath);
         }
         public static string ProfilePhotoPath()
