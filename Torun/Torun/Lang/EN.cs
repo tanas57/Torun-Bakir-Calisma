@@ -387,5 +387,25 @@ namespace Torun.Lang
         public string ReportSelectMonth => throw new NotImplementedException();
 
         public string ReportSelectYear => throw new NotImplementedException();
+
+        public string BackupListLblTitle => throw new NotImplementedException();
+
+        public string BackupChangePath => throw new NotImplementedException();
+
+        public string BackupChangePath2 => throw new NotImplementedException();
+
+        public string BackupDoit => throw new NotImplementedException();
+
+        public string BackupDoRestore => throw new NotImplementedException();
+
+        public string BackupSuccessfully => throw new NotImplementedException();
+
+        public string BackupFailed => throw new NotImplementedException();
+
+        public string BackupRestoreSuccessfully => throw new NotImplementedException();
+
+        public string BackupRestoreFailed => throw new NotImplementedException();
+
+        public string BackupAutoBackupCompleted => throw new NotImplementedException();
     }
 }

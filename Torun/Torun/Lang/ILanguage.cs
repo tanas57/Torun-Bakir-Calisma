@@ -263,5 +263,17 @@
         string ReportSelectMonth { get; }
         string ReportSelectYear { get; }
         #endregion
+        #region
+        string BackupListLblTitle { get; }
+        string BackupChangePath { get; }
+        string BackupChangePath2 { get; }
+        string BackupDoit { get; }
+        string BackupDoRestore { get; }
+        string BackupSuccessfully { get; }
+        string BackupFailed { get; }
+        string BackupRestoreSuccessfully { get; }
+        string BackupRestoreFailed { get; }
+        string BackupAutoBackupCompleted { get; }
+        #endregion
     }
 }

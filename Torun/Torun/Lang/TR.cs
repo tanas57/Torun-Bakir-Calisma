@@ -319,5 +319,18 @@
         public string ReportSelectYear => "Yıl";
 
         #endregion
+        // Backup page
+        #region
+        public string BackupListLblTitle => "Sistemde Bulunan Yedekler";
+        public string BackupChangePath => "1.Yedek Dizini";
+        public string BackupChangePath2 => "2.Yedek Dizini";
+        public string BackupDoit => "Yedek Oluştur";
+        public string BackupDoRestore => "Geri Yükle";
+        public string BackupSuccessfully => "Yedekleme başarıyla alındı";
+        public string BackupFailed => "Yedekleme başarısız oldu";
+        public string BackupRestoreSuccessfully => "Geri yükleme tamamlandı";
+        public string BackupRestoreFailed => "Geri yükleme başarısız";
+        public string BackupAutoBackupCompleted => "Otomatik yedekleme başarılı";
+        #endregion
     }
 }
