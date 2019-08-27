@@ -183,7 +183,7 @@ namespace Torun.Classes
             PDF.SaveAs(OutputPath);
             // This neat trick opens our PDF file so we can see the result in our default PDF viewer
             System.Diagnostics.Process.Start(OutputPath);
-
+            System.Diagnostics.Process.Start(ReportFolderProcess());
         }
         public static void ExportAsEXCEL(User user, CountType countType, ReportType reportType, DB db)
         {
@@ -385,6 +385,7 @@ namespace Torun.Classes
             workbook.Close();
             excelPage.Quit();
             System.Diagnostics.Process.Start(outputFilePath);
+            System.Diagnostics.Process.Start(ReportFolderProcess());
         }
         private static string ReportFolderProcess()
         {
