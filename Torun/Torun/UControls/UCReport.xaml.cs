@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Torun.Database;
 using Torun.Classes;
 using Torun.Lang;
+using System.Threading;
 
 namespace Torun.UControls
 {
@@ -22,6 +23,7 @@ namespace Torun.UControls
         private CountType CountType { get; set; }
         private User User { get; set; }
         private List<DB.WorkDoneList> workDoneLists;
+        private Thread thread;
         public UCReport()
         {
             InitializeComponent();
@@ -127,19 +129,37 @@ namespace Torun.UControls
         {
             try
             {
-                FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                ReportGridPlan.Visibility = Visibility.Hidden;
+                loadingGif.Visibility = Visibility.Visible;
+                thread = new Thread(ExportPDF);
+                thread.Start();
             }
             catch (Exception ex)
             {
                 DB.AddLog(new Log { error_page = "ucreport_pdfbutton", error_text = ex.Message, log_user = User.id });
             }
         }
+        /// <summary>
+        /// Reports exports as PDF or EXCEL type
+        /// </summary>
+        /// <param name="type">True : EXCEL, False : PDF</param>
+        private void ExportPDF()
+        {
+            //type = true;
+            //if(type) FileOperation.ExportAsEXCEL(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+            //else FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+            //FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+            ReportGridPlan.Visibility = Visibility.Visible;
+            loadingGif.Visibility = Visibility.Hidden;
 
+        }
         private void Btn_excel_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                FileOperation.ExportAsEXCEL(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                ReportGridPlan.Visibility = Visibility.Hidden;
+                loadingGif.Visibility = Visibility.Visible;
+                //Export();
             }
             catch (Exception ex)
             {

@@ -85,6 +85,7 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
+                        <Image x:Name="loadingGif" Visibility="Hidden" Width="250" Height="250" Source="/images/icon/loading.gif" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="99"/>
                     </StackPanel>
                 </Border>
             </Grid>
