@@ -13,6 +13,7 @@ namespace Torun.Windows.WeeklyPlan
     public partial class EditPlan : Window
     {
         public List<DateTime> SelectedDates { get; set; }
+        public bool DateControl { get; set; }
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         public DB.WeeklyPlan Plan { get; set; }
         private TodoList todoList; // current request

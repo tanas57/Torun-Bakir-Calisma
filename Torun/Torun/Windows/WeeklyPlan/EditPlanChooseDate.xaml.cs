@@ -28,6 +28,7 @@ namespace Torun.Windows.WeeklyPlan
             calendarTitle.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddTitle;
             dateChoosetxt.Content = mainWindow.Lang.WeeklyEditPlanCalendarAddLabel;
             save.Content = mainWindow.Lang.ButtonSave;
+            editPlan.DateControl = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -48,6 +49,7 @@ namespace Torun.Windows.WeeklyPlan
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             editPlan.SelectedDates = calendar.SelectedDates.ToList();
+            editPlan.DateControl = true;
             this.Close();
         }
 

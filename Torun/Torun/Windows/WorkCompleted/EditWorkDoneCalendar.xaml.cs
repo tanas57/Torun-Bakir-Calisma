@@ -40,6 +40,7 @@ namespace Torun.Windows.WorkCompleted
             calendarTitle.Content = Lang.WeeklyEditPlanCalendarAddTitle;
             dateChoosetxt.Content = Lang.WeeklyEditPlanCalendarAddLabel;
             save.Content = Lang.ButtonTransfer;
+            editWorkDone.DateControl = false;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -56,6 +57,7 @@ namespace Torun.Windows.WorkCompleted
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             editWorkDone.SelectedDate = calendar.SelectedDate.Value;
+            editWorkDone.DateControl = true;
             this.Close();
         }
 

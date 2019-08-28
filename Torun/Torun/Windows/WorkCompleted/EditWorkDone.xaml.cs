@@ -19,6 +19,7 @@ namespace Torun.Windows.WorkCompleted
         private TodoList todoList; // current request
         private List<WorkDone> works; // current plans
         public DateTime SelectedDate { get; set; }
+        public bool DateControl { get; set; }
         public DB.WorkDoneList Work { get; set; }
         private ILanguage Lang { get; set; }
         private DB DB { get; set; }
@@ -167,7 +168,7 @@ namespace Torun.Windows.WorkCompleted
                             this.Opacity = 0.5;
                             if (editWorkDone.ShowDialog() == false)
                             {
-                                if (SelectedDate != null)
+                                if (DateControl)
                                 {
                                     if (!DB.IsWorkDoneExists(SelectedDate.Date, todoList.id)) // if there is no selected date in database
                                     {
