@@ -53,9 +53,10 @@ namespace Torun.Windows.WeeklyPlan
                 // initial values
                 DateTime dateTime = new DateTime(1, 1, 1);
                 bool flag = false;
+                Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                 if (todayCompleted.IsChecked == true)
                 {
-                    dateTime = DateTime.Now.Date;
+                    dateTime = plan.work_plan_time;
                     flag = true;
                 }
                 else
@@ -76,7 +77,6 @@ namespace Torun.Windows.WeeklyPlan
                     if (completed_allDays.IsEnabled == false) // the work only one day
                     {
                         // move this plan to workdone
-                        Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                         WorkDone workDone = new WorkDone();
                         workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
                         workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
@@ -93,7 +93,6 @@ namespace Torun.Windows.WeeklyPlan
                     {
                         if (completed_aDay.IsChecked == true) // only one day completed
                         {
-                            Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
                             WorkDone workDone = new WorkDone();
                             workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
                             workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
@@ -112,7 +111,7 @@ namespace Torun.Windows.WeeklyPlan
                             WorkDone workDone;
                             for (int i = 0; i < plans.Count; i++)
                             {
-                                Plan plan = plans[i]; // for each plan
+                                plan = plans[i]; // for each plan
                                 plan.status = 1;
                                 mainWindow.DB.EditPlan(plan);
 
