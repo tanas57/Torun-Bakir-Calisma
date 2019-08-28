@@ -12,21 +12,31 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0">
-            <StackPanel>
-                <Label x:Name="backupPaths" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
-                <Label Content="XXX" x:Name="backupPath"/>
-                <DockPanel>
-                    <TextBox Background="#FFF9F7F7" BorderBrush="#B0151E" x:Name="dbBackupPath" Text="XXX" HorizontalAlignment="Left" Width="300" Margin="5,0,0,0" Height="27"/>
-                    <Button x:Name="changePath" Content="XXX" Width="66" HorizontalAlignment="Left" Margin="10,0,5,0" Style="{DynamicResource planEditButtons}"/>
-                </DockPanel>
-                <Label Content="XXX" x:Name="backupPath2"/>
-                <DockPanel>
-                    <TextBox Background="#FFF9F7F7" BorderBrush="#B0151E" x:Name="dbBackupPath2" Text="XXX" HorizontalAlignment="Left" Width="300" Margin="5,0,0,0" Height="27"/>
-                    <Button x:Name="changePath2" Content="XXX" Width="66" HorizontalAlignment="Left" Margin="10,0,5,0" Style="{DynamicResource planEditButtons}" />
-                </DockPanel>
-                <Button x:Name="btnBackup" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA4D23" Foreground="White"/>
-                <Button x:Name="btnRestore" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA691B" Foreground="White"/>
-            </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label x:Name="backupPaths" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
+                    <Label Content="XXX" x:Name="backupPath"/>
+                    <DockPanel>
+                        <TextBox Background="#FFF9F7F7" BorderBrush="#B0151E" x:Name="dbBackupPath" Text="XXX" HorizontalAlignment="Left" Width="300" Margin="5,0,0,0" Height="27"/>
+                        <Button x:Name="changePath" Content="XXX" Width="66" HorizontalAlignment="Left" Margin="10,0,5,0" Style="{DynamicResource planEditButtons}"/>
+                    </DockPanel>
+                    <Label Content="XXX" x:Name="backupPath2"/>
+                    <DockPanel>
+                        <TextBox Background="#FFF9F7F7" BorderBrush="#B0151E" x:Name="dbBackupPath2" Text="XXX" HorizontalAlignment="Left" Width="300" Margin="5,0,0,0" Height="27"/>
+                        <Button x:Name="changePath2" Content="XXX" Width="66" HorizontalAlignment="Left" Margin="10,0,5,0" Style="{DynamicResource planEditButtons}" />
+                    </DockPanel>
+                    <Button x:Name="btnBackup" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA4D23" Foreground="White"/>
+                    <Button x:Name="btnRestore" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA691B" Foreground="White"/>
+                </StackPanel>
+                <Border Grid.Row="1">
+                    <Label x:Name="result" Content="" FontFamily="corbet" FontSize="14" />
+                </Border>
+            </Grid>
+            
         </Border>
         <!-- backup list-->
         <Border Grid.Column="1">
