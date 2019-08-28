@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Torun.Classes;
+using Torun.Classes.FileOperations;
 using Torun.Database;
 using Torun.Lang;
 
@@ -26,12 +28,16 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public User User { get; set; }
+        private int BackupCount { get; set; }
+        private SQLDBBackup SqlBackup { get; set; }
         public UCBackup()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
+            BackupCount = 1;
+            SqlBackup = new SQLDBBackup();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -44,6 +50,14 @@ namespace Torun.UControls
             changePath2.Content = Lang.ButtonEdit;
             btnBackup.Content = Lang.BackupDoit;
             btnRestore.Content = Lang.BackupDoRestore;
+        }
+
+        private void BtnBackup_Click(object sender, RoutedEventArgs e)
+        {
+            string currentBackupFileName = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "-" + FileNames.FILENAME_BACKUP + "-" + BackupCount + ".bak";
+            string path = FileOperation.BackupFolderProcess() + @"\" + currentBackupFileName;
+            SqlBackup.Backup(path);
+            backupList.Items.Add(currentBackupFileName);
         }
     }
 }
