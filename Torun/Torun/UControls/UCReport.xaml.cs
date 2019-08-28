@@ -9,6 +9,7 @@ using Torun.Database;
 using Torun.Classes;
 using Torun.Lang;
 using System.Threading;
+using System.Windows.Media;
 
 namespace Torun.UControls
 {
@@ -23,7 +24,6 @@ namespace Torun.UControls
         private CountType CountType { get; set; }
         private User User { get; set; }
         private List<DB.WorkDoneList> workDoneLists;
-        private Thread thread;
         public UCReport()
         {
             InitializeComponent();
@@ -129,9 +129,10 @@ namespace Torun.UControls
         {
             try
             {
-                ReportGridPlan.Visibility = Visibility.Hidden;
-                loadingGif.Visibility = Visibility.Visible;
-                thread = new Thread(ExportPDF);
+                reportProcess.Background = Brushes.Blue;
+                reportProcess.Content = Lang.ReportProcessStart;
+
+                Thread thread = new Thread(new ThreadStart(ExportPDF));
                 thread.Start();
             }
             catch (Exception ex)
@@ -149,16 +150,21 @@ namespace Torun.UControls
             //if(type) FileOperation.ExportAsEXCEL(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
             //else FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
             //FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
-            ReportGridPlan.Visibility = Visibility.Visible;
-            loadingGif.Visibility = Visibility.Hidden;
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                reportProcess.Background = Brushes.Green;
+                reportProcess.Content = Lang.ReportProcessEnd;
+            }));
 
         }
         private void Btn_excel_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ReportGridPlan.Visibility = Visibility.Hidden;
-                loadingGif.Visibility = Visibility.Visible;
+                reportProcess.Background = Brushes.Blue;
+                reportProcess.Content = Lang.ReportProcessStart;
                 //Export();
             }
             catch (Exception ex)
