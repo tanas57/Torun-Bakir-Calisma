@@ -616,8 +616,20 @@ namespace Torun.Database
             switch (ReqType)
             {
                 case 1: return db.TodoLists.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
-                case 2: return db.TodoLists.Where(x => x.status != (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
-                case 3: return db.TodoLists.Where(x => x.status == (int)StatusType.Closed && x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd).Count();
+                case 2: return (from plan in db.Plans 
+                                join todo in db.TodoLists on plan.work_id equals todo.id
+                                where todo.user_id == user.id && todo.status == (int)StatusType.Closed
+                                && plan.status == (int)StatusType.Deleted
+                                && plan.work_plan_time >= timeStart && plan.work_plan_time <= timeEnd
+                                select plan).ToList().Count();
+
+                case 3: return (from works in db.WorkDones
+                                join plan in db.Plans on works.plan_id equals plan.id
+                                join todo in db.TodoLists on plan.work_id equals todo.id
+                                where todo.user_id == user.id && todo.status == (int)StatusType.Closed
+                                && (works.status == (int)StatusType.Added || works.status == (int)StatusType.InProcess)
+                                && works.workDoneTime >= timeStart && works.workDoneTime <= timeEnd
+                                select works).ToList().Count();
             }
             return 0;
         }
