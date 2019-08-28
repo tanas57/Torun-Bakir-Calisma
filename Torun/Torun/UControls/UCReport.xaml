@@ -13,6 +13,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition/>
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
                 <!-- add button is here-->
                 <Border Grid.Row="0">
@@ -46,7 +47,6 @@
                 </Border>
                 <!-- report output -->
                 <Border Grid.Row="1">
-
                     <StackPanel>
                         <Grid x:Name="ReportGridPlan" MaxWidth="780" MaxHeight="430">
 
@@ -85,8 +85,10 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
-                        <Image x:Name="loadingGif" Visibility="Hidden" Width="250" Height="250" Source="/images/icon/loading.gif" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="99"/>
                     </StackPanel>
+                </Border>
+                <Border Grid.Row="2">
+                    <Label x:Name="reportProcess" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" FontSize="14" FontFamily="corbet"/>
                 </Border>
             </Grid>
         </Border>

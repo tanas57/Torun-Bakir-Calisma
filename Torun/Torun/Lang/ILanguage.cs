@@ -276,5 +276,8 @@
         string BackupRestoreFailed { get; }
         string BackupAutoBackupCompleted { get; }
         #endregion
+
+        string ReportProcessStart { get; }
+        string ReportProcessEnd { get; }
     }
 }
