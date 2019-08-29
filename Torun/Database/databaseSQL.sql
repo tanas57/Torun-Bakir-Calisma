@@ -78,8 +78,16 @@ CREATE TABLE Settings(
 	set_backupTimeInterval TINYINT NOT NULL DEFAULT 1, -- 1 : WEEKLY
 	set_defaultReportInterval TINYINT NOT NULL DEFAULT 2, -- 2 : MONTHLY
 	set_defaultReportType TINYINT NOT NULL DEFAULT 2, -- 2 : TODOLIST AND WORKDONE
+	backup_last_id INT NOT NULL DEFAULT 1
 );
 
 alter table Settings
 add constraint FK_Settings_Users
 foreign key  (user_id) references Users(id);
+
+CREATE TABLE Backups()
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	filename VARCHAR(50) NOT NULL,
+	filepath VARCHAR(300) NOT NULL
+;
