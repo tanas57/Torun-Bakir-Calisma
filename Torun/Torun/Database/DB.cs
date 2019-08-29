@@ -75,7 +75,7 @@ namespace Torun.Database
         ///
         public Backup GetLastBackup(User user)
         {
-            return db.Backups.LastOrDefault(x => x.user_id == user.id);
+            return db.Backups.OrderBy(x => x.id).FirstOrDefault(x => x.user_id == user.id);
         }
         public List<Backup> GetBackups(User user, bool order = false)
         {

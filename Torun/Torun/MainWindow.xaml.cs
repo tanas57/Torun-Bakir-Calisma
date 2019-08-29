@@ -7,6 +7,7 @@ using Torun.Classes;
 using Torun.UControls;
 using Torun.Database;
 using Torun.Lang;
+using System.Windows.Threading;
 
 namespace Torun
 {
@@ -30,9 +31,39 @@ namespace Torun
         public User User { get; set; }
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
+        private DispatcherTimer timer;
         public MainWindow()
         {
             InitializeComponent();
+            timer = new DispatcherTimer();
+        }
+        private void CheckOtoBackup(Object sender, EventArgs e)
+        {
+            Backup lastBackup = DB.GetLastBackup(User);
+            if(lastBackup != null)
+            {
+                DateTime lastBackupTime = (DateTime)lastBackup.backup_datetime;
+                DateTime nextBackupTime;
+                switch (Settings.BackupTimeInterval)
+                {
+                    case CountType.Daily:
+                        nextBackupTime = lastBackupTime.AddDays(1);
+                        break;
+                    default:
+                    case CountType.Weekly:
+                        nextBackupTime = lastBackupTime.AddDays(7);
+                        break;
+                    case CountType.Montly:
+                        nextBackupTime = lastBackupTime.AddMonths(1);
+                        break;
+                }
+
+                if (nextBackupTime.AddHours(1) > nextBackupTime)
+                {
+                    uCBackup = new UCBackup();
+                    uCBackup.BtnBackup_Click(sender, null);
+                }
+            }
         }
         private void GetSettings()
         {
@@ -165,6 +196,12 @@ namespace Torun
                 mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
                 mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
 
+                if (Settings.AutoBackup)
+                {
+                    timer.Interval = TimeSpan.FromHours(1);
+                    timer.IsEnabled = true;
+                    timer.Tick += CheckOtoBackup;
+                }
             }
             catch (Exception ex)
             {
