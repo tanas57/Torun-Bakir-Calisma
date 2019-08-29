@@ -192,7 +192,7 @@ namespace Torun
                 }
             }
         }
-        private void Menu_userLogout_Click(object sender, RoutedEventArgs e)
+        public void Menu_userLogout_Click(object sender, RoutedEventArgs e)
         {
             DB.LogOut(User);
             formLogoutControl = true;

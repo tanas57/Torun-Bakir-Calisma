@@ -56,22 +56,49 @@ namespace Torun.Database
         }
         public int AddBackup(Backup backup)
         {
-            db.Backups.Add(backup);
-            db.SaveChanges();
-            return backup.id;
+            if(backup != null)
+            {
+                db.Backups.Add(backup);
+                db.SaveChanges();
+                return backup.id;
+            }
+
+            return 0;
         }
-        public List<Backup> GetBackups(User user)
+        /// <summary>
+        /// List all backups from database
+        /// </summary>
+        /// <param name="user">fill the current user</param>
+        /// <param name="order">false : asc order, true : desc order</param>
+        /// <returns></returns>
+        public List<Backup> GetBackups(User user, bool order = false)
         {
-            var result = from backup in db.Backups
-                         where backup.user_id == user.id
-                         orderby backup.id descending
-                         select backup;
+            IQueryable<Backup> result;
+            if (order)
+            {
+                result = from backup in db.Backups
+                             where backup.user_id == user.id
+                             orderby backup.id descending
+                             select backup;
+            }
+            else
+            {
+                result = from backup in db.Backups
+                             where backup.user_id == user.id
+                             orderby backup.id ascending
+                             select backup;
+            }
 
             return result.ToList();
         }
         public Backup GetBackup(User user, int backup_id)
         {
             return db.Backups.FirstOrDefault(x => x.user_id == user.id && x.id == backup_id);
+        }
+        public void AddBackupRange(List<Backup> backups)
+        {
+            db.Backups.AddRange(backups);
+            db.SaveChanges();
         }
         public void AddLog(Log log)
         {

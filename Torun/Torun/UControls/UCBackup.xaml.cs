@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Database;
 using Torun.Lang;
@@ -46,53 +37,92 @@ namespace Torun.UControls
             btnBackup.Content = Lang.BackupDoit;
             btnRestore.Content = Lang.BackupDoRestore;
 
-            Backups = DB.GetBackups(User);
+            FillListBox();
+        }
+        private void FillListBox()
+        {
+            Backups = DB.GetBackups(User, true);
 
+            backupList.Items.Clear();
             foreach (var item in Backups)
             {
                 backupList.Items.Add(item.filename + " / " + item.id);
             }
         }
-
         private void BtnBackup_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            string currentBackupFileName = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "-" + FileNames.FILENAME_BACKUP + "-" + random.Next(1000,9999) + ".bak";
-
-            string path = FileNames.BACKUP_FILE_PATH + @"\" + currentBackupFileName;
-            
-            SqlBackup.Backup(path);
-            Backup backup = new Backup()
+            try
             {
-                filename = currentBackupFileName,
-                filepath = path,
-                user_id = User.id
-            };
-            int id = DB.AddBackup(backup);
-            backupList.Items.Add(currentBackupFileName + " / " + id.ToString());
+                Random random = new Random();
+                string currentBackupFileName = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "-" + FileNames.FILENAME_BACKUP + "-" + random.Next(1000, 9999) + ".bak";
 
-            result.Background = Brushes.Green;
-            result.Content = Lang.BackupSuccessfully;
+                string path = FileNames.BACKUP_FILE_PATH + @"\" + currentBackupFileName;
+
+                SqlBackup.Backup(path);
+                Backup backup = new Backup()
+                {
+                    filename = currentBackupFileName,
+                    filepath = path,
+                    user_id = User.id
+                };
+                int id = DB.AddBackup(backup);
+                if (id > 0)
+                {
+                    backupList.Items.Add(currentBackupFileName + " / " + id.ToString());
+
+                    result.Background = Brushes.Green;
+                    result.Content = Lang.BackupSuccessfully;
+                    FillListBox();
+                }
+                else
+                {
+                    result.Background = Brushes.Red;
+                    result.Content = Lang.BackupFailed;
+                }
+            }
+            catch(Exception ex)
+            {
+                DB.AddLog(new Log() { error_page = "backup_buttonbackup", error_text = ex.Message,
+                    log_date = DateTime.Now, log_user = User.id });
+            }
         }
 
         private void BtnRestore_Click(object sender, RoutedEventArgs e)
         {
-            if(backupList.SelectedIndex == -1)
+            try
             {
-                result.Background = Brushes.Red;
-                result.Content = Lang.BackupSelectListBox;
-            }
-            else
-            {
-                string filename = backupList.SelectedItem.ToString();
-                string[] arr = filename.Split('/');
-                int id = int.Parse(arr[1]);
-                Backup selectedBackup = DB.GetBackup(User, id);
-                SqlBackup.Restore(selectedBackup.filepath);
+                if (backupList.SelectedIndex == -1)
+                {
+                    result.Background = Brushes.Red;
+                    result.Content = Lang.BackupSelectListBox;
+                }
+                else
+                {
+                    string filename = backupList.SelectedItem.ToString();
+                    string[] arr = filename.Split('/');
+                    int id = int.Parse(arr[1]);
+                    Backup selectedBackup = DB.GetBackup(User, id);
 
-                result.Background = Brushes.Green;
-                result.Content = Lang.BackupRestoreSuccessfully;
+                    result.Background = Brushes.Green;
+                    result.Content = Lang.BackupRestoreSuccessfully;
+
+                    Backups = DB.GetBackups(User);
+
+                    SqlBackup.Restore(selectedBackup.filepath); // restore current selected backup
+                    DB.AddBackupRange(Backups); // the backup table must not be deleted
+                    mainWindow.Menu_userLogout_Click(sender, e);
+                }
             }
-        }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log()
+                {
+                    error_page = "backup_buttonbackup",
+                    error_text = ex.Message,
+                    log_date = DateTime.Now,
+                    log_user = User.id
+                });
+            }
+}
     }
 }
