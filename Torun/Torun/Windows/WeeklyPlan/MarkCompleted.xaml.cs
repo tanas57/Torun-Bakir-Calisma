@@ -127,7 +127,11 @@ namespace Torun.Windows.WeeklyPlan
 
                                 workDone = new WorkDone();
                                 workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
-                                workDone.plan_id = plan.id; workDone.description = DbcompletedNote.Text;
+                                workDone.plan_id = plan.id;
+
+                                if (DbcompletedNote.Text != String.Empty) workDone.description = DbcompletedNote.Text;
+                                else workDone.description = requestDescription;
+
                                 workDone.status = 1; // end of the work
                                 mainWindow.DB.MoveWorkToWorkDone(workDone);
                             }
