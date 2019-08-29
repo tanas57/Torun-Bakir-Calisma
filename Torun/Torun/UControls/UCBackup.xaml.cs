@@ -28,7 +28,6 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public User User { get; set; }
-        private int BackupCount { get; set; }
         private SQLDBBackup SqlBackup { get; set; }
         public UCBackup()
         {
@@ -36,7 +35,6 @@ namespace Torun.UControls
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
-            BackupCount = 1;
             SqlBackup = new SQLDBBackup();
         }
 
@@ -54,13 +52,20 @@ namespace Torun.UControls
 
         private void BtnBackup_Click(object sender, RoutedEventArgs e)
         {
-            string currentBackupFileName = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "-" + FileNames.FILENAME_BACKUP + "-" + BackupCount + ".bak";
-            //FileOperation.BackupFolderProcess() + 
+            Random random = new Random();
+            string currentBackupFileName = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "-" + FileNames.FILENAME_BACKUP + "-" + random.Next(1000,9999) + ".bak";
+
             string path = FileNames.BACKUP_FILE_PATH + @"\" + currentBackupFileName;
-            MessageBox.Show(path);
+            
             SqlBackup.Backup(path);
-            backupList.Items.Add(currentBackupFileName);
-            BackupCount++;
+            Backup backup = new Backup()
+            {
+                filename = currentBackupFileName,
+                filepath = path,
+                user_id = User.id
+            };
+
+            backupList.Items.Add(currentBackupFileName + " / " + DB.AddBackup(backup));
         }
     }
 }
