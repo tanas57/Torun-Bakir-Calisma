@@ -60,6 +60,15 @@ namespace Torun.Database
             db.SaveChanges();
             return backup.id;
         }
+        public List<Backup> GetBackups(User user)
+        {
+            var result = from backup in db.Backups
+                         where backup.user_id == user.id
+                         orderby backup.id descending
+                         select backup;
+
+            return result.ToList();
+        }
         public void AddLog(Log log)
         {
             log.log_date = DateTime.Now;

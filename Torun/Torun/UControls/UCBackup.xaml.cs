@@ -29,6 +29,7 @@ namespace Torun.UControls
         public DB DB { get; set; }
         public User User { get; set; }
         private SQLDBBackup SqlBackup { get; set; }
+        private List<Backup> Backups { get; set; }
         public UCBackup()
         {
             InitializeComponent();
@@ -48,6 +49,13 @@ namespace Torun.UControls
             changePath2.Content = Lang.ButtonEdit;
             btnBackup.Content = Lang.BackupDoit;
             btnRestore.Content = Lang.BackupDoRestore;
+
+            Backups = DB.GetBackups(User);
+
+            foreach (var item in Backups)
+            {
+                backupList.Items.Add(item.filename + " / " + item.id);
+            }
         }
 
         private void BtnBackup_Click(object sender, RoutedEventArgs e)
