@@ -43,10 +43,6 @@ namespace Torun.UControls
         {
             backupPaths.Content = Lang.BackupChangePathLabel;
             backupListLbl.Content = Lang.BackupListLblTitle;
-            backupPath.Content = Lang.BackupChangePath;
-            backupPath2.Content = Lang.BackupChangePath2;
-            changePath.Content = Lang.ButtonEdit;
-            changePath2.Content = Lang.ButtonEdit;
             btnBackup.Content = Lang.BackupDoit;
             btnRestore.Content = Lang.BackupDoRestore;
 

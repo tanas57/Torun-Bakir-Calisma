@@ -390,10 +390,6 @@ namespace Torun.Lang
 
         public string BackupListLblTitle => throw new NotImplementedException();
 
-        public string BackupChangePath => throw new NotImplementedException();
-
-        public string BackupChangePath2 => throw new NotImplementedException();
-
         public string BackupDoit => throw new NotImplementedException();
 
         public string BackupDoRestore => throw new NotImplementedException();
