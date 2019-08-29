@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="plan_tracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Torun_PlanTracerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Backups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="filename" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="filepath" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
   <EntityType Name="Log">
     <Key>
       <PropertyRef Name="id" />
@@ -71,6 +80,18 @@
     <Property Name="description" Type="text" />
     <Property Name="status" Type="tinyint" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Backups_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Backups" Type="Self.Backups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Backups">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Log_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Log" Type="Self.Log" Multiplicity="*" />
@@ -131,13 +152,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="plan_tracerDBModelStoreContainer">
+  <EntityContainer Name="Torun_PlanTracerDBModelStoreContainer">
+    <EntitySet Name="Backups" EntityType="Self.Backups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TodoList" EntityType="Self.TodoList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkDone" EntityType="Self.WorkDone" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Backups_Users" Association="Self.FK_Backups_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Backups" EntitySet="Backups" />
+    </AssociationSet>
     <AssociationSet Name="FK_Log_Users" Association="Self.FK_Log_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Log" EntitySet="Log" />

@@ -7,15 +7,17 @@
       <Diagram DiagramId="dc8799ea1eb34835983e2ebf32506bfd" Name="Diagram1">
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.Log" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.Plan" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Torun_PlanTracerDBModel.Setting" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.TodoList" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.User" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.WorkDone" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_Log_Users" ManuallyRouted="false" />
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_plan_TodoList" ManuallyRouted="false" />
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_WorkDone_TodoList" ManuallyRouted="false" />
-        <AssociationConnector Association="Torun_PlanTracerDBModel.FK_Settings_Users" ManuallyRouted="false" />
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_TodoList_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Torun_PlanTracerDBModel.Backup" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="Torun_PlanTracerDBModel.FK_Backups_Users" />
+        <EntityTypeShape EntityType="Torun_PlanTracerDBModel.Setting" Width="1.5" PointX="5" PointY="4.375" />
+        <AssociationConnector Association="Torun_PlanTracerDBModel.FK_Settings_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

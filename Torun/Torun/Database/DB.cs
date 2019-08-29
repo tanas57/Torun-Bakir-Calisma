@@ -54,6 +54,12 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public int AddBackup(Backup backup)
+        {
+            db.Backups.Add(backup);
+            db.SaveChanges();
+            return backup.id;
+        }
         public void AddLog(Log log)
         {
             log.log_date = DateTime.Now;

@@ -18,8 +18,9 @@ namespace Torun.Database
         public User()
         {
             this.Logs = new HashSet<Log>();
-            this.Settings = new HashSet<Setting>();
             this.TodoLists = new HashSet<TodoList>();
+            this.Backups = new HashSet<Backup>();
+            this.Settings = new HashSet<Setting>();
         }
     
         public int id { get; set; }
@@ -36,8 +37,10 @@ namespace Torun.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Log> Logs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Setting> Settings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TodoList> TodoLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Backup> Backups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Setting> Settings { get; set; }
     }
 }

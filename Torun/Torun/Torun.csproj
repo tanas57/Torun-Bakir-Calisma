@@ -103,6 +103,9 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Update.cs" />
     <Compile Include="Classes\UserControllCall.cs" />
+    <Compile Include="Database\Backup.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\DB.cs" />
     <Compile Include="Database\DbModel.Context.cs">
       <AutoGen>True</AutoGen>

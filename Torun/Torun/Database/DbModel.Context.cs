@@ -27,9 +27,10 @@ namespace Torun.Database
     
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
-        public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<TodoList> TodoLists { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkDone> WorkDones { get; set; }
+        public virtual DbSet<Backup> Backups { get; set; }
+        public virtual DbSet<Setting> Settings { get; set; }
     }
 }

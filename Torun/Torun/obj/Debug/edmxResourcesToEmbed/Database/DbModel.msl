@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="plan_tracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
+  <EntityContainerMapping StorageEntityContainer="Torun_PlanTracerDBModelStoreContainer" CdmEntityContainer="plan_tracerDBEntities">
     <EntitySetMapping Name="Logs">
-      <EntityTypeMapping TypeName="plan_tracerDBModel.Log">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Log">
         <MappingFragment StoreEntitySet="Log">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="log_user" ColumnName="log_user" />
@@ -13,7 +13,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Plans">
-      <EntityTypeMapping TypeName="plan_tracerDBModel.Plan">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Plan">
         <MappingFragment StoreEntitySet="Plans">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="work_id" ColumnName="work_id" />
@@ -23,22 +23,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Settings">
-      <EntityTypeMapping TypeName="plan_tracerDBModel.Setting">
-        <MappingFragment StoreEntitySet="Settings">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="set_countType" ColumnName="set_countType" />
-          <ScalarProperty Name="set_autoOpen" ColumnName="set_autoOpen" />
-          <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
-          <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
-          <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
-          <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TodoLists">
-      <EntityTypeMapping TypeName="plan_tracerDBModel.TodoList">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.TodoList">
         <MappingFragment StoreEntitySet="TodoList">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="request_number" ColumnName="request_number" />
@@ -51,7 +37,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="plan_tracerDBModel.User">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
@@ -67,7 +53,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WorkDones">
-      <EntityTypeMapping TypeName="plan_tracerDBModel.WorkDone">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.WorkDone">
         <MappingFragment StoreEntitySet="WorkDone">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="plan_id" ColumnName="plan_id" />
@@ -75,6 +61,30 @@
           <ScalarProperty Name="add_time" ColumnName="add_time" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Backups">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Backup">
+        <MappingFragment StoreEntitySet="Backups">
+          <ScalarProperty Name="filepath" ColumnName="filepath" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
+          <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
+          <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
+          <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
+          <ScalarProperty Name="set_autoOpen" ColumnName="set_autoOpen" />
+          <ScalarProperty Name="set_countType" ColumnName="set_countType" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
