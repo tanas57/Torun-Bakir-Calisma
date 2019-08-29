@@ -85,9 +85,13 @@ alter table Settings
 add constraint FK_Settings_Users
 foreign key  (user_id) references Users(id);
 
-CREATE TABLE Backups()
+CREATE TABLE Backups(
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	user_id INT NOT NULL,
 	filename VARCHAR(50) NOT NULL,
 	filepath VARCHAR(300) NOT NULL
-;
+);
+
+alter table Backups
+add constraint FK_Backups_Users
+foreign key  (user_id) references Users(id);
