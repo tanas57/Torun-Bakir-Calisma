@@ -391,18 +391,6 @@ namespace Torun.Classes
             System.Diagnostics.Process.Start(outputFilePath);
             System.Diagnostics.Process.Start(ReportFolderProcess());
         }
-        public static string BackupFolderProcess()
-        {
-            if (!Directory.Exists(getFilePath(FileNames.FILENAME_BACKUP)))
-                Directory.CreateDirectory(getFilePath(FileNames.FILENAME_BACKUP));
-
-            if (!Directory.Exists(getFilePath(FileNames.FILENAME_BACKUP + @"\" + DateTime.Now.Year.ToString())))
-                Directory.CreateDirectory(getFilePath(FileNames.FILENAME_BACKUP + @"\" + DateTime.Now.Year.ToString()));
-
-            if (!Directory.Exists(getFilePath(FileNames.FILENAME_BACKUP + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString())))
-                Directory.CreateDirectory(getFilePath(FileNames.FILENAME_BACKUP + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString()));
-            return getFilePath(FileNames.FILENAME_BACKUP + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString());
-        }
         private static string ReportFolderProcess()
         {
             if (!Directory.Exists(getFilePath(FileNames.FILENAME_REPORT_FOLDER)))
@@ -413,6 +401,7 @@ namespace Torun.Classes
 
             if (!Directory.Exists(getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString())))
                 Directory.CreateDirectory(getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString()));
+
             return getFilePath(FileNames.FILENAME_REPORT_FOLDER + @"\" + DateTime.Now.Year.ToString() + @"\" + DateTime.Now.Month.ToString());
         }
         public static string ProfilePhotoPath()

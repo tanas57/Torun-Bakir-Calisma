@@ -2,6 +2,7 @@
 {
     static class FileNames
     {
+        public const string BACKUP_FILE_PATH = @"C:\DATABASE_YEDEK";
         public const string FILENAME_USERNAME = "username.txt";
         public const string FILENAME_PASSWORD = "password.txt";
         public const string IS_LOGGED = "last_login";

@@ -55,9 +55,12 @@ namespace Torun.UControls
         private void BtnBackup_Click(object sender, RoutedEventArgs e)
         {
             string currentBackupFileName = DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + "-" + FileNames.FILENAME_BACKUP + "-" + BackupCount + ".bak";
-            string path = FileOperation.BackupFolderProcess() + @"\" + currentBackupFileName;
+            //FileOperation.BackupFolderProcess() + 
+            string path = FileNames.BACKUP_FILE_PATH + @"\" + currentBackupFileName;
+            MessageBox.Show(path);
             SqlBackup.Backup(path);
             backupList.Items.Add(currentBackupFileName);
+            BackupCount++;
         }
     }
 }
