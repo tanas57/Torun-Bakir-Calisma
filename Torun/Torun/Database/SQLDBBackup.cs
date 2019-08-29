@@ -28,8 +28,16 @@ namespace Torun.Database
         {
             OpenConnection();
             string sql = @"RESTORE DATABASE [Torun_PlanTracerDB] FROM DISK ='" + path + "'";
-            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
-            sqlCommand.ExecuteNonQuery();
+            string[] commands = { "USE MASTER;", "ALTER DATABASE Torun_PlanTracerDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;", sql, "ALTER DATABASE Torun_PlanTracerDB SET MULTI_USER;" };
+            
+            SqlCommand sqlCommand;
+
+            for (int i = 0; i < commands.Length; i++)
+            {
+                sqlCommand = new SqlCommand(commands[i], sqlConnection);
+                sqlCommand.ExecuteNonQuery();
+            }
+
             sqlConnection.Close();
         }
     }
