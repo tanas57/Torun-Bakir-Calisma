@@ -54,6 +54,8 @@ namespace Torun.Windows.WeeklyPlan
                 DateTime dateTime = new DateTime(1, 1, 1);
                 bool flag = false;
                 Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                string requestDescription = plan.TodoList.description;
+
                 if (todayCompleted.IsChecked == true)
                 {
                     dateTime = plan.work_plan_time;
@@ -79,7 +81,11 @@ namespace Torun.Windows.WeeklyPlan
                         // move this plan to workdone
                         WorkDone workDone = new WorkDone();
                         workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
-                        workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
+                        workDone.plan_id = Plan.PlanID;
+
+                        if (DbcompletedNote.Text != String.Empty) workDone.description = DbcompletedNote.Text;
+                        else workDone.description = requestDescription;
+
                         workDone.status = 2; // end of the work
 
                         TodoList todolist = mainWindow.DB.GetTodoByID(Plan.WorkID);
@@ -95,7 +101,11 @@ namespace Torun.Windows.WeeklyPlan
                         {
                             WorkDone workDone = new WorkDone();
                             workDone.add_time = DateTime.Now; workDone.workDoneTime = dateTime;
-                            workDone.plan_id = Plan.PlanID; workDone.description = DbcompletedNote.Text;
+                            workDone.plan_id = Plan.PlanID;
+
+                            if (DbcompletedNote.Text != String.Empty) workDone.description = DbcompletedNote.Text;
+                            else workDone.description = requestDescription;
+
                             workDone.status = 1; // end of the work
                             mainWindow.DB.MoveWorkToWorkDone(workDone);
                             plan.status = 1;
