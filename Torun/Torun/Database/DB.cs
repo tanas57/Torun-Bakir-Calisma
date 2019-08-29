@@ -69,6 +69,10 @@ namespace Torun.Database
 
             return result.ToList();
         }
+        public Backup GetBackup(User user, int backup_id)
+        {
+            return db.Backups.FirstOrDefault(x => x.user_id == user.id && x.id == backup_id);
+        }
         public void AddLog(Log log)
         {
             log.log_date = DateTime.Now;

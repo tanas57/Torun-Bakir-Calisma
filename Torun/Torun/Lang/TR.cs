@@ -330,7 +330,7 @@
         public string BackupRestoreSuccessfully => "Geri yükleme tamamlandı";
         public string BackupRestoreFailed => "Geri yükleme başarısız";
         public string BackupAutoBackupCompleted => "Otomatik yedekleme başarılı";
-
+        public string BackupSelectListBox => "Lütfen listeden bir yedek seçiniz.";
         public string ReportProcessStart => "Rapor hazırlanıyor lütfen bekleyin...";
 
         public string ReportProcessEnd => "Rapor başarıyla oluşturuldu";

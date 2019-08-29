@@ -20,7 +20,14 @@ namespace Torun.Database
         {
             OpenConnection();
             string sql = @"BACKUP DATABASE [Torun_PlanTracerDB] TO DISK ='" + path + "'";
-
+            SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+            sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+        }
+        public void Restore(string path)
+        {
+            OpenConnection();
+            string sql = @"RESTORE DATABASE [Torun_PlanTracerDB] FROM DISK ='" + path + "'";
             SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
             sqlCommand.ExecuteNonQuery();
             sqlConnection.Close();

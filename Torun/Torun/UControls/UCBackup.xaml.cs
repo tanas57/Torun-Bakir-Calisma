@@ -68,8 +68,31 @@ namespace Torun.UControls
                 filepath = path,
                 user_id = User.id
             };
+            int id = DB.AddBackup(backup);
+            backupList.Items.Add(currentBackupFileName + " / " + id.ToString());
 
-            backupList.Items.Add(currentBackupFileName + " / " + DB.AddBackup(backup));
+            result.Background = Brushes.Green;
+            result.Content = Lang.BackupSuccessfully;
+        }
+
+        private void BtnRestore_Click(object sender, RoutedEventArgs e)
+        {
+            if(backupList.SelectedIndex == -1)
+            {
+                result.Background = Brushes.Red;
+                result.Content = Lang.BackupSelectListBox;
+            }
+            else
+            {
+                string filename = backupList.SelectedItem.ToString();
+                string[] arr = filename.Split('/');
+                int id = int.Parse(arr[1]);
+                Backup selectedBackup = DB.GetBackup(User, id);
+                SqlBackup.Restore(selectedBackup.filepath);
+
+                result.Background = Brushes.Green;
+                result.Content = Lang.BackupRestoreSuccessfully;
+            }
         }
     }
 }

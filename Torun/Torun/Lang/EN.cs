@@ -409,5 +409,7 @@ namespace Torun.Lang
         public string ReportProcessStart => throw new NotImplementedException();
 
         public string ReportProcessEnd => throw new NotImplementedException();
+
+        public string BackupSelectListBox => throw new NotImplementedException();
     }
 }

@@ -273,6 +273,8 @@
         string BackupRestoreSuccessfully { get; }
         string BackupRestoreFailed { get; }
         string BackupAutoBackupCompleted { get; }
+
+        string BackupSelectListBox { get; }
         #endregion
 
         string ReportProcessStart { get; }

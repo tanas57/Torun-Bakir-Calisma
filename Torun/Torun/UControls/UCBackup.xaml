@@ -15,8 +15,8 @@
             <StackPanel Grid.Row="0" Height="auto">
                 <Label x:Name="backupPaths" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
                 <StackPanel>
-                    <Button Width="300" x:Name="btnBackup" Click="BtnBackup_Click" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA4D23" Foreground="White"/>
-                    <Button Width="300" x:Name="btnRestore" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA691B" Foreground="White"/>
+                    <Button Width="300" Cursor="Hand" x:Name="btnBackup" Click="BtnBackup_Click" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA4D23" Foreground="White"/>
+                    <Button Width="300" Cursor="Hand" x:Name="btnRestore" Click="BtnRestore_Click" FontSize="18" FontFamily="tahoma" Content="XXX" Height="70" Margin="10,20,10,0" Background="#FFDA691B" Foreground="White"/>
                 </StackPanel>
                 <Label x:Name="result" Content="xxx" FontFamily="corbet" FontSize="14" Margin="5,20,0,5" Foreground="White"/>
             </StackPanel>
