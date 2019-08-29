@@ -18,6 +18,7 @@ namespace Torun.Database
         public int user_id { get; set; }
         public string filename { get; set; }
         public string filepath { get; set; }
+        public Nullable<System.DateTime> backup_datetime { get; set; }
     
         public virtual User User { get; set; }
     }

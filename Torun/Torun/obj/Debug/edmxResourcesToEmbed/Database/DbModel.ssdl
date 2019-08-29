@@ -8,6 +8,7 @@
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="filename" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="filepath" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="backup_datetime" Type="datetime" />
   </EntityType>
   <EntityType Name="Log">
     <Key>

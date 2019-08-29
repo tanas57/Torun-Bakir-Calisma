@@ -49,7 +49,7 @@ namespace Torun.UControls
                 backupList.Items.Add(item.filename + " / " + item.id);
             }
         }
-        private void BtnBackup_Click(object sender, RoutedEventArgs e)
+        public void BtnBackup_Click(object sender, RoutedEventArgs e)
         {
             try
             {

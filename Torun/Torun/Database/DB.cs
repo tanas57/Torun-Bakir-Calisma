@@ -58,6 +58,7 @@ namespace Torun.Database
         {
             if(backup != null)
             {
+                backup.backup_datetime = DateTime.Now;
                 db.Backups.Add(backup);
                 db.SaveChanges();
                 return backup.id;
@@ -71,6 +72,11 @@ namespace Torun.Database
         /// <param name="user">fill the current user</param>
         /// <param name="order">false : asc order, true : desc order</param>
         /// <returns></returns>
+        ///
+        public Backup GetLastBackup(User user)
+        {
+            return db.Backups.LastOrDefault(x => x.user_id == user.id);
+        }
         public List<Backup> GetBackups(User user, bool order = false)
         {
             IQueryable<Backup> result;

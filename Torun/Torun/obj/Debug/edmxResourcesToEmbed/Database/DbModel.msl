@@ -67,6 +67,7 @@
     <EntitySetMapping Name="Backups">
       <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Backup">
         <MappingFragment StoreEntitySet="Backups">
+          <ScalarProperty Name="backup_datetime" ColumnName="backup_datetime" />
           <ScalarProperty Name="filepath" ColumnName="filepath" />
           <ScalarProperty Name="filename" ColumnName="filename" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />

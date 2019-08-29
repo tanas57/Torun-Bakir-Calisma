@@ -13,6 +13,7 @@
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="filename" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="filepath" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="backup_datetime" Type="datetime" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -352,6 +353,7 @@
           <Property Name="filename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="filepath" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="User" Relationship="Torun_PlanTracerDBModel.FK_Backups_Users" FromRole="Backup" ToRole="User" />
+          <Property Name="backup_datetime" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Backups_Users">
           <End Type="Torun_PlanTracerDBModel.User" Role="User" Multiplicity="1" />
@@ -463,6 +465,7 @@
           <EntitySetMapping Name="Backups">
             <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Backup">
               <MappingFragment StoreEntitySet="Backups">
+                <ScalarProperty Name="backup_datetime" ColumnName="backup_datetime" />
                 <ScalarProperty Name="filepath" ColumnName="filepath" />
                 <ScalarProperty Name="filename" ColumnName="filename" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
