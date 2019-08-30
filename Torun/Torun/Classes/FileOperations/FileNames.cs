@@ -2,6 +2,8 @@
 {
     static class FileNames
     {
+        public const string DB_CONNECTION_NAME = "plan_tracerDBEntities";
+
         public const string BACKUP_FILE_PATH = @"C:\DATABASE_YEDEK";
         public const string FILENAME_USERNAME = "username.txt";
         public const string FILENAME_PASSWORD = "password.txt";

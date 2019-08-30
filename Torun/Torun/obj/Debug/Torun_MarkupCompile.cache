@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\
+C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\
 Torun
 none
 false
 DEBUG;TRACE
-C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\App.xaml
+C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\App.xaml
 222132170583
 2-1645616557
-511056557904
-271371890952
+55-438094762
+27-1859274867
 MainWindow.xaml;UControls\UCBackup.xaml;UControls\UCReport.xaml;UControls\UCSettings.xaml;UControls\UCTodoList.xaml;UControls\UCWeeklyPlan.xaml;UControls\UCWeeklyPlanDetail.xaml;UControls\UCWorkDone.xaml;Windows\Request\RequestAdd.xaml;Windows\Request\RequestDetail.xaml;Windows\Request\RequestSchedule.xaml;Windows\WeeklyPlan\EditPlan.xaml;Windows\WeeklyPlan\EditPlanChooseDate.xaml;Windows\WeeklyPlan\EditPlanTransferBtn.xaml;Windows\WeeklyPlan\GetDetail.xaml;Windows\WeeklyPlan\MarkCompleted.xaml;Windows\WeeklyPlan\RemovePlan.xaml;Windows\Welcome.xaml;Windows\WorkCompleted\DetailWorkDone.xaml;Windows\WorkCompleted\EditWorkDone.xaml;Windows\WorkCompleted\EditWorkDoneCalendar.xaml;Windows\WorkCompleted\RemoveWorkDone.xaml;
 
-False
+True
 

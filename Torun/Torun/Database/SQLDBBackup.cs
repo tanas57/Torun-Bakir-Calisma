@@ -12,7 +12,8 @@ namespace Torun.Database
         
         private void OpenConnection()
         {
-            sqlConnection = new SqlConnection(@"data source=TRSGBZRDP05\SQLEXPRESS;initial catalog=Torun_PlanTracerDB;persist security info=true;user id=torun_program;password=Torun.Exe;MultipleActiveResultSets=True;");
+            string [] arr = System.Configuration.ConfigurationManager.ConnectionStrings[FileNames.DB_CONNECTION_NAME].ConnectionString.ToString().Split(';');
+            sqlConnection = new SqlConnection(arr[3]);
             
             sqlConnection.Open();
         }
