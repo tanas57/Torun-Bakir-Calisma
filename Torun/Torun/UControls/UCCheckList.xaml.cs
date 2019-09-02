@@ -64,6 +64,8 @@ namespace Torun.UControls
             checklistTabUpdate.Header = Lang.UCChecklistUpdatePage;
             checklistTabInSystem.Header = Lang.UCChecklistInSystemPage;
             checklistTabAddNew.Header = Lang.UCChecklistAddNewPage;
+            gridProcessColumn.Header = Lang.UCTodoListProcesses;
+            gridDescriptionColumn.Header = Lang.UCChecklistRoutineWork;
             ReloadCheckList();
         }
 
@@ -85,7 +87,13 @@ namespace Torun.UControls
 
         private void Btn_workDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            RoutineWork routineWork = Grid_Checklist.SelectedItem as RoutineWork;
+            var result = MessageBox.Show(routineWork.id + " id numaralı iş silinecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                DB.DeleteRoutineWork(routineWork);
+                ReloadCheckList();
+            }
         }
     }
 }

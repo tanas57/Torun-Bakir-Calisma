@@ -353,6 +353,7 @@
 
         public string UCChecklistAddError => "İş açıklaması uygun değil, yada boş";
         public string UCChecklistAddLbl => "Rutin İş Açıklamasını Girin";
+        public string UCChecklistRoutineWork => "İş Açıklaması";
         
         #endregion
     }

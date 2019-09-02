@@ -280,7 +280,6 @@
         // UC Checklist
         #region
         string UCChecklistTitle { get; }
-
         string UCChecklistAddNewPage { get; }
         string UCChecklistInSystemPage { get; }
         string UCChecklistUpdatePage { get; }
@@ -289,6 +288,7 @@
         string UCChecklistAddSuccess { get; }
         string UCChecklistAddError { get; }
         string UCChecklistAddLbl { get; }
+        string UCChecklistRoutineWork { get; }
         #endregion
     }
 }
