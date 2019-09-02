@@ -27,12 +27,16 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public User User { get; set; }
+        private int WorkFriendCount { get; set; }
+        private List<CheckBox> CheckBoxes { get; set; }
+        private int WorkCount { get; set; }
         public UCCheckList()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
+            for (int i = 0; i < WorkCount; i++) CheckBoxes.Add(new CheckBox());
         }
 
         private void AddWork_Click(object sender, RoutedEventArgs e)
@@ -57,6 +61,8 @@ namespace Torun.UControls
         {
             Grid_Checklist.ItemsSource = DB.GetRoutineWorks(User);
 
+            WorkCount = Grid_Checklist.Items.Count;
+
             var users = DB.GetUsers(User);
             userList.Items.Clear();
 
@@ -72,6 +78,9 @@ namespace Torun.UControls
                 listBoxUser.Items.Add(item.FullName + " - " + item.UserID);
             }
 
+            WorkFriendCount = listBoxUser.Items.Count;
+
+            //for (int i = 0; i < WorkCount * WorkFriendCount; i++) CheckBoxes.Add(new CheckBox());
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
