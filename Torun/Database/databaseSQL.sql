@@ -96,3 +96,18 @@ CREATE TABLE Backups(
 alter table Backups
 add constraint FK_Backups_Users
 foreign key  (user_id) references Users(id);
+
+CREATE TABLE RoutineWorks(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	work_description varchar(250) NOT NULL
+);
+
+alter table RoutineWorks
+add constraint FK_RoutineWorks_Users
+foreign key  (user_id) references Users(id);
+
+CREATE TABLE RoutineWorkRecords(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	work_Ticks TEXT NOT NULL
+);
