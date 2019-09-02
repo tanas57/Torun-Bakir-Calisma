@@ -179,7 +179,7 @@ namespace Torun.Database
         }
         public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -215,7 +215,7 @@ namespace Torun.Database
         }
         public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
             var result = from done in db.WorkDones
@@ -235,7 +235,7 @@ namespace Torun.Database
         }
         public List<WeeklyPlanDetail> GetPlansForReport(User user, CountType countType)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -662,7 +662,7 @@ namespace Torun.Database
         }
         public int GetRequestCount(byte ReqType, User user, CountType countType)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
             DateTime timeStart = dateTimes[0];
             DateTime timeEnd = dateTimes[1];
             switch (ReqType)

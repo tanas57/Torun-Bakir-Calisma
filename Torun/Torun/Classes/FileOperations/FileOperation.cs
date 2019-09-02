@@ -17,7 +17,7 @@ namespace Torun.Classes
         public static ILanguage Lang => CurrentLanguage.Language;
         public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -189,7 +189,7 @@ namespace Torun.Classes
         }
         public static void ExportAsEXCEL(User user, CountType countType, ReportType reportType, DB db)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType);
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 

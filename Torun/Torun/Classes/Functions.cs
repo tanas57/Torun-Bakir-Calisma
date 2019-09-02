@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Torun.Database;
 using Torun.Lang;
 namespace Torun.Classes
 {
     public static class Functions
     {
         public static ILanguage Lang => CurrentLanguage.Language;
-        public static List<DateTime> GetDateInterval(CountType countType)
+        public static List<DateTime> GetDateInterval(CountType countType, User user = null)
         {
             DateTime timeStart, timeEnd;
             switch (countType)
@@ -23,17 +24,17 @@ namespace Torun.Classes
 
                 case CountType.Montly:
                     timeStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1).Date;
-                    timeEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 31).AddDays(1).AddSeconds(-1);
+                    timeEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1).AddSeconds(-1);
                     break;
 
                 case CountType.Yearly:
                     timeStart = new DateTime(DateTime.Now.Year, 1, 1).Date;
-                    timeEnd = new DateTime(DateTime.Now.Year, 12, 31).AddDays(1).AddSeconds(-1);
+                    timeEnd = new DateTime(DateTime.Now.Year, 12, 1).AddMonths(1).AddSeconds(-1);
                     break;
 
                 default:
                 case CountType.FromTheBeginning:
-                    timeStart = new DateTime(DateTime.Now.AddYears(-100).Year, 1, 1).Date;
+                    timeStart = user.register_date;
                     timeEnd = new DateTime(DateTime.Now.Year,12, 31).AddDays(1).AddSeconds(-1);
                     break;
             }
