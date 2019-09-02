@@ -42,8 +42,18 @@ namespace Torun.UControls
             }
             else
             {
-
+                if (DB.AddRoutineWork(new RoutineWork() { user_id = User.id, work_description = workDescription.Text }) > 0)
+                {
+                    result.Content = Lang.UCChecklistAddSuccess;
+                    result.Background = Brushes.Green;
+                    workDescription.Text = "";
+                }
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            addWork.Content = Lang.ButtonAdd;
         }
     }
 }

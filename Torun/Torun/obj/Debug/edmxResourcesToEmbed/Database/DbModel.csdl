@@ -55,6 +55,8 @@
     <NavigationProperty Name="TodoLists" Relationship="Self.FK_TodoList_Users" FromRole="Users" ToRole="TodoList" />
     <NavigationProperty Name="Backups" Relationship="Torun_PlanTracerDBModel.FK_Backups_Users" FromRole="User" ToRole="Backup" />
     <NavigationProperty Name="Settings" Relationship="Torun_PlanTracerDBModel.FK_Settings_Users" FromRole="User" ToRole="Setting" />
+    <Property Name="user_permission" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="RoutineWorks" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorks_Users" FromRole="User" ToRole="RoutineWork" />
   </EntityType>
   <EntityType Name="WorkDone">
     <Key>
@@ -148,6 +150,12 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Setting" EntitySet="Settings" />
     </AssociationSet>
+    <EntitySet Name="RoutineWorkRecords" EntityType="Torun_PlanTracerDBModel.RoutineWorkRecord" />
+    <EntitySet Name="RoutineWorks" EntityType="Torun_PlanTracerDBModel.RoutineWork" />
+    <AssociationSet Name="FK_RoutineWorks_Users" Association="Torun_PlanTracerDBModel.FK_RoutineWorks_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RoutineWork" EntitySet="RoutineWorks" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Backup">
     <Key>
@@ -194,6 +202,34 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="Setting">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RoutineWorkRecord">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="work_Ticks" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RoutineWork">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="work_description" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorks_Users" FromRole="RoutineWork" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_RoutineWorks_Users">
+    <End Type="Torun_PlanTracerDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="Torun_PlanTracerDBModel.RoutineWork" Role="RoutineWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RoutineWork">
         <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>

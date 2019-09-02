@@ -39,6 +39,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_permission" ColumnName="user_permission" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="firstname" ColumnName="firstname" />
           <ScalarProperty Name="lastname" ColumnName="lastname" />
@@ -84,6 +85,23 @@
           <ScalarProperty Name="set_autoBackup" ColumnName="set_autoBackup" />
           <ScalarProperty Name="set_autoOpen" ColumnName="set_autoOpen" />
           <ScalarProperty Name="set_countType" ColumnName="set_countType" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoutineWorkRecords">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.RoutineWorkRecord">
+        <MappingFragment StoreEntitySet="RoutineWorkRecords">
+          <ScalarProperty Name="work_Ticks" ColumnName="work_Ticks" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoutineWorks">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.RoutineWork">
+        <MappingFragment StoreEntitySet="RoutineWorks">
+          <ScalarProperty Name="work_description" ColumnName="work_description" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

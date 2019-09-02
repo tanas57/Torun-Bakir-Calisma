@@ -109,5 +109,6 @@ foreign key  (user_id) references Users(id);
 
 CREATE TABLE RoutineWorkRecords(
 	id INT IDENTITY(1,1) PRIMARY KEY,
-	work_Ticks TEXT NOT NULL
+	work_Ticks TEXT NOT NULL,
+	add_date DATE NOT NULL
 );

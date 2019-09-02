@@ -54,6 +54,13 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public int AddRoutineWork(RoutineWork routineWork)
+        {
+            db.RoutineWorks.Add(routineWork);
+            db.SaveChanges();
+
+            return routineWork.id;
+        }
         public int AddBackup(Backup backup)
         {
             if(backup != null)

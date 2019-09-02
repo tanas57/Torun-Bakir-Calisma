@@ -30,6 +30,21 @@
     <Property Name="work_plan_time" Type="date" Nullable="false" />
     <Property Name="status" Type="tinyint" Nullable="false" />
   </EntityType>
+  <EntityType Name="RoutineWorkRecords">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="work_Ticks" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoutineWorks">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="work_description" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
   <EntityType Name="Settings">
     <Key>
       <PropertyRef Name="id" />
@@ -69,6 +84,7 @@
     <Property Name="login_status" Type="tinyint" Nullable="false" />
     <Property Name="user_status" Type="tinyint" Nullable="false" />
     <Property Name="register_date" Type="datetime" Nullable="false" />
+    <Property Name="user_permission" Type="tinyint" Nullable="false" />
   </EntityType>
   <EntityType Name="WorkDone">
     <Key>
@@ -117,6 +133,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RoutineWorks_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RoutineWorks" Type="Self.RoutineWorks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RoutineWorks">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Settings_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Settings" Type="Self.Settings" Multiplicity="*" />
@@ -157,6 +185,8 @@
     <EntitySet Name="Backups" EntityType="Self.Backups" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoutineWorkRecords" EntityType="Self.RoutineWorkRecords" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoutineWorks" EntityType="Self.RoutineWorks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TodoList" EntityType="Self.TodoList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -172,6 +202,10 @@
     <AssociationSet Name="FK_plan_TodoList" Association="Self.FK_plan_TodoList">
       <End Role="TodoList" EntitySet="TodoList" />
       <End Role="Plans" EntitySet="Plans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoutineWorks_Users" Association="Self.FK_RoutineWorks_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RoutineWorks" EntitySet="RoutineWorks" />
     </AssociationSet>
     <AssociationSet Name="FK_Settings_Users" Association="Self.FK_Settings_Users">
       <End Role="Users" EntitySet="Users" />
