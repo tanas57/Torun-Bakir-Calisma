@@ -1,8 +1,5 @@
-﻿using System;
+﻿
 using System.Data.SqlClient;
-using System.Threading.Tasks;
-using Microsoft.SqlServer;
-using Microsoft.SqlServer.Server;
 using Torun.Classes.FileOperations;
 namespace Torun.Database
 {
@@ -12,9 +9,9 @@ namespace Torun.Database
         
         private void OpenConnection()
         {
-            string [] arr = System.Configuration.ConfigurationManager.ConnectionStrings[FileNames.DB_CONNECTION_NAME].ConnectionString.ToString().Split(';');
-            sqlConnection = new SqlConnection(arr[3]);
-            
+            string [] arr = System.Configuration.ConfigurationManager.ConnectionStrings[FileNames.DB_CONNECTION_NAME].ConnectionString.ToString().Split('"');
+            sqlConnection = new SqlConnection(arr[1]); // get connectiong string from app.config
+
             sqlConnection.Open();
         }
         public void Backup(string path)
