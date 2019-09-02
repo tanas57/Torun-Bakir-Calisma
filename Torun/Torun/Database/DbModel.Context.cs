@@ -33,5 +33,7 @@ namespace Torun.Database
         public virtual DbSet<WorkDone> WorkDones { get; set; }
         public virtual DbSet<Backup> Backups { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
+        public virtual DbSet<RoutineWorkRecord> RoutineWorkRecords { get; set; }
+        public virtual DbSet<RoutineWork> RoutineWorks { get; set; }
     }
 }

@@ -18,6 +18,9 @@
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_Backups_Users" />
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.Setting" Width="1.5" PointX="5" PointY="4.375" />
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_Settings_Users" />
+        <EntityTypeShape EntityType="Torun_PlanTracerDBModel.RoutineWorkRecord" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Torun_PlanTracerDBModel.RoutineWork" Width="1.5" PointX="3" PointY="11.25" />
+        <AssociationConnector Association="Torun_PlanTracerDBModel.FK_RoutineWorks_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
