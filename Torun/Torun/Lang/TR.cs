@@ -342,7 +342,7 @@
 
         public string UCChecklistAddNewPage => "Yeni Rutin İş Ekle";
 
-        public string UCChecklistInSystemPage => "Sistemdeki İşler";
+        public string UCChecklistInSystemPage => "Sistemdeki Rutin İşler";
 
         public string UCChecklistUpdatePage => "Güncelleme Ekranı";
 
@@ -352,6 +352,8 @@
         public string UCChecklistAddSuccess => "Rutin iş kaydı başarıyla eklendi";
 
         public string UCChecklistAddError => "İş açıklaması uygun değil, yada boş";
+        public string UCChecklistAddLbl => "Rutin İş Açıklamasını Girin";
+        
         #endregion
     }
 }

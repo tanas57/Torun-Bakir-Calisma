@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Torun.Database;
 using Torun.Lang;
+using Torun.Windows.CheckList;
+
 namespace Torun.UControls
 {
     /// <summary>
@@ -47,13 +49,43 @@ namespace Torun.UControls
                     result.Content = Lang.UCChecklistAddSuccess;
                     result.Background = Brushes.Green;
                     workDescription.Text = "";
+                    ReloadCheckList();
+                }
+            }
+        }
+        private void ReloadCheckList()
+        {
+            Grid_Checklist.ItemsSource = DB.GetRoutineWorks(User);
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            addWork.Content = Lang.ButtonAdd;
+            routineAddLbl.Content = Lang.UCChecklistAddLbl;
+            checklistTabUpdate.Header = Lang.UCChecklistUpdatePage;
+            checklistTabInSystem.Header = Lang.UCChecklistInSystemPage;
+            checklistTabAddNew.Header = Lang.UCChecklistAddNewPage;
+            ReloadCheckList();
+        }
+
+        private void Btn_workEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if(Grid_Checklist.SelectedItem != null)
+            {
+                EditRoutineWork editRoutineWork = new EditRoutineWork();
+                editRoutineWork.RoutineWork = Grid_Checklist.SelectedItem as RoutineWork;
+                editRoutineWork.Owner = mainWindow;
+                mainWindow.Opacity = 0.5;
+                editRoutineWork.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                if (editRoutineWork.ShowDialog() == false)
+                {
+                    ReloadCheckList();
                 }
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void Btn_workDelete_Click(object sender, RoutedEventArgs e)
         {
-            addWork.Content = Lang.ButtonAdd;
+
         }
     }
 }

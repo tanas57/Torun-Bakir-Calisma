@@ -8,16 +8,42 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="444" VerticalAlignment="Top" Width="800" Background="AliceBlue" >
-            <TabItem Header="Günlük Güncelleme" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
+            <TabItem Header="XXX" x:Name="checklistTabUpdate" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Sistemdeki yapılacaklar">
-                <DataGrid>
-                    
+            <TabItem Header="XXX" x:Name="checklistTabInSystem">
+                <DataGrid x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                              CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
+                              CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
+                        <DataGridTextColumn MinWidth="635" CanUserReorder="False" Binding="{Binding Path=work_description}" IsReadOnly="True" Header="XXX"/>
+                        <DataGridTemplateColumn MinWidth="140" Header="XXX" x:Name="ucTodolist_Processes">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button x:Name="btn_workEdit" Click="Btn_workEdit_Click" Style="{DynamicResource gridButtons}">
+                                            <DockPanel>
+                                                <Image Source="/images/screen/main/edit.png" Width="19"/>
+                                                <Label Content="Düzenle"/>
+                                            </DockPanel>
+                                        </Button>
+                                        <Button x:Name="btn_workDelete" Style="{DynamicResource gridButtons}" Click="Btn_workDelete_Click">
+                                            <DockPanel>
+                                                <Image Source="/images/screen/main/delete.png" Width="19"/>
+                                                <Label Content="Sil"/>
+                                            </DockPanel>
+                                        </Button>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            <TabItem Header="Yeni Rutin İş Ekle">
+            <TabItem Header="XXX" x:Name="checklistTabAddNew">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Content="XXX" x:Name="routineAddLbl"/>
                     <TextBox VerticalContentAlignment="Center" x:Name="workDescription" Height="40" Width="400" BorderBrush="#FFCF2C2C" Background="White" Foreground="#FFD11616" FontSize="14"/>
                     <Button x:Name="addWork" Click="AddWork_Click" Content="XXX" Height="40" Width="400" Margin="0,15,0,0" Style="{DynamicResource weeklyPlanSortButtons}"/>
                     <Label x:Name="result" Content="" Height="30" Margin="0,30,0,0" Foreground="White"/>

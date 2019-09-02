@@ -176,6 +176,9 @@
     <Compile Include="UControls\UCWorkDone.xaml.cs">
       <DependentUpon>UCWorkDone.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CheckList\EditRoutineWork.xaml.cs">
+      <DependentUpon>EditRoutineWork.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Request\RequestAdd.xaml.cs">
       <DependentUpon>RequestAdd.xaml</DependentUpon>
     </Compile>
@@ -259,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControls\UCWorkDone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CheckList\EditRoutineWork.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

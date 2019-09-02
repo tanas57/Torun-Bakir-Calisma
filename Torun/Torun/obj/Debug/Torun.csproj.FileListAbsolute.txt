@@ -156,3 +156,5 @@ C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Torun.csproj.ResolveComReference.cache
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCCheckList.g.cs
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCCheckList.baml
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\CheckList\EditRoutineWork.baml
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\CheckList\EditRoutineWork.g.cs

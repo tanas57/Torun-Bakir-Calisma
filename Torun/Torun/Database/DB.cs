@@ -54,6 +54,22 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public void EditRoutineWork(RoutineWork routineWork)
+        {
+            db.RoutineWorks.Attach(routineWork);
+            db.Entry(routineWork).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+        public List<RoutineWork> GetRoutineWorks(User user)
+        {
+            //return db.todoList.Where(x => x.user_id == user.id).ToList<todoList>();
+            var result = from works in db.RoutineWorks
+                         where works.user_id == user.id
+                         orderby works.id ascending
+                         select works;
+
+            return result.ToList();
+        }
         public int AddRoutineWork(RoutineWork routineWork)
         {
             db.RoutineWorks.Add(routineWork);
