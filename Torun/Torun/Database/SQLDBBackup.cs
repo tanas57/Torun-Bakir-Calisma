@@ -9,9 +9,10 @@ namespace Torun.Database
         
         private void OpenConnection()
         {
-            string [] arr = System.Configuration.ConfigurationManager.ConnectionStrings[FileNames.DB_CONNECTION_NAME].ConnectionString.ToString().Split('"');
+            string [] arr = System.Configuration.ConfigurationManager.
+                ConnectionStrings[FileNames.DB_CONNECTION_NAME].
+                ConnectionString.ToString().Split('"');
             sqlConnection = new SqlConnection(arr[1]); // get connectiong string from app.config
-
             sqlConnection.Open();
         }
         public void Backup(string path)
