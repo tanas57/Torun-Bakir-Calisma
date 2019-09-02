@@ -11,6 +11,7 @@ CREATE TABLE Users(
 	last_login DATETIME NOT NULL DEFAULT NULL,
 	login_status TINYINT NOT NULL DEFAULT 0, -- 1: on, 2 off 
 	user_status TINYINT NOT NULL DEFAULT 1,  -- 1: active, 2: disactive 3: banned
+	user_permission TINYINT NOT NULL DEFAULT 1, -- 1 : standard user, 2 : admin
 	register_date DATETIME NOT NULL
 );
 -- to do list table
