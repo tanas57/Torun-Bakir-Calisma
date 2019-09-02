@@ -311,7 +311,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="plan_tracerDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="plan_tracerDBEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Logs" EntityType="Self.Log" />
           <EntitySet Name="Plans" EntityType="Self.Plan" />
           <EntitySet Name="TodoLists" EntityType="Self.TodoList" />

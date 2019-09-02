@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Torun.Lang
 {
-    class EN : ILanguage
+    class EN //: ILanguage
     {
         public string WelcomeLoginTitle => throw new NotImplementedException();
 

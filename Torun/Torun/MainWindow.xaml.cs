@@ -24,6 +24,7 @@ namespace Torun
         public UCSettings uCSettings;
         public UCReport uCReport;
         public UCBackup uCBackup;
+        public UCCheckList UCCheckList { get; set; }
         public Setting UserSettings { get; set; }
         private bool formLogoutControl = false; // for form closing control, and logout button action
         private int changeCount = 0; // weekly plan change view changes count
@@ -192,6 +193,7 @@ namespace Torun
                 mainPage_menuTodo.Content = Lang.MainPageMenuToDo;
                 mainPage_menuWeeklyPlan.Content = Lang.MainPageMenuWeeklyPlan;
                 mainPage_menuWordDone.Content = Lang.MainPageWorkDone;
+                mainPage_menuCheckList.Content = Lang.UCChecklistTitle;
                 mainPage_menuReport.Content = Lang.MainPageMenuReport;
                 mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
                 mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
@@ -304,6 +306,12 @@ namespace Torun
         private void MenuVersion_MouseEnter(object sender, MouseEventArgs e)
         {
             System.Diagnostics.Process.Start("https://muslu.net");
+        }
+
+        private void BtnCheckList_Click(object sender, RoutedEventArgs e)
+        {
+            if (UCCheckList == null) UserControllCall.Add(Grd_Content, UCCheckList = new UCCheckList());
+            else UserControllCall.Add(Grd_Content, UCCheckList);
         }
     }
 }

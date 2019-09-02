@@ -262,6 +262,8 @@
         string ReportSelectWeek { get; }
         string ReportSelectMonth { get; }
         string ReportSelectYear { get; }
+        string ReportProcessStart { get; }
+        string ReportProcessEnd { get; }
         #endregion
         #region
         string BackupListLblTitle { get; }
@@ -273,11 +275,17 @@
         string BackupRestoreSuccessfully { get; }
         string BackupRestoreFailed { get; }
         string BackupAutoBackupCompleted { get; }
-
         string BackupSelectListBox { get; }
         #endregion
+        // UC Checklist
+        #region
+        string UCChecklistTitle { get; }
 
-        string ReportProcessStart { get; }
-        string ReportProcessEnd { get; }
+        string UCChecklistAddNewPage { get; }
+        string UCChecklistInSystemPage { get; }
+        string UCChecklistUpdatePage { get; }
+        string UCChecklistProcessDescription { get; }
+        string UCChecklistProcessFrequency { get; }
+        #endregion
     }
 }

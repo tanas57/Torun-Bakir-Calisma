@@ -334,6 +334,20 @@
         public string ReportProcessStart => "Rapor hazırlanıyor lütfen bekleyin...";
 
         public string ReportProcessEnd => "Rapor başarıyla oluşturuldu";
+
+        #endregion
+        // UCCheckList
+        #region
+        public string UCChecklistTitle => "Rutin İşler Takip";
+
+        public string UCChecklistAddNewPage => "Yeni Rutin İş Ekle";
+
+        public string UCChecklistInSystemPage => "Sistemdeki İşler";
+
+        public string UCChecklistUpdatePage => "Güncelleme Ekranı";
+
+        public string UCChecklistProcessDescription => "Yapılacak İşin Tanımı";
+        public string UCChecklistProcessFrequency => "İş yapılma aralığı";
         #endregion
     }
 }

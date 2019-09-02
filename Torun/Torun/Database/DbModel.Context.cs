@@ -18,6 +18,7 @@ namespace Torun.Database
         public plan_tracerDBEntities()
             : base("name=plan_tracerDBEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

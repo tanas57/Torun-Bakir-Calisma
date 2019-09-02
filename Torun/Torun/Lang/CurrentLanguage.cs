@@ -13,7 +13,7 @@ namespace Torun.Lang
                     break;
 
                 case TorunLanguage.EN:
-                    Language = new EN();
+                    //Language = new EN();
                     break;
             }
         }

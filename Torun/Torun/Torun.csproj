@@ -149,6 +149,9 @@
     <Compile Include="UControls\UCBackup.xaml.cs">
       <DependentUpon>UCBackup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UControls\UCCheckList.xaml.cs">
+      <DependentUpon>UCCheckList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UControls\UCReport.xaml.cs">
       <DependentUpon>UCReport.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
     <Page Include="UControls\UCBackup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UControls\UCCheckList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UControls\UCReport.xaml">
       <SubType>Designer</SubType>
@@ -421,6 +428,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\icon\checklist.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
