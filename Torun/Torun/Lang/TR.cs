@@ -367,7 +367,7 @@
 
         public string UCChecklistRelationshipUserAddSuccess => "Kullanıcı ekleme işlemi başarılı, bundan sonraki kayıtlarda onun ismide çıkacak";
 
-        public string UCChecklistRelationshipUserAddFailed => "Kullanıcı ekleme işlemi başarısız oldu.";
+        public string UCChecklistRelationshipUserAddFailed => "Kullanıcı ekleme işlemi başarısız oldu, zaten kullanıcı var";
 
         public string UCChecklistRelationshipUserRemoveSuccess => "Kullanıcı kaldırma başarılı, beraber çalışma kayıtlarınız silindi";
 

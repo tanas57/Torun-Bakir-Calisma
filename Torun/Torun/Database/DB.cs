@@ -59,6 +59,36 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public int AddUserRelationShip(User user, int rel_id)
+        {
+            RoutineWorkRelationShip rel = new RoutineWorkRelationShip()
+            {
+                other_user_id = rel_id,
+                user_id = user.id
+            };
+
+            db.RoutineWorkRelationShips.Add(rel);
+            db.SaveChanges();
+
+            return rel.id;
+        }
+        public bool RemoveRelationShip(User user, int rel_id)
+        {
+            var del = db.RoutineWorkRelationShips.FirstOrDefault(x => x.user_id == user.id && x.other_user_id == rel_id);
+            if (del == null) return false;
+
+            db.RoutineWorkRelationShips.Remove(del);
+            db.SaveChanges();
+
+            return true;
+        }
+        public bool UserRelationShipControl(User user, int rel_id)
+        {
+            var result = db.RoutineWorkRelationShips.Count(x => x.user_id == user.id && x.other_user_id == rel_id);
+
+            if (result > 0) return true;
+            else return false;
+        }
         public List<UserInfo> GetUsersRelationShip(User user)
         {
             var result = from users in db.Users

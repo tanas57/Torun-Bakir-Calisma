@@ -59,16 +59,17 @@ namespace Torun.UControls
 
             var users = DB.GetUsers(User);
             userList.Items.Clear();
+
             foreach (var item in users)
             {
-                userList.Items.Add(item.FullName + " " + item.UserID);
+                userList.Items.Add(item.FullName + " - " + item.UserID);
             }
 
             var workWithUser = DB.GetUsersRelationShip(User);
             listBoxUser.Items.Clear();
             foreach (var item in workWithUser)
             {
-                listBoxUser.Items.Add(item.FullName + " " + item.UserID);
+                listBoxUser.Items.Add(item.FullName + " - " + item.UserID);
             }
 
         }
@@ -140,6 +141,47 @@ namespace Torun.UControls
                 tabControl.Width = 780;
                 Grid_Checklist.Width = 780;
                 gridDescriptionColumn.MinWidth = 635;
+            }
+        }
+
+        private void RelationShipSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (userList.SelectedItem != null)
+            {
+                string[] arr = userList.SelectedItem.ToString().Split('-');
+                if (!DB.UserRelationShipControl(User, int.Parse(arr[1])))
+                {
+                    if (DB.AddUserRelationShip(User, int.Parse(arr[1])) > 0)
+                    {
+                        relResult.Content = Lang.UCChecklistRelationshipUserAddSuccess;
+                        relResult.Background = Brushes.Green;
+                        ReloadCheckList();
+                    }
+                }
+                else
+                {
+                    relResult.Content = Lang.UCChecklistRelationshipUserAddFailed;
+                    relResult.Background = Brushes.Red;
+                }
+            }
+        }
+
+        private void DelRel_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBoxUser.SelectedItem != null)
+            {
+                string[] arr = listBoxUser.SelectedItem.ToString().Split('-');
+                if (DB.RemoveRelationShip(User, int.Parse(arr[1])))
+                {
+                    relResult.Content = Lang.UCChecklistRelationshipUserRemoveSuccess;
+                    relResult.Background = Brushes.Green;
+                    ReloadCheckList();
+                }
+                else
+                {
+                    relResult.Content = Lang.UCChecklistRelationshipUserRemoveFailed;
+                    relResult.Background = Brushes.Red;
+                }
             }
         }
     }

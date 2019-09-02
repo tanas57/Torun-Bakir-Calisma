@@ -61,10 +61,10 @@
                         <ListBox x:Name="listBoxUser" Width="200" Height="100" Margin="10,0,0,10"/>
 
                         <DockPanel>
-                            <Button x:Name="delRel" Content="XXX" Height="30" Style="{DynamicResource weeklyPlanSortButtons}"/>
+                            <Button x:Name="delRel" Click="DelRel_Click" Content="XXX" Height="30" Style="{DynamicResource weeklyPlanSortButtons}"/>
                         </DockPanel>
                     </DockPanel>
-                    <Button x:Name="relationShipSave" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}" HorizontalAlignment="Left"/>
+                    <Button x:Name="relationShipSave" Click="RelationShipSave_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}" HorizontalAlignment="Left"/>
                     <Label x:Name="relResult" Content="XXX" Foreground="White" FontFamily="corbet" FontSize="14"/>
                 </StackPanel>
             </TabItem>
