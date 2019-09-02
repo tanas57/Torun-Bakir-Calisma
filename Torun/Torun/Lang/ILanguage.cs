@@ -286,6 +286,8 @@
         string UCChecklistUpdatePage { get; }
         string UCChecklistProcessDescription { get; }
         string UCChecklistProcessFrequency { get; }
+        string UCChecklistAddSuccess { get; }
+        string UCChecklistAddError { get; }
         #endregion
     }
 }

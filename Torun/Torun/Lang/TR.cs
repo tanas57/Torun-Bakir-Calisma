@@ -348,6 +348,10 @@
 
         public string UCChecklistProcessDescription => "Yapılacak İşin Tanımı";
         public string UCChecklistProcessFrequency => "İş yapılma aralığı";
+
+        public string UCChecklistAddSuccess => "Rutin iş kaydı başarıyla eklendi";
+
+        public string UCChecklistAddError => "İş açıklaması uygun değil, yada boş";
         #endregion
     }
 }
