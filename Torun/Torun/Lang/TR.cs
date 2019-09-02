@@ -354,7 +354,25 @@
         public string UCChecklistAddError => "İş açıklaması uygun değil, yada boş";
         public string UCChecklistAddLbl => "Rutin İş Açıklamasını Girin";
         public string UCChecklistRoutineWork => "İş Açıklaması";
-        
+
+        public string UCChecklistRelationshipTitle => "Rutin İşlerde Beraber Çalışılan Kullanıcıları Seçme";
+
+        public string UCChecklistRelationshipUserList => "Kullanıcı Listesi";
+
+        public string UCChecklistRelationshipWorkWith => "Beraber Çalışılan Kullanıcılar";
+
+        public string UCChecklistRelationshipAddUser => "Kullanıcıyı Ekle";
+
+        public string UCChecklistRelationshipRemoveUser => "Kullanıcıyı Kaldır";
+
+        public string UCChecklistRelationshipUserAddSuccess => "Kullanıcı ekleme işlemi başarılı, bundan sonraki kayıtlarda onun ismide çıkacak";
+
+        public string UCChecklistRelationshipUserAddFailed => "Kullanıcı ekleme işlemi başarısız oldu.";
+
+        public string UCChecklistRelationshipUserRemoveSuccess => "Kullanıcı kaldırma başarılı, beraber çalışma kayıtlarınız silindi";
+
+        public string UCChecklistRelationshipUserRemoveFailed => "Kullanıcı kaldırma işlemi başarısız";
+
         #endregion
     }
 }

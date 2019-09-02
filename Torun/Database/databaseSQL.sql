@@ -112,3 +112,17 @@ CREATE TABLE RoutineWorkRecords(
 	work_Ticks TEXT NOT NULL,
 	add_date DATE NOT NULL
 );
+
+CREATE TABLE RoutineWorkRelationShip(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	user_id INT NOT NULL,
+	other_user_id INT NOT NULL
+);
+
+alter table RoutineWorkRelationShip
+add constraint FK_RoutineWorkRelationShip_Users
+foreign key  (user_id) references Users(id);
+
+alter table RoutineWorkRelationShip
+add constraint FK_RoutineWorkRelationShip_Users2
+foreign key  (other_user_id) references Users(id);

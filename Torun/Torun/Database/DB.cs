@@ -49,10 +49,40 @@ namespace Torun.Database
             public DateTime WorkDoneTime { get;set; }
             public string Description { get; set; }
         }
+        public class UserInfo
+        {
+            public int UserID { get; set; }
+            public string FullName { get; set; }
+        }
         public class WorkDoneandPlans : WeeklyPlanDetail
         {
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
+        }
+        public List<UserInfo> GetUsersRelationShip(User user)
+        {
+            var result = from users in db.Users
+                         join relation in db.RoutineWorkRelationShips on users.id equals relation.other_user_id
+                         where relation.user_id == user.id
+                         orderby users.firstname ascending
+                         select new UserInfo
+                         {
+                             UserID = users.id,
+                             FullName = users.firstname + " " + users.lastname
+                         };
+            return result.ToList();
+        }
+        public List<UserInfo> GetUsers(User user)
+        {
+            var result = from users in db.Users
+                         where users.id != user.id
+                         orderby users.firstname ascending
+                         select new UserInfo
+                         {
+                             UserID = users.id,
+                             FullName = users.firstname + " " + users.lastname
+                         };
+            return result.ToList();
         }
         public byte DeleteRoutineWork(RoutineWork routineWork)
         {

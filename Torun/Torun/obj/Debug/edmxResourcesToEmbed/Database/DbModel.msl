@@ -93,6 +93,7 @@
     <EntitySetMapping Name="RoutineWorkRecords">
       <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.RoutineWorkRecord">
         <MappingFragment StoreEntitySet="RoutineWorkRecords">
+          <ScalarProperty Name="add_date" ColumnName="add_date" />
           <ScalarProperty Name="work_Ticks" ColumnName="work_Ticks" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -102,6 +103,15 @@
       <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.RoutineWork">
         <MappingFragment StoreEntitySet="RoutineWorks">
           <ScalarProperty Name="work_description" ColumnName="work_description" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoutineWorkRelationShips">
+      <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.RoutineWorkRelationShip">
+        <MappingFragment StoreEntitySet="RoutineWorkRelationShip">
+          <ScalarProperty Name="other_user_id" ColumnName="other_user_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

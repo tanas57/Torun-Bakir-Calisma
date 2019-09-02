@@ -56,6 +56,21 @@ namespace Torun.UControls
         private void ReloadCheckList()
         {
             Grid_Checklist.ItemsSource = DB.GetRoutineWorks(User);
+
+            var users = DB.GetUsers(User);
+            userList.Items.Clear();
+            foreach (var item in users)
+            {
+                userList.Items.Add(item.FullName + " " + item.UserID);
+            }
+
+            var workWithUser = DB.GetUsersRelationShip(User);
+            listBoxUser.Items.Clear();
+            foreach (var item in workWithUser)
+            {
+                listBoxUser.Items.Add(item.FullName + " " + item.UserID);
+            }
+
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -67,6 +82,21 @@ namespace Torun.UControls
             gridProcessColumn.Header = Lang.UCTodoListProcesses;
             gridDescriptionColumn.Header = Lang.UCChecklistRoutineWork;
             ReloadCheckList();
+
+            relTitle.Content = Lang.UCChecklistRelationshipTitle;
+            userListLBL.Content = Lang.UCChecklistRelationshipUserList;
+            usersWithWorkLBL.Content = Lang.UCChecklistRelationshipWorkWith;
+            delRel.Content = Lang.UCChecklistRelationshipRemoveUser;
+            relationShipSave.Content = Lang.UCChecklistRelationshipAddUser;
+            relationShip.Header = Lang.UCChecklistRelationshipWorkWith;
+
+            ReloadCheckList();
+            /*
+             * List<int> numbers = new List<int>();
+                for (int i = 1; i <= maxLine; i++) numbers.Add(i);
+                numbersGrid.ItemsSource = numbers;
+                SelectedGrid = null; // null error fix
+                */
         }
 
         private void Btn_workEdit_Click(object sender, RoutedEventArgs e)
@@ -93,6 +123,23 @@ namespace Torun.UControls
             {
                 DB.DeleteRoutineWork(routineWork);
                 ReloadCheckList();
+            }
+        }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(mainWindow.WindowState == WindowState.Maximized)
+            {
+                tabControl.Width += SystemParameters.PrimaryScreenWidth - 1000;
+                Grid_Checklist.Width += SystemParameters.PrimaryScreenWidth - 1000;
+                Grid_Checklist.Height += SystemParameters.PrimaryScreenHeight - 650;
+                gridDescriptionColumn.MinWidth +=(double) SystemParameters.PrimaryScreenWidth - 1000;
+            }
+            else
+            {
+                tabControl.Width = 780;
+                Grid_Checklist.Width = 780;
+                gridDescriptionColumn.MinWidth = 635;
             }
         }
     }

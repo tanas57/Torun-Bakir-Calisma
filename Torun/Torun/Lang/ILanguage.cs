@@ -289,6 +289,16 @@
         string UCChecklistAddError { get; }
         string UCChecklistAddLbl { get; }
         string UCChecklistRoutineWork { get; }
+
+        string UCChecklistRelationshipTitle { get; }
+        string UCChecklistRelationshipUserList{ get; }
+        string UCChecklistRelationshipWorkWith { get; }
+        string UCChecklistRelationshipAddUser { get; }
+        string UCChecklistRelationshipRemoveUser { get; }
+        string UCChecklistRelationshipUserAddSuccess { get; }
+        string UCChecklistRelationshipUserAddFailed{ get; }
+        string UCChecklistRelationshipUserRemoveSuccess { get; }
+        string UCChecklistRelationshipUserRemoveFailed { get; }
         #endregion
     }
 }

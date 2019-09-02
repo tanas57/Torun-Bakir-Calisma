@@ -12,10 +12,13 @@ namespace Torun.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class RoutineWorkRecord
+    public partial class RoutineWorkRelationShip
     {
         public int id { get; set; }
-        public string work_Ticks { get; set; }
-        public System.DateTime add_date { get; set; }
+        public int user_id { get; set; }
+        public int other_user_id { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

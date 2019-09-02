@@ -21,6 +21,9 @@
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.RoutineWorkRecord" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="Torun_PlanTracerDBModel.RoutineWork" Width="1.5" PointX="3" PointY="11.25" />
         <AssociationConnector Association="Torun_PlanTracerDBModel.FK_RoutineWorks_Users" />
+        <EntityTypeShape EntityType="Torun_PlanTracerDBModel.RoutineWorkRelationShip" Width="1.5" PointX="3" PointY="14.375" />
+        <AssociationConnector Association="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users" />
+        <AssociationConnector Association="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

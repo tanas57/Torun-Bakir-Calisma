@@ -135,6 +135,9 @@
     <Compile Include="Database\RoutineWorkRecord.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\RoutineWorkRelationShip.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Setting.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>

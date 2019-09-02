@@ -57,6 +57,8 @@
     <NavigationProperty Name="Settings" Relationship="Torun_PlanTracerDBModel.FK_Settings_Users" FromRole="User" ToRole="Setting" />
     <Property Name="user_permission" Type="Byte" Nullable="false" />
     <NavigationProperty Name="RoutineWorks" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorks_Users" FromRole="User" ToRole="RoutineWork" />
+    <NavigationProperty Name="RoutineWorkRelationShips" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users" FromRole="User" ToRole="RoutineWorkRelationShip" />
+    <NavigationProperty Name="RoutineWorkRelationShips1" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users2" FromRole="User" ToRole="RoutineWorkRelationShip" />
   </EntityType>
   <EntityType Name="WorkDone">
     <Key>
@@ -156,6 +158,15 @@
       <End Role="User" EntitySet="Users" />
       <End Role="RoutineWork" EntitySet="RoutineWorks" />
     </AssociationSet>
+    <EntitySet Name="RoutineWorkRelationShips" EntityType="Torun_PlanTracerDBModel.RoutineWorkRelationShip" />
+    <AssociationSet Name="FK_RoutineWorkRelationShip_Users" Association="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RoutineWorkRelationShip" EntitySet="RoutineWorkRelationShips" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoutineWorkRelationShip_Users2" Association="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users2">
+      <End Role="User" EntitySet="Users" />
+      <End Role="RoutineWorkRelationShip" EntitySet="RoutineWorkRelationShips" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Backup">
     <Key>
@@ -212,6 +223,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="work_Ticks" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="add_date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="RoutineWork">
     <Key>
@@ -231,6 +243,40 @@
       </Principal>
       <Dependent Role="RoutineWork">
         <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RoutineWorkRelationShip">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="other_user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users" FromRole="RoutineWorkRelationShip" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Torun_PlanTracerDBModel.FK_RoutineWorkRelationShip_Users2" FromRole="RoutineWorkRelationShip" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_RoutineWorkRelationShip_Users">
+    <End Type="Torun_PlanTracerDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="Torun_PlanTracerDBModel.RoutineWorkRelationShip" Role="RoutineWorkRelationShip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RoutineWorkRelationShip">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoutineWorkRelationShip_Users2">
+    <End Type="Torun_PlanTracerDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="Torun_PlanTracerDBModel.RoutineWorkRelationShip" Role="RoutineWorkRelationShip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RoutineWorkRelationShip">
+        <PropertyRef Name="other_user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
