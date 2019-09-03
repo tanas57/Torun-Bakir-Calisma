@@ -377,11 +377,11 @@ namespace Torun.UControls
         private void UpdateChck_Click(object sender, RoutedEventArgs e)
         {
             // check update
-            Thread thread = new Thread(Update.Check);
-            thread.Start();
-            result.Visibility = Visibility.Visible;
-            result.Content = Lang.SettingsUpdateChecked;
-            result.Background = Brushes.Green;
+            //Thread thread = new Thread(Update.Check);
+            //thread.Start();
+            //result.Visibility = Visibility.Visible;
+            //result.Content = Lang.SettingsUpdateChecked;
+            //result.Background = Brushes.Green;
         }
     }
 }

@@ -178,8 +178,8 @@ namespace Torun.windows
             try
             {
                 // check update
-                Thread thread = new Thread(Update.Check);
-                thread.Start();
+                //Thread thread = new Thread(Update.Check);
+                //thread.Start();
                 CapsLockControl();
                 capslockControl.Content = Lang.WelcomeCapsLock;
                 // form items names from Lang
@@ -207,12 +207,12 @@ namespace Torun.windows
                 }
 
                 // update process
-                DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromHours(8) };
-                timer.Tick += delegate
-                {
-                    Update.Check();
-                };
-                timer.Start();
+                //DispatcherTimer timer = new DispatcherTimer { Interval = TimeSpan.FromHours(8) };
+                //timer.Tick += delegate
+                //{
+                //    Update.Check();
+                //};
+                //timer.Start();
                 // update process
             }
             catch (Exception ex)

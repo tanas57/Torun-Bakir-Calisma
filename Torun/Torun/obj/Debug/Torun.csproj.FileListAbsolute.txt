@@ -106,9 +106,6 @@ C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\IronPdf.xml
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCBackup.g.cs
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\UControls\UCBackup.baml
-C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\AutoUpdater.NET.dll
-C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\AutoUpdater.NET.pdb
-C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\AutoUpdater.NET.xml
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\AutoUpdater.NET.dll
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\IronPdf.dll
 C:\Users\MusluNET\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\bin\Debug\AutoUpdater.NET.pdb
