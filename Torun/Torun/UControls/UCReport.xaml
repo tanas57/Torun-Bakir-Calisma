@@ -12,6 +12,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition/>
                     <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
@@ -45,8 +46,19 @@
                         </Border>
                     </Grid>
                 </Border>
+                <Border x:Name="adminRow" Visibility="Hidden" Grid.Row="1" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
+                    <DockPanel>
+                        <Label Margin="3" Content="ADMIN" VerticalContentAlignment="Center" FontFamily="arial" Foreground="Red" FontSize="22" Background="White"/>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Label x:Name="userSelectLBL" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="0" BorderThickness="0"/>
+                            <ComboBox x:Name="UserList" Width="140" Margin="5"/>
+
+                        </DockPanel>
+                    </DockPanel>
+                    
+                </Border>
                 <!-- report output -->
-                <Border Grid.Row="1">
+                <Border x:Name="reportBorder" Grid.Row="2">
                     <StackPanel>
                         <Grid x:Name="ReportGridPlan" MaxWidth="780" MaxHeight="430">
 
@@ -87,7 +99,7 @@
                         </Grid>
                     </StackPanel>
                 </Border>
-                <Border Grid.Row="2">
+                <Border Grid.Row="3">
                     <Label x:Name="reportProcess" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Content="" FontSize="14" FontFamily="corbet"/>
                 </Border>
             </Grid>

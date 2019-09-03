@@ -30,6 +30,16 @@ namespace Torun.UControls
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
+            if(User.user_permission == 2) // Admin
+            {
+                adminRow.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                adminRow.Visibility = Visibility.Hidden;
+                reportBorder.Height += 50;
+                reportBorder.Margin = new Thickness(0, -50, 0, 0);
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
