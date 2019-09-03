@@ -54,7 +54,8 @@ namespace Torun.Windows.WeeklyPlan
                 DateTime dateTime = new DateTime(1, 1, 1);
                 bool flag = false;
                 Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
-                string requestDescription = plan.TodoList.description;
+                TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
+                string requestDescription = todoList.description;
 
                 if (todayCompleted.IsChecked == true)
                 {
