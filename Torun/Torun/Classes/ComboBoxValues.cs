@@ -45,4 +45,9 @@
         TR = 0,
         EN = 1
     }
+    public enum TorunPermission
+    {
+        User = 1,
+        Admin = 2
+    }
 }
