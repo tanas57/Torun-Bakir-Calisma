@@ -102,17 +102,32 @@ namespace Torun.Database
                          };
             return result.ToList();
         }
-        public List<UserInfo> GetUsers(User user)
+        public List<UserInfo> GetUsers(User user, bool withMe = false)
         {
-            var result = from users in db.Users
-                         where users.id != user.id
-                         orderby users.firstname ascending
-                         select new UserInfo
-                         {
-                             UserID = users.id,
-                             FullName = users.firstname + " " + users.lastname
-                         };
-            return result.ToList();
+            if (withMe)
+            {
+                var result = from users in db.Users
+                             orderby users.firstname ascending
+                             select new UserInfo
+                             {
+                                 UserID = users.id,
+                                 FullName = users.firstname + " " + users.lastname
+                             };
+                return result.ToList();
+            }
+            else{
+                var result = from users in db.Users
+                             where users.id != user.id
+                             orderby users.firstname ascending
+                             select new UserInfo
+                             {
+                                 UserID = users.id,
+                                 FullName = users.firstname + " " + users.lastname
+                             };
+                return result.ToList();
+            }
+            
+            
         }
         public byte DeleteRoutineWork(RoutineWork routineWork)
         {
@@ -770,6 +785,7 @@ namespace Torun.Database
             }
             return 0;
         }
+        public User GetUserByID(int id) => db.Users.SingleOrDefault(x => x.id == id);
         public User GetUserDetail(User user)
         {
             User temp = new User();

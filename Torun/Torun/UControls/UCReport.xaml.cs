@@ -24,13 +24,15 @@ namespace Torun.UControls
         private CountType CountType { get; set; }
         private User User { get; set; }
         private List<DB.WorkDoneList> workDoneLists;
+        private User SearchUser { get; set; }
         public UCReport()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
-            if(User.user_permission == 2) // Admin
+            SearchUser = User;
+            if (User.user_permission == 2) // Admin
             {
                 adminRow.Visibility = Visibility.Visible;
             }
@@ -82,7 +84,7 @@ namespace Torun.UControls
 
             userSelectLBL.Content = Lang.UCChecklistRelationshipUserList;
 
-            var users = DB.GetUsers(User);
+            var users = DB.GetUsers(User, true);
             UserList.Items.Clear();
 
             foreach (var item in users)
@@ -93,20 +95,29 @@ namespace Torun.UControls
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            if(User.user_permission == 2)
+            {
+                if(UserList.SelectedItem != null)
+                {
+                    string[] arr = UserList.SelectedItem.ToString().Split('-');
+                    User user = DB.GetUserByID(int.Parse(arr[1]));
+                    SearchUser = user;
+                }
+            }
             CountType = (CountType)timeIntervalSelect.SelectedIndex;
             if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
             {
                 grid_onlyPlan.Visibility = Visibility.Visible;
                 grid_onlyWorkdone.Visibility = Visibility.Hidden;
                 grid_both.Visibility = Visibility.Hidden;
-                grid_onlyPlan.ItemsSource = DB.GetPlansForReport(User, CountType);
+                grid_onlyPlan.ItemsSource = DB.GetPlansForReport(SearchUser, CountType);
             }
             else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
             {
                 grid_onlyPlan.Visibility = Visibility.Hidden;
                 grid_onlyWorkdone.Visibility = Visibility.Visible;
                 grid_both.Visibility = Visibility.Hidden;
-                workDoneLists = DB.GetWorkDoneForReport(User, CountType);
+                workDoneLists = DB.GetWorkDoneForReport(SearchUser, CountType);
                 grid_onlyWorkdone.ItemsSource = workDoneLists;
             }
             else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
@@ -114,7 +125,7 @@ namespace Torun.UControls
                 grid_onlyPlan.Visibility = Visibility.Hidden;
                 grid_onlyWorkdone.Visibility = Visibility.Hidden;
                 grid_both.Visibility = Visibility.Visible;
-                grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(User, CountType);
+                grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(SearchUser, CountType);
             }
             btn_excel.Visibility = Visibility.Visible;
             btn_pdf.Visibility = Visibility.Visible;
@@ -173,7 +184,7 @@ namespace Torun.UControls
             Thread.Sleep(TimeSpan.FromSeconds(2));
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                FileOperation.ExportAsPDF(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                FileOperation.ExportAsPDF(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
                 reportProcess.Background = Brushes.Green;
                 reportProcess.Content = Lang.ReportProcessEnd;
             }));
@@ -184,7 +195,7 @@ namespace Torun.UControls
             Thread.Sleep(TimeSpan.FromSeconds(2));
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                FileOperation.ExportAsEXCEL(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                FileOperation.ExportAsEXCEL(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
                 reportProcess.Background = Brushes.Green;
                 reportProcess.Content = Lang.ReportProcessEnd;
             }));
