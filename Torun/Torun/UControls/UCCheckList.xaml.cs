@@ -28,7 +28,7 @@ namespace Torun.UControls
         public DB DB { get; set; }
         public User User { get; set; }
         private int WorkFriendCount { get; set; }
-        private List<CheckBox> CheckBoxes { get; set; }
+        private List<bool> CheckBoxes { get; set; }
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
         public UCCheckList()
@@ -37,9 +37,9 @@ namespace Torun.UControls
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
-            CheckBoxes = new List<CheckBox>();
+            CheckBoxes = new List<bool>();
             WorkFriendCount = 1;
-            for (int i = 0; i < WorkCount; i++) CheckBoxes.Add(new CheckBox());
+            for (int i = 0; i < WorkCount; i++) CheckBoxes.Add(true);
         }
         private class CheckListObject
         {
@@ -93,7 +93,7 @@ namespace Torun.UControls
 
             WorkFriendCount = listBoxUser.Items.Count + 1;
 
-            for (int i = 0; i < WorkCount * WorkFriendCount; i++) CheckBoxes.Add(new CheckBox());
+            for (int i = 0; i < WorkCount * WorkFriendCount; i++) CheckBoxes.Add(true);
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -135,28 +135,59 @@ namespace Torun.UControls
                 tempLabel.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 
                 DataGridCheckBoxColumn daily = new DataGridCheckBoxColumn();
-                daily.Header = "Günlük";
+                daily.Header = Lang.SettingsRadioDaily;
                 daily.Width = tempLabel.DesiredSize.Width / 2;
                 daily.MinWidth = 60;
                 daily.IsReadOnly = true;
                 daily.Binding = new Binding("Daily" + listBoxUser.Items.Count+1);
+                daily.IsReadOnly = false;
+                
                 Grid_CheckList.Columns.Add(daily);
 
                 DataGridCheckBoxColumn weekly = new DataGridCheckBoxColumn();
-                weekly.Header = "Haftalık";
+                weekly.Header = Lang.SettingsRadioWeekly;
                 weekly.Width = (tempLabel.DesiredSize.Width / 2) + 25;
                 weekly.MinWidth = 70;
                 weekly.IsReadOnly = true;
                 weekly.Binding = new Binding("Weekly" + listBoxUser.Items.Count + 1);
+                weekly.IsReadOnly = false;
+                
                 Grid_CheckList.Columns.Add(weekly);
             }
 
             List<CheckListObject> listSource = new List<CheckListObject>();
+            CheckListObject addObject = null;
+            int counter = 0;
 
             for (int i = 0; i < WorkCount; i++)
             {
-                CheckListObject addObject = new CheckListObject();
+                addObject = new CheckListObject();
+                // description
                 addObject.WorkDescription = RoutineWorks[i].work_description;
+                // for checkboxes
+                for (int j = 1; j <= WorkFriendCount; j++)
+                {
+                    switch (j)
+                    {
+                        default:
+                        case 1: // only us
+                            addObject.Daily1 = CheckBoxes[++counter];
+                            addObject.Weekly1 = CheckBoxes[counter];
+                            break;
+
+                        case 2: // me and one user
+                            addObject.Daily2 = CheckBoxes[++counter];
+                            addObject.Weekly2 = CheckBoxes[counter];
+                            break;
+
+                        case 3:// me and two user
+                            addObject.Daily3 = CheckBoxes[++counter];
+                            addObject.Weekly3 = CheckBoxes[counter];
+                            break;
+                    }
+                }
+                
+                counter++;
                 //for (int j = 0; j < WorkCount; j++)
                 //{
                 //    switch (j)
@@ -168,7 +199,11 @@ namespace Torun.UControls
                 //}
                 listSource.Add(addObject);
             }
+            
+
+            
             Grid_CheckList.ItemsSource = listSource;
+            ReloadCheckList();
         }
         
         private void Btn_workEdit_Click(object sender, RoutedEventArgs e)
