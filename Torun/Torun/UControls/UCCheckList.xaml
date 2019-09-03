@@ -9,7 +9,21 @@
     <Grid>
         <TabControl x:Name="tabControl" Width="780" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Background="AliceBlue" >
             <TabItem Header="XXX" x:Name="checklistTabUpdate" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0">
+                        <DockPanel x:Name="ChecklistDockPanel" Margin="350,0,0,0"/>
+                    </Border>
+                    <DataGrid Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=WorkDescription}" x:Name="CheckListColumnWorks" Header="Rutin İş Açıklaması" Width="350"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                
             </TabItem>
             <TabItem Header="XXX" x:Name="checklistTabInSystem">
                 <DataGrid Width="780" Height="445" x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"

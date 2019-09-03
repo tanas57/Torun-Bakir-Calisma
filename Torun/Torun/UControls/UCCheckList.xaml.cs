@@ -29,6 +29,7 @@ namespace Torun.UControls
         public User User { get; set; }
         private int WorkFriendCount { get; set; }
         private List<CheckBox> CheckBoxes { get; set; }
+        private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
         public UCCheckList()
         {
@@ -36,9 +37,20 @@ namespace Torun.UControls
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
+            CheckBoxes = new List<CheckBox>();
+            WorkFriendCount = 1;
             for (int i = 0; i < WorkCount; i++) CheckBoxes.Add(new CheckBox());
         }
-
+        private class CheckListObject
+        {
+            public string WorkDescription { get; set; }
+            public bool Daily1 { get; set; }
+            public bool Daily2 { get; set; }
+            public bool Daily3 { get; set; }
+            public bool Weekly1 { get; set; }
+            public bool Weekly2 { get; set; }
+            public bool Weekly3 { get; set; }
+        }
         private void AddWork_Click(object sender, RoutedEventArgs e)
         {
             if(!(workDescription.Text.Length > 3))
@@ -59,7 +71,8 @@ namespace Torun.UControls
         }
         private void ReloadCheckList()
         {
-            Grid_Checklist.ItemsSource = DB.GetRoutineWorks(User);
+            RoutineWorks = DB.GetRoutineWorks(User);
+            Grid_Checklist.ItemsSource = RoutineWorks;
 
             WorkCount = Grid_Checklist.Items.Count;
 
@@ -78,9 +91,9 @@ namespace Torun.UControls
                 listBoxUser.Items.Add(item.FullName + " - " + item.UserID);
             }
 
-            WorkFriendCount = listBoxUser.Items.Count;
+            WorkFriendCount = listBoxUser.Items.Count + 1;
 
-            //for (int i = 0; i < WorkCount * WorkFriendCount; i++) CheckBoxes.Add(new CheckBox());
+            for (int i = 0; i < WorkCount * WorkFriendCount; i++) CheckBoxes.Add(new CheckBox());
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -101,14 +114,63 @@ namespace Torun.UControls
             relationShip.Header = Lang.UCChecklistRelationshipWorkWith;
 
             ReloadCheckList();
-            /*
-             * List<int> numbers = new List<int>();
-                for (int i = 1; i <= maxLine; i++) numbers.Add(i);
-                numbersGrid.ItemsSource = numbers;
-                SelectedGrid = null; // null error fix
-                */
-        }
 
+            RefreshMainPage();
+        }
+        private void RefreshMainPage()
+        {
+            ChecklistDockPanel.Children.Clear();
+            listBoxUser.Items.Add(User.firstname + " " + User.lastname + " - " + User.id);
+
+            // locate names and work relationship, and create datagrid columns
+            for (int i = listBoxUser.Items.Count-1; -1 < i; i--)
+            {
+                string[] temp = listBoxUser.Items[i].ToString().Split('-');
+                Label tempLabel;
+
+                if(i != listBoxUser.Items.Count - 1) ChecklistDockPanel.Children.Add(new Label() { Content = " | "});
+
+                ChecklistDockPanel.Children.Add(tempLabel = new Label() { Content = temp[0]});
+
+                tempLabel.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+
+                DataGridCheckBoxColumn daily = new DataGridCheckBoxColumn();
+                daily.Header = "Günlük";
+                daily.Width = tempLabel.DesiredSize.Width / 2;
+                daily.MinWidth = 60;
+                daily.IsReadOnly = true;
+                daily.Binding = new Binding("Daily" + listBoxUser.Items.Count+1);
+                Grid_CheckList.Columns.Add(daily);
+
+                DataGridCheckBoxColumn weekly = new DataGridCheckBoxColumn();
+                weekly.Header = "Haftalık";
+                weekly.Width = (tempLabel.DesiredSize.Width / 2) + 25;
+                weekly.MinWidth = 70;
+                weekly.IsReadOnly = true;
+                weekly.Binding = new Binding("Weekly" + listBoxUser.Items.Count + 1);
+                Grid_CheckList.Columns.Add(weekly);
+            }
+
+            List<CheckListObject> listSource = new List<CheckListObject>();
+
+            for (int i = 0; i < WorkCount; i++)
+            {
+                CheckListObject addObject = new CheckListObject();
+                addObject.WorkDescription = RoutineWorks[i].work_description;
+                //for (int j = 0; j < WorkCount; j++)
+                //{
+                //    switch (j)
+                //    {
+                //        case 0:
+                //            addObject.Daily1 = CheckBoxes[];
+                //            break;
+                //    }
+                //}
+                listSource.Add(addObject);
+            }
+            Grid_CheckList.ItemsSource = listSource;
+        }
+        
         private void Btn_workEdit_Click(object sender, RoutedEventArgs e)
         {
             if(Grid_Checklist.SelectedItem != null)
