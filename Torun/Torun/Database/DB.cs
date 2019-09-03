@@ -723,12 +723,8 @@ namespace Torun.Database
         }
         public int AddTodoList(TodoList todoList)
         {
-            if(int.TryParse(todoList.request_number, out int req_num))
-            {
-                if (db.TodoLists.Any(x => x.request_number == req_num.ToString())) return 0; // if request is integer, the request number have to identity
-            }
-            // otherwise any string can add to db
             todoList.add_time = DateTime.Now;
+
             db.TodoLists.Add(todoList);
             db.SaveChanges();
 
