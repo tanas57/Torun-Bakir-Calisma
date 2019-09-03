@@ -79,6 +79,16 @@ namespace Torun.UControls
 
             btnPdfText.Text = Lang.ReportToPDF;
             btntxtexcel.Text = Lang.ReportToExcel;
+
+            userSelectLBL.Content = Lang.UCChecklistRelationshipUserList;
+
+            var users = DB.GetUsers(User);
+            UserList.Items.Clear();
+
+            foreach (var item in users)
+            {
+                UserList.Items.Add(item.FullName + " - " + item.UserID);
+            }
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
