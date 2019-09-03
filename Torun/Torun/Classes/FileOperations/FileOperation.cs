@@ -249,28 +249,15 @@ namespace Torun.Classes
             rang2.RowHeight = 55;
             startRow++; startColumn = 1;
 
-            string[] columnNames;
             int[] columnWidths;
 
-            if (reportType == ReportType.OnlyWorkDone)
-            {
-                columnNames = new string[] { "Sıra", "Talep No", "Açıklama" };
-                columnWidths = new int[] { 11, 30, 145 };
-            }
-            else if(reportType == ReportType.OnlyPlan)
-            {
-                columnNames = new string[] { "Sıra", "Talep No", "Açıklama" };
-                columnWidths = new int[] { 11, 30, 145 };
-            }
-            else
-            {
-                columnNames = new string[] { "Sıra", "Talep No", "Plan Tarih", "Gerçekleşme Tarih", "Açıklama" };
-                columnWidths = new int[] { 11, 30, 10, 19, 115 };
-            }
-            for (int i = 0; i < columnNames.Length; i++)
+            if (reportType == ReportType.OnlyWorkDone) columnWidths = new int[] { 30, 165 };
+            else if(reportType == ReportType.OnlyPlan) columnWidths = new int[] { 30, 165 };
+            else columnWidths = new int[] { 30, 10, 19, 135 };
+
+            for (int i = 0; i < columnWidths.Length; i++)
             {
                 Range rangeRequest = worksheet.Cells[startRow, startColumn];
-                rangeRequest.Value2 = columnNames[i];
                 rangeRequest.ColumnWidth = columnWidths[i];
                 rangeRequest.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
                 rangeRequest.Font.Size = 13;
@@ -287,8 +274,8 @@ namespace Torun.Classes
                     List<DB.WorkDoneList> workDone = db.ListWorkDone(user, start.Date, OrderBy.AddedTimeAsc);
                     if (workDone.Count >= 1)
                     {
-                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
-                        worksheet.Cells[startRow, 3] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
+                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 2]];
+                        worksheet.Cells[startRow, 2] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
                         rang.Font.Size = 15;
                         rang.Font.Bold = true;
                         rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
@@ -300,9 +287,8 @@ namespace Torun.Classes
 
                         foreach (var item in workDone)
                         {
-                            worksheet.Cells[startRow, 1] = item.WorkDoneID;
-                            worksheet.Cells[startRow, 2] = item.RequestNumber;
-                            worksheet.Cells[startRow, 3] = item.Description;
+                            worksheet.Cells[startRow, 1] = item.RequestNumber;
+                            worksheet.Cells[startRow, 2] = item.Description;
                             startRow++;
                         }
                     }
@@ -316,8 +302,8 @@ namespace Torun.Classes
                     List<DB.WeeklyPlan> weeklyPlans = db.ListWeeklyPlanbyDate(user, start.Date);
                     if (weeklyPlans.Count >= 1)
                     {
-                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 3]];
-                        worksheet.Cells[startRow, 3] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
+                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 2]];
+                        worksheet.Cells[startRow, 2] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
                         rang.Font.Size = 15;
                         rang.Font.Bold = true;
                         rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
@@ -329,9 +315,8 @@ namespace Torun.Classes
 
                         foreach (var item in weeklyPlans)
                         {
-                            worksheet.Cells[startRow, 1] = item.PlanID;
-                            worksheet.Cells[startRow, 2] = item.RequestNumber;
-                            worksheet.Cells[startRow, 3] = item.WorkDescription;
+                            worksheet.Cells[startRow, 1] = item.RequestNumber;
+                            worksheet.Cells[startRow, 2] = item.WorkDescription;
                             startRow++;
                         }
                     }
@@ -345,8 +330,8 @@ namespace Torun.Classes
                     List<DB.WorkDoneandPlans> workPlans = db.GetWorkDoneAndPlansbyDate(user, start.Date);
                     if (workPlans.Count >= 1)
                     {
-                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 5]];
-                        worksheet.Cells[startRow, 5] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
+                        Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 4]];
+                        worksheet.Cells[startRow, 4] = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[(int)start.DayOfWeek] + " (" + start.ToShortDateString() + @")";
                         rang.Font.Size = 15;
                         rang.Font.Bold = true;
                         rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
@@ -361,11 +346,10 @@ namespace Torun.Classes
 
                         foreach (var item in workPlans)
                         {
-                            worksheet.Cells[startRow, 1] = item.PlanID;
-                            worksheet.Cells[startRow, 2] = item.RequestNumber;
-                            worksheet.Cells[startRow, 3] = item.PlanDate;
-                            worksheet.Cells[startRow, 4] = item.WorkDoneDate;
-                            worksheet.Cells[startRow, 5] = item.WorkDescription;
+                            worksheet.Cells[startRow, 1] = item.RequestNumber;
+                            worksheet.Cells[startRow, 2] = item.PlanDate;
+                            worksheet.Cells[startRow, 3] = item.WorkDoneDate;
+                            worksheet.Cells[startRow, 4] = item.WorkDescription;
                             startRow++;
                         }
                     }

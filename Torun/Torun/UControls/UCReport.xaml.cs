@@ -159,13 +159,25 @@ namespace Torun.UControls
             }));
 
         }
+        private void ExportEXCEL()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(2));
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                FileOperation.ExportAsEXCEL(User, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                reportProcess.Background = Brushes.Green;
+                reportProcess.Content = Lang.ReportProcessEnd;
+            }));
+        }
         private void Btn_excel_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 reportProcess.Background = Brushes.Blue;
                 reportProcess.Content = Lang.ReportProcessStart;
-                //Export();
+
+                Thread thread = new Thread(new ThreadStart(ExportEXCEL));
+                thread.Start();
             }
             catch (Exception ex)
             {
