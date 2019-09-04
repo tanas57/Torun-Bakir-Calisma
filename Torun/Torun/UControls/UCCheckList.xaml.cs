@@ -1,17 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Torun.Database;
 using Torun.Lang;
 using Torun.Windows.CheckList;
@@ -28,7 +23,7 @@ namespace Torun.UControls
         public DB DB { get; set; }
         public User User { get; set; }
         private int WorkFriendCount { get; set; }
-        private List<bool> CheckBoxes { get; set; }
+        private List<CheckListObject> GridSource { get; set; }
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
         public UCCheckList()
@@ -37,9 +32,10 @@ namespace Torun.UControls
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
-            CheckBoxes = new List<bool>();
+            ReloadCheckList();
+            GridSource = new List<CheckListObject>();
             WorkFriendCount = 1;
-            for (int i = 0; i < WorkCount; i++) CheckBoxes.Add(true);
+            for (int i = 0; i < WorkCount; i++) GridSource.Add(new CheckListObject());
         }
         private class CheckListObject
         {
@@ -93,7 +89,6 @@ namespace Torun.UControls
 
             WorkFriendCount = listBoxUser.Items.Count + 1;
 
-            for (int i = 0; i < WorkCount * WorkFriendCount; i++) CheckBoxes.Add(true);
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -139,7 +134,9 @@ namespace Torun.UControls
                 daily.Width = tempLabel.DesiredSize.Width / 2;
                 daily.MinWidth = 60;
                 daily.IsReadOnly = true;
-                daily.Binding = new Binding("Daily" + listBoxUser.Items.Count+1);
+                string bindingPath = "Daily" + Math.Abs(i - listBoxUser.Items.Count);
+                
+                daily.Binding = new Binding(bindingPath);
                 daily.IsReadOnly = false;
                 
                 Grid_CheckList.Columns.Add(daily);
@@ -149,60 +146,22 @@ namespace Torun.UControls
                 weekly.Width = (tempLabel.DesiredSize.Width / 2) + 25;
                 weekly.MinWidth = 70;
                 weekly.IsReadOnly = true;
-                weekly.Binding = new Binding("Weekly" + listBoxUser.Items.Count + 1);
+                bindingPath = "Weekly" + Math.Abs(i - listBoxUser.Items.Count);
+                weekly.Binding = new Binding(bindingPath);
                 weekly.IsReadOnly = false;
                 
                 Grid_CheckList.Columns.Add(weekly);
             }
 
-            List<CheckListObject> listSource = new List<CheckListObject>();
-            CheckListObject addObject = null;
-            int counter = 0;
 
             for (int i = 0; i < WorkCount; i++)
             {
-                addObject = new CheckListObject();
                 // description
-                addObject.WorkDescription = RoutineWorks[i].work_description;
-                // for checkboxes
-                for (int j = 1; j <= WorkFriendCount; j++)
-                {
-                    switch (j)
-                    {
-                        default:
-                        case 1: // only us
-                            addObject.Daily1 = CheckBoxes[++counter];
-                            addObject.Weekly1 = CheckBoxes[counter];
-                            break;
-
-                        case 2: // me and one user
-                            addObject.Daily2 = CheckBoxes[++counter];
-                            addObject.Weekly2 = CheckBoxes[counter];
-                            break;
-
-                        case 3:// me and two user
-                            addObject.Daily3 = CheckBoxes[++counter];
-                            addObject.Weekly3 = CheckBoxes[counter];
-                            break;
-                    }
-                }
-                
-                counter++;
-                //for (int j = 0; j < WorkCount; j++)
-                //{
-                //    switch (j)
-                //    {
-                //        case 0:
-                //            addObject.Daily1 = CheckBoxes[];
-                //            break;
-                //    }
-                //}
-                listSource.Add(addObject);
+                GridSource[i].WorkDescription = RoutineWorks[i].work_description;
+                GridSource[i].Daily1 = true;
             }
             
-
-            
-            Grid_CheckList.ItemsSource = listSource;
+            Grid_CheckList.ItemsSource = GridSource;
             ReloadCheckList();
         }
         
@@ -289,6 +248,64 @@ namespace Torun.UControls
                     relResult.Background = Brushes.Red;
                 }
             }
+        }
+
+        private void Grid_CheckList_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            
+            
+        }
+
+        private void Changed()
+        {
+            
+            if (Grid_CheckList.SelectedItem != null)
+            {
+                CheckListObject selected = Grid_CheckList.SelectedItem as CheckListObject;
+                if (Grid_CheckList.SelectedCells[0].Column.DisplayIndex > 0)
+                {
+                    switch (Grid_CheckList.SelectedCells[0].Column.DisplayIndex)
+                    {
+                        case 1:
+                            if (selected.Daily1) selected.Daily1 = false;
+                            else selected.Daily1 = true;
+                            break;
+                        case 2:
+                            if (selected.Weekly1) selected.Weekly1 = false;
+                            else selected.Weekly1 = true;
+                            break;
+                        case 3:
+                            if (selected.Daily2) selected.Daily2 = false;
+                            else selected.Daily2 = true;
+                            break;
+                        case 4:
+                            if (selected.Weekly2) selected.Weekly2 = false;
+                            else selected.Weekly2 = true;
+                            break;
+                        case 5:
+                            if (selected.Daily3) selected.Daily3 = false;
+                            else selected.Daily3 = true;
+                            break;
+                        case 6:
+                            if (selected.Weekly3) selected.Weekly3 = false;
+                            else selected.Weekly3 = true;
+                            break;
+                    }
+                }
+            }
+
+            string deneme = "";
+            for (int i = 0; i < GridSource.Count; i++)
+            {
+                deneme += GridSource[i].Daily1 + " " + GridSource[i].Weekly1 + " " + GridSource[i].Daily2 + " " + GridSource[i].Weekly2 + " \n";
+            }
+            MessageBox.Show(deneme);
+
+        }
+
+        private void Grid_CheckList_CurrentCellChanged(object sender, EventArgs e)
+        {
+            Changed();
         }
     }
 }
