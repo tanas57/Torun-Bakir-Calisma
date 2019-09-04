@@ -24,6 +24,7 @@ namespace Torun.Database
             this.RoutineWorks = new HashSet<RoutineWork>();
             this.RoutineWorkRelationShips = new HashSet<RoutineWorkRelationShip>();
             this.RoutineWorkRelationShips1 = new HashSet<RoutineWorkRelationShip>();
+            this.RoutineWorkRecords = new HashSet<RoutineWorkRecord>();
         }
     
         public int id { get; set; }
@@ -52,5 +53,7 @@ namespace Torun.Database
         public virtual ICollection<RoutineWorkRelationShip> RoutineWorkRelationShips { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoutineWorkRelationShip> RoutineWorkRelationShips1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoutineWorkRecord> RoutineWorkRecords { get; set; }
     }
 }

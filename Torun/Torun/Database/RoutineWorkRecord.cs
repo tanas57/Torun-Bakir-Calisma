@@ -17,5 +17,8 @@ namespace Torun.Database
         public int id { get; set; }
         public string work_Ticks { get; set; }
         public System.DateTime add_date { get; set; }
+        public int user_id { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

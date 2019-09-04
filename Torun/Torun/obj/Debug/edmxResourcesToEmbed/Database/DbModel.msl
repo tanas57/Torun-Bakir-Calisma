@@ -93,6 +93,7 @@
     <EntitySetMapping Name="RoutineWorkRecords">
       <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.RoutineWorkRecord">
         <MappingFragment StoreEntitySet="RoutineWorkRecords">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="add_date" ColumnName="add_date" />
           <ScalarProperty Name="work_Ticks" ColumnName="work_Ticks" />
           <ScalarProperty Name="id" ColumnName="id" />

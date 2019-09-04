@@ -37,6 +37,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="work_Ticks" Type="text" Nullable="false" />
     <Property Name="add_date" Type="date" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RoutineWorkRelationShip">
     <Key>
@@ -202,6 +203,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_User_RoutineWorkRecord">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="RoutineWorkRecords" Type="Self.RoutineWorkRecords" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="RoutineWorkRecords">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_WorkDone_TodoList">
     <End Role="Plans" Type="Self.Plans" Multiplicity="1" />
     <End Role="WorkDone" Type="Self.WorkDone" Multiplicity="*" />
@@ -256,6 +269,10 @@
     <AssociationSet Name="FK_TodoList_Users" Association="Self.FK_TodoList_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="TodoList" EntitySet="TodoList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_RoutineWorkRecord" Association="Self.FK_User_RoutineWorkRecord">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="RoutineWorkRecords" EntitySet="RoutineWorkRecords" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkDone_TodoList" Association="Self.FK_WorkDone_TodoList">
       <End Role="Plans" EntitySet="Plans" />
