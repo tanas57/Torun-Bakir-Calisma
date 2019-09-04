@@ -17,14 +17,8 @@
                     <Border Grid.Row="0">
                         <DockPanel x:Name="ChecklistDockPanel" Margin="350,0,0,0"/>
                     </Border>
-                    <DataGrid MouseDown="Grid_CheckList_MouseDown" CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Order}" Header="Sıra" Width="35"/>
-                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=WorkDescription}" x:Name="CheckListColumnWorks" Header="Rutin İş Açıklaması" Width="350"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <DataGrid CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"/>
                 </Grid>
-                
             </TabItem>
             <TabItem Header="XXX" x:Name="checklistTabInSystem">
                 <DataGrid Width="780" Height="445" x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"

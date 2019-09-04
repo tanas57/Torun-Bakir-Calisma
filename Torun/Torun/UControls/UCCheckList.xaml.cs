@@ -26,6 +26,7 @@ namespace Torun.UControls
         private List<CheckListObject> GridSource { get; set; }
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
+        private bool CheckFirstFill { get; set; }
         public UCCheckList()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Torun.UControls
             ReloadCheckList();
             GridSource = new List<CheckListObject>();
             WorkFriendCount = 1;
+            CheckFirstFill = true;
             for (int i = 0; i < WorkCount; i++) GridSource.Add(new CheckListObject());
         }
         private class CheckListObject
@@ -113,11 +115,25 @@ namespace Torun.UControls
 
             RefreshMainPage();
         }
+        private void AddColumnToDataGrid(DataGrid dataGrid, DataGridBoundColumn column, string header, int width, string binding)
+        {
+            DataGridBoundColumn temp = column;
+            temp.Header = header;
+            temp.Width = width;
+            temp.IsReadOnly = true;
+            temp.Binding = new Binding(binding);
+            temp.IsReadOnly = false;
+            dataGrid.Columns.Add(temp);
+        }
         private void RefreshMainPage()
         {
             ChecklistDockPanel.Children.Clear();
             listBoxUser.Items.Add(User.firstname + " " + User.lastname + " - " + User.id);
 
+            Grid_CheckList.Columns.Clear();
+
+            AddColumnToDataGrid(Grid_CheckList, new DataGridTextColumn(), "Sıra", 35, "Order");
+            AddColumnToDataGrid(Grid_CheckList, new DataGridTextColumn(), "Rutin İş Açıklaması", 350, "WorkDescription");
             // locate names and work relationship, and create datagrid columns
             for (int i = listBoxUser.Items.Count-1; -1 < i; i--)
             {
@@ -130,37 +146,23 @@ namespace Torun.UControls
 
                 tempLabel.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 
-                DataGridCheckBoxColumn daily = new DataGridCheckBoxColumn();
-                daily.Header = Lang.SettingsRadioDaily;
-                daily.Width = tempLabel.DesiredSize.Width / 2;
-                daily.MinWidth = 60;
-                daily.IsReadOnly = true;
                 string bindingPath = "Daily" + Math.Abs(i - listBoxUser.Items.Count);
-                
-                daily.Binding = new Binding(bindingPath);
-                daily.IsReadOnly = false;
-                
-                Grid_CheckList.Columns.Add(daily);
+                AddColumnToDataGrid(Grid_CheckList, new DataGridCheckBoxColumn(), Lang.SettingsRadioDaily, (int)(tempLabel.DesiredSize.Width / 2), bindingPath);
 
-                DataGridCheckBoxColumn weekly = new DataGridCheckBoxColumn();
-                weekly.Header = Lang.SettingsRadioWeekly;
-                weekly.Width = (tempLabel.DesiredSize.Width / 2) + 25;
-                weekly.MinWidth = 70;
-                weekly.IsReadOnly = true;
                 bindingPath = "Weekly" + Math.Abs(i - listBoxUser.Items.Count);
-                weekly.Binding = new Binding(bindingPath);
-                weekly.IsReadOnly = false;
-                
-                Grid_CheckList.Columns.Add(weekly);
+                AddColumnToDataGrid(Grid_CheckList, new DataGridCheckBoxColumn(), Lang.SettingsRadioWeekly, (int)(tempLabel.DesiredSize.Width / 2) + 25, bindingPath);
+
             }
 
-
-            for (int i = 0; i < WorkCount; i++)
+            if (CheckFirstFill)
             {
-                // description
-                GridSource[i].Order = (i + 1);
-                GridSource[i].WorkDescription = RoutineWorks[i].work_description;
-                GridSource[i].Daily1 = true;
+                for (int i = 0; i < WorkCount; i++)
+                {
+                    // description
+                    GridSource[i].Order = (i + 1);
+                    GridSource[i].WorkDescription = RoutineWorks[i].work_description;
+                }
+                CheckFirstFill = false;
             }
             
             Grid_CheckList.ItemsSource = GridSource;
@@ -256,54 +258,59 @@ namespace Torun.UControls
             }
         }
 
-        private void Grid_CheckList_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            
-            
-        }
-
         private void Changed()
         {
-            var currentRowIndex = Grid_CheckList.Items.IndexOf(Grid_CheckList.CurrentItem);
-            var columnIndex = Grid_CheckList.CurrentColumn.DisplayIndex;
-
-            if (columnIndex > 1) // order, and description are skipped
+            if (Grid_CheckList.SelectedItem != null)
             {
-                // get selected row info
-                CheckListObject selected = Grid_CheckList.SelectedItem as CheckListObject;
-                switch (columnIndex)
+                var columnIndex = Grid_CheckList.CurrentColumn.DisplayIndex;
+
+                if (columnIndex > 1) // order, and description are skipped
                 {
-                    case 2: // daily1
-                        if (selected.Daily1) selected.Daily1 = false;
-                        else selected.Daily1 = true;
-                        break;
-                    case 3: // weekly1
-                        if (selected.Weekly1) selected.Weekly1 = false;
-                        else selected.Weekly1 = true;
-                        break;
-                    case 4: // daily1
-                        if (selected.Daily2) selected.Daily2 = false;
-                        else selected.Daily2 = true;
-                        break;
-                    case 5: // weekly1
-                        if (selected.Weekly2) selected.Weekly2 = false;
-                        else selected.Weekly2 = true;
-                        break;
-                    case 6: // daily1
-                        if (selected.Daily3) selected.Daily3 = false;
-                        else selected.Daily3 = true;
-                        break;
-                    case 7: // weekly1
-                        if (selected.Weekly3) selected.Weekly3 = false;
-                        else selected.Weekly3 = true;
-                        break;
+                    // get selected row info
+                    CheckListObject selected = Grid_CheckList.SelectedItem as CheckListObject;
+                    switch (columnIndex)
+                    {
+                        case 2: // daily1
+                            if (selected.Daily1) selected.Daily1 = false;
+                            else selected.Daily1 = true;
+                            break;
+                        case 3: // weekly1
+                            if (selected.Weekly1) selected.Weekly1 = false;
+                            else selected.Weekly1 = true;
+                            break;
+                        case 4: // daily1
+                            if (selected.Daily2) selected.Daily2 = false;
+                            else selected.Daily2 = true;
+                            break;
+                        case 5: // weekly1
+                            if (selected.Weekly2) selected.Weekly2 = false;
+                            else selected.Weekly2 = true;
+                            break;
+                        case 6: // daily1
+                            if (selected.Daily3) selected.Daily3 = false;
+                            else selected.Daily3 = true;
+                            break;
+                        case 7: // weekly1
+                            if (selected.Weekly3) selected.Weekly3 = false;
+                            else selected.Weekly3 = true;
+                            break;
+                    }
+                }
+
+                RefreshMainPage();
+
+                string deneme = "";
+                for (int i = 0; i < GridSource.Count; i++)
+                {
+                    deneme += GridSource[i].Daily1 + " " + GridSource[i].Weekly1 + " " + GridSource[i].Daily2 + " " + GridSource[i].Weekly2 + " \n";
                 }
             }
-            Grid_CheckList.ItemsSource = GridSource;
         }
 
         private void Grid_CheckList_CurrentCellChanged(object sender, EventArgs e)
         {
+            var currentRowIndex = Grid_CheckList.Items.IndexOf(Grid_CheckList.CurrentItem);
+            Grid_CheckList.SelectedIndex = currentRowIndex;
             Changed();
         }
     }
