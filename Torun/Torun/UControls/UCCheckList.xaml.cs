@@ -22,7 +22,6 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public User User { get; set; }
-        private int WorkFriendCount { get; set; }
         private List<CheckListObject> GridSource { get; set; }
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
@@ -35,7 +34,6 @@ namespace Torun.UControls
             User = mainWindow.User;
             ReloadCheckList();
             GridSource = new List<CheckListObject>();
-            WorkFriendCount = 1;
             CheckFirstFill = true;
             for (int i = 0; i < WorkCount; i++) GridSource.Add(new CheckListObject());
         }
@@ -49,6 +47,19 @@ namespace Torun.UControls
             public bool Weekly1 { get; set; }
             public bool Weekly2 { get; set; }
             public bool Weekly3 { get; set; }
+        }
+        private void SaveChanges()
+        {
+            string deneme = "";
+            for (int i = 0; i < GridSource.Count; i++)
+            {
+                deneme += GridSource[i].Daily1 + " " + GridSource[i].Weekly1 + " " + GridSource[i].Daily2 + " " + GridSource[i].Weekly2 + " \n";
+            }
+        }
+        private void GetChanges()
+        {
+            DateTime today = DateTime.Now.Date;
+
         }
         private void AddWork_Click(object sender, RoutedEventArgs e)
         {
@@ -89,9 +100,6 @@ namespace Torun.UControls
             {
                 listBoxUser.Items.Add(item.FullName + " - " + item.UserID);
             }
-
-            WorkFriendCount = listBoxUser.Items.Count + 1;
-
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -298,12 +306,7 @@ namespace Torun.UControls
                 }
 
                 RefreshMainPage();
-
-                string deneme = "";
-                for (int i = 0; i < GridSource.Count; i++)
-                {
-                    deneme += GridSource[i].Daily1 + " " + GridSource[i].Weekly1 + " " + GridSource[i].Daily2 + " " + GridSource[i].Weekly2 + " \n";
-                }
+                SaveChanges();                
             }
         }
 

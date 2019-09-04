@@ -59,6 +59,10 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public void GetCheckListRecord(User user, DateTime today)
+        {
+            return db.RoutineWorkRecords.FirstOrDefault(x => );
+        }
         public int AddUserRelationShip(User user, int rel_id)
         {
             RoutineWorkRelationShip rel = new RoutineWorkRelationShip()

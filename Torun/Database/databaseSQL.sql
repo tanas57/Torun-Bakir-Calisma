@@ -110,8 +110,13 @@ foreign key  (user_id) references Users(id);
 CREATE TABLE RoutineWorkRecords(
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	work_Ticks TEXT NOT NULL,
-	add_date DATE NOT NULL
+	add_date DATE NOT NULL,
+	user_id INT NOT NULL
 );
+
+alter table RoutineWorkRecords
+add constraint FK_RoutineWorkRecords_Users
+foreign key  (user_id) references Users(id);
 
 CREATE TABLE RoutineWorkRelationShip(
 	id INT IDENTITY(1,1) PRIMARY KEY,
