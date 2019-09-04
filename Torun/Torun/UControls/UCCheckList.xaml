@@ -19,6 +19,7 @@
                     </Border>
                     <DataGrid MouseDown="Grid_CheckList_MouseDown" CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False">
                         <DataGrid.Columns>
+                            <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Order}" Header="Sıra" Width="35"/>
                             <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=WorkDescription}" x:Name="CheckListColumnWorks" Header="Rutin İş Açıklaması" Width="350"/>
                         </DataGrid.Columns>
                     </DataGrid>

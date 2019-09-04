@@ -39,6 +39,7 @@ namespace Torun.UControls
         }
         private class CheckListObject
         {
+            public int Order { get; set; }
             public string WorkDescription { get; set; }
             public bool Daily1 { get; set; }
             public bool Daily2 { get; set; }
@@ -157,6 +158,7 @@ namespace Torun.UControls
             for (int i = 0; i < WorkCount; i++)
             {
                 // description
+                GridSource[i].Order = (i + 1);
                 GridSource[i].WorkDescription = RoutineWorks[i].work_description;
                 GridSource[i].Daily1 = true;
             }
@@ -199,6 +201,10 @@ namespace Torun.UControls
                 tabControl.Width += SystemParameters.PrimaryScreenWidth - 1000;
                 Grid_Checklist.Width += SystemParameters.PrimaryScreenWidth - 1000;
                 Grid_Checklist.Height += SystemParameters.PrimaryScreenHeight - 650;
+                Grid_CheckList.Width += SystemParameters.PrimaryScreenWidth - 1000;
+                Grid_CheckList.Height += SystemParameters.PrimaryScreenHeight - 650;
+                tabControl.Width += SystemParameters.PrimaryScreenWidth - 780;
+                tabControl.Height += SystemParameters.PrimaryScreenHeight - 450;
                 gridDescriptionColumn.MinWidth +=(double) SystemParameters.PrimaryScreenWidth - 1000;
             }
             else
@@ -258,49 +264,42 @@ namespace Torun.UControls
 
         private void Changed()
         {
-            
-            if (Grid_CheckList.SelectedItem != null)
+            var currentRowIndex = Grid_CheckList.Items.IndexOf(Grid_CheckList.CurrentItem);
+            var columnIndex = Grid_CheckList.CurrentColumn.DisplayIndex;
+
+            if (columnIndex > 1) // order, and description are skipped
             {
+                // get selected row info
                 CheckListObject selected = Grid_CheckList.SelectedItem as CheckListObject;
-                if (Grid_CheckList.SelectedCells[0].Column.DisplayIndex > 0)
+                switch (columnIndex)
                 {
-                    switch (Grid_CheckList.SelectedCells[0].Column.DisplayIndex)
-                    {
-                        case 1:
-                            if (selected.Daily1) selected.Daily1 = false;
-                            else selected.Daily1 = true;
-                            break;
-                        case 2:
-                            if (selected.Weekly1) selected.Weekly1 = false;
-                            else selected.Weekly1 = true;
-                            break;
-                        case 3:
-                            if (selected.Daily2) selected.Daily2 = false;
-                            else selected.Daily2 = true;
-                            break;
-                        case 4:
-                            if (selected.Weekly2) selected.Weekly2 = false;
-                            else selected.Weekly2 = true;
-                            break;
-                        case 5:
-                            if (selected.Daily3) selected.Daily3 = false;
-                            else selected.Daily3 = true;
-                            break;
-                        case 6:
-                            if (selected.Weekly3) selected.Weekly3 = false;
-                            else selected.Weekly3 = true;
-                            break;
-                    }
+                    case 2: // daily1
+                        if (selected.Daily1) selected.Daily1 = false;
+                        else selected.Daily1 = true;
+                        break;
+                    case 3: // weekly1
+                        if (selected.Weekly1) selected.Weekly1 = false;
+                        else selected.Weekly1 = true;
+                        break;
+                    case 4: // daily1
+                        if (selected.Daily2) selected.Daily2 = false;
+                        else selected.Daily2 = true;
+                        break;
+                    case 5: // weekly1
+                        if (selected.Weekly2) selected.Weekly2 = false;
+                        else selected.Weekly2 = true;
+                        break;
+                    case 6: // daily1
+                        if (selected.Daily3) selected.Daily3 = false;
+                        else selected.Daily3 = true;
+                        break;
+                    case 7: // weekly1
+                        if (selected.Weekly3) selected.Weekly3 = false;
+                        else selected.Weekly3 = true;
+                        break;
                 }
             }
-
-            string deneme = "";
-            for (int i = 0; i < GridSource.Count; i++)
-            {
-                deneme += GridSource[i].Daily1 + " " + GridSource[i].Weekly1 + " " + GridSource[i].Daily2 + " " + GridSource[i].Weekly2 + " \n";
-            }
-            MessageBox.Show(deneme);
-
+            Grid_CheckList.ItemsSource = GridSource;
         }
 
         private void Grid_CheckList_CurrentCellChanged(object sender, EventArgs e)
