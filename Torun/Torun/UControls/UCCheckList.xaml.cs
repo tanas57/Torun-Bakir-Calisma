@@ -39,6 +39,7 @@ namespace Torun.UControls
         }
         private class CheckListObject
         {
+            public int WorkID { get; set; }
             public int Order { get; set; }
             public string WorkDescription { get; set; }
             public bool Daily1 { get; set; }
@@ -54,7 +55,7 @@ namespace Torun.UControls
             string ticks = "";
             for (int i = 0; i < GridSource.Count; i++)
             {
-                ticks += GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
+                ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
             }
             DB.UpdateCheckListRecord(User, ticks, DateTime.Now.Date);
         }
@@ -65,17 +66,30 @@ namespace Torun.UControls
             
             if(user_record != null)
             {
-                string[] parse = user_record.work_Ticks.Split(',');
-                int parseCounter = 0;
-                for (int i = 0; i < WorkCount; i++)
+                string deneme = user_record.work_Ticks;
+                string[] ids = user_record.work_Ticks.Split('*');
+                
+                for (int i = 2; i < ids.Length; i++)
                 {
-                    GridSource[i].Daily1 = bool.Parse(parse[parseCounter+i]);
-                    GridSource[i].Weekly1 = bool.Parse(parse[parseCounter + i +1]);
-                    GridSource[i].Daily2 = bool.Parse(parse[parseCounter + i +2]);
-                    GridSource[i].Weekly2 = bool.Parse(parse[parseCounter + i +3]);
-                    GridSource[i].Daily3 = bool.Parse(parse[parseCounter + i +4]);
-                    GridSource[i].Weekly3 = bool.Parse(parse[parseCounter + i +5]);
-                    parseCounter += 5;
+                    string[] workID_parse = ids[i].Split(':');
+
+                    int work_id = int.Parse(workID_parse[0]);
+
+                    for (int j = 0; j < GridSource.Count; j++)
+                    {
+                        if(GridSource[j].WorkID == work_id)
+                        {
+                            string[] parse = workID_parse[1].Split(',');
+
+                            GridSource[j].Daily1 = bool.Parse(parse[0]);
+                            GridSource[j].Weekly1 = bool.Parse(parse[1]);
+                            GridSource[j].Daily2 = bool.Parse(parse[2]);
+                            GridSource[j].Weekly2 = bool.Parse(parse[3]);
+                            GridSource[j].Daily3 = bool.Parse(parse[4]);
+                            GridSource[j].Weekly3 = bool.Parse(parse[5]);
+                            break;
+                        }
+                    }
                 }
             }
             else
@@ -84,7 +98,7 @@ namespace Torun.UControls
                 string ticks = "";
                 for (int i = 0; i < GridSource.Count; i++)
                 {
-                    ticks += GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
+                    ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
                 }
                 DB.AddCheckListRecord(User, ticks, today);
             }
@@ -107,6 +121,9 @@ namespace Torun.UControls
                 }
             }
         }
+        /// <summary>
+        /// Refresh checklist pages; datagrids, listboxes, and comboboxes
+        /// </summary>
         private void ReloadCheckList()
         {
             RoutineWorks = DB.GetRoutineWorks(User);
@@ -196,6 +213,7 @@ namespace Torun.UControls
                 {
                     // description
                     GridSource[i].Order = (i + 1);
+                    GridSource[i].WorkID = RoutineWorks[i].id;
                     GridSource[i].WorkDescription = RoutineWorks[i].work_description;
                 }
                 CheckFirstFill = false;
