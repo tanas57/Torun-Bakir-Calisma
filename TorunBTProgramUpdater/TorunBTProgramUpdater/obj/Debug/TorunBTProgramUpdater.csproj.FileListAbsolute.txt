@@ -1,0 +1,6 @@
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\TorunBTProgramUpdater\TorunBTProgramUpdater\bin\Debug\TorunBTProgramUpdater.exe
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\TorunBTProgramUpdater\TorunBTProgramUpdater\bin\Debug\TorunBTProgramUpdater.pdb
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\TorunBTProgramUpdater\TorunBTProgramUpdater\obj\Debug\TorunBTProgramUpdater.csprojAssemblyReference.cache
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\TorunBTProgramUpdater\TorunBTProgramUpdater\obj\Debug\TorunBTProgramUpdater.csproj.CoreCompileInputs.cache
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\TorunBTProgramUpdater\TorunBTProgramUpdater\obj\Debug\TorunBTProgramUpdater.exe
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\TorunBTProgramUpdater\TorunBTProgramUpdater\obj\Debug\TorunBTProgramUpdater.pdb
