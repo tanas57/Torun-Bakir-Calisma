@@ -149,6 +149,10 @@ namespace Torun
         private void Brd_top_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed) this.DragMove();
+            if(e.ClickCount == 2)
+            {
+                BtnFormUp_Click(sender, e);
+            }
         }
 
         private void Brd_topLogo_MouseDown(object sender, MouseButtonEventArgs e)
@@ -260,6 +264,11 @@ namespace Torun
                 DB.AddLog(new Log { error_page = "mainwindow_PhotoChange_MouseDown", error_text = ex.Message, log_user = User.id });
                 }
         }
+        /// <summary>
+        /// convert file to bitmap image file
+        /// </summary>
+        /// <param name="imageUri">image path</param>
+        /// <returns></returns>
         private BitmapImage GetImage(string imageUri)
         {
             try
