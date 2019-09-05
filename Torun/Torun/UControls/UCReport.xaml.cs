@@ -234,5 +234,10 @@ namespace Torun.UControls
                 DB.AddLog(new Log { error_page = "ucreport_excelbutton", error_text = ex.Message, log_user = User.id });
             }
         }
+
+        private void ReportSearch_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

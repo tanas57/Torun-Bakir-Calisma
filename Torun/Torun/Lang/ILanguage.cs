@@ -302,5 +302,6 @@
         string UCCheckListNote { get; }
         string UCCheckListOtherRelation { get; }
         #endregion
+        string ReportSearchTitle { get; }
     }
 }

@@ -24,6 +24,7 @@
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
                             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image x:Name="reportSearch" MouseDown="ReportSearch_MouseDown" Source="/images/icon/search.png" Width="30" Height="30"/>
                                 <Label x:Name="lblType" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="0" BorderThickness="0"/>
                                 <ComboBox x:Name="planWorkdoneSelect" Width="140" Margin="5"/>
                                 <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="5" BorderThickness="0"/>

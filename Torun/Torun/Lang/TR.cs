@@ -375,5 +375,6 @@
         public string UCCheckListNote => "Not: Bir kullanıcı en fazla 3 kişi ile çalışabilir.\nBaşkası ile çalışan kullanıcı yeni çalışma arkaşı ekleyemez";
         public string UCCheckListOtherRelation => "Başkasıyla çalışıyorsun. Çalışma ayarlarını o yönetiyor.";
         #endregion
+        public string ReportSearchTitle => "Raporlarda Arama";
     }
 }
