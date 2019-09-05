@@ -56,8 +56,8 @@ namespace Torun.Windows.WorkCompleted
 
                 if (remove_aDay.IsChecked == true) // only selected work done
                 {
-                    Plan plan = work.Plan;
-                    TodoList todoList = plan.TodoList;
+                    Plan plan = mainWindow.DB.GetPlanByID(work.plan_id);
+                    TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
                     if (remove_allDays.IsEnabled == false)
                     {
                         if (workDoneCount > 1) // there is any completed works so the work is being process
@@ -79,11 +79,16 @@ namespace Torun.Windows.WorkCompleted
                     var works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
                     if (works.Count > 0)
                     {
-                        works[0].Plan.TodoList.status = (int)StatusType.Planned;
+                        Plan plan = mainWindow.DB.GetPlanByID(works[0].plan_id);
+                        TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
+                        todoList.status = (int)StatusType.Planned;
                     }
                     foreach (var item in works)
                     {
-                        item.Plan.status = (int)StatusType.Deleted;
+                        // workdone will be deleted
+                        // plan will be planned
+                        Plan plan = mainWindow.DB.GetPlanByID(item.plan_id);
+                        plan.status = (int)StatusType.Planned;
                         mainWindow.DB.EditPlan(item.Plan);
                         mainWindow.DB.RemoveWorkdone(item);
                     }
