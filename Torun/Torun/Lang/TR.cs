@@ -372,7 +372,8 @@
         public string UCChecklistRelationshipUserRemoveSuccess => "Kullanıcı kaldırma başarılı, beraber çalışma kayıtlarınız silindi";
 
         public string UCChecklistRelationshipUserRemoveFailed => "Kullanıcı kaldırma işlemi başarısız";
-        public string UCCheckListNote => "Not: Bir kullanıcı en fazla 3 kişi ile çalışabilir. Başkası ile çalışan kullanıcı yeni çalışma arkaşı ekleyemez";
+        public string UCCheckListNote => "Not: Bir kullanıcı en fazla 3 kişi ile çalışabilir.\nBaşkası ile çalışan kullanıcı yeni çalışma arkaşı ekleyemez";
+        public string UCCheckListOtherRelation => "Başkasıyla çalışıyorsun. Çalışma ayarlarını o yönetiyor.";
         #endregion
     }
 }

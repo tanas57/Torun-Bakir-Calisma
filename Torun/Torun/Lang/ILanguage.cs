@@ -300,6 +300,7 @@
         string UCChecklistRelationshipUserRemoveSuccess { get; }
         string UCChecklistRelationshipUserRemoveFailed { get; }
         string UCCheckListNote { get; }
+        string UCCheckListOtherRelation { get; }
         #endregion
     }
 }

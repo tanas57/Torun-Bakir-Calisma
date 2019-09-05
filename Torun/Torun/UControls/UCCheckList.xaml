@@ -69,7 +69,7 @@
                 </StackPanel>
             </TabItem>-->
         <TabItem Header="XXX" x:Name="relationShip" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
-                <StackPanel>
+                <StackPanel x:Name="relationStack">
                     <Label x:Name="relTitle" Content="XXX" Style="{DynamicResource textBlockTitle}" Margin="0,0,0,20"/>
                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -80,12 +80,15 @@
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Label x:Name="usersWithWorkLBL" Content="XXX" Width="200" Height="30" Margin="10,0,0,10"/>
                         <ListBox x:Name="listBoxUser" Width="230" Height="100" Margin="10,0,0,10"/>
-                        <Button x:Name="delRel" Click="DelRel_Click" Content="XXX" Height="30" Style="{DynamicResource weeklyPlanSortButtons}"/>
+                        <Button x:Name="delRel" Click="DelRel_Click" Content="XXX" Height="30" Width="120" Style="{DynamicResource weeklyPlanSortButtons}"/>
                     </StackPanel>
-                    <Label Content="XXX" x:Name="checkListNote"/>
+                    <StackPanel>
+                        <Label Content="XXX" x:Name="checkListNote"/>
+                        <Label x:Name="relWorkFriend" Content="XXX" Foreground="White" Background="Red" FontFamily="corbet" FontSize="14"/>
+                    </StackPanel>
                 </DockPanel>
                 <Label x:Name="relResult" Content="XXX" Foreground="White" FontFamily="corbet" FontSize="14"/>
-                </StackPanel>
+            </StackPanel>
             </TabItem>
         <TabItem Header="Raporlama" x:Name="checklistReport" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
 

@@ -22,6 +22,7 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public User User { get; set; }
+        private User Relation { get; set; }
         private List<CheckListObject> GridSource { get; set; }
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
@@ -60,7 +61,7 @@ namespace Torun.UControls
             {
                 ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
             }
-            DB.UpdateCheckListRecord(User, ticks, DateTime.Now.Date);
+            DB.UpdateCheckListRecord(Relation, ticks, DateTime.Now.Date);
         }
         /// <summary>
         /// get changes from database if is it exists, otherwise create new record.
@@ -68,14 +69,13 @@ namespace Torun.UControls
         private void GetChanges()
         {
             DateTime today = DateTime.Now.Date;
-            RoutineWorkRecord user_record = DB.GetCheckListRecord(User, today);
-            
+            RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, today);
+            string asd = user_record.work_Ticks + user_record.id;
             if(user_record != null)
             {
-                string deneme = user_record.work_Ticks;
                 string[] ids = user_record.work_Ticks.Split('*');
                 
-                for (int i = 2; i < ids.Length; i++)
+                for (int i = 1; i < ids.Length; i++)
                 {
                     string[] workID_parse = ids[i].Split(':');
 
@@ -106,7 +106,7 @@ namespace Torun.UControls
                 {
                     ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
                 }
-                DB.AddCheckListRecord(User, ticks, today);
+                DB.AddCheckListRecord(Relation, ticks, today);
             }
         }
         /// <summary>
@@ -115,12 +115,17 @@ namespace Torun.UControls
         /// </summary>
         public void ReloadCheckList()
         {
-            RoutineWorks = DB.GetRoutineWorks(User);
+            Relation = DB.GetUsersRelationShipWithOtherUser(User);
+
+            // user has a relation list 
+            if(Relation != User) relationStack.IsEnabled = false;
+
+            RoutineWorks = DB.GetRoutineWorks(Relation);
             Grid_Checklist.ItemsSource = RoutineWorks;
 
             WorkCount = Grid_Checklist.Items.Count;
 
-            var users = DB.GetUsers(User);
+            var users = DB.GetUsers(Relation);
             userList.Items.Clear();
 
             foreach (var item in users)
@@ -128,7 +133,7 @@ namespace Torun.UControls
                 userList.Items.Add(item.FullName + " - " + item.UserID);
             }
 
-            var workWithUser = DB.GetUsersRelationShip(User);
+            var workWithUser = DB.GetUsersRelationShip(Relation);
             listBoxUser.Items.Clear();
             foreach (var item in workWithUser)
             {
@@ -142,7 +147,6 @@ namespace Torun.UControls
             addNewWork.ToolTip = Lang.UCChecklistAddNewPage;
             gridProcessColumn.Header = Lang.UCTodoListProcesses;
             gridDescriptionColumn.Header = Lang.UCChecklistRoutineWork;
-            ReloadCheckList();
 
             relTitle.Content = Lang.UCChecklistRelationshipTitle;
             userListLBL.Content = Lang.UCChecklistRelationshipUserList;
@@ -151,6 +155,7 @@ namespace Torun.UControls
             relationShipSave.Content = Lang.UCChecklistRelationshipAddUser;
             relationShip.Header = Lang.UCChecklistRelationshipWorkWith;
             checkListNote.Content = Lang.UCCheckListNote;
+            relWorkFriend.Content = Lang.UCCheckListOtherRelation;
 
             ReloadCheckList(); // mainpage checklist load
             RefreshMainPage(); // refresh other listboxes
@@ -169,7 +174,7 @@ namespace Torun.UControls
         private void RefreshMainPage()
         {
             ChecklistDockPanel.Children.Clear();
-            listBoxUser.Items.Add(User.firstname + " " + User.lastname + " - " + User.id);
+            listBoxUser.Items.Add(Relation.firstname + " " + Relation.lastname + " - " + Relation.id);
 
             Grid_CheckList.Columns.Clear();
 
