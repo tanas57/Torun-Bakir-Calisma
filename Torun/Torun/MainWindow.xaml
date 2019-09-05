@@ -66,43 +66,43 @@
                         <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_toDo" Click="Btn_toDo_Click">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/menu_todo_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuTodo" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuTodo" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
                         <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_WeeklyPlan" Click="Btn_WeeklyPlan_Click">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/menu_planning_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="btnWorkDone" Click="BtnWorkDone_Click" Height="50" Style="{DynamicResource menuButtons}">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/menu_completed_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuWordDone" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuWordDone" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="btnReport" Click="BtnReport_Click" Height="50" Style="{DynamicResource menuButtons}">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/calendar_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuReport" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuReport" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="btnCheckList" Click="BtnCheckList_Click" Height="50" Style="{DynamicResource menuButtons}">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/checklist_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuCheckList" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuCheckList" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="menuSettings" Click="MenuSettings_Click" Height="50" Style="{DynamicResource menuButtons}">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/settings_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuSettings" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuSettings" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
                         <Button x:Name="btnBackup" Height="50" Style="{DynamicResource menuButtons}" Click="BtnBackup_Click">
                             <DockPanel Width="200" Margin="15,0,0,0">
                                 <Image Source="/images/icon/red/backup_red.png" Width="32"/>
-                                <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="Black" FontSize="16"/>
+                                <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
 
