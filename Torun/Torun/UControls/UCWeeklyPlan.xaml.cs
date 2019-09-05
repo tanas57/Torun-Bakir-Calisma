@@ -167,9 +167,9 @@ namespace Torun.UControls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            int gridWidth = 155; // if form size changed, size must be increase.
-            if (mainWindow.WindowState == WindowState.Normal) gridWidth = 150;
-            else gridWidth += ((int)SystemParameters.WorkArea.Width - 1030) / 5;
+            double gridWidth = 159; // if form size changed, size must be increase.
+            if (mainWindow.WindowState == WindowState.Normal) gridWidth = 159;
+            else gridWidth += ((int)SystemParameters.WorkArea.Width - 997) / 5;
             gridCell0.Width = gridWidth; gridCell1.Width = gridWidth; gridCell2.Width = gridWidth;
             gridCell3.Width = gridWidth; gridCell4.Width = gridWidth;
         }

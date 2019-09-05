@@ -141,8 +141,18 @@ namespace Torun.UControls
                 grid2PlanDate.Width = 285;
                 grid2DoneDate.Width = 285;
                 grid2workDoneWorkDoneTime.Width = 650;
-                ReportGridPlan.MaxWidth = 780;
-                ReportGridPlan.MaxHeight = 430;
+
+                ReportGridPlan.MaxWidth = 830;
+                ReportGridPlan.MaxHeight = 470;
+
+                ReportGridPlan.Width = 825;
+                ReportGridPlan.Height = 465;
+
+                grid_onlyWorkdone.Width = 825;
+                grid_onlyWorkdone.Height = 465;
+
+                grid_both.Width = 825;
+                grid_both.Height = 465;
             }
             else
             {
@@ -150,8 +160,17 @@ namespace Torun.UControls
                 grid1AddDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
                 grid2PlanDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
                 grid2DoneDate.Width = 285 + (int)(SystemParameters.WorkArea.Width - 1000) / 2;
-                ReportGridPlan.MaxWidth = 780 + ((int)(SystemParameters.WorkArea.Width - 1000));
-                ReportGridPlan.MaxHeight = 430 + ((int)(SystemParameters.WorkArea.Height - 610));
+                ReportGridPlan.MaxWidth = 830 + ((int)(SystemParameters.WorkArea.Width - 1000));
+                ReportGridPlan.MaxHeight = 465 + ((int)(SystemParameters.WorkArea.Height - 610));
+                ReportGridPlan.Width = 825 + ((int)(SystemParameters.WorkArea.Width - 1000));
+                ReportGridPlan.Height = 460 + ((int)(SystemParameters.WorkArea.Height - 610));
+
+                grid_onlyWorkdone.Width = 825 + ((int)(SystemParameters.WorkArea.Width - 1000));
+                grid_onlyWorkdone.Height = 460 + ((int)(SystemParameters.WorkArea.Height - 610));
+
+                grid_both.Width = 825 + ((int)(SystemParameters.WorkArea.Width - 1000)); ;
+                grid_both.Height = 460 + ((int)(SystemParameters.WorkArea.Height - 610));
+
                 grid2workDoneWorkDoneTime.Width = 650 + ((int)(SystemParameters.WorkArea.Width - 1093));
             }
         }

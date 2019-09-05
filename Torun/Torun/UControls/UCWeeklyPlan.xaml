@@ -17,7 +17,7 @@
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <!-- add button is here-->
-                <Border Grid.Row="0" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
+                <Border Grid.Row="0" Background="#FFF0F0F0" BorderBrush="White" BorderThickness="0,3,0,0">
                     <DockPanel>
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center">
                             <DockPanel>
@@ -57,7 +57,7 @@
                             <!--<Label x:Name="lbl_currentTime" Content="XXX" Foreground="White" Margin="10,-4,0,0"/>-->
                             <DatePicker IsTodayHighlighted="False" MouseEnter="Date_picker_MouseEnter" x:Name="date_picker" BorderThickness="0" Margin="10,2,0,0" CalendarClosed="Date_picker_CalendarClosed" KeyUp="Date_picker_KeyUp" MaxWidth="133" />
                             <DockPanel>
-                                <TextBlock x:Name="lbl_dates" Text="15.07.2019 - 19.07.2019" Foreground="White" FontSize="14"/>
+                                <TextBlock x:Name="lbl_dates" Text="15.07.2019 - 19.07.2019" Foreground="Crimson" FontSize="14"/>
                             </DockPanel>
                         </StackPanel>
                     </DockPanel>

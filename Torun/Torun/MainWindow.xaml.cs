@@ -221,8 +221,8 @@ namespace Torun
                 this.WindowState = WindowState.Maximized;
                 if (uCTodoList != null)
                 {
-                    if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 600;
-                    else uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 810;
+                    if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 555;
+                    else uCTodoList.Grid_todoList.Columns[4].Width = SystemParameters.PrimaryScreenWidth - 765;
                 }
             }
             else
@@ -230,8 +230,8 @@ namespace Torun
                 this.WindowState = WindowState.Normal;
                 if (uCTodoList != null)
                 {
-                    if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = 420;
-                    else uCTodoList.Grid_todoList.Columns[4].Width = 230;
+                    if (!uCTodoList.buttonDetail) uCTodoList.Grid_todoList.Columns[4].Width = 465;
+                    else uCTodoList.Grid_todoList.Columns[4].Width = 275;
                 }
             }
         }

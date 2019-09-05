@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Torun.UControls"
              mc:Ignorable="d" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TabControl x:Name="tabControl" Width="775" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Background="AliceBlue" >
+             d:DesignHeight="495" d:DesignWidth="845">
+    <TabControl x:Name="tabControl" VerticalAlignment="Top" Background="#FFF0F0F0" >
             <TabItem Header="XXX" x:Name="checklistTabUpdate" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -17,67 +16,79 @@
                     <Border Grid.Row="0">
                         <DockPanel x:Name="ChecklistDockPanel" Margin="350,0,0,0"/>
                     </Border>
-                    <DataGrid CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"/>
+                    <DataGrid CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" />
                 </Grid>
             </TabItem>
             <TabItem Header="XXX" x:Name="checklistTabInSystem">
-                <DataGrid Width="780" Height="445" x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0">
+                    <DataGrid x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                        <DataGridTextColumn x:Name="gridDescriptionColumn"  MinWidth="635" CanUserReorder="False" Binding="{Binding Path=work_description}" IsReadOnly="True" Header="XXX"/>
-                        <DataGridTemplateColumn MinWidth="140" Header="XXX" x:Name="gridProcessColumn">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DockPanel>
-                                        <Button x:Name="btn_workEdit" Click="Btn_workEdit_Click" Style="{DynamicResource gridButtons}">
-                                            <DockPanel>
-                                                <Image Source="/images/screen/main/edit.png" Width="19"/>
-                                                <Label Content="Düzenle"/>
-                                            </DockPanel>
-                                        </Button>
-                                        <Button x:Name="btn_workDelete" Style="{DynamicResource gridButtons}" Click="Btn_workDelete_Click">
-                                            <DockPanel>
-                                                <Image Source="/images/screen/main/delete.png" Width="19"/>
-                                                <Label Content="Sil"/>
-                                            </DockPanel>
-                                        </Button>
-                                    </DockPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-            <TabItem Header="XXX" x:Name="checklistTabAddNew">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
+                            <DataGridTextColumn x:Name="gridDescriptionColumn"  MinWidth="635" CanUserReorder="False" Binding="{Binding Path=work_description}" IsReadOnly="True" Header="XXX"/>
+                            <DataGridTemplateColumn MinWidth="140" Header="XXX" x:Name="gridProcessColumn">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DockPanel>
+                                            <Button x:Name="btn_workEdit" Click="Btn_workEdit_Click" Style="{DynamicResource gridButtons}">
+                                                <DockPanel>
+                                                    <Image Source="/images/screen/main/edit.png" Width="19"/>
+                                                    <Label Content="Düzenle"/>
+                                                </DockPanel>
+                                            </Button>
+                                            <Button x:Name="btn_workDelete" Style="{DynamicResource gridButtons}" Click="Btn_workDelete_Click">
+                                                <DockPanel>
+                                                    <Image Source="/images/screen/main/delete.png" Width="19"/>
+                                                    <Label Content="Sil"/>
+                                                </DockPanel>
+                                            </Button>
+                                        </DockPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+                <Border Grid.Row="1">
+                    <Image ToolTip="xxx" x:Name="addNewWork" Cursor="Hand" MouseDown="AddNewWork_MouseDown" Source="/images/icon/red/plus.png" Width="35" Height="35" HorizontalAlignment="Right" Margin="0,-15,50,0"/>
+                </Border>
+            </Grid>
+        </TabItem>
+            <!--<TabItem Header="XXX" x:Name="checklistTabAddNew">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Label Content="XXX" x:Name="routineAddLbl"/>
                     <TextBox VerticalContentAlignment="Center" x:Name="workDescription" Height="40" Width="400" BorderBrush="#FFCF2C2C" Background="White" Foreground="#FFD11616" FontSize="14"/>
                     <Button x:Name="addWork" Click="AddWork_Click" Content="XXX" Height="40" Width="400" Margin="0,15,0,0" Style="{DynamicResource weeklyPlanSortButtons}"/>
                     <Label x:Name="result" Content="" Height="30" Margin="0,30,0,0" Foreground="White"/>
                 </StackPanel>
-            </TabItem>
+            </TabItem>-->
             <TabItem Header="XXX" x:Name="relationShip">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel>
                     <Label x:Name="relTitle" Content="XXX" Style="{DynamicResource textBlockTitle}" Margin="0,0,0,20"/>
-                    <DockPanel>
+                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Label x:Name="userListLBL" Content="XXX" Height="30" Width="200"/>
-                        <Label x:Name="usersWithWorkLBL" Content="XXX" Width="200" Height="30" Margin="10,0,0,10"/>
-                    </DockPanel>
-                    <DockPanel>
                         <ComboBox x:Name="userList" Height="30" Width="200"/>
-                        <ListBox x:Name="listBoxUser" Width="200" Height="100" Margin="10,0,0,10"/>
-
-                        <DockPanel>
-                            <Button x:Name="delRel" Click="DelRel_Click" Content="XXX" Height="30" Style="{DynamicResource weeklyPlanSortButtons}"/>
-                        </DockPanel>
-                    </DockPanel>
-                    <Button x:Name="relationShipSave" Click="RelationShipSave_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}" HorizontalAlignment="Left"/>
-                    <Label x:Name="relResult" Content="XXX" Foreground="White" FontFamily="corbet" FontSize="14"/>
+                        <Button x:Name="relationShipSave" Click="RelationShipSave_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label x:Name="usersWithWorkLBL" Content="XXX" Width="200" Height="30" Margin="10,0,0,10"/>
+                        <ListBox x:Name="listBoxUser" Width="230" Height="100" Margin="10,0,0,10"/>
+                        <Button x:Name="delRel" Click="DelRel_Click" Content="XXX" Height="30" Style="{DynamicResource weeklyPlanSortButtons}"/>
+                    </StackPanel>
+                    <Label Content="XXX" x:Name="checkListNote"/>
+                </DockPanel>
+                <Label x:Name="relResult" Content="XXX" Foreground="White" FontFamily="corbet" FontSize="14"/>
                 </StackPanel>
             </TabItem>
-        </TabControl>
+        <TabItem Header="Raporlama" x:Name="checklistReport">
 
-    </Grid>
+        </TabItem>
+    </TabControl>
 </UserControl>

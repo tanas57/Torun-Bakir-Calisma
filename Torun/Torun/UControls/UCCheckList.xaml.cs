@@ -110,33 +110,10 @@ namespace Torun.UControls
             }
         }
         /// <summary>
-        /// add new item to routine work list
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddWork_Click(object sender, RoutedEventArgs e)
-        {
-            if(!(workDescription.Text.Length > 3))
-            {
-                result.Content = Lang.UCChecklistAddError;
-                result.Background = Brushes.Red;
-            }
-            else
-            {
-                if (DB.AddRoutineWork(new RoutineWork() { user_id = User.id, work_description = workDescription.Text }) > 0)
-                {
-                    result.Content = Lang.UCChecklistAddSuccess;
-                    result.Background = Brushes.Green;
-                    workDescription.Text = "";
-                    ReloadCheckList();
-                }
-            }
-        }
-        /// <summary>
         /// Refresh checklist pages; 
         /// datagrids, listboxes, and comboboxes
         /// </summary>
-        private void ReloadCheckList()
+        public void ReloadCheckList()
         {
             RoutineWorks = DB.GetRoutineWorks(User);
             Grid_Checklist.ItemsSource = RoutineWorks;
@@ -160,11 +137,9 @@ namespace Torun.UControls
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            addWork.Content = Lang.ButtonAdd;
-            routineAddLbl.Content = Lang.UCChecklistAddLbl;
             checklistTabUpdate.Header = Lang.UCChecklistUpdatePage;
             checklistTabInSystem.Header = Lang.UCChecklistInSystemPage;
-            checklistTabAddNew.Header = Lang.UCChecklistAddNewPage;
+            addNewWork.ToolTip = Lang.UCChecklistAddNewPage;
             gridProcessColumn.Header = Lang.UCTodoListProcesses;
             gridDescriptionColumn.Header = Lang.UCChecklistRoutineWork;
             ReloadCheckList();
@@ -175,6 +150,7 @@ namespace Torun.UControls
             delRel.Content = Lang.UCChecklistRelationshipRemoveUser;
             relationShipSave.Content = Lang.UCChecklistRelationshipAddUser;
             relationShip.Header = Lang.UCChecklistRelationshipWorkWith;
+            checkListNote.Content = Lang.UCCheckListNote;
 
             ReloadCheckList(); // mainpage checklist load
             RefreshMainPage(); // refresh other listboxes
@@ -264,22 +240,25 @@ namespace Torun.UControls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(mainWindow.WindowState == WindowState.Maximized)
+            if (mainWindow.WindowState == WindowState.Maximized)
             {
-                tabControl.Width  = SystemParameters.PrimaryScreenWidth - 230;
-                tabControl.Height = SystemParameters.PrimaryScreenHeight - 180;
-                Grid_Checklist.Width += SystemParameters.PrimaryScreenWidth - 1000;
-                Grid_Checklist.Height += SystemParameters.PrimaryScreenHeight - 650;
-                Grid_CheckList.Width += SystemParameters.PrimaryScreenWidth - 1000;
-                Grid_CheckList.Height += SystemParameters.PrimaryScreenHeight - 650;
-                gridDescriptionColumn.MinWidth +=(double) SystemParameters.PrimaryScreenWidth - 1000;
+                tabControl.Height = (double)SystemParameters.FullPrimaryScreenHeight - 80;
+                tabControl.Width = (double)SystemParameters.PrimaryScreenWidth - 180;
+                Grid_Checklist.Width += tabControl.Width - 10;
+                Grid_Checklist.Height += tabControl.Height - 10;
+                Grid_CheckList.Width += tabControl.Width - 10;
+                Grid_CheckList.Height += tabControl.Height - 10;
+                gridDescriptionColumn.MinWidth += (double)SystemParameters.PrimaryScreenWidth - 1000;
             }
             else
             {
-                tabControl.Width = 775;
-                tabControl.Height = 480;
-                Grid_Checklist.Width = 780;
-                gridDescriptionColumn.MinWidth = 635;
+                tabControl.Width = 820;
+                tabControl.Height = 560;
+                Grid_CheckList.Width += tabControl.Width - 10;
+                Grid_CheckList.Height += tabControl.Height - 15;
+                Grid_Checklist.Width += tabControl.Width - 10;
+                Grid_Checklist.Height += tabControl.Height - 35;
+                gridDescriptionColumn.MinWidth = 495;
             }
         }
 
@@ -373,6 +352,15 @@ namespace Torun.UControls
             var currentRowIndex = Grid_CheckList.Items.IndexOf(Grid_CheckList.CurrentItem);
             Grid_CheckList.SelectedIndex = currentRowIndex;
             Changed();
+        }
+
+        private void AddNewWork_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            AddNewRoutineWork add = new AddNewRoutineWork();
+            add.Owner = mainWindow;
+            mainWindow.Opacity = 0.5;
+            add.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            add.ShowDialog();
         }
     }
 }

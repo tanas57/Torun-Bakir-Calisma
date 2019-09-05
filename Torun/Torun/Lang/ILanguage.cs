@@ -299,6 +299,7 @@
         string UCChecklistRelationshipUserAddFailed{ get; }
         string UCChecklistRelationshipUserRemoveSuccess { get; }
         string UCChecklistRelationshipUserRemoveFailed { get; }
+        string UCCheckListNote { get; }
         #endregion
     }
 }

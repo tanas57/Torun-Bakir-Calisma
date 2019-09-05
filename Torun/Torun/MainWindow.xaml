@@ -7,188 +7,189 @@
         Title="Plan Takip - Torun" Height="650" Width="1000" MinHeight="600" MinWidth="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Icon="/images/torun.ico" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="170"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="37"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0"></ColumnDefinition>
-            <ColumnDefinition Width="44.841"/>
-            <ColumnDefinition Width="175.159"/>
-            <ColumnDefinition></ColumnDefinition>
-
-        </Grid.ColumnDefinitions>
-        <!-- logo ve button -->
-        <Border Background="#B0151E" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+        <!-- top bar -->
+        <Border Grid.Row="0">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="55"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" x:Name="brd_topLogo" MouseDown="Brd_topLogo_MouseDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!-- left side-->
+                <Border Grid.Column="0" Background="#B0151E" x:Name="brd_topLogo" MouseDown="Brd_topLogo_MouseDown">
                     <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="/images/icon/topbarlogo.png" Width="32" Height="32"></Image>
                         <Label x:Name="mainPage_title" Content="XXX" Foreground="White" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
                     </DockPanel>
                 </Border>
-                <Border Grid.Row="1">
-                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Image Margin="0,-33,0,0">
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Source" Value="/images/icon/biglogo_white.png"/>
-                                    <Setter Property="Height" Value="140"/>
-                                    <Setter Property="Width" Value="140"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <!--<Setter Property="Source" Value="/images/icon/biglogo_blue.png"/>-->
-                                            <Setter Property="Width" Value="150"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
-                    </DockPanel>
-                </Border>
-
-            </Grid>
-        </Border>
-        <!-- mini buttonlar & header-->
-        <Border Background="#B0151E" Grid.Column="3" Grid.Row="0">
-            <Grid>
-                <Grid.Effect>
-                    <DropShadowEffect Color="#FFB0151E"/>
-                </Grid.Effect>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"></RowDefinition>
-                    <RowDefinition>
-
-                    </RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <Border Grid.Row="0" Background="White" x:Name="brd_top" MouseDown="Brd_top_MouseDown">
+                <!-- right side -->
+                <Border Grid.Column="1" Background="#FFF0F0F0" x:Name="brd_top" MouseDown="Brd_top_MouseDown">
                     <DockPanel HorizontalAlignment="Right" Width="100">
                         <Button Content="__" Style="{DynamicResource miniButtons}" x:Name="btnFormDown" Click="BtnFormDown_Click"></Button>
                         <Button Content="O" Style="{DynamicResource miniButtons}" x:Name="btnFormUp" Click="BtnFormUp_Click"/>
                         <Button Content="X" Style="{DynamicResource miniButtons}" x:Name="btnClose" Click="BtnClose_Click"/>
                     </DockPanel>
                 </Border>
+            </Grid>
 
-                <Border Grid.Row="1" Background="#B0151E">
+        </Border>
+        <!-- header and content-->
+        <Border Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!-- left side menu-->
+                <Border Grid.Column="0" Background="#FFF0F0F0" BorderThickness="0,0,2,0" BorderBrush="#FFD6D6D6">
+                    
+                    <StackPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image>
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="/images/torun_red_logo.png"/>
+                                        <Setter Property="Height" Value="140"/>
+                                        <Setter Property="Width" Value="140"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <!--<Setter Property="Source" Value="/images/icon/biglogo_blue.png"/>-->
+                                                <Setter Property="Width" Value="150"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </DockPanel>
+                        <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_toDo" Click="Btn_toDo_Click">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/menu_todo_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuTodo" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+                        <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_WeeklyPlan" Click="Btn_WeeklyPlan_Click">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/menu_planning_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="btnWorkDone" Click="BtnWorkDone_Click" Height="50" Style="{DynamicResource menuButtons}">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/menu_completed_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuWordDone" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="btnReport" Click="BtnReport_Click" Height="50" Style="{DynamicResource menuButtons}">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/calendar_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuReport" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="btnCheckList" Click="BtnCheckList_Click" Height="50" Style="{DynamicResource menuButtons}">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/checklist_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuCheckList" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="menuSettings" Click="MenuSettings_Click" Height="50" Style="{DynamicResource menuButtons}">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/settings_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuSettings" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+                        <Button x:Name="btnBackup" Height="50" Style="{DynamicResource menuButtons}" Click="BtnBackup_Click">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/backup_red.png" Width="32"/>
+                                <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="Black" FontSize="16"/>
+                            </DockPanel>
+                        </Button>
+
+                        <Canvas x:Name="version">
+                            <Border Canvas.Left="10" Canvas.Top="88" CornerRadius="10,10,10,10">
+                                <Label MouseDown="MenuVersion_MouseEnter" x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background" Value="#99384757"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#CC053D76"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+
+                            </Border>
+                        </Canvas>
+                    </StackPanel>
+                </Border>
+                <!-- content and header info menu-->
+                <Border Grid.Column="1">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="385"/>
+                            <ColumnDefinition Width="46*"/>
+                            <ColumnDefinition Width="119*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0">
-                            <StackPanel Margin="30,20,0,0">
-                                <DockPanel>
-                                    <Label x:Name="mainPage_totalRequest" Content="XXX : " Foreground="White" FontSize="19"/>
-                                    <Label x:Name="requestCount" Content="XXX" Foreground="#FFEEB8B8" FontSize="19" Background="#00000000"/>
-                                </DockPanel>
-                                <DockPanel>
-                                    <Label x:Name="mainPage_openRequest" Content="XXX : " Foreground="White" FontSize="14"/>
-                                    <Label x:Name="requestOpen" Content="0" Foreground="#FF9BE897" FontSize="14"/>
-                                    <Label x:Name="mainPage_closedRequest" Content="XXX : " Foreground="White" FontSize="14"/>
-                                    <Label x:Name="requestClosed" Content="0" Foreground="#FF93F5F9" FontSize="14"/>
-                                </DockPanel>
-                            </StackPanel>
-                        </Border>
-                        <Border Grid.Column="1">
-                            <StackPanel Margin="30,15,10,0">
-                                <DockPanel>
-                                    <Ellipse Width="100" Height="100" x:Name="photoChange" MouseDown="PhotoChange_MouseDown" Cursor="Hand" HorizontalAlignment="Right">
-                                        <Ellipse.Fill>
-                                            <ImageBrush x:Name="ellipsePhoto" ImageSource="/images/icon/employee.png"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    
-                                    <Label Margin="0,-10,0,0" x:Name="menuUsername" Content="XXX" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
-                                </DockPanel>
-                                <DockPanel Margin="110, -35, 0,0">
-                                    <Button Style="{DynamicResource buttonRedBorder2}" x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">
-                                        <DockPanel Margin="0,0,0,0">
-                                            <Image Source="/images/icon/exit.png" Height="24" Width="24"></Image>
-                                            <Label x:Name="mainPage_logOut" Content="XXX" Foreground="White" FontSize="17"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!-- header menu-->
+                        <Border Grid.Row="0" Background="#B0151E" Grid.ColumnSpan="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="385"/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <StackPanel Margin="30,5,0,0">
+                                        <DockPanel>
+                                            <Label x:Name="mainPage_totalRequest" Content="XXX : " Foreground="White" FontSize="19"/>
+                                            <Label x:Name="requestCount" Content="XXX" Foreground="#FFEEB8B8" FontSize="19" Background="#00000000"/>
                                         </DockPanel>
-                                    </Button>
-                                </DockPanel>
-                               
-                            </StackPanel>
+                                        <DockPanel>
+                                            <Label x:Name="mainPage_openRequest" Content="XXX : " Foreground="White" FontSize="14"/>
+                                            <Label x:Name="requestOpen" Content="0" Foreground="#FF9BE897" FontSize="14"/>
+                                            <Label x:Name="mainPage_closedRequest" Content="XXX : " Foreground="White" FontSize="14"/>
+                                            <Label x:Name="requestClosed" Content="0" Foreground="#FF93F5F9" FontSize="14"/>
+                                        </DockPanel>
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1">
+                                    <StackPanel Margin="30,3,10,0">
+                                        <DockPanel>
+                                            <Ellipse Width="65" Height="65" x:Name="photoChange" MouseDown="PhotoChange_MouseDown" Cursor="Hand" HorizontalAlignment="Right">
+                                                <Ellipse.Fill>
+                                                    <ImageBrush x:Name="ellipsePhoto" ImageSource="/images/icon/employee.png"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+
+                                            <Label Margin="0,-18,0,0" x:Name="menuUsername" Content="XXX" Foreground="White" FontSize="19" Height="40" HorizontalContentAlignment="Center" />
+                                        </DockPanel>
+                                        <DockPanel Margin="110, -40, 15,0">
+                                            <Button Style="{DynamicResource buttonRedBorder2}" x:Name="menu_userLogout" Height="50" Background="{x:Null}" Click="Menu_userLogout_Click">
+                                                <DockPanel Margin="0,0,0,0">
+                                                    <Image Source="/images/icon/exit.png" Height="24" Width="24"></Image>
+                                                    <Label x:Name="mainPage_logOut" Content="XXX" Foreground="White" FontSize="17"/>
+                                                </DockPanel>
+                                            </Button>
+                                        </DockPanel>
+
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <!-- content -->
+                        <Border Grid.Row="1" Grid.ColumnSpan="2">
+                            <Grid x:Name="Grd_Content">
+                                <Image Source="/images/torun-logo-2.png" Opacity="0.3"/>
+                            </Grid>
                         </Border>
                     </Grid>
                 </Border>
-
-            </Grid>
-        </Border>
-        <!-- left menu-->
-        <Border Background="#B0151E" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" >
-            <StackPanel>
-                <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_toDo" Click="Btn_toDo_Click">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/menu_todo.png" Width="32"/>
-                        <Label x:Name="mainPage_menuTodo" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                <Button Height="50" Style="{DynamicResource menuButtons}" x:Name="btn_WeeklyPlan" Click="Btn_WeeklyPlan_Click">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/menu_planning.png" Width="32"/>
-                        <Label x:Name="mainPage_menuWeeklyPlan" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                <Button x:Name="btnWorkDone" Click="BtnWorkDone_Click" Height="50" Style="{DynamicResource menuButtons}">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/menu_completed.png" Width="32"/>
-                        <Label x:Name="mainPage_menuWordDone" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                <Button x:Name="btnReport" Click="BtnReport_Click" Height="50" Style="{DynamicResource menuButtons}">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/calendar.png" Width="32"/>
-                        <Label x:Name="mainPage_menuReport" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                <Button x:Name="btnCheckList" Click="BtnCheckList_Click" Height="50" Style="{DynamicResource menuButtons}">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/checklist.png" Width="32"/>
-                        <Label x:Name="mainPage_menuCheckList" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                <Button x:Name="menuSettings" Click="MenuSettings_Click" Height="50" Style="{DynamicResource menuButtons}">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/settings.png" Width="32"/>
-                        <Label x:Name="mainPage_menuSettings" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                <Button x:Name="btnBackup" Height="50" Style="{DynamicResource menuButtons}" Click="BtnBackup_Click">
-                    <DockPanel Width="200" Margin="15,0,0,0">
-                        <Image Source="/images/icon/backup.png" Width="32"/>
-                        <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="White" FontSize="16"/>
-                    </DockPanel>
-                </Button>
-                
-                <Canvas x:Name="version">
-                    <Border Canvas.Left="35" Canvas.Top="143" CornerRadius="10,10,10,10">
-                        <Label MouseDown="MenuVersion_MouseEnter" x:Name="MenuVersion" Content="0.0.0.1" Foreground="White" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Cursor="Hand" Background="#FFCD323B"/>
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Background" Value="#99384757"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#CC053D76"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-
-                    </Border>
-                </Canvas>
-            </StackPanel>
-        </Border>
-        <!-- content -->
-        <Border Grid.Column="3" Grid.Row="1">
-            <Grid x:Name="Grd_Content">
-                <Image Source="/images/torun-logo-2.png" Opacity="0.8"/>
             </Grid>
         </Border>
     </Grid>
+
 </Window>

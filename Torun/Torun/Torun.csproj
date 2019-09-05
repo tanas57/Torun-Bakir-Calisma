@@ -176,6 +176,9 @@
     <Compile Include="UControls\UCWorkDone.xaml.cs">
       <DependentUpon>UCWorkDone.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CheckList\AddNewRoutineWork.xaml.cs">
+      <DependentUpon>AddNewRoutineWork.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CheckList\EditRoutineWork.xaml.cs">
       <DependentUpon>EditRoutineWork.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UControls\UCWorkDone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CheckList\AddNewRoutineWork.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -408,7 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="torun.ico" />
-    <Resource Include="images\torun-logo-2.png" />
     <Resource Include="images\main_screen\Report\excel.png" />
     <Resource Include="images\main_screen\Report\pdf.png" />
     <Resource Include="images\main_screen\WeeklyPlan\change.png" />
@@ -441,6 +447,16 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\icon\red\plus.png" />
+    <Resource Include="images\torun-logo-2.png" />
+    <Resource Include="images\icon\red\backup_red.png" />
+    <Resource Include="images\icon\red\calendar_red.png" />
+    <Resource Include="images\icon\red\checklist_red.png" />
+    <Resource Include="images\icon\red\menu_completed_red.png" />
+    <Resource Include="images\icon\red\menu_planning_red.png" />
+    <Resource Include="images\icon\red\menu_todo_red.png" />
+    <Resource Include="images\icon\red\settings_red.png" />
+    <Resource Include="images\torun_red_logo.png" />
     <Resource Include="images\icon\checklist.png" />
   </ItemGroup>
   <ItemGroup>

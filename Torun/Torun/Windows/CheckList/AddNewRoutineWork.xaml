@@ -1,0 +1,45 @@
+﻿<Window x:Class="Torun.Windows.CheckList.AddNewRoutineWork"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" KeyUp="Window_KeyUp" Icon="/images/torun.ico" Loaded="Window_Loaded"
+        Title="addNewRoutinework" BorderBrush="#B0151E" BorderThickness="0,0,0,5" Height="200" Width="350" ResizeMode="NoResize" WindowStyle="None" Background="{x:Null}" Closing="Window_Closing" MouseDown="Window_MouseDown">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0">
+                    <Label Content="XXX"  FontSize="17" Padding="5" Foreground="White" Background="#B0151E" x:Name="routinWorkTitle" />
+                </Border>
+                <Border Grid.Column="1">
+                    <Button Content="X" Style="{DynamicResource buttonMiniClose}" x:Name="req_btnClose" Click="Req_btnClose_Click"/>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1">
+            <StackPanel>
+                <Label x:Name="workDescription" Content="XXX"/>
+                <DockPanel Margin="0,10,0,0">
+                    <TextBlock Width="267" Margin="5,0,0,5"><InlineUIContainer>
+                            <TextBox TabIndex="0" x:Name="dbDescription" Width="257" Height="80" TextWrapping="WrapWithOverflow"/>
+                        </InlineUIContainer></TextBlock>
+                    <Button HorizontalAlignment="Center" VerticalAlignment="Center" TabIndex="6" Cursor="Hand" x:Name="save" Click="Save_Click">
+                        <DockPanel>
+                            <Label Margin="0,0,0,0" Content="XXX" x:Name="saveLbl" Style="{DynamicResource label_weeklyPlan}" Height="33" Width="80"/>
+                        </DockPanel>
+                    </Button>
+                </DockPanel>
+                <Label x:Name="result" Margin="0,10,0,0"/>
+            </StackPanel>
+
+        </Border>
+    </Grid>
+</Window>

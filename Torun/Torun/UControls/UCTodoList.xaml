@@ -83,7 +83,7 @@
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
                             <DataGridTextColumn x:Name="ucTodolist_Priority" CanUserReorder="False" Binding="{Binding Path=PriorityString}" IsReadOnly="True" Header="XXX" MinWidth="40"/>
-                            <DataGridTextColumn x:Name="ucTodolist_Description" Binding="{Binding Path=Description}" CanUserSort="False" IsReadOnly="True" Header="XXX" Width="430">
+                            <DataGridTextColumn x:Name="ucTodolist_Description" Binding="{Binding Path=Description}" CanUserSort="False" IsReadOnly="True" Header="XXX" Width="475">
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <EventSetter Event="MouseDoubleClick" x:Name="DatagridDescription" Handler="DataGridCell_MouseDoubleClick"/>

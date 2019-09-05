@@ -60,10 +60,9 @@
                 <!-- report output -->
                 <Border x:Name="reportBorder" Grid.Row="2">
                     <StackPanel>
-                        <Grid x:Name="ReportGridPlan" MaxWidth="780" MaxHeight="430">
-
-                            <Image x:Name="TorunLogo" Source="/images/torun-logo-2.png" Opacity="0.8" Margin="0,80,0,0"/>
-                            <DataGrid VerticalScrollBarVisibility="Visible" x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                        <Grid x:Name="ReportGridPlan">
+                            <Image x:Name="TorunLogo" Source="/images/torun-logo-2.png" Opacity="0.3" Margin="0,80,0,0"/>
+                            <DataGrid x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
