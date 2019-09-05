@@ -49,6 +49,9 @@ namespace Torun.UControls
             public bool Weekly2 { get; set; }
             public bool Weekly3 { get; set; }
         }
+        /// <summary>
+        /// save all checklist changes to the database
+        /// </summary>
         private void SaveChanges()
         {
             // add new record
@@ -59,6 +62,9 @@ namespace Torun.UControls
             }
             DB.UpdateCheckListRecord(User, ticks, DateTime.Now.Date);
         }
+        /// <summary>
+        /// get changes from database if is it exists, otherwise create new record.
+        /// </summary>
         private void GetChanges()
         {
             DateTime today = DateTime.Now.Date;
@@ -103,6 +109,11 @@ namespace Torun.UControls
                 DB.AddCheckListRecord(User, ticks, today);
             }
         }
+        /// <summary>
+        /// add new item to routine work list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddWork_Click(object sender, RoutedEventArgs e)
         {
             if(!(workDescription.Text.Length > 3))
@@ -122,7 +133,8 @@ namespace Torun.UControls
             }
         }
         /// <summary>
-        /// Refresh checklist pages; datagrids, listboxes, and comboboxes
+        /// Refresh checklist pages; 
+        /// datagrids, listboxes, and comboboxes
         /// </summary>
         private void ReloadCheckList()
         {
@@ -254,18 +266,18 @@ namespace Torun.UControls
         {
             if(mainWindow.WindowState == WindowState.Maximized)
             {
-                tabControl.Width += SystemParameters.PrimaryScreenWidth - 1000;
+                tabControl.Width  = SystemParameters.PrimaryScreenWidth - 230;
+                tabControl.Height = SystemParameters.PrimaryScreenHeight - 180;
                 Grid_Checklist.Width += SystemParameters.PrimaryScreenWidth - 1000;
                 Grid_Checklist.Height += SystemParameters.PrimaryScreenHeight - 650;
                 Grid_CheckList.Width += SystemParameters.PrimaryScreenWidth - 1000;
                 Grid_CheckList.Height += SystemParameters.PrimaryScreenHeight - 650;
-                tabControl.Width += SystemParameters.PrimaryScreenWidth - 780;
-                tabControl.Height += SystemParameters.PrimaryScreenHeight - 450;
                 gridDescriptionColumn.MinWidth +=(double) SystemParameters.PrimaryScreenWidth - 1000;
             }
             else
             {
-                tabControl.Width = 780;
+                tabControl.Width = 775;
+                tabControl.Height = 480;
                 Grid_Checklist.Width = 780;
                 gridDescriptionColumn.MinWidth = 635;
             }
