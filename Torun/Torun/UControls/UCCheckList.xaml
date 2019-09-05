@@ -19,7 +19,7 @@
                     <DataGrid CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" />
                 </Grid>
             </TabItem>
-            <TabItem Header="XXX" x:Name="checklistTabInSystem">
+        <TabItem Header="XXX" x:Name="checklistTabInSystem" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -68,7 +68,7 @@
                     <Label x:Name="result" Content="" Height="30" Margin="0,30,0,0" Foreground="White"/>
                 </StackPanel>
             </TabItem>-->
-            <TabItem Header="XXX" x:Name="relationShip">
+        <TabItem Header="XXX" x:Name="relationShip" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
                 <StackPanel>
                     <Label x:Name="relTitle" Content="XXX" Style="{DynamicResource textBlockTitle}" Margin="0,0,0,20"/>
                 <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -87,7 +87,7 @@
                 <Label x:Name="relResult" Content="XXX" Foreground="White" FontFamily="corbet" FontSize="14"/>
                 </StackPanel>
             </TabItem>
-        <TabItem Header="Raporlama" x:Name="checklistReport">
+        <TabItem Header="Raporlama" x:Name="checklistReport" FontFamily="tahoma" FontSize="15" Foreground="#B0151E">
 
         </TabItem>
     </TabControl>
