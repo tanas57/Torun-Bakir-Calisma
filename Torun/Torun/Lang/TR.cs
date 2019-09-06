@@ -304,8 +304,8 @@
         #endregion
         // Report page
         #region
-        public string ReportComboTypeOnlyPlan => "Sadece Haftalık Plan";
-        public string ReportComboTypeOnlyWorkDone => "Sadece Yapılmış İşler";
+        public string ReportComboTypeOnlyPlan => "Haftalık Plan";
+        public string ReportComboTypeOnlyWorkDone => "Yapılmış İşler";
         public string ReportComboTypeBothofThem => "İkisi Birlikte";
         public string ReportLabelPlanWorkdone => "Listeleme Tipini Seçin : ";
         public string ReportLabelTimeInterval => "Zaman Aralığını Seçin : ";

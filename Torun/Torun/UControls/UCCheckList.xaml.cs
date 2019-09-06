@@ -33,10 +33,17 @@ namespace Torun.UControls
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
-            ReloadCheckList();
-            GridSource = new List<CheckListObject>();
-            CheckFirstFill = true;
-            for (int i = 0; i < WorkCount; i++) GridSource.Add(new CheckListObject());
+            try
+            {
+                ReloadCheckList();
+                GridSource = new List<CheckListObject>();
+                CheckFirstFill = true;
+                for (int i = 0; i < WorkCount; i++) GridSource.Add(new CheckListObject());
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucchecklist_constructor", error_text = ex.Message, log_user = User.id });
+            }
         }
         private class CheckListObject
         {
@@ -68,45 +75,51 @@ namespace Torun.UControls
         /// </summary>
         private void GetChanges()
         {
-            DateTime today = DateTime.Now.Date;
-            RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, today);
-            string asd = user_record.work_Ticks + user_record.id;
-            if(user_record != null)
+            try
             {
-                string[] ids = user_record.work_Ticks.Split('*');
-                
-                for (int i = 1; i < ids.Length; i++)
+                DateTime today = DateTime.Now.Date;
+                RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, today);
+                if (user_record != null)
                 {
-                    string[] workID_parse = ids[i].Split(':');
+                    string[] ids = user_record.work_Ticks.Split('*');
 
-                    int work_id = int.Parse(workID_parse[0]);
-
-                    for (int j = 0; j < GridSource.Count; j++)
+                    for (int i = 1; i < ids.Length; i++)
                     {
-                        if(GridSource[j].WorkID == work_id)
-                        {
-                            string[] parse = workID_parse[1].Split(',');
+                        string[] workID_parse = ids[i].Split(':');
 
-                            GridSource[j].Daily1 = bool.Parse(parse[0]);
-                            GridSource[j].Weekly1 = bool.Parse(parse[1]);
-                            GridSource[j].Daily2 = bool.Parse(parse[2]);
-                            GridSource[j].Weekly2 = bool.Parse(parse[3]);
-                            GridSource[j].Daily3 = bool.Parse(parse[4]);
-                            GridSource[j].Weekly3 = bool.Parse(parse[5]);
-                            break;
+                        int work_id = int.Parse(workID_parse[0]);
+
+                        for (int j = 0; j < GridSource.Count; j++)
+                        {
+                            if (GridSource[j].WorkID == work_id)
+                            {
+                                string[] parse = workID_parse[1].Split(',');
+
+                                GridSource[j].Daily1 = bool.Parse(parse[0]);
+                                GridSource[j].Weekly1 = bool.Parse(parse[1]);
+                                GridSource[j].Daily2 = bool.Parse(parse[2]);
+                                GridSource[j].Weekly2 = bool.Parse(parse[3]);
+                                GridSource[j].Daily3 = bool.Parse(parse[4]);
+                                GridSource[j].Weekly3 = bool.Parse(parse[5]);
+                                break;
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                // add new record
-                string ticks = "";
-                for (int i = 0; i < GridSource.Count; i++)
+                else
                 {
-                    ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
+                    // add new record
+                    string ticks = "";
+                    for (int i = 0; i < GridSource.Count; i++)
+                    {
+                        ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
+                    }
+                    DB.AddCheckListRecord(Relation, ticks, today);
                 }
-                DB.AddCheckListRecord(Relation, ticks, today);
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucchecklist_getchangesfunction", error_text = ex.Message, log_user = User.id });
             }
         }
         /// <summary>
@@ -115,29 +128,40 @@ namespace Torun.UControls
         /// </summary>
         public void ReloadCheckList()
         {
-            Relation = DB.GetUsersRelationShipWithOtherUser(User);
-
-            // user has a relation list 
-            if(Relation != User) relationStack.IsEnabled = false;
-
-            RoutineWorks = DB.GetRoutineWorks(Relation);
-            Grid_Checklist.ItemsSource = RoutineWorks;
-
-            WorkCount = Grid_Checklist.Items.Count;
-
-            var users = DB.GetUsers(Relation);
-            userList.Items.Clear();
-
-            foreach (var item in users)
+            try
             {
-                userList.Items.Add(item.FullName + " - " + item.UserID);
+                Relation = DB.GetUsersRelationShipWithOtherUser(User);
+
+                // user has a relation list 
+                if (Relation != User)
+                {
+                    relationStack.IsEnabled = false;
+                    relWorkFriend.Visibility = Visibility.Visible;
+                    relTitle.Foreground = Brushes.White;
+                }
+                RoutineWorks = DB.GetRoutineWorks(Relation);
+                Grid_Checklist.ItemsSource = RoutineWorks;
+
+                WorkCount = Grid_Checklist.Items.Count;
+
+                var users = DB.GetUsers(Relation);
+                userList.Items.Clear();
+
+                foreach (var item in users)
+                {
+                    userList.Items.Add(item.FullName + " - " + item.UserID);
+                }
+
+                var workWithUser = DB.GetUsersRelationShip(Relation);
+                listBoxUser.Items.Clear();
+                foreach (var item in workWithUser)
+                {
+                    listBoxUser.Items.Add(item.FullName + " - " + item.UserID);
+                }
             }
-
-            var workWithUser = DB.GetUsersRelationShip(Relation);
-            listBoxUser.Items.Clear();
-            foreach (var item in workWithUser)
+            catch (Exception ex)
             {
-                listBoxUser.Items.Add(item.FullName + " - " + item.UserID);
+                DB.AddLog(new Log { error_page = "ucchecklist_reloadfunction", error_text = ex.Message, log_user = User.id });
             }
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

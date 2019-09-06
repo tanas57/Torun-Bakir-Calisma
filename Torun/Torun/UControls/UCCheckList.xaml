@@ -84,7 +84,7 @@
                     </StackPanel>
                     <StackPanel>
                         <Label Content="XXX" x:Name="checkListNote"/>
-                        <Label x:Name="relWorkFriend" Content="XXX" Foreground="White" Background="Red" FontFamily="corbet" FontSize="14"/>
+                        <Label x:Name="relWorkFriend" Visibility="Hidden" Content="XXX" Foreground="White" Background="Red" FontFamily="corbet" FontSize="14"/>
                     </StackPanel>
                 </DockPanel>
                 <Label x:Name="relResult" Content="XXX" Foreground="White" FontFamily="corbet" FontSize="14"/>
