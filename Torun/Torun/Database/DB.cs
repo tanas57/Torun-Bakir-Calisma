@@ -412,6 +412,7 @@ namespace Torun.Database
                          select new WorkDoneList
                          {
                              WorkDoneID = done.id,
+                             WorkID = work.id,
                              RequestNumber = work.request_number,
                              WorkDoneTime = done.workDoneTime.Value,
                              Description = done.description
