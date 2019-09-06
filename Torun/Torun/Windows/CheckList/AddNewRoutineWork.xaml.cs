@@ -75,6 +75,7 @@ namespace Torun.Windows.CheckList
                 {
                     this.Close();
                     mainWindow.UCCheckList.ReloadCheckList();
+                    mainWindow.UCCheckList.IsAdded = true;
                 }
             }
         }

@@ -27,6 +27,7 @@ namespace Torun.UControls
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
         private bool CheckFirstFill { get; set; }
+        public bool IsAdded { get; set; }
         public UCCheckList()
         {
             InitializeComponent();
@@ -195,7 +196,7 @@ namespace Torun.UControls
             temp.IsReadOnly = false;
             dataGrid.Columns.Add(temp);
         }
-        private void RefreshMainPage()
+        public void RefreshMainPage()
         {
             ChecklistDockPanel.Children.Clear();
             listBoxUser.Items.Add(Relation.firstname + " " + Relation.lastname + " - " + Relation.id);
@@ -235,11 +236,18 @@ namespace Torun.UControls
                 }
                 CheckFirstFill = false;
             }
-            
+
+            if (IsAdded)
+            {
+                IsAdded = false;
+                GridSource.Add(new CheckListObject());
+                GridSource[GridSource.Count - 1].Order = GridSource.Count;
+                GridSource[GridSource.Count - 1].WorkID = RoutineWorks[GridSource.Count - 1].id;
+                GridSource[GridSource.Count - 1].WorkDescription = RoutineWorks[GridSource.Count - 1].work_description;
+            }
             Grid_CheckList.ItemsSource = GridSource;
             ReloadCheckList();
         }
-        
         private void Btn_workEdit_Click(object sender, RoutedEventArgs e)
         {
             if(Grid_Checklist.SelectedItem != null)
@@ -262,8 +270,17 @@ namespace Torun.UControls
             var result = MessageBox.Show(routineWork.id + " id numaralı iş silinecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
+                foreach (var item in GridSource)
+                {
+                    if(item.WorkID == routineWork.id)
+                    {
+                        GridSource.Remove(item);
+                        break;
+                    }
+                }
                 DB.DeleteRoutineWork(routineWork);
                 ReloadCheckList();
+                RefreshMainPage();
             }
         }
 
@@ -390,6 +407,11 @@ namespace Torun.UControls
             mainWindow.Opacity = 0.5;
             add.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             add.ShowDialog();
+            if (IsAdded)
+            {
+                Grid_CheckList.ItemsSource = null; // bug fix
+                RefreshMainPage();
+            }
         }
     }
 }
