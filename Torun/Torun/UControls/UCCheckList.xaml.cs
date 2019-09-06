@@ -168,7 +168,7 @@ namespace Torun.UControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             checklistTabUpdate.Header = Lang.UCChecklistUpdatePage;
-            checklistTabInSystem.Header = Lang.UCChecklistInSystemPage;
+            checklistTabInSystem.Header = Lang.UCChecklistInSystemPage + " & " + Lang.UCCheckListReport;
             addNewWork.ToolTip = Lang.UCChecklistAddNewPage;
             gridProcessColumn.Header = Lang.UCTodoListProcesses;
             gridDescriptionColumn.Header = Lang.UCChecklistRoutineWork;
@@ -420,6 +420,11 @@ namespace Torun.UControls
                 Grid_CheckList.ItemsSource = null; // bug fix
                 RefreshMainPage();
             }
+        }
+
+        private void CreateReport_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
         }
     }
 }
