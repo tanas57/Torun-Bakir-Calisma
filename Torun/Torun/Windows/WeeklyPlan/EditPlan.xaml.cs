@@ -147,42 +147,46 @@ namespace Torun.Windows.WeeklyPlan
 
         private void Plan_remove_Click(object sender, RoutedEventArgs e)
         {
-            result.Visibility = Visibility.Visible;
-            if(list_plan.SelectedIndex == -1)
+            var result2 = MessageBox.Show("Seçili tarihteki iş yapılmadı olarak işaretlenecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result2 == MessageBoxResult.Yes)
             {
-                result.Content = mainWindow.Lang.WeeklyEditPlanNotSelectPlan;
-                result.Background = System.Windows.Media.Brushes.Red;
-            }
-            else
-            {
-                try
+                result.Visibility = Visibility.Visible;
+                if (list_plan.SelectedIndex == -1)
                 {
-                    string[] arr = list_plan.SelectedValue.ToString().Split('-');
-                    int plan_id = int.Parse(arr[1].Trim());
-                    if (arr.Length > 2)
+                    result.Content = mainWindow.Lang.WeeklyEditPlanNotSelectPlan;
+                    result.Background = System.Windows.Media.Brushes.Red;
+                }
+                else
+                {
+                    try
                     {
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
-                        result.Background = System.Windows.Media.Brushes.Red;
-                    }
-                    else
-                    {
-                        Plan plan = mainWindow.DB.GetPlanByID(plan_id);
-                        mainWindow.DB.RemovePlan(plan);
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
-                        result.Background = System.Windows.Media.Brushes.Green;
-                        list_plan.Items.RemoveAt(list_plan.SelectedIndex);
-                        // related request do not have any plan, so we must transfer back in todolist
-                        if (list_plan.Items.Count < 1)
+                        string[] arr = list_plan.SelectedValue.ToString().Split('-');
+                        int plan_id = int.Parse(arr[1].Trim());
+                        if (arr.Length > 2)
                         {
-                            result.Content = mainWindow.Lang.WeeklyEditPlanRemovePlanTransferTodoList;
-                            todoList.status = (int)StatusType.Edited;
-                            mainWindow.DB.EditTodoList(todoList);
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                            result.Background = System.Windows.Media.Brushes.Red;
+                        }
+                        else
+                        {
+                            Plan plan = mainWindow.DB.GetPlanByID(plan_id);
+                            mainWindow.DB.RemovePlan(plan);
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
+                            result.Background = System.Windows.Media.Brushes.Green;
+                            list_plan.Items.RemoveAt(list_plan.SelectedIndex);
+                            // related request do not have any plan, so we must transfer back in todolist
+                            if (list_plan.Items.Count < 1)
+                            {
+                                result.Content = mainWindow.Lang.WeeklyEditPlanRemovePlanTransferTodoList;
+                                todoList.status = (int)StatusType.Edited;
+                                mainWindow.DB.EditTodoList(todoList);
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    mainWindow.DB.AddLog(new Log { error_page = "editplan_Plan_remove_Click", error_text = ex.Message, log_user = mainWindow.User.id });
+                    catch (Exception ex)
+                    {
+                        mainWindow.DB.AddLog(new Log { error_page = "editplan_Plan_remove_Click", error_text = ex.Message, log_user = mainWindow.User.id });
+                    }
                 }
             }
         }

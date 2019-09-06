@@ -23,40 +23,46 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0">
-                    <DataGrid x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                    <StackPanel>
+                        <DockPanel>
+                            <Image ToolTip="xxx" x:Name="addNewWork" Cursor="Hand" MouseDown="AddNewWork_MouseDown" Source="/images/icon/red/plus.png" Width="35" Height="35" HorizontalAlignment="Right" Margin="0,-15,50,0"/>
+                            <Image ToolTip="xxx" x:Name="addNewWork2" Cursor="Hand" MouseDown="AddNewWork_MouseDown" Source="/images/icon/red/plus.png" Width="35" Height="35" HorizontalAlignment="Right" Margin="0,-15,50,0"/>
+                        </DockPanel>
+                        <DataGrid x:Name="Grid_Checklist" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
-                            <DataGridTextColumn x:Name="gridDescriptionColumn"  MinWidth="635" CanUserReorder="False" Binding="{Binding Path=work_description}" IsReadOnly="True" Header="XXX"/>
-                            <DataGridTemplateColumn MinWidth="140" Header="XXX" x:Name="gridProcessColumn">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <DockPanel>
-                                            <Button x:Name="btn_workEdit" Click="Btn_workEdit_Click" Style="{DynamicResource gridButtons}">
-                                                <DockPanel>
-                                                    <Image Source="/images/screen/main/edit.png" Width="19"/>
-                                                    <Label Content="Düzenle"/>
-                                                </DockPanel>
-                                            </Button>
-                                            <Button x:Name="btn_workDelete" Style="{DynamicResource gridButtons}" Click="Btn_workDelete_Click">
-                                                <DockPanel>
-                                                    <Image Source="/images/screen/main/delete.png" Width="19"/>
-                                                    <Label Content="Sil"/>
-                                                </DockPanel>
-                                            </Button>
-                                        </DockPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=id}" IsReadOnly="True" Header="" MaxWidth="0"/>
+                                <DataGridTextColumn x:Name="gridDescriptionColumn"  MinWidth="635" CanUserReorder="False" Binding="{Binding Path=work_description}" IsReadOnly="True" Header="XXX"/>
+                                <DataGridTemplateColumn MinWidth="140" Header="XXX" x:Name="gridProcessColumn">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DockPanel>
+                                                <Button x:Name="btn_workEdit" Click="Btn_workEdit_Click" Style="{DynamicResource gridButtons}">
+                                                    <DockPanel>
+                                                        <Image Source="/images/screen/main/edit.png" Width="19"/>
+                                                        <Label Content="Düzenle"/>
+                                                    </DockPanel>
+                                                </Button>
+                                                <Button x:Name="btn_workDelete" Style="{DynamicResource gridButtons}" Click="Btn_workDelete_Click">
+                                                    <DockPanel>
+                                                        <Image Source="/images/screen/main/delete.png" Width="19"/>
+                                                        <Label Content="Sil"/>
+                                                    </DockPanel>
+                                                </Button>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
                 </Border>
                 <Border Grid.Row="1">
-                    <Image ToolTip="xxx" x:Name="addNewWork" Cursor="Hand" MouseDown="AddNewWork_MouseDown" Source="/images/icon/red/plus.png" Width="35" Height="35" HorizontalAlignment="Right" Margin="0,-15,50,0"/>
+                    
                 </Border>
             </Grid>
         </TabItem>

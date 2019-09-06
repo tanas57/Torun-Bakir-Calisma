@@ -50,50 +50,54 @@ namespace Torun.Windows.WorkCompleted
         {
             try
             {
-                WorkDone work = mainWindow.DB.GetWorkDoneByID(Work.WorkDoneID);
-                int workDoneCount = mainWindow.DB.GetWorkdoneByID(Work.WorkID).Count;
-                int plansCount = mainWindow.DB.PlanToCalendar(Work.WorkID, true).Count; // status continue of works
-
-                if (remove_aDay.IsChecked == true) // only selected work done
+                var result = MessageBox.Show("İş yapılmadı olarak işaretlenecek, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
                 {
-                    Plan plan = mainWindow.DB.GetPlanByID(work.plan_id);
-                    TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
-                    if (remove_allDays.IsEnabled == false)
+                    WorkDone work = mainWindow.DB.GetWorkDoneByID(Work.WorkDoneID);
+                    int workDoneCount = mainWindow.DB.GetWorkdoneByID(Work.WorkID).Count;
+                    int plansCount = mainWindow.DB.PlanToCalendar(Work.WorkID, true).Count; // status continue of works
+
+                    if (remove_aDay.IsChecked == true) // only selected work done
                     {
-                        if (workDoneCount > 1) // there is any completed works so the work is being process
+                        Plan plan = mainWindow.DB.GetPlanByID(work.plan_id);
+                        TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
+                        if (remove_allDays.IsEnabled == false)
+                        {
+                            if (workDoneCount > 1) // there is any completed works so the work is being process
+                            {
+                                todoList.status = (int)StatusType.InProcess;
+                            }
+                            else todoList.status = (int)StatusType.Planned;
+                        }
+                        else
                         {
                             todoList.status = (int)StatusType.InProcess;
                         }
-                        else todoList.status = (int)StatusType.Planned;
+                        plan.status = (int)StatusType.Deleted;
+                        mainWindow.DB.RemoveWorkdone(work);
+                        mainWindow.DB.EditPlan(plan);
                     }
-                    else
+                    else if (remove_allDays.IsChecked == true)
                     {
-                        todoList.status = (int)StatusType.InProcess;
+                        var works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
+                        if (works.Count > 0)
+                        {
+                            Plan plan = mainWindow.DB.GetPlanByID(works[0].plan_id);
+                            TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
+                            todoList.status = (int)StatusType.Planned;
+                        }
+                        foreach (var item in works)
+                        {
+                            // workdone will be deleted
+                            // plan will be planned
+                            Plan plan = mainWindow.DB.GetPlanByID(item.plan_id);
+                            plan.status = (int)StatusType.Planned;
+                            mainWindow.DB.EditPlan(item.Plan);
+                            mainWindow.DB.RemoveWorkdone(item);
+                        }
                     }
-                    plan.status = (int)StatusType.Deleted;
-                    mainWindow.DB.RemoveWorkdone(work);
-                    mainWindow.DB.EditPlan(plan);
+                    this.Close();
                 }
-                else if (remove_allDays.IsChecked == true)
-                {
-                    var works = mainWindow.DB.GetWorkdoneByID(Work.WorkID);
-                    if (works.Count > 0)
-                    {
-                        Plan plan = mainWindow.DB.GetPlanByID(works[0].plan_id);
-                        TodoList todoList = mainWindow.DB.GetTodoByID(plan.work_id);
-                        todoList.status = (int)StatusType.Planned;
-                    }
-                    foreach (var item in works)
-                    {
-                        // workdone will be deleted
-                        // plan will be planned
-                        Plan plan = mainWindow.DB.GetPlanByID(item.plan_id);
-                        plan.status = (int)StatusType.Planned;
-                        mainWindow.DB.EditPlan(item.Plan);
-                        mainWindow.DB.RemoveWorkdone(item);
-                    }
-                }
-                this.Close();
             }
             catch (Exception ex)
             {

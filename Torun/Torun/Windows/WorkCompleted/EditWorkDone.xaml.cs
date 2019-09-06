@@ -89,43 +89,47 @@ namespace Torun.Windows.WorkCompleted
 
         private void WorkDone_remove_Click(object sender, RoutedEventArgs e)
         {
-            result.Visibility = Visibility.Visible;
-            if (list_workdone.SelectedIndex >= 0)
+            var result2 = MessageBox.Show("Seçili tarihteki iş haftalık plana taşınacak, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result2 == MessageBoxResult.Yes)
             {
-                try
+                result.Visibility = Visibility.Visible;
+                if (list_workdone.SelectedIndex >= 0)
                 {
-                    string[] arr = list_workdone.SelectedValue.ToString().Split('-');
-                    int work_id = int.Parse(arr[1].Trim());
-                    if (arr.Length > 2)
+                    try
                     {
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
-                        result.Background = Brushes.Red;
-                    }
-                    else
-                    {
-                        WorkDone work = DB.GetWorkDoneByID(work_id);
-                        Plan plan = work.Plan;
-                        TodoList todoList = plan.TodoList;
-                        if (DB.GetWorkdoneByID(work_id).Count > 1)
+                        string[] arr = list_workdone.SelectedValue.ToString().Split('-');
+                        int work_id = int.Parse(arr[1].Trim());
+                        if (arr.Length > 2)
                         {
-                            todoList.status = (int)StatusType.InProcess;
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemoveWorkdoneError;
+                            result.Background = Brushes.Red;
                         }
                         else
                         {
-                            todoList.status = (int)StatusType.Planned;
+                            WorkDone work = DB.GetWorkDoneByID(work_id);
+                            Plan plan = work.Plan;
+                            TodoList todoList = plan.TodoList;
+                            if (DB.GetWorkdoneByID(work_id).Count > 1)
+                            {
+                                todoList.status = (int)StatusType.InProcess;
+                            }
+                            else
+                            {
+                                todoList.status = (int)StatusType.Planned;
+                            }
+                            plan.status = (int)StatusType.Deleted;
+                            mainWindow.DB.RemoveWorkdone(work);
+                            mainWindow.DB.EditPlan(plan);
+                            result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
+                            result.Background = Brushes.Green;
                         }
-                        plan.status = (int)StatusType.Deleted;
-                        mainWindow.DB.RemoveWorkdone(work);
-                        mainWindow.DB.EditPlan(plan);
-                        result.Content = mainWindow.Lang.WeeklyEditPlanRemoved;
-                        result.Background = Brushes.Green;
                     }
+                    catch (Exception ex)
+                    {
+                        mainWindow.DB.AddLog(new Log { error_page = "editworkdoneRemoveClick", error_text = ex.Message, log_user = mainWindow.User.id });
+                    }
+                    WorkDoneListUpdate();
                 }
-                catch (Exception ex)
-                {
-                    mainWindow.DB.AddLog(new Log { error_page = "editworkdoneRemoveClick", error_text = ex.Message, log_user = mainWindow.User.id });
-                }
-                WorkDoneListUpdate();
             }
         }
         private void WorkDoneListUpdate()

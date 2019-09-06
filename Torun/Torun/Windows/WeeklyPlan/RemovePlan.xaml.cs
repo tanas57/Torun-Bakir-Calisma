@@ -23,55 +23,59 @@ namespace Torun.Windows.WeeklyPlan
         {
             try
             {
-                TodoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
-                if (remove_aDay.IsChecked == true) // selected plan will remove from plan
+                var result = MessageBox.Show("Plan yapılacaklar listesine taşınacak, onaylıyor musunuz ?", "Uyarı", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
                 {
-                    // tek gün seçili ise planda aktif halen iş var ise yapılacak listesine atılmayacak !!! // planned
-                    // eğer tek iş o olupta remove edilirse yapılacaklara gönderelim // düzenlendi olsun
-                    Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
-                    if (remove_allDays.IsEnabled == false)
+                    TodoList todoList = mainWindow.DB.GetTodoByID(Plan.WorkID);
+                    if (remove_aDay.IsChecked == true) // selected plan will remove from plan
                     {
-                        // todolist has only one plan so work can be transfer back todolist
-                        mainWindow.DB.RemovePlan(plan);
+                        // tek gün seçili ise planda aktif halen iş var ise yapılacak listesine atılmayacak !!! // planned
+                        // eğer tek iş o olupta remove edilirse yapılacaklara gönderelim // düzenlendi olsun
+                        Plan plan = mainWindow.DB.GetPlanByID(Plan.PlanID);
+                        if (remove_allDays.IsEnabled == false)
+                        {
+                            // todolist has only one plan so work can be transfer back todolist
+                            mainWindow.DB.RemovePlan(plan);
+                            if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
+                            {
+                                // there are any completed plans, so the work status must be in progress
+                                todoList.status = (int)StatusType.Closed;
+                            }
+                            else
+                            {
+                                todoList.status = (int)StatusType.Edited;
+                            }
+                        }
+                        else
+                        {
+                            // only delete selected plan, do not change work
+                            todoList.status = (int)StatusType.Planned;
+                            mainWindow.DB.RemovePlan(plan);
+                        }
+                        mainWindow.DB.EditTodoList(todoList);
+                    }
+                    else if (remove_allDays.IsChecked == true)
+                    {
+                        // selected work transfers to todolist
                         if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
                         {
                             // there are any completed plans, so the work status must be in progress
-                            todoList.status = (int)StatusType.Closed;
+                            todoList.status = (int)StatusType.InProcess;
                         }
                         else
                         {
                             todoList.status = (int)StatusType.Edited;
                         }
+                        mainWindow.DB.EditTodoList(todoList);
+                        // remove all plans that are continued in plans
+                        var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID, true);
+                        foreach (var item in plans)
+                        {
+                            mainWindow.DB.RemovePlan(item);
+                        }
                     }
-                    else
-                    {
-                        // only delete selected plan, do not change work
-                        todoList.status = (int)StatusType.Planned;
-                        mainWindow.DB.RemovePlan(plan);
-                    }
-                    mainWindow.DB.EditTodoList(todoList);
+                    this.Close();
                 }
-                else if (remove_allDays.IsChecked == true)
-                {
-                    // selected work transfers to todolist
-                    if ((mainWindow.DB.GetWorkdoneByID(todoList.id).Count > 0))
-                    {
-                        // there are any completed plans, so the work status must be in progress
-                        todoList.status = (int)StatusType.InProcess;
-                    }
-                    else
-                    {
-                        todoList.status = (int)StatusType.Edited;
-                    }
-                    mainWindow.DB.EditTodoList(todoList);
-                    // remove all plans that are continued in plans
-                    var plans = mainWindow.DB.PlanToCalendar(Plan.WorkID, true);
-                    foreach (var item in plans)
-                    {
-                        mainWindow.DB.RemovePlan(item);
-                    }
-                }
-                this.Close();
             }
             catch (Exception ex)
             {
