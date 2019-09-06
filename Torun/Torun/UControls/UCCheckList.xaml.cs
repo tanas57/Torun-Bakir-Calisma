@@ -315,11 +315,19 @@ namespace Torun.UControls
                 string[] arr = userList.SelectedItem.ToString().Split('-');
                 if (!DB.UserRelationShipControl(User, int.Parse(arr[1])))
                 {
-                    if (DB.AddUserRelationShip(User, int.Parse(arr[1])) > 0)
+                    if(listBoxUser.Items.Count < 2)
                     {
-                        relResult.Content = Lang.UCChecklistRelationshipUserAddSuccess;
-                        relResult.Background = Brushes.Green;
-                        ReloadCheckList();
+                        if (DB.AddUserRelationShip(User, int.Parse(arr[1])) > 0)
+                        {
+                            relResult.Content = Lang.UCChecklistRelationshipUserAddSuccess;
+                            relResult.Background = Brushes.Green;
+                            ReloadCheckList();
+                        }
+                    }
+                    else
+                    {
+                        relResult.Content = Lang.UCCheckListRelationFull;
+                        relResult.Background = Brushes.Red;
                     }
                 }
                 else

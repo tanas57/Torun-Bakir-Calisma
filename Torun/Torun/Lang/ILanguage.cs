@@ -301,6 +301,7 @@
         string UCChecklistRelationshipUserRemoveFailed { get; }
         string UCCheckListNote { get; }
         string UCCheckListOtherRelation { get; }
+        string UCCheckListRelationFull { get; }
         #endregion
         string ReportSearchTitle { get; }
     }
