@@ -10,6 +10,9 @@ using Torun.Classes;
 using Torun.Lang;
 using System.Threading;
 using System.Windows.Media;
+using Torun.Windows.Report;
+using Torun.Windows.WeeklyPlan;
+using Torun.Windows.WorkCompleted;
 
 namespace Torun.UControls
 {
@@ -83,6 +86,7 @@ namespace Torun.UControls
             btntxtexcel.Text = Lang.ReportToExcel;
 
             userSelectLBL.Content = Lang.UCChecklistRelationshipUserList;
+            reportSearch.ToolTip = Lang.ReportSearchTitle;
 
             var users = DB.GetUsers(User, true);
             UserList.Items.Clear();
@@ -237,7 +241,56 @@ namespace Torun.UControls
 
         private void ReportSearch_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            ReportSearch reportSearch = new ReportSearch();
+            reportSearch.Owner = mainWindow;
+            reportSearch.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            reportSearch.Top = 200;
+            reportSearch.ShowDialog();
 
+            grid_onlyPlan.Visibility = Visibility.Visible;
+            grid_onlyWorkdone.Visibility = Visibility.Hidden;
+            grid_both.Visibility = Visibility.Hidden;
+
+        }
+
+        private void Grid_onlyPlan_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (grid_onlyPlan != null)
+                {
+                    GetDetail getDetail = new GetDetail();
+                    getDetail.Owner = mainWindow;
+                    getDetail.Plan = grid_onlyPlan.SelectedItem as DB.WeeklyPlan;
+                    mainWindow.Opacity = 0.5;
+                    getDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    getDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucreport_gridonlyplan_doubleclick", error_text = ex.Message, log_user = User.id });
+            }
+        }
+
+        private void Grid_onlyWorkdone_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (grid_onlyWorkdone != null)
+                {
+                    DetailWorkDone detailWorkDone = new DetailWorkDone();
+                    detailWorkDone.Owner = mainWindow;
+                    detailWorkDone.Work = grid_onlyWorkdone.SelectedItem as DB.WorkDoneList;
+                    mainWindow.Opacity = 0.5;
+                    detailWorkDone.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    detailWorkDone.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                DB.AddLog(new Log { error_page = "ucreport_gridonlyworkdone_doubleclick", error_text = ex.Message, log_user = User.id });
+            }
         }
     }
 }

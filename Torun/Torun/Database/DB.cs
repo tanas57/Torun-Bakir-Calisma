@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System;
 using Torun.Classes;
 using Torun.Lang;
+using System.Windows;
 
 namespace Torun.Database
 {
@@ -58,6 +59,50 @@ namespace Torun.Database
         {
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
+        }
+        public List<WeeklyPlanDetail> ReportSearchButton(User user, string query)
+        {
+            // search all plans and todolist
+            var result = (from plans in db.Plans
+                         join todolist in db.TodoLists on plans.work_id equals todolist.id
+                         where todolist.request_number.Contains(query) || todolist.description.Contains(query) && todolist.user_id == user.id
+                          select new WeeklyPlanDetail
+                          {
+                              WorkID = todolist.id,
+                              PlanID = plans.id,
+                              PlanDate = plans.work_plan_time,
+                              Priority = todolist.priority,
+                              RequestNumber = todolist.request_number,
+                              AddDate = plans.add_time
+                          }).ToList();
+            // search workdones
+            var result2 = (from plans in db.Plans
+                           join todolist in db.TodoLists on plans.work_id equals todolist.id
+                           join work in db.WorkDones on plans.id equals work.plan_id
+                           where work.description.Contains(query) && todolist.user_id == user.id
+                           select new WeeklyPlanDetail
+                           {
+                               WorkID = todolist.id,
+                               PlanID = plans.id,
+                               PlanDate = plans.work_plan_time,
+                               Priority = todolist.priority,
+                               RequestNumber = todolist.request_number,
+                               AddDate = plans.add_time
+                           }).ToList();
+            
+            foreach (var item in result2)
+            {
+                foreach (var item2 in result)
+                {
+                    if (GetTodoByID(item2.WorkID).id != GetTodoByID(item.WorkID).id)
+                    {
+                        result.Add(item);
+                        break;
+                    }
+                }
+            }
+
+            return result;
         }
         public void UpdateCheckListRecord(User user, string ticks, DateTime today)
         {

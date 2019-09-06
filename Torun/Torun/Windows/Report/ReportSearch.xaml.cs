@@ -42,6 +42,7 @@ namespace Torun.Windows.Report
         {
             Title = Lang.ReportSearchTitle;
             searchTitle.Content = Lang.ReportSearchTitle;
+            search.Focus();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,7 +52,11 @@ namespace Torun.Windows.Report
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) Search_TextChanged(sender, null);
+            if (e.Key == Key.Enter)
+            {
+                Search_TextChanged(sender, null);
+                BtnClose_Click(sender, null);
+            }
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -61,7 +66,10 @@ namespace Torun.Windows.Report
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (search.Text.Length >= 1)
+            {
+                mainWindow.uCReport.grid_onlyPlan.ItemsSource =  DB.ReportSearchButton(User, search.Text);
+            }
         }
     }
 }

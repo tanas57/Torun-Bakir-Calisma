@@ -24,7 +24,7 @@
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
                             <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <Image x:Name="reportSearch" MouseDown="ReportSearch_MouseDown" Source="/images/icon/search.png" Width="30" Height="30"/>
+                                <Image x:Name="reportSearch" Cursor="Hand" MouseDown="ReportSearch_MouseDown" Source="/images/icon/search.png" Width="30" Height="30"/>
                                 <Label x:Name="lblType" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="0" BorderThickness="0"/>
                                 <ComboBox x:Name="planWorkdoneSelect" Width="140" Margin="5"/>
                                 <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="5" BorderThickness="0"/>
@@ -63,7 +63,7 @@
                     <StackPanel>
                         <Grid x:Name="ReportGridPlan">
                             <Image x:Name="TorunLogo" Source="/images/torun-logo-2.png" Opacity="0.3" Margin="0,80,0,0"/>
-                            <DataGrid x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                            <DataGrid MouseDoubleClick="Grid_onlyPlan_MouseDoubleClick" x:Name="grid_onlyPlan" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
@@ -75,12 +75,13 @@
                                     <DataGridTextColumn x:Name="grid1AddDate" CanUserReorder="True" Binding="{Binding Path=AddDate}" IsReadOnly="True" Header="XXX" Width="285"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <DataGrid x:Name="grid_onlyWorkdone" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
+                            <DataGrid MouseDoubleClick="Grid_onlyWorkdone_MouseDoubleClick" x:Name="grid_onlyWorkdone" BorderBrush="{x:Null}" BorderThickness="0" IsReadOnly="True" RowHeight="30"
                               CanUserResizeRows="False" CanUserAddRows="False" CanUserSortColumns="True" Visibility="Hidden"
                               CanUserResizeColumns="True" Background="{x:Null}" HeadersVisibility="Column"  AutoGenerateColumns="False"
                               >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkDoneID}" IsReadOnly="True" Header="Sıra" MaxWidth="35"/>
+                                    <DataGridTextColumn CanUserReorder="False" Binding="{Binding Path=WorkID}" IsReadOnly="True" Header="Sıra" Visibility="Hidden"/>
                                     <DataGridTextColumn x:Name="grid2workDoneReqNum" CanUserReorder="False" Binding="{Binding Path=RequestNumber}" IsReadOnly="True" Header="XXX" MinWidth="100"/>
                                     <DataGridTextColumn x:Name="grid2workDoneWorkDoneTime" CanUserReorder="False" Binding="{Binding Path=WorkDoneTime}" IsReadOnly="True" Header="XXX" MinWidth="650"/>
                                 </DataGrid.Columns>
