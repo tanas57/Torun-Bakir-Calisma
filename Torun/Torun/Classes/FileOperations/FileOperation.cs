@@ -49,8 +49,7 @@ namespace Torun.Classes
 
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + "//torun-logo-2.png";
 
-            var allUsertypeValues = (PriorityType[])Enum.GetValues(typeof(PriorityType));
-
+            var priorities = new List<PriorityType>() { PriorityType.Urgent, PriorityType.High, PriorityType.Normal, PriorityType.Low, PriorityType.Project };
 
             string html = @"<html>
 	<head>
@@ -186,7 +185,7 @@ namespace Torun.Classes
 							<td style='width:70%'>" + db.GetRequestCount(2, user, countType).ToString() + @"</td>
 			</tr>";
 
-            foreach (var item in allUsertypeValues)
+            foreach (var item in priorities)
             {
                 html += @"<tr width='60%'>
 							<td style='width:30%'>" + Functions.PriorityString(item) + " " + Lang.ReportRequestNumber +@"</td>
@@ -210,7 +209,16 @@ namespace Torun.Classes
             var PDF = Renderer.RenderHtmlAsPdf(html);
             // control are the year and month directories exists
             var OutputPath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + FileNames.FILENAME_REPORTPDF; // create outputfile path
-
+            int order = 1;
+            while (true)
+            {
+                if (File.Exists(OutputPath))
+                {
+                    OutputPath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + order + "-" + FileNames.FILENAME_REPORTPDF; // create outputfile path
+                    order++;
+                }
+                else break;
+            }
             PDF.SaveAs(OutputPath);
             // This neat trick opens our PDF file so we can see the result in our default PDF viewer
             System.Diagnostics.Process.Start(OutputPath);
@@ -389,10 +397,56 @@ namespace Torun.Classes
             Range select = worksheet.Cells[7, 1];
             select.Select(); // select empty a cell 
 
-            // control are the year and month directories exists
-            string outputFilePath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + FileNames.FILENAME_REPORTEXCEL; // create outputfile path
+            // report request statictics
+            string statictic_str = Lang.MainPageTotalRequest + " " + db.GetRequestCount(1, user, countType).ToString() + "\n" +
+                                   Lang.MainPageOpenRequest + " " + db.GetRequestCount(2, user, countType).ToString() + "\n" +
+                                   Lang.MainPageClosedRequest + " " + db.GetRequestCount(3, user, countType).ToString() + "\n";
 
-            if (File.Exists(outputFilePath)) File.Delete(outputFilePath);
+            var priorities = new List<PriorityType>() { PriorityType.Urgent, PriorityType.High, PriorityType.Normal,PriorityType.Low, PriorityType.Project };
+
+            foreach (var item in priorities)
+            {
+                statictic_str += Functions.PriorityString(item) + " " + Lang.ReportRequestNumber + " : " + db.GetRequestCount(item, user, countType) + "\n";
+            }
+
+            startRow++;
+
+            if(reportType == ReportType.Both)
+            {
+                Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 4]];
+                worksheet.Cells[startRow, 4] = statictic_str;
+                rang.Font.Size = 13;
+                rang.Font.Bold = true;
+                rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+                rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                rang.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                rang.Merge();
+            }
+            else
+            {
+                Range rang = worksheet.Range[worksheet.Cells[startRow, 1], worksheet.Cells[startRow, 2]];
+                worksheet.Cells[startRow, 2] = statictic_str;
+                rang.Font.Size = 13;
+                rang.Font.Bold = true;
+                rang.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+                rang.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                rang.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                rang.Merge();
+            }
+
+            // control are the year and month directories exists
+            int order = 1;
+            string outputFilePath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + FileNames.FILENAME_REPORTEXCEL; // create outputfile path
+            while (true)
+            {
+                if (File.Exists(outputFilePath))
+                {
+                    outputFilePath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + order + "-" + FileNames.FILENAME_REPORTEXCEL; // create outputfile path
+                    order++;
+                }
+                else break;
+            }
+            
             // save excel file to user folder
             workbook.SaveAs(outputFilePath, XlFileFormat.xlOpenXMLWorkbook, Type.Missing,
             Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange,
