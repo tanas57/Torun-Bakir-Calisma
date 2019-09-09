@@ -17,6 +17,47 @@ namespace Torun.Classes
         public static ILanguage Lang => CurrentLanguage.Language;
         public static void CheckListExportEXCEL(User user, CountType countType, DB db, List<DateTime> selectedDates = null)
         {
+            List<DateTime> dateTimes = null;
+
+            Range cell;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
+            DateTime start = dateTimes[0];
+            DateTime end = dateTimes[1];
+
+            string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + @"\torun_red_mini.png";
+
+            Microsoft.Office.Interop.Excel.Application excelPage = new Microsoft.Office.Interop.Excel.Application();
+            
+            Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
+            workbook.Sheets.Delete();
+            workbook.Sheets.Add(After: workbook.Sheets[workbook.Sheets.Count]);
+
+            Worksheet worksheet = workbook.Sheets[1];
+            excelPage.Visible = true;
+
+            cell = worksheet.Cells[0, 1];
+            cell.Value2 = "TORUN BAKIR";
+            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+            cell.Font.Size = 20;
+
+            cell = worksheet.Cells[1, 1];
+            cell.Value2 = "BİLGİ TEKNOLOJİLERİ DEPARTMANI SİSTEM VE NETWORK BİRİMİ";
+            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+            cell.Font.Size = 15;
+
+            cell = worksheet.Cells[2, 1];
+            cell.Value2 = "GÜNLÜK, HAFTALIK RUTİN İŞLER TAKİP LİSTESİ";
+            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+            cell.Font.Size = 15;
+
+            worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 300, 0, 180, 60);
+
+            //Range rang2 = worksheet.Cells[startRow, 'B'];
+            //worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 180, 60);
+            //rang2.RowHeight = 58;
 
         }
         public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db,List<DateTime> selectedDates = null)
