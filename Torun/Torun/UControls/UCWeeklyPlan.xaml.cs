@@ -287,5 +287,6 @@ namespace Torun.UControls
         {
             mainWindow.ChangeViewWeeklyPlan();
         }
+
     }
 }

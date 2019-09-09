@@ -53,6 +53,9 @@ namespace Torun.Windows.Report
         {
             Title = Lang.ReportDateSelectorTitle;
             searchTitle.Content = Lang.ReportDateSelectorTitle;
+            dateStartLBL.Content = Lang.ReportDateStart;
+            dateEndLBL.Content = Lang.ReportDateStop;
+            buttonOK.Content = Lang.ButtonGet;
             dateStart.Focus();
         }
 
