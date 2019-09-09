@@ -49,6 +49,9 @@ namespace Torun.Classes
 
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + "//torun-logo-2.png";
 
+            var allUsertypeValues = (PriorityType[])Enum.GetValues(typeof(PriorityType));
+
+
             string html = @"<html>
 	<head>
 	<style type='text/css'>
@@ -167,11 +170,37 @@ namespace Torun.Classes
             }
             html += @"
 			</div>
+            <table>
+                <tr>
+<div class='dayTitle'>" +Lang.ReportRequestStatistic + @"</div>
+			<tr width='60%'>
+							<td style='width:30%'>" + Lang.MainPageTotalRequest + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(1, user, Settings.MainRequestCountType).ToString() + @"</td>
+			</tr>
+            <tr width='60%'>
+							<td style='width:30%'>" + Lang.MainPageClosedRequest + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(3, user, Settings.MainRequestCountType).ToString() + @"</td>
+			</tr>
+            <tr width='60%'>
+							<td style='width:30%'>" + Lang.MainPageOpenRequest + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(2, user, Settings.MainRequestCountType).ToString() + @"</td>
+			</tr>";
 
+            foreach (var item in allUsertypeValues)
+            {
+                html += @"<tr width='60%'>
+							<td style='width:30%'>" + Functions.PriorityString(item) + " " + Lang.ReportRequestNumber +@"</td>
+							<td style='width:70%'>" + db.GetRequestCount(item, user, countType) + @"</td>
+			</tr>";
+            }
+            html +=@"</table>
+</tr>
+            </table>
 		</div>
 	</div>
 	</body>
 </html>";
+            
             Renderer.PrintOptions.Footer = new HtmlHeaderFooter()
             {
                 Height = 15,

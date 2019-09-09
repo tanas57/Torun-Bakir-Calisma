@@ -378,5 +378,7 @@
         public string UCCheckListReport => "Raporlama";
         #endregion
         public string ReportSearchTitle => "Raporlarda Arama";
+        public string ReportRequestNumber => "Talep Sayısı";
+        public string ReportRequestStatistic => "Talep İstatistikleri";
     }
 }

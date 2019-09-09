@@ -857,6 +857,13 @@ namespace Torun.Database
             }
             return 0;
         }
+        public int GetRequestCount(PriorityType priorityType, User user, CountType countType)
+        {
+            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            DateTime timeStart = dateTimes[0];
+            DateTime timeEnd = dateTimes[1];
+            return db.TodoLists.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd && x.priority == (int)priorityType).Count();
+        }
         public User GetUserByID(int id) => db.Users.SingleOrDefault(x => x.id == id);
         public User GetUserDetail(User user)
         {

@@ -305,5 +305,7 @@
         string UCCheckListReport { get; }
         #endregion
         string ReportSearchTitle { get; }
+        string ReportRequestNumber { get; }
+        string ReportRequestStatistic { get; }
     }
 }
