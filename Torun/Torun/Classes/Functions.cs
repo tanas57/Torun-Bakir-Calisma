@@ -23,7 +23,7 @@ namespace Torun.Classes
                     break;
 
                 case CountType.Montly:
-                    timeStart = new DateTime(DateTime.Now.Year, DateTime.Now.AddMonths(-1).Month, 1).Date;
+                    timeStart = DateTime.Now.AddDays(-DateTime.Now.Day).Date.AddSeconds(1).AddDays(1);
                     timeEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, 1).AddSeconds(-1);
                     break;
 
