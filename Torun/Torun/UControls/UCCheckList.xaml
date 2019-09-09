@@ -14,7 +14,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Border Grid.Row="0">
-                        <DockPanel x:Name="ChecklistDockPanel" Margin="350,0,0,0"/>
+                    <DockPanel>
+                        <DatePicker x:Name="changeDate" SelectedDateChanged="ChangeDate_SelectedDateChanged" Width="120" HorizontalAlignment="Left" Height="32"/>
+                        <DockPanel x:Name="ChecklistDockPanel" Margin="300,0,0,0"/>
+                    </DockPanel>
                     </Border>
                     <DataGrid CurrentCellChanged="Grid_CheckList_CurrentCellChanged" SelectionMode="Single" Grid.Row="1" x:Name="Grid_CheckList" AutoGenerateColumns="False" IsReadOnly="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" />
                 </Grid>

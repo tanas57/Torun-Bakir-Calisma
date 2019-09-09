@@ -28,12 +28,14 @@ namespace Torun.UControls
         private int WorkCount { get; set; }
         private bool CheckFirstFill { get; set; }
         public bool IsAdded { get; set; }
+        private DateTime CurrentDate { get; set; }
         public UCCheckList()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
             DB = mainWindow.DB;
             User = mainWindow.User;
+            changeDate.SelectedDate = DateTime.Now.Date;
             try
             {
                 ReloadCheckList();
@@ -69,7 +71,7 @@ namespace Torun.UControls
             {
                 ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
             }
-            DB.UpdateCheckListRecord(Relation, ticks, DateTime.Now.Date);
+            DB.UpdateCheckListRecord(Relation, ticks, CurrentDate);
         }
         /// <summary>
         /// get changes from database if is it exists, otherwise create new record.
@@ -78,8 +80,7 @@ namespace Torun.UControls
         {
             try
             {
-                DateTime today = DateTime.Now.Date;
-                RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, today);
+                RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, CurrentDate);
                 if (user_record != null)
                 {
                     string[] ids = user_record.work_Ticks.Split('*');
@@ -113,9 +114,11 @@ namespace Torun.UControls
                     string ticks = "";
                     for (int i = 0; i < GridSource.Count; i++)
                     {
+                        GridSource[i].Daily1 = false; GridSource[i].Daily2 = false; GridSource[i].Daily3 = false;
+                        GridSource[i].Weekly1 = false; GridSource[i].Weekly2 = false; GridSource[i].Weekly3 = false;
                         ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
                     }
-                    DB.AddCheckListRecord(Relation, ticks, today);
+                    DB.AddCheckListRecord(Relation, ticks, CurrentDate);
                 }
             }
             catch (Exception ex)
@@ -321,7 +324,9 @@ namespace Torun.UControls
                         {
                             relResult.Content = Lang.UCChecklistRelationshipUserAddSuccess;
                             relResult.Background = Brushes.Green;
-                            ReloadCheckList();
+                            ReloadCheckList(); // mainpage checklist load
+                            RefreshMainPage(); // refresh other listboxes
+                            GetChanges(); // get data from db if is it exist
                         }
                     }
                     else
@@ -347,7 +352,9 @@ namespace Torun.UControls
                 {
                     relResult.Content = Lang.UCChecklistRelationshipUserRemoveSuccess;
                     relResult.Background = Brushes.Green;
-                    ReloadCheckList();
+                    ReloadCheckList(); // mainpage checklist load
+                    RefreshMainPage(); // refresh other listboxes
+                    GetChanges(); // get data from db if is it exist
                 }
                 else
                 {
@@ -425,6 +432,17 @@ namespace Torun.UControls
         private void CreateReport_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
+        }
+
+        private void ChangeDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (changeDate.SelectedDate.HasValue)
+            {
+                CurrentDate = changeDate.SelectedDate.Value;
+                ReloadCheckList(); // mainpage checklist load
+                RefreshMainPage(); // refresh other listboxes
+                GetChanges(); // get data from db if is it exist
+            }
         }
     }
 }
