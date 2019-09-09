@@ -175,15 +175,15 @@ namespace Torun.Classes
 <div class='dayTitle'>" +Lang.ReportRequestStatistic + @"</div>
 			<tr width='60%'>
 							<td style='width:30%'>" + Lang.MainPageTotalRequest + @"</td>
-							<td style='width:70%'>" + db.GetRequestCount(1, user, Settings.MainRequestCountType).ToString() + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(1, user, countType).ToString() + @"</td>
 			</tr>
             <tr width='60%'>
 							<td style='width:30%'>" + Lang.MainPageClosedRequest + @"</td>
-							<td style='width:70%'>" + db.GetRequestCount(3, user, Settings.MainRequestCountType).ToString() + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(3, user, countType).ToString() + @"</td>
 			</tr>
             <tr width='60%'>
 							<td style='width:30%'>" + Lang.MainPageOpenRequest + @"</td>
-							<td style='width:70%'>" + db.GetRequestCount(2, user, Settings.MainRequestCountType).ToString() + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(2, user, countType).ToString() + @"</td>
 			</tr>";
 
             foreach (var item in allUsertypeValues)

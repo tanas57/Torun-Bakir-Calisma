@@ -109,33 +109,31 @@ namespace Torun.UControls
                 }
             }
             CountType = (CountType)timeIntervalSelect.SelectedIndex;
-            List<DateTime> list = Functions.GetDateInterval(CountType, User);
-            MessageBox.Show(list[0] + " " + list[1]);
-            //if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
-            //{
-            //    grid_onlyPlan.Visibility = Visibility.Visible;
-            //    grid_onlyWorkdone.Visibility = Visibility.Hidden;
-            //    grid_both.Visibility = Visibility.Hidden;
-            //    grid_onlyPlan.ItemsSource = DB.GetPlansForReport(SearchUser, CountType);
-            //}
-            //else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
-            //{
-            //    grid_onlyPlan.Visibility = Visibility.Hidden;
-            //    grid_onlyWorkdone.Visibility = Visibility.Visible;
-            //    grid_both.Visibility = Visibility.Hidden;
-            //    workDoneLists = DB.GetWorkDoneForReport(SearchUser, CountType);
-            //    grid_onlyWorkdone.ItemsSource = workDoneLists;
-            //}
-            //else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
-            //{
-            //    grid_onlyPlan.Visibility = Visibility.Hidden;
-            //    grid_onlyWorkdone.Visibility = Visibility.Hidden;
-            //    grid_both.Visibility = Visibility.Visible;
-            //    grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(SearchUser, CountType);
-            //}
-            //btn_excel.Visibility = Visibility.Visible;
-            //btn_pdf.Visibility = Visibility.Visible;
-            //TorunLogo.Visibility = Visibility.Hidden;
+            if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
+            {
+                grid_onlyPlan.Visibility = Visibility.Visible;
+                grid_onlyWorkdone.Visibility = Visibility.Hidden;
+                grid_both.Visibility = Visibility.Hidden;
+                grid_onlyPlan.ItemsSource = DB.GetPlansForReport(SearchUser, CountType);
+            }
+            else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
+            {
+                grid_onlyPlan.Visibility = Visibility.Hidden;
+                grid_onlyWorkdone.Visibility = Visibility.Visible;
+                grid_both.Visibility = Visibility.Hidden;
+                workDoneLists = DB.GetWorkDoneForReport(SearchUser, CountType);
+                grid_onlyWorkdone.ItemsSource = workDoneLists;
+            }
+            else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
+            {
+                grid_onlyPlan.Visibility = Visibility.Hidden;
+                grid_onlyWorkdone.Visibility = Visibility.Hidden;
+                grid_both.Visibility = Visibility.Visible;
+                grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(SearchUser, CountType);
+            }
+            btn_excel.Visibility = Visibility.Visible;
+            btn_pdf.Visibility = Visibility.Visible;
+            TorunLogo.Visibility = Visibility.Hidden;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
