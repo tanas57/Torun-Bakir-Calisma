@@ -264,6 +264,16 @@
         string ReportSelectYear { get; }
         string ReportProcessStart { get; }
         string ReportProcessEnd { get; }
+        string ReportSearchTitle { get; }
+        string ReportRequestNumber { get; }
+        string ReportRequestStatistic { get; }
+        string ReportDateStart { get; }
+        string ReportDateStop { get; }
+        string ReportDateSelectorTitle { get; }
+        string CountTypeSelectDate { get; }
+        string ReportDateSelectorDateMustBeSelect { get; }
+        string ReportDateSelectorStartBiggerThanEnd { get; }
+        string ReportDateIntervalReport { get; }
         #endregion
         #region
         string BackupListLblTitle { get; }
@@ -303,16 +313,8 @@
         string UCCheckListOtherRelation { get; }
         string UCCheckListRelationFull { get; }
         string UCCheckListReport { get; }
+        string UCCheckListButtonTitle { get; }
         #endregion
-        string ReportSearchTitle { get; }
-        string ReportRequestNumber { get; }
-        string ReportRequestStatistic { get; }
-        string ReportDateStart { get; }
-        string ReportDateStop { get; }
-        string ReportDateSelectorTitle { get; }
-        string CountTypeSelectDate { get; }
-        string ReportDateSelectorDateMustBeSelect { get; }
-        string ReportDateSelectorStartBiggerThanEnd { get; }
-        string ReportDateIntervalReport { get; }
+        
     }
 }

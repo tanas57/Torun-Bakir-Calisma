@@ -332,8 +332,17 @@
         public string BackupAutoBackupCompleted => "Otomatik yedekleme başarılı";
         public string BackupSelectListBox => "Lütfen listeden bir yedek seçiniz.";
         public string ReportProcessStart => "Rapor hazırlanıyor lütfen bekleyin...";
-
         public string ReportProcessEnd => "Rapor başarıyla oluşturuldu";
+        public string ReportSearchTitle => "Raporlarda Arama";
+        public string ReportRequestNumber => "Talep Sayısı";
+        public string ReportRequestStatistic => "Talep İstatistikleri";
+        public string ReportDateStart => "Başlangıç tarihi";
+        public string ReportDateStop => "Bitiş tarihi";
+        public string ReportDateSelectorTitle => "Rapor Tarih Aralık Seçici";
+        public string CountTypeSelectDate => "Tarih Aralığı Seçin";
+        public string ReportDateSelectorDateMustBeSelect => "Başlangıç ve bitiş tarihi seçilmeli";
+        public string ReportDateSelectorStartBiggerThanEnd => "Başlangıç tarihi bitiş tarihinden büyük olamaz";
+        public string ReportDateIntervalReport => "Tarihli Raporlar";
 
         #endregion
         // UCCheckList
@@ -376,16 +385,7 @@
         public string UCCheckListOtherRelation => "Başkasıyla çalışıyorsun. Çalışma ayarlarını o yönetiyor.";
         public string UCCheckListRelationFull => "Sistem uyarısı : En fazla 3 kişi çalışabilmeye izin veriliyor.";
         public string UCCheckListReport => "Raporlama";
+        public string UCCheckListButtonTitle => "Raporlama için tıklayın";
         #endregion
-        public string ReportSearchTitle => "Raporlarda Arama";
-        public string ReportRequestNumber => "Talep Sayısı";
-        public string ReportRequestStatistic => "Talep İstatistikleri";
-        public string ReportDateStart => "Başlangıç tarihi";
-        public string ReportDateStop => "Bitiş tarihi";
-        public string ReportDateSelectorTitle => "Rapor Tarih Aralık Seçici";
-        public string CountTypeSelectDate => "Tarih Aralığı Seçin";
-        public string ReportDateSelectorDateMustBeSelect => "Başlangıç ve bitiş tarihi seçilmeli";
-        public string ReportDateSelectorStartBiggerThanEnd => "Başlangıç tarihi bitiş tarihinden büyük olamaz";
-        public string ReportDateIntervalReport => "Tarihli Raporlar";
     }
 }

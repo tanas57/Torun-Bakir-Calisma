@@ -179,6 +179,9 @@
     <Compile Include="Windows\CheckList\AddNewRoutineWork.xaml.cs">
       <DependentUpon>AddNewRoutineWork.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\CheckList\CheckListReport.xaml.cs">
+      <DependentUpon>CheckListReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CheckList\EditRoutineWork.xaml.cs">
       <DependentUpon>EditRoutineWork.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CheckList\AddNewRoutineWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CheckList\CheckListReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

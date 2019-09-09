@@ -15,6 +15,10 @@ namespace Torun.Classes
     public static class FileOperation
     {
         public static ILanguage Lang => CurrentLanguage.Language;
+        public static void CheckListExportEXCEL(User user, CountType countType, DB db, List<DateTime> selectedDates = null)
+        {
+
+        }
         public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db,List<DateTime> selectedDates = null)
         {
             List<DateTime> dateTimes;

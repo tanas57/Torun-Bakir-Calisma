@@ -184,6 +184,7 @@ namespace Torun.UControls
             relationShip.Header = Lang.UCChecklistRelationshipWorkWith;
             checkListNote.Content = Lang.UCCheckListNote;
             relWorkFriend.Content = Lang.UCCheckListOtherRelation;
+            createReport.ToolTip = Lang.UCCheckListButtonTitle;
 
             ReloadCheckList(); // mainpage checklist load
             RefreshMainPage(); // refresh other listboxes
@@ -431,7 +432,11 @@ namespace Torun.UControls
 
         private void CreateReport_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            CheckListReport checkListReport = new CheckListReport();
+            checkListReport.Owner = mainWindow;
+            checkListReport.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            mainWindow.Opacity = 0.5;
+            checkListReport.ShowDialog();
         }
 
         private void ChangeDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
