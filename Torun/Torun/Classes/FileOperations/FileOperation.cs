@@ -15,9 +15,13 @@ namespace Torun.Classes
     public static class FileOperation
     {
         public static ILanguage Lang => CurrentLanguage.Language;
-        public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db)
+        public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db,List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -44,6 +48,9 @@ namespace Torun.Classes
                 case CountType.Weekly: timeString = myCal.GetWeekOfYear(DateTime.Now, myCI.DateTimeFormat.CalendarWeekRule, myCI.DateTimeFormat.FirstDayOfWeek) + "." + Lang.ReportSelectWeek + " " + strReportType; break;
                 // report date bug fix.
                 case CountType.FromTheBeginning: start = user.register_date; break;
+                case CountType.SelectDate:
+                    timeString = start.Date.ToShortDateString() + " - " + end.Date.ToShortDateString() + " " + Lang.ReportDateIntervalReport;
+                    break;
             }
             var Renderer = new IronPdf.HtmlToPdf();
 
@@ -174,22 +181,22 @@ namespace Torun.Classes
 <div class='dayTitle'>" +Lang.ReportRequestStatistic + @"</div>
 			<tr width='60%'>
 							<td style='width:30%'>" + Lang.MainPageTotalRequest + @"</td>
-							<td style='width:70%'>" + db.GetRequestCount(1, user, countType).ToString() + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(1, user, countType, selectedDates).ToString() + @"</td>
 			</tr>
             <tr width='60%'>
 							<td style='width:30%'>" + Lang.MainPageClosedRequest + @"</td>
-							<td style='width:70%'>" + db.GetRequestCount(3, user, countType).ToString() + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(3, user, countType, selectedDates).ToString() + @"</td>
 			</tr>
             <tr width='60%'>
 							<td style='width:30%'>" + Lang.MainPageOpenRequest + @"</td>
-							<td style='width:70%'>" + db.GetRequestCount(2, user, countType).ToString() + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(2, user, countType, selectedDates).ToString() + @"</td>
 			</tr>";
 
             foreach (var item in priorities)
             {
                 html += @"<tr width='60%'>
 							<td style='width:30%'>" + Functions.PriorityString(item) + " " + Lang.ReportRequestNumber +@"</td>
-							<td style='width:70%'>" + db.GetRequestCount(item, user, countType) + @"</td>
+							<td style='width:70%'>" + db.GetRequestCount(item, user, countType, selectedDates) + @"</td>
 			</tr>";
             }
             html +=@"</table>
@@ -224,9 +231,13 @@ namespace Torun.Classes
             System.Diagnostics.Process.Start(OutputPath);
             System.Diagnostics.Process.Start(ReportFolderProcess());
         }
-        public static void ExportAsEXCEL(User user, CountType countType, ReportType reportType, DB db)
+        public static void ExportAsEXCEL(User user, CountType countType, ReportType reportType, DB db, List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes = null;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -398,15 +409,15 @@ namespace Torun.Classes
             select.Select(); // select empty a cell 
 
             // report request statictics
-            string statictic_str = Lang.MainPageTotalRequest + " " + db.GetRequestCount(1, user, countType).ToString() + "\n" +
-                                   Lang.MainPageOpenRequest + " " + db.GetRequestCount(2, user, countType).ToString() + "\n" +
-                                   Lang.MainPageClosedRequest + " " + db.GetRequestCount(3, user, countType).ToString() + "\n";
+            string statictic_str = Lang.MainPageTotalRequest + " " + db.GetRequestCount(1, user, countType, selectedDates).ToString() + "\n" +
+                                   Lang.MainPageOpenRequest + " " + db.GetRequestCount(2, user, countType, selectedDates).ToString() + "\n" +
+                                   Lang.MainPageClosedRequest + " " + db.GetRequestCount(3, user, countType, selectedDates).ToString() + "\n";
 
             var priorities = new List<PriorityType>() { PriorityType.Urgent, PriorityType.High, PriorityType.Normal,PriorityType.Low, PriorityType.Project };
 
             foreach (var item in priorities)
             {
-                statictic_str += Functions.PriorityString(item) + " " + Lang.ReportRequestNumber + " : " + db.GetRequestCount(item, user, countType) + "\n";
+                statictic_str += Functions.PriorityString(item) + " " + Lang.ReportRequestNumber + " : " + db.GetRequestCount(item, user, countType, selectedDates) + "\n";
             }
 
             startRow++;

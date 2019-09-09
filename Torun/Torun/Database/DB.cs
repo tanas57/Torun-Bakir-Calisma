@@ -364,9 +364,13 @@ namespace Torun.Database
             return result.ToList();
 
         }
-        public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType)
+        public List<WorkDoneandPlans> GetWorkDoneAndPlansForReport(User user, CountType countType, List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes = null;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -400,9 +404,13 @@ namespace Torun.Database
             return merge;
 
         }
-        public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType)
+        public List<WorkDoneList> GetWorkDoneForReport(User user, CountType countType,List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes = null;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
             var result = from done in db.WorkDones
@@ -421,9 +429,13 @@ namespace Torun.Database
             return result.ToList();
 
         }
-        public List<WeeklyPlanDetail> GetPlansForReport(User user, CountType countType)
+        public List<WeeklyPlanDetail> GetPlansForReport(User user, CountType countType, List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes = null;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
@@ -844,9 +856,13 @@ namespace Torun.Database
                          };
             return result.ToList<TodoListGrid>();
         }
-        public int GetRequestCount(byte ReqType, User user, CountType countType)
+        public int GetRequestCount(byte ReqType, User user, CountType countType, List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime timeStart = dateTimes[0];
             DateTime timeEnd = dateTimes[1];
             switch (ReqType)
@@ -857,9 +873,13 @@ namespace Torun.Database
             }
             return 0;
         }
-        public int GetRequestCount(PriorityType priorityType, User user, CountType countType)
+        public int GetRequestCount(PriorityType priorityType, User user, CountType countType, List<DateTime> selectedDates = null)
         {
-            List<DateTime> dateTimes = Functions.GetDateInterval(countType, user);
+            List<DateTime> dateTimes;
+
+            if (countType == CountType.SelectDate) dateTimes = selectedDates;
+            else dateTimes = Functions.GetDateInterval(countType, user);
+
             DateTime timeStart = dateTimes[0];
             DateTime timeEnd = dateTimes[1];
             return db.TodoLists.Where(x => x.user_id == user.id && x.add_time >= timeStart && x.add_time <= timeEnd && x.priority == (int)priorityType).Count();

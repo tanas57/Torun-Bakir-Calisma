@@ -32,7 +32,8 @@
         Weekly = 1,
         Montly = 2,
         Yearly = 3,
-        FromTheBeginning = 4
+        FromTheBeginning = 4,
+        SelectDate = 5
     }
     public enum ReportType
     {

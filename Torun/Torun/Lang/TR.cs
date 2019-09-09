@@ -383,5 +383,9 @@
         public string ReportDateStart => "Başlangıç tarihi";
         public string ReportDateStop => "Bitiş tarihi";
         public string ReportDateSelectorTitle => "Rapor Tarih Aralık Seçici";
+        public string CountTypeSelectDate => "Tarih Aralığı Seçin";
+        public string ReportDateSelectorDateMustBeSelect => "Başlangıç ve bitiş tarihi seçilmeli";
+        public string ReportDateSelectorStartBiggerThanEnd => "Başlangıç tarihi bitiş tarihinden büyük olamaz";
+        public string ReportDateIntervalReport => "Tarihli Raporlar";
     }
 }

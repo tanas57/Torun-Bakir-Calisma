@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Torun.Classes;
 using Torun.Database;
 using Torun.Lang;
 
@@ -23,14 +24,10 @@ namespace Torun.Windows.Report
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
         private ILanguage Lang { get; set; }
-        private DB DB { get; set; }
-        private User User { get; set; }
         public ReportDateSelector()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
-            DB = mainWindow.DB;
-            User = mainWindow.User;
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
@@ -54,19 +51,40 @@ namespace Torun.Windows.Report
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Title = Lang.ReportSearchTitle;
-            searchTitle.Content = Lang.ReportSearchTitle;
+            Title = Lang.ReportDateSelectorTitle;
+            searchTitle.Content = Lang.ReportDateSelectorTitle;
             dateStart.Focus();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            mainWindow.uCReport.timeIntervalSelect.SelectedIndex = 1;
             this.Close();
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dateStart.SelectedDate == null || dateEnd.SelectedDate == null)
+            {
+                MessageBox.Show(Lang.ReportDateSelectorDateMustBeSelect);
+            }
+            else
+            {
+                if (dateStart.SelectedDate.Value > dateEnd.SelectedDate.Value)
+                {
+                    MessageBox.Show(Lang.ReportDateSelectorStartBiggerThanEnd);
+                    mainWindow.uCReport.timeIntervalSelect.SelectedIndex = 1;
+                }
+                else
+                {
+                    List<DateTime> temp = new List<DateTime>();
+                    temp.Add(dateStart.SelectedDate.Value);
+                    temp.Add(dateEnd.SelectedDate.Value.AddDays(1).AddSeconds(-1));
+                    mainWindow.uCReport.timeIntervalSelect.SelectedIndex = (int)CountType.SelectDate;
+                    mainWindow.uCReport.SearchDateTimes = temp;
+                    this.Close();
+                }
+            }
         }
     }
 }

@@ -26,8 +26,8 @@ namespace Torun.UControls
         private DB DB { get; set; }
         private CountType CountType { get; set; }
         private User User { get; set; }
-        private List<DB.WorkDoneList> workDoneLists;
         private User SearchUser { get; set; }
+        public List<DateTime> SearchDateTimes { get; set; }
         public UCReport()
         {
             InitializeComponent();
@@ -61,6 +61,7 @@ namespace Torun.UControls
             timeIntervalSelect.Items.Add(Lang.SettingsRadioMonthly);
             timeIntervalSelect.Items.Add(Lang.SettingsRadioYearly);
             timeIntervalSelect.Items.Add(Lang.SettingsRadioBeforeStart);
+            timeIntervalSelect.Items.Add(Lang.CountTypeSelectDate);
 
             timeIntervalSelect.SelectedIndex = (int)Settings.DefaultReportInterval;
             planWorkdoneSelect.SelectedIndex = (int)Settings.DefaultReportListType;
@@ -99,41 +100,48 @@ namespace Torun.UControls
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            if(User.user_permission == 2)
+            if (User.user_permission == 2)
             {
-                if(UserList.SelectedItem != null)
+                if (UserList.SelectedItem != null)
                 {
                     string[] arr = UserList.SelectedItem.ToString().Split('-');
                     User user = DB.GetUserByID(int.Parse(arr[1]));
                     SearchUser = user;
                 }
+                //}
+                //if(SearchDateTimes[0] != null && SearchDateTimes[1] != null && CountType == CountType.SelectDate)
+                //{
+
+                //}
+
+                if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
+                {
+                    grid_onlyPlan.Visibility = Visibility.Visible;
+                    grid_onlyWorkdone.Visibility = Visibility.Hidden;
+                    grid_both.Visibility = Visibility.Hidden;
+                    if (SearchDateTimes != null && SearchDateTimes[0] != null && SearchDateTimes[1] != null && CountType == CountType.SelectDate) grid_onlyPlan.ItemsSource = DB.GetPlansForReport(SearchUser, CountType, SearchDateTimes);
+                    else grid_onlyPlan.ItemsSource = DB.GetPlansForReport(SearchUser, CountType);
+                }
+                else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
+                {
+                    grid_onlyPlan.Visibility = Visibility.Hidden;
+                    grid_onlyWorkdone.Visibility = Visibility.Visible;
+                    grid_both.Visibility = Visibility.Hidden;
+                    if (SearchDateTimes != null && SearchDateTimes[0] != null && SearchDateTimes[1] != null && CountType == CountType.SelectDate) grid_onlyWorkdone.ItemsSource = DB.GetWorkDoneForReport(SearchUser, CountType, SearchDateTimes);
+                    else grid_onlyWorkdone.ItemsSource = DB.GetWorkDoneForReport(SearchUser, CountType);
+                }
+                else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
+                {
+                    grid_onlyPlan.Visibility = Visibility.Hidden;
+                    grid_onlyWorkdone.Visibility = Visibility.Hidden;
+                    grid_both.Visibility = Visibility.Visible;
+                    if (SearchDateTimes != null && SearchDateTimes[0] != null && SearchDateTimes[1] != null && CountType == CountType.SelectDate) grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(SearchUser, CountType, SearchDateTimes);
+                    else grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(SearchUser, CountType);
+                }
+                btn_excel.Visibility = Visibility.Visible;
+                btn_pdf.Visibility = Visibility.Visible;
+                TorunLogo.Visibility = Visibility.Hidden;
             }
-            CountType = (CountType)timeIntervalSelect.SelectedIndex;
-            if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyPlan)
-            {
-                grid_onlyPlan.Visibility = Visibility.Visible;
-                grid_onlyWorkdone.Visibility = Visibility.Hidden;
-                grid_both.Visibility = Visibility.Hidden;
-                grid_onlyPlan.ItemsSource = DB.GetPlansForReport(SearchUser, CountType);
-            }
-            else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.OnlyWorkDone)
-            {
-                grid_onlyPlan.Visibility = Visibility.Hidden;
-                grid_onlyWorkdone.Visibility = Visibility.Visible;
-                grid_both.Visibility = Visibility.Hidden;
-                workDoneLists = DB.GetWorkDoneForReport(SearchUser, CountType);
-                grid_onlyWorkdone.ItemsSource = workDoneLists;
-            }
-            else if (planWorkdoneSelect.SelectedIndex == (int)ReportType.Both)
-            {
-                grid_onlyPlan.Visibility = Visibility.Hidden;
-                grid_onlyWorkdone.Visibility = Visibility.Hidden;
-                grid_both.Visibility = Visibility.Visible;
-                grid_both.ItemsSource = DB.GetWorkDoneAndPlansForReport(SearchUser, CountType);
-            }
-            btn_excel.Visibility = Visibility.Visible;
-            btn_pdf.Visibility = Visibility.Visible;
-            TorunLogo.Visibility = Visibility.Hidden;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -207,7 +215,9 @@ namespace Torun.UControls
             Thread.Sleep(TimeSpan.FromSeconds(2));
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                FileOperation.ExportAsPDF(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                if (SearchDateTimes != null && SearchDateTimes[0] != null && SearchDateTimes[1] != null && CountType == CountType.SelectDate) FileOperation.ExportAsPDF(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB, SearchDateTimes);
+                else FileOperation.ExportAsPDF(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+
                 reportProcess.Background = Brushes.Green;
                 reportProcess.Content = Lang.ReportProcessEnd;
             }));
@@ -218,7 +228,8 @@ namespace Torun.UControls
             Thread.Sleep(TimeSpan.FromSeconds(2));
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                FileOperation.ExportAsEXCEL(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
+                if (SearchDateTimes != null && SearchDateTimes[0] != null && SearchDateTimes[1] != null && CountType == CountType.SelectDate) FileOperation.ExportAsEXCEL(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB, SearchDateTimes);
+                else FileOperation.ExportAsEXCEL(SearchUser, CountType, (ReportType)planWorkdoneSelect.SelectedIndex, DB);
                 reportProcess.Background = Brushes.Green;
                 reportProcess.Content = Lang.ReportProcessEnd;
             }));
@@ -290,6 +301,19 @@ namespace Torun.UControls
             catch (Exception ex)
             {
                 DB.AddLog(new Log { error_page = "ucreport_gridonlyworkdone_doubleclick", error_text = ex.Message, log_user = User.id });
+            }
+        }
+
+        private void TimeIntervalSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CountType = (CountType)timeIntervalSelect.SelectedIndex;
+            if (CountType == CountType.SelectDate)
+            {
+                ReportDateSelector dateSelector = new ReportDateSelector();
+                dateSelector.Owner = mainWindow;
+                dateSelector.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                mainWindow.Opacity = 0.5;
+                dateSelector.ShowDialog();
             }
         }
     }

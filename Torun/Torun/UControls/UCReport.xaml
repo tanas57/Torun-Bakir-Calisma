@@ -28,7 +28,7 @@
                                 <Label x:Name="lblType" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="0" BorderThickness="0"/>
                                 <ComboBox x:Name="planWorkdoneSelect" Width="140" Margin="5"/>
                                 <Label x:Name="lblTime" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="5" BorderThickness="0"/>
-                                <ComboBox x:Name="timeIntervalSelect" Width="100" Margin="5"/>
+                                <ComboBox SelectionChanged="TimeIntervalSelect_SelectionChanged" x:Name="timeIntervalSelect" Width="100" Margin="5"/>
                                 <Button Width="50" x:Name="search" Click="Search_Click" Content="XXX" Style="{DynamicResource btn_weeklyPlan}" Height="33"/>
                                 
                                 <Button Visibility="Hidden" x:Name="btn_pdf" Width="90" Height="33" Style="{DynamicResource btn_weeklyPlan}" Click="Btn_pdf_Click">

@@ -309,5 +309,10 @@
         string ReportRequestStatistic { get; }
         string ReportDateStart { get; }
         string ReportDateStop { get; }
+        string ReportDateSelectorTitle { get; }
+        string CountTypeSelectDate { get; }
+        string ReportDateSelectorDateMustBeSelect { get; }
+        string ReportDateSelectorStartBiggerThanEnd { get; }
+        string ReportDateIntervalReport { get; }
     }
 }

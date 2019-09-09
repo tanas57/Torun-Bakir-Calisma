@@ -182,6 +182,9 @@
     <Compile Include="Windows\CheckList\EditRoutineWork.xaml.cs">
       <DependentUpon>EditRoutineWork.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Report\ReportDateSelector.xaml.cs">
+      <DependentUpon>ReportDateSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Report\ReportSearch.xaml.cs">
       <DependentUpon>ReportSearch.xaml</DependentUpon>
     </Compile>
@@ -276,6 +279,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CheckList\EditRoutineWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Report\ReportDateSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
