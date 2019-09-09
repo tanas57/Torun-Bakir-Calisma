@@ -380,5 +380,8 @@
         public string ReportSearchTitle => "Raporlarda Arama";
         public string ReportRequestNumber => "Talep Sayısı";
         public string ReportRequestStatistic => "Talep İstatistikleri";
+        public string ReportDateStart => "Başlangıç tarihi";
+        public string ReportDateStop => "Bitiş tarihi";
+        public string ReportDateSelectorTitle => "Rapor Tarih Aralık Seçici";
     }
 }

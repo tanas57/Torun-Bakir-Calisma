@@ -307,5 +307,7 @@
         string ReportSearchTitle { get; }
         string ReportRequestNumber { get; }
         string ReportRequestStatistic { get; }
+        string ReportDateStart { get; }
+        string ReportDateStop { get; }
     }
 }
