@@ -62,6 +62,7 @@
                     <DockPanel>
                         <Image ToolTip="xxx" x:Name="addNewWork" Cursor="Hand" MouseDown="AddNewWork_MouseDown" Source="/images/icon/red/plus.png" Width="35" Height="35" HorizontalAlignment="Left" Margin="10,0,10,0"/>
                         <Image ToolTip="xxx" x:Name="createReport" Cursor="Hand" MouseDown="CreateReport_MouseDown" Source="/images/main_screen/Report/excel.png" Width="35" Height="35" HorizontalAlignment="Left" Margin="10,0,10,0"/>
+                        <Image ToolTip="xxx" x:Name="miniSettings" Cursor="Hand" MouseDown="MiniSettings_MouseDown" Source="/images/icon/red/settings_red.png" Width="35" Height="35" HorizontalAlignment="Left" Margin="10,0,10,0"/>
                     </DockPanel>
                 </Border>
             </Grid>

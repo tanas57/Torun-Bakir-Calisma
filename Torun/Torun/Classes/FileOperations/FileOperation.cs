@@ -49,6 +49,7 @@ namespace Torun.Classes
                 names[i] = workWithUser[i-1].FullName;
             }
 
+            Setting setting = db.GetUserSettings(user);
 
             Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
 
@@ -84,7 +85,7 @@ namespace Torun.Classes
                 row++;
 
                 cell = worksheet.Cells[row, column];
-                cell.Value2 = "BİLGİ TEKNOLOJİLERİ DEPARTMANI SİSTEM VE NETWORK BİRİMİ";
+                cell.Value2 = setting.routineWorkTitle1.ToUpper();
                 cell.Font.Color = ColorGray;
                 cell.Font.Size = 9;
                 cell.Font.Name = "Calibri";
@@ -92,7 +93,7 @@ namespace Torun.Classes
                 row++;
 
                 cell = worksheet.Cells[row, column];
-                cell.Value2 = "GÜNLÜK, HAFTALIK RUTİN İŞLER TAKİP LİSTESİ";
+                cell.Value2 = setting.routineWorkTitle2.ToUpper();
                 cell.Font.Color = ColorGray;
                 cell.Font.Size = 9;
                 cell.Font.Name = "Calibri";

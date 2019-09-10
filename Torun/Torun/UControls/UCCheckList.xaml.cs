@@ -185,6 +185,7 @@ namespace Torun.UControls
             checkListNote.Content = Lang.UCCheckListNote;
             relWorkFriend.Content = Lang.UCCheckListOtherRelation;
             createReport.ToolTip = Lang.UCCheckListButtonTitle;
+            miniSettings.ToolTip = Lang.UCCheckListSettingsButton;
 
             ReloadCheckList(); // mainpage checklist load
             RefreshMainPage(); // refresh other listboxes
@@ -448,6 +449,15 @@ namespace Torun.UControls
                 RefreshMainPage(); // refresh other listboxes
                 GetChanges(); // get data from db if is it exist
             }
+        }
+
+        private void MiniSettings_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            CheckListSettings settings = new CheckListSettings();
+            settings.User = Relation;
+            settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            settings.Owner = mainWindow;
+            settings.ShowDialog();
         }
     }
 }

@@ -79,6 +79,8 @@
     <EntitySetMapping Name="Settings">
       <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Setting">
         <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="routineWorkTitle2" ColumnName="routineWorkTitle2" />
+          <ScalarProperty Name="routineWorkTitle1" ColumnName="routineWorkTitle1" />
           <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
           <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
           <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />

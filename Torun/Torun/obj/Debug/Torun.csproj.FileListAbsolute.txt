@@ -163,3 +163,5 @@ C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\Report\ReportDateSelector.baml
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\CheckList\CheckListReport.g.cs
 C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\CheckList\CheckListReport.baml
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\CheckList\CheckListSettings.g.cs
+C:\Users\tayyipmuslu\Documents\GitHub\Torun-Bakir-Calisma\Torun\Torun\obj\Debug\Windows\CheckList\CheckListSettings.baml

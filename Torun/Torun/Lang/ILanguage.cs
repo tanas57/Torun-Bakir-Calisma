@@ -316,7 +316,9 @@
         string UCCheckListButtonTitle { get; }
         string UCCheckListOrder { get; }
         string UCCheckListWorkDescription { get; }
-
+        string UCCheckListSettingsButton { get; }
+        string UCCheckListLabel { get; }
+        string UCCheckListSettingTitle { get; }
         #endregion
         
     }

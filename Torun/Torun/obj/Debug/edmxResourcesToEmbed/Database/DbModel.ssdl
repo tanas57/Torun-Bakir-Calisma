@@ -67,6 +67,8 @@
     <Property Name="set_backupTimeInterval" Type="tinyint" Nullable="false" />
     <Property Name="set_defaultReportInterval" Type="tinyint" Nullable="false" />
     <Property Name="set_defaultReportType" Type="tinyint" Nullable="false" />
+    <Property Name="routineWorkTitle1" Type="varchar" MaxLength="400" />
+    <Property Name="routineWorkTitle2" Type="varchar" MaxLength="400" />
   </EntityType>
   <EntityType Name="TodoList">
     <Key>

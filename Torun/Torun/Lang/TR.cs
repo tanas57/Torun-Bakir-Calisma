@@ -388,6 +388,9 @@
         public string UCCheckListButtonTitle => "Raporlama için tıklayın";
         public string UCCheckListOrder => "Sıra No";
         public string UCCheckListWorkDescription => "Yapılacak İşin Tanımı";
+        public string UCCheckListSettingsButton => "Rutin iş rapordaki başlıkları düzenleme";
+        public string UCCheckListLabel => "Başlık1 ve başlık2'yi düzenleyin";
+        public string UCCheckListSettingTitle => "Rutin iş ayarı";
         #endregion
     }
 }

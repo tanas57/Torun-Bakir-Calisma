@@ -72,6 +72,8 @@
           <Property Name="set_backupTimeInterval" Type="tinyint" Nullable="false" />
           <Property Name="set_defaultReportInterval" Type="tinyint" Nullable="false" />
           <Property Name="set_defaultReportType" Type="tinyint" Nullable="false" />
+          <Property Name="routineWorkTitle1" Type="varchar" MaxLength="400" />
+          <Property Name="routineWorkTitle2" Type="varchar" MaxLength="400" />
         </EntityType>
         <EntityType Name="TodoList">
           <Key>
@@ -497,6 +499,8 @@
           <Property Name="set_defaultReportInterval" Type="Byte" Nullable="false" />
           <Property Name="set_defaultReportType" Type="Byte" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Torun_PlanTracerDBModel.FK_Settings_Users" FromRole="Setting" ToRole="User" />
+          <Property Name="routineWorkTitle1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="routineWorkTitle2" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Settings_Users">
           <End Type="Torun_PlanTracerDBModel.User" Role="User" Multiplicity="1" />
@@ -671,6 +675,8 @@
           <EntitySetMapping Name="Settings">
             <EntityTypeMapping TypeName="Torun_PlanTracerDBModel.Setting">
               <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="routineWorkTitle2" ColumnName="routineWorkTitle2" />
+                <ScalarProperty Name="routineWorkTitle1" ColumnName="routineWorkTitle1" />
                 <ScalarProperty Name="set_defaultReportType" ColumnName="set_defaultReportType" />
                 <ScalarProperty Name="set_defaultReportInterval" ColumnName="set_defaultReportInterval" />
                 <ScalarProperty Name="set_backupTimeInterval" ColumnName="set_backupTimeInterval" />
