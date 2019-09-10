@@ -386,6 +386,8 @@
         public string UCCheckListRelationFull => "Sistem uyarısı : En fazla 3 kişi çalışabilmeye izin veriliyor.";
         public string UCCheckListReport => "Raporlama";
         public string UCCheckListButtonTitle => "Raporlama için tıklayın";
+        public string UCCheckListOrder => "Sıra No";
+        public string UCCheckListWorkDescription => "Yapılacak İşin Tanımı";
         #endregion
     }
 }

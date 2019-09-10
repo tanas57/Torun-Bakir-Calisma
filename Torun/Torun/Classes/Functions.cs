@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Torun.Database;
 using Torun.Lang;
+using Microsoft.Office.Interop.Excel;
 namespace Torun.Classes
 {
     public static class Functions
@@ -17,6 +18,7 @@ namespace Torun.Classes
                     timeEnd = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
                     break;
 
+                default:
                 case CountType.Weekly:
                     timeStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek + (int)DayOfWeek.Monday).Date;
                     timeEnd = timeStart.AddDays(5).Date.AddSeconds(-1);
@@ -32,7 +34,6 @@ namespace Torun.Classes
                     timeEnd = new DateTime(DateTime.Now.Year, 12, 1).AddMonths(1).AddSeconds(-1);
                     break;
 
-                default:
                 case CountType.FromTheBeginning:
                     timeStart = user.register_date;
                     timeEnd = new DateTime(DateTime.Now.Year,12, 31).AddDays(1).AddSeconds(-1);
@@ -77,6 +78,44 @@ namespace Torun.Classes
                 case StatusType.Closed: return Lang.ComboboxStatusClosed;
                 case StatusType.Edited: return Lang.ComboboxStatusEdited;
                 case StatusType.Planned: return Lang.ComboboxStatusPlanned;
+            }
+        }
+        /// <summary>
+        /// Creates a new cell with settings
+        /// </summary>
+        /// <param name="cell">Current selected cell</param>
+        /// <param name="bgColor">Cell background color</param>
+        /// <param name="fontColor">Cell font color</param>
+        /// <param name="columnWidth">Column width</param>
+        /// <param name="rowHeight">Cell row height</param>
+        /// <param name="borderColor">Cell border color if is exists</param>
+        /// <param name="value2">Cell value</param>
+        /// <param name="font">Cell font family</param>
+        /// <param name="bold">is font bold</param>
+        /// <param name="fontsize">font size</param>
+        /// <param name="textcenter">is text in cell center</param>
+        public static void ExcelCellProcess(Range cell, int bgColor, int fontColor, int borderColor, int columnWidth, int rowHeight, string value2, string font, bool bold, int fontsize, bool textcenter = false)
+        {
+            cell.Interior.Color = bgColor;
+            cell.ColumnWidth = columnWidth;
+            cell.RowHeight = rowHeight;
+            cell.Font.Color = fontColor;
+            cell.Value2 = value2;
+            cell.Font.Name = font;
+            cell.Font.Bold = bold;
+            cell.Font.Size = fontsize;
+            if(textcenter) cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignLeft;
+            if (borderColor != -1)
+            {
+                Microsoft.Office.Interop.Excel.Borders border = cell.Borders;
+                cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                border.Weight = 1d;
+                border.Color = borderColor;
+            }
+            if (textcenter)
+            {
+                cell.VerticalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
+                cell.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlVAlign.xlVAlignCenter;
             }
         }
     }

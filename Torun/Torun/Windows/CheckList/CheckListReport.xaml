@@ -42,7 +42,7 @@
                 </DockPanel>
 
                 <Button x:Name="buttonOK" Click="ButtonOK_Click" Content="XXX" Style="{DynamicResource weeklyPlanSortButtons}" Width="100"/>
-                <Label Content="XXX" Foreground="White" Background="Blue" FontSize="14" x:Name="result" Margin="3"/>
+                <Label Foreground="White" FontSize="14" x:Name="result" Margin="3"/>
             </StackPanel>
         </Border>
     </Grid>

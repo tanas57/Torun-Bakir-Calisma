@@ -314,6 +314,9 @@
         string UCCheckListRelationFull { get; }
         string UCCheckListReport { get; }
         string UCCheckListButtonTitle { get; }
+        string UCCheckListOrder { get; }
+        string UCCheckListWorkDescription { get; }
+
         #endregion
         
     }

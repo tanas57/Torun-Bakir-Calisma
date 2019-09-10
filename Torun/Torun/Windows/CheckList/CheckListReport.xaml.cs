@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Torun.Classes;
 using Torun.Lang;
+using Torun.Database;
 
 namespace Torun.Windows.CheckList
 {
@@ -22,11 +23,14 @@ namespace Torun.Windows.CheckList
     public partial class CheckListReport : Window
     {
         MainWindow mainWindow = (MainWindow)Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-        private ILanguage Lang { get; set; }
+        public ILanguage Lang { get; set; }
+        public DB DB { get; set; }
+        public User User { get; set; }
         public CheckListReport()
         {
             InitializeComponent();
             Lang = mainWindow.Lang;
+            User = mainWindow.User;
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
@@ -97,13 +101,13 @@ namespace Torun.Windows.CheckList
                         temp.Add(dateStart.SelectedDate.Value);
                         temp.Add(dateEnd.SelectedDate.Value.AddDays(1).AddSeconds(-1));
                         timeInterval.SelectedIndex = (int)CountType.SelectDate;
-                        FileOperation.CheckListExportEXCEL(mainWindow.User, (CountType)timeInterval.SelectedIndex, mainWindow.DB, temp);
+                        FileOperation.CheckListExportEXCEL(User, (CountType)timeInterval.SelectedIndex, DB, temp);
                     }
                 }
             }
             else
             {
-                FileOperation.CheckListExportEXCEL(mainWindow.User, (CountType)timeInterval.SelectedIndex, mainWindow.DB);
+                FileOperation.CheckListExportEXCEL(User, (CountType)timeInterval.SelectedIndex, DB);
             }
         }
 

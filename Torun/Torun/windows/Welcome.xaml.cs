@@ -7,8 +7,6 @@ using Torun.Classes;
 using Torun.Classes.FileOperations;
 using Torun.Classes.Keyboard;
 using Torun.Lang;
-using System.Threading;
-using System.Windows.Threading;
 
 namespace Torun.windows
 {

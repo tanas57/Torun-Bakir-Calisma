@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.Office.Core;
 using Microsoft.Office.Interop.Excel;
 using Torun.Classes.FileOperations;
 using Torun.Database;
@@ -27,37 +26,183 @@ namespace Torun.Classes
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
+            int userCount = 1;
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + @"\torun_red_mini.png";
 
             Microsoft.Office.Interop.Excel.Application excelPage = new Microsoft.Office.Interop.Excel.Application();
             
             Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
-            workbook.Sheets.Delete();
-            workbook.Sheets.Add(After: workbook.Sheets[workbook.Sheets.Count]);
 
             Worksheet worksheet = workbook.Sheets[1];
             excelPage.Visible = true;
 
-            cell = worksheet.Cells[0, 1];
+            int row = 3, column = 2;
+
+            var ColorGray = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray);
+            var ColorWhite = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.White);
+            var ColorBlack = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
+
+            // excel header starts
+            #region
+            cell = worksheet.Cells[row, column];
             cell.Value2 = "TORUN BAKIR";
-            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Red);
+            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.DarkRed);
             cell.Font.Size = 20;
+            cell.Font.Bold = true;
+            cell.Font.Name = "Calibri";
+            cell.ColumnWidth = 20;
+            row++;
 
-            cell = worksheet.Cells[1, 1];
+            cell = worksheet.Cells[row, column];
             cell.Value2 = "BİLGİ TEKNOLOJİLERİ DEPARTMANI SİSTEM VE NETWORK BİRİMİ";
-            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
-            cell.Font.Size = 15;
+            cell.Font.Color = ColorGray;
+            cell.Font.Size = 9;
+            cell.Font.Name = "Calibri";
+            cell.ColumnWidth = 20;
+            row++;
 
-            cell = worksheet.Cells[2, 1];
+            cell = worksheet.Cells[row, column];
             cell.Value2 = "GÜNLÜK, HAFTALIK RUTİN İŞLER TAKİP LİSTESİ";
-            cell.Font.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Black);
-            cell.Font.Size = 15;
+            cell.Font.Color = ColorGray;
+            cell.Font.Size = 9;
+            cell.Font.Name = "Calibri";
+            cell.ColumnWidth = 20;
 
-            worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 300, 0, 180, 60);
+            row += 2;
+            #endregion
+            // excel header ends
 
-            //Range rang2 = worksheet.Cells[startRow, 'B'];
-            //worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 180, 60);
-            //rang2.RowHeight = 58;
+            cell = worksheet.Cells[3,2];
+            cell.ColumnWidth = 20;
+            // table starts
+            #region
+            cell = worksheet.Range[worksheet.Cells[row, 2], worksheet.Cells[row, 3]];
+            cell.Merge();
+            Functions.ExcelCellProcess(cell, ColorGray, ColorBlack, ColorBlack, 70, 18, "", "Calibri", true, 8, false);
+
+            if(userCount == 2)
+            {
+                cell = worksheet.Range[worksheet.Cells[row, 4], worksheet.Cells[row, 5]];
+                cell.Merge();
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 18, 18, "ÖMER KURT", "Calibri", true, 8, true);
+
+                cell = worksheet.Range[worksheet.Cells[row, 6], worksheet.Cells[row, 7]];
+                cell.Merge();
+
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 18, 18, "ERCAN FİDAN", "Calibri", true, 8, true);
+
+                row++; column = 2;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 20, 18, Lang.UCCheckListOrder.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 50, 18, Lang.UCCheckListWorkDescription.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioDaily.ToUpper(), "Calibri", true, 8, true); ;
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioWeekly.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioDaily.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioWeekly.ToUpper(), "Calibri", true, 8, true);
+            }
+            else if(userCount == 1)
+            {
+                cell = worksheet.Range[worksheet.Cells[row, 4], worksheet.Cells[row, 5]];
+                cell.Merge();
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 18, 18, "ÖMER KURT", "Calibri", true, 8, true);
+
+                row++; column = 2;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 20, 18, Lang.UCCheckListOrder.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 50, 18, Lang.UCCheckListWorkDescription.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioDaily.ToUpper(), "Calibri", true, 8, true); ;
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioWeekly.ToUpper(), "Calibri", true, 8, true);
+                column++;
+            }
+            else if(userCount == 3)
+            {
+                cell = worksheet.Range[worksheet.Cells[row, 4], worksheet.Cells[row, 5]];
+                cell.Merge();
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 18, 18, "ÖMER KURT", "Calibri", true, 8, true);
+
+                cell = worksheet.Range[worksheet.Cells[row, 6], worksheet.Cells[row, 7]];
+                cell.Merge();
+
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 18, 18, "ERCAN FİDAN", "Calibri", true, 8, true);
+
+                cell = worksheet.Range[worksheet.Cells[row, 8], worksheet.Cells[row, 9]];
+                cell.Merge();
+
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 18, 18, "Tayyip Muslu", "Calibri", true, 8, true);
+
+                row++; column = 2;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 20, 18, Lang.UCCheckListOrder.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 50, 18, Lang.UCCheckListWorkDescription.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioDaily.ToUpper(), "Calibri", true, 8, true); ;
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioWeekly.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioDaily.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioWeekly.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioDaily.ToUpper(), "Calibri", true, 8, true);
+                column++;
+
+                cell = worksheet.Cells[row, column];
+                Functions.ExcelCellProcess(cell, ColorGray, ColorWhite, ColorBlack, 9, 18, Lang.SettingsRadioWeekly.ToUpper(), "Calibri", true, 8, true);
+
+            }
+
+            #endregion
+            // table ends
+
+            // order number and description columns width are setted.
+            cell = worksheet.Cells[8,2];
+            cell.ColumnWidth = 6;
+            cell = worksheet.Cells[8, 3];
+            cell.ColumnWidth = 45;
+
+            if(userCount == 2) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 448, 20, 80, 70);
+            else if (userCount == 1) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 344, 20, 80, 70);
+            else if (userCount == 3) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 550, 20, 80, 70);
 
         }
         public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db,List<DateTime> selectedDates = null)
@@ -97,7 +242,6 @@ namespace Torun.Classes
                     timeString = start.Date.ToShortDateString() + " - " + end.Date.ToShortDateString() + " " + Lang.ReportDateIntervalReport;
                     break;
             }
-            var Renderer = new IronPdf.HtmlToPdf();
 
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + "//torun-logo-2.png";
 
@@ -251,14 +395,10 @@ namespace Torun.Classes
 	</div>
 	</body>
 </html>";
-            
-            Renderer.PrintOptions.Footer = new HtmlHeaderFooter()
-            {
-                Height = 15,
-                HtmlFragment = "<center><i>{page} of {total-pages}<i></center>",
-                DrawDividerLine = true
-            };
-            var PDF = Renderer.RenderHtmlAsPdf(html);
+            // instantiate the html to pdf converter
+            HtmlToPdf converter = new HtmlToPdf();
+            PdfDocument doc = converter.RenderHtmlAsPdf(html);
+
             // control are the year and month directories exists
             var OutputPath = ReportFolderProcess() + @"\" + DateTime.Now.ToString("dd-MM-yyy") + "-" + FileNames.FILENAME_REPORTPDF; // create outputfile path
             int order = 1;
@@ -271,7 +411,7 @@ namespace Torun.Classes
                 }
                 else break;
             }
-            PDF.SaveAs(OutputPath);
+            doc.SaveAs(OutputPath);
             // This neat trick opens our PDF file so we can see the result in our default PDF viewer
             System.Diagnostics.Process.Start(OutputPath);
             System.Diagnostics.Process.Start(ReportFolderProcess());
