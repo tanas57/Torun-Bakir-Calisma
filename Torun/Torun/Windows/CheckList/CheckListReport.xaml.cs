@@ -64,6 +64,8 @@ namespace Torun.Windows.CheckList
             timeInterval.Items.Add(Lang.SettingsRadioBeforeStart);
             timeInterval.Items.Add(Lang.CountTypeSelectDate);
 
+            timeInterval.SelectedIndex = 1;
+
             lblTimeInterval.Content = Lang.ReportLabelTimeInterval;
             Height = 150;
             hidden1.Visibility = Visibility.Hidden;

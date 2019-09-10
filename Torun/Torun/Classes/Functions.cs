@@ -109,7 +109,7 @@ namespace Torun.Classes
             {
                 Microsoft.Office.Interop.Excel.Borders border = cell.Borders;
                 cell.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                border.Weight = 1d;
+                border.Weight = 1;
                 border.Color = borderColor;
             }
             if (textcenter)

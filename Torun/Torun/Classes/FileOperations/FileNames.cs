@@ -11,6 +11,7 @@
         public const string FILENAME_PROFILE = "profile.jpg";
         public const string FILENAME_REPORTPDF = "RaporPdf.pdf";
         public const string FILENAME_REPORTEXCEL = "RaporExcel.xlsx";
+        public const string FILENAME_REPORCHECKLIST = "RaporCheckList.xlsx";
         public const string FILENAME_TORUN = "TorunPlanTracerAPP";
         public const string FILENAME_REPORT_FOLDER = "Rapor";
         public const string FILENAME_BACKUP = "Yedek";
