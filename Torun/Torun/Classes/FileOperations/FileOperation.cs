@@ -8,11 +8,13 @@ using Microsoft.Office.Interop.Excel;
 using Torun.Classes.FileOperations;
 using Torun.Database;
 using Torun.Lang;
+using Torun.UControls;
 
 namespace Torun.Classes
 {
     public static class FileOperation
     {
+        private static List<UCCheckList.CheckListObject> GridSource { get; set; }
         public static ILanguage Lang => CurrentLanguage.Language;
         public static void CheckListExportEXCEL(User user, CountType countType, DB db, List<DateTime> selectedDates = null)
         {
@@ -26,15 +28,16 @@ namespace Torun.Classes
             DateTime start = dateTimes[0];
             DateTime end = dateTimes[1];
 
-            int userCount = 1;
+            int userCount = 3;
             string torunLogoPath = System.Windows.Forms.Application.StartupPath.ToString() + @"\torun_red_mini.png";
+            string checkBoxTick = System.Windows.Forms.Application.StartupPath.ToString() + @"\check.png";
+            string checkBoxNoTick = System.Windows.Forms.Application.StartupPath.ToString() + @"\nocheck.png";
 
             Microsoft.Office.Interop.Excel.Application excelPage = new Microsoft.Office.Interop.Excel.Application();
             
             Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
 
             Worksheet worksheet = workbook.Sheets[1];
-            excelPage.Visible = true;
 
             int row = 3, column = 2;
 
@@ -203,6 +206,116 @@ namespace Torun.Classes
             if(userCount == 2) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 448, 20, 80, 70);
             else if (userCount == 1) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 344, 20, 80, 70);
             else if (userCount == 3) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 550, 20, 80, 70);
+
+            // user work records
+            var works = db.GetRoutineWorks(user);
+            GridSource = new List<UCCheckList.CheckListObject>();
+            for (int i = 0; i < works.Count; i++) GridSource.Add(new UCCheckList.CheckListObject());
+            // fill the table with data from database
+            string user2 = user.id.ToString();
+            RoutineWorkRecord user_record = db.GetCheckListRecord(user, DateTime.Now.Date);
+            if (user_record != null)
+            {
+                string[] ids = user_record.work_Ticks.Split('*');
+
+                for (int i = 1; i < ids.Length; i++)
+                {
+                    string[] workID_parse = ids[i].Split(':');
+
+                    int work_id = int.Parse(workID_parse[0]);
+
+                    string[] parse = workID_parse[1].Split(',');
+                    GridSource[i - 1].WorkID = work_id;
+                    GridSource[i - 1].Order = i;
+                    GridSource[i - 1].WorkDescription = works.Find(x => x.id == work_id).work_description;
+                    GridSource[i - 1].Daily1 = bool.Parse(parse[0]);
+                    GridSource[i - 1].Weekly1 = bool.Parse(parse[1]);
+                    GridSource[i - 1].Daily2 = bool.Parse(parse[2]);
+                    GridSource[i - 1].Weekly2 = bool.Parse(parse[3]);
+                    GridSource[i - 1].Daily3 = bool.Parse(parse[4]);
+                    GridSource[i - 1].Weekly3 = bool.Parse(parse[5]);
+                }
+            }
+
+            row++;
+            Microsoft.Office.Interop.Excel.OLEObjects objs = worksheet.OLEObjects();
+            int top = 139;
+            
+            foreach (var item in GridSource)
+            {
+                column = 2;
+                if(userCount == 1)
+                {
+                    cell = worksheet.Cells[row, column];
+                    Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, ColorBlack, 6, 18, item.Order.ToString(), "Calibri", true, 8, true);
+                    column++;
+
+                    cell = worksheet.Cells[row, column];
+                    Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription.ToString(), "Calibri", false, 8, true);
+                    column++;
+
+                    if(item.Daily1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
+
+                    if (item.Weekly1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 420, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 420, top, 16, 16);
+                }
+                else if (userCount == 2)
+                {
+                    cell = worksheet.Cells[row, column];
+                    Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, ColorBlack, 6, 18, item.Order.ToString(), "Calibri", true, 8, true);
+                    column++;
+
+                    cell = worksheet.Cells[row, column];
+                    Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription.ToString(), "Calibri", false, 8, true);
+                    column++;
+
+                    if (item.Daily1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
+
+                    if (item.Weekly1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 420, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 420, top, 16, 16);
+
+                    if (item.Daily2) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 470, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 470, top, 16, 16);
+
+                    if (item.Weekly2) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 520, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 520, top, 16, 16);
+                }
+                else if (userCount == 3)
+                {
+                    cell = worksheet.Cells[row, column];
+                    Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, ColorBlack, 6, 18, item.Order.ToString(), "Calibri", true, 8, true);
+                    column++;
+
+                    cell = worksheet.Cells[row, column];
+                    Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription.ToString(), "Calibri", false, 8, true);
+                    column++;
+
+                    if (item.Daily1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
+
+                    if (item.Weekly1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 420, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 420, top, 16, 16);
+
+                    if (item.Daily2) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 470, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 470, top, 16, 16);
+
+                    if (item.Weekly2) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 520, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 520, top, 16, 16);
+
+                    if (item.Daily3) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 570, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 570, top, 16, 16);
+
+                    if (item.Weekly3) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 620, top, 16, 16);
+                    else worksheet.Shapes.AddPicture(checkBoxNoTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 620, top, 16, 16);
+                }
+
+                row++; top += 18;
+            }
+
+
+            excelPage.Visible = true;
 
         }
         public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db,List<DateTime> selectedDates = null)

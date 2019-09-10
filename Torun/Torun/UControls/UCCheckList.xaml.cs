@@ -22,7 +22,7 @@ namespace Torun.UControls
         public ILanguage Lang { get; set; }
         public DB DB { get; set; }
         public User User { get; set; }
-        private User Relation { get; set; }
+        public User Relation { get; set; }
         private List<CheckListObject> GridSource { get; set; }
         private List<RoutineWork> RoutineWorks { get; set; }
         private int WorkCount { get; set; }
@@ -48,7 +48,7 @@ namespace Torun.UControls
                 DB.AddLog(new Log { error_page = "ucchecklist_constructor", error_text = ex.Message, log_user = User.id });
             }
         }
-        private class CheckListObject
+        public class CheckListObject
         {
             public int WorkID { get; set; }
             public int Order { get; set; }

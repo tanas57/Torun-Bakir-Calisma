@@ -60,6 +60,13 @@ namespace Torun.Database
             // req num priority plan date workdone date
             public DateTime WorkDoneDate { get; set; }
         }
+        public string CheckListDescriptionByID(int id)
+        {
+            var result = db.RoutineWorks.SingleOrDefault(x => x.id == id);
+            if (result != null) return result.work_description;
+
+            return String.Empty;
+        }
         public List<WeeklyPlanDetail> ReportSearchButton(User user, string query)
         {
             // search all plans and todolist
