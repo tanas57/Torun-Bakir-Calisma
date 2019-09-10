@@ -202,7 +202,10 @@ namespace Torun
                 mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
                 mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
 
-                if (Settings.AutoBackup)
+                if(User.user_permission != 2) btnBackup.Visibility = Visibility.Hidden;
+
+
+                if (Settings.AutoBackup && User.user_permission == 2)
                 {
                     timer.Interval = TimeSpan.FromHours(1);
                     timer.IsEnabled = true;
