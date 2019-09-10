@@ -80,47 +80,50 @@ namespace Torun.UControls
         {
             try
             {
-                RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, CurrentDate);
-                if (user_record != null)
+                if(WorkCount > 0)
                 {
-                    string[] ids = user_record.work_Ticks.Split('*');
-
-                    for (int i = 1; i < ids.Length; i++)
+                    RoutineWorkRecord user_record = DB.GetCheckListRecord(Relation, CurrentDate);
+                    if (user_record != null)
                     {
-                        string[] workID_parse = ids[i].Split(':');
+                        string[] ids = user_record.work_Ticks.Split('*');
 
-                        int work_id = int.Parse(workID_parse[0]);
-
-                        if (GridSource == null) break; // bug fix
-
-                        for (int j = 0; j < GridSource.Count; j++)
+                        for (int i = 1; i < ids.Length; i++)
                         {
-                            if (GridSource[j].WorkID == work_id)
-                            {
-                                string[] parse = workID_parse[1].Split(',');
+                            string[] workID_parse = ids[i].Split(':');
 
-                                GridSource[j].Daily1 = bool.Parse(parse[0]);
-                                GridSource[j].Weekly1 = bool.Parse(parse[1]);
-                                GridSource[j].Daily2 = bool.Parse(parse[2]);
-                                GridSource[j].Weekly2 = bool.Parse(parse[3]);
-                                GridSource[j].Daily3 = bool.Parse(parse[4]);
-                                GridSource[j].Weekly3 = bool.Parse(parse[5]);
-                                break;
+                            int work_id = int.Parse(workID_parse[0]);
+
+                            if (GridSource == null) break; // bug fix
+
+                            for (int j = 0; j < GridSource.Count; j++)
+                            {
+                                if (GridSource[j].WorkID == work_id)
+                                {
+                                    string[] parse = workID_parse[1].Split(',');
+
+                                    GridSource[j].Daily1 = bool.Parse(parse[0]);
+                                    GridSource[j].Weekly1 = bool.Parse(parse[1]);
+                                    GridSource[j].Daily2 = bool.Parse(parse[2]);
+                                    GridSource[j].Weekly2 = bool.Parse(parse[3]);
+                                    GridSource[j].Daily3 = bool.Parse(parse[4]);
+                                    GridSource[j].Weekly3 = bool.Parse(parse[5]);
+                                    break;
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    // add new record
-                    string ticks = "";
-                    for (int i = 0; i < GridSource.Count; i++)
+                    else
                     {
-                        GridSource[i].Daily1 = false; GridSource[i].Daily2 = false; GridSource[i].Daily3 = false;
-                        GridSource[i].Weekly1 = false; GridSource[i].Weekly2 = false; GridSource[i].Weekly3 = false;
-                        ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
+                        // add new record
+                        string ticks = "";
+                        for (int i = 0; i < GridSource.Count; i++)
+                        {
+                            GridSource[i].Daily1 = false; GridSource[i].Daily2 = false; GridSource[i].Daily3 = false;
+                            GridSource[i].Weekly1 = false; GridSource[i].Weekly2 = false; GridSource[i].Weekly3 = false;
+                            ticks += "*" + GridSource[i].WorkID + ":" + GridSource[i].Daily1 + "," + GridSource[i].Weekly1 + "," + GridSource[i].Daily2 + "," + GridSource[i].Weekly2 + "," + GridSource[i].Daily3 + "," + GridSource[i].Weekly3 + ",";
+                        }
+                        DB.AddCheckListRecord(Relation, ticks, CurrentDate);
                     }
-                    DB.AddCheckListRecord(Relation, ticks, CurrentDate);
                 }
             }
             catch (Exception ex)
