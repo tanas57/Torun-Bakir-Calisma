@@ -74,7 +74,7 @@
                 </Border>
                 <Border Grid.Column="1">
                     <StackPanel>
-                        <StackPanel>
+                        <StackPanel x:Name="backupSettings">
                             <Label x:Name="titleAutoBackup" Content="XXX" Style="{DynamicResource textBlockTitle}"/>
                             <GroupBox x:Name="groupAutoBackup" Header="XXX" Padding="7,20,7,20">
                                 <ItemsControl>

@@ -68,6 +68,8 @@ namespace Torun.UControls
             autoBackupCheck.Content = Lang.SettingsAutoBackupActive;
             autoOpen.Content = Lang.SettingsOpenSetting;
 
+            if (User.user_permission != 2) backupSettings.Visibility = Visibility.Hidden;
+
             switch ((CountType)UserSettings.set_countType)
             {
                 case CountType.Daily: radioDaily.IsChecked = true;break;
