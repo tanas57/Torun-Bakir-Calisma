@@ -79,7 +79,9 @@ CREATE TABLE Settings(
 	set_backupTimeInterval TINYINT NOT NULL DEFAULT 1, -- 1 : WEEKLY
 	set_defaultReportInterval TINYINT NOT NULL DEFAULT 2, -- 2 : MONTHLY
 	set_defaultReportType TINYINT NOT NULL DEFAULT 2, -- 2 : TODOLIST AND WORKDONE
-	backup_last_id INT NOT NULL DEFAULT 1
+	backup_last_id INT NOT NULL DEFAULT 1,
+	routineWorkTitle1 VARCHAR(400),
+	routineWorkTitle2 VARCHAR(400)
 );
 
 alter table Settings
