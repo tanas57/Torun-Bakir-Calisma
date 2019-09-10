@@ -9,6 +9,8 @@ using System.Windows.Input;
 using Torun.Classes;
 using Torun.Lang;
 using Torun.Database;
+using System.Windows.Media;
+using System.Threading;
 
 namespace Torun.Windows.CheckList
 {
@@ -78,10 +80,12 @@ namespace Torun.Windows.CheckList
         {
             this.Close();
         }
-
+        private List<DateTime> tempDate = new List<DateTime>();
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
-            if(timeInterval.SelectedIndex == (int)CountType.SelectDate)
+            Thread thread = new Thread(new ThreadStart(Report));
+            
+            if (timeInterval.SelectedIndex == (int)CountType.SelectDate)
             {
                 if (dateStart.SelectedDate == null || dateEnd.SelectedDate == null)
                 {
@@ -95,20 +99,38 @@ namespace Torun.Windows.CheckList
                     }
                     else
                     {
-                        List<DateTime> temp = new List<DateTime>();
-                        temp.Add(dateStart.SelectedDate.Value);
-                        temp.Add(dateEnd.SelectedDate.Value.AddDays(1).AddSeconds(-1));
+                        tempDate.Add(dateStart.SelectedDate.Value);
+                        tempDate.Add(dateEnd.SelectedDate.Value.AddDays(1).AddSeconds(-1));
                         timeInterval.SelectedIndex = (int)CountType.SelectDate;
-                        FileOperation.CheckListExportEXCEL(User, (CountType)timeInterval.SelectedIndex, DB, temp);
+
+                        result.Content = Lang.ReportProcessStart;
+                        result.Background = Brushes.Blue;
+                        thread.Start();
                     }
                 }
             }
             else
             {
-                FileOperation.CheckListExportEXCEL(User, (CountType)timeInterval.SelectedIndex, DB);
+                result.Content = Lang.ReportProcessStart;
+                result.Background = Brushes.Blue;
+                thread.Start();
             }
         }
-
+        private void Report()
+        {
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                if (tempDate.Count > 0)
+                {
+                    FileOperation.CheckListExportEXCEL(User, (CountType)timeInterval.SelectedIndex, DB, tempDate);
+                    tempDate.Clear();
+                }
+                else FileOperation.CheckListExportEXCEL(User, (CountType)timeInterval.SelectedIndex, DB);
+                result.Content = Lang.ReportProcessEnd;
+                result.Background = Brushes.Green;
+            }));
+        }
         private void TimeInterval_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(timeInterval.SelectedIndex == (int)CountType.SelectDate)
