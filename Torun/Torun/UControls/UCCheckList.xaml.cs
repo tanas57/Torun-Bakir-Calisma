@@ -91,6 +91,8 @@ namespace Torun.UControls
 
                         int work_id = int.Parse(workID_parse[0]);
 
+                        if (GridSource == null) break; // bug fix
+
                         for (int j = 0; j < GridSource.Count; j++)
                         {
                             if (GridSource[j].WorkID == work_id)
