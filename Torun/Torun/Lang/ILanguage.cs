@@ -320,6 +320,8 @@
         string UCCheckListLabel { get; }
         string UCCheckListSettingTitle { get; }
         #endregion
+
+        string HelpPageTitle { get; }
         
     }
 }

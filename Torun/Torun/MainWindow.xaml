@@ -105,6 +105,12 @@
                                 <Label x:Name="mainPage_menuBackup" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
                             </DockPanel>
                         </Button>
+                        <Button x:Name="btnHelp" Height="50" Style="{DynamicResource menuButtons}" Click="BtnHelp_Click">
+                            <DockPanel Width="200" Margin="15,0,0,0">
+                                <Image Source="/images/icon/red/help.png" Width="32"/>
+                                <Label x:Name="mainPage_menuHelp" Content="XXX" Foreground="Black" FontSize="16" FontFamily="Ebrima"/>
+                            </DockPanel>
+                        </Button>
 
                         <Canvas x:Name="version">
                             <Border Canvas.Left="10" Canvas.Top="88" CornerRadius="10,10,10,10">

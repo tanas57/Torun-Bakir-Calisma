@@ -15,5 +15,6 @@
         public const string FILENAME_TORUN = "TorunPlanTracerAPP";
         public const string FILENAME_REPORT_FOLDER = "Rapor";
         public const string FILENAME_BACKUP = "Yedek";
+        public const string FILENAME_HELP = "TorunBTSoftwareHelp.docx";
     }
 }

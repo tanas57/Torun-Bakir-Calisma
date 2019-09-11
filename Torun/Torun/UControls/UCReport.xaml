@@ -49,7 +49,6 @@
                 </Border>
                 <Border x:Name="adminRow" Visibility="Hidden" Grid.Row="1" Background="#B0151E" BorderBrush="White" BorderThickness="0,3,0,0">
                     <DockPanel>
-                        <Label Margin="3" Content="ADMIN" VerticalContentAlignment="Center" FontFamily="arial" Foreground="Red" FontSize="22" Background="White"/>
                         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Label x:Name="userSelectLBL" Content="XXX" Style="{DynamicResource label_weeklyPlan}" FontSize="12" Margin="0" BorderThickness="0"/>
                             <ComboBox x:Name="UserList" Width="140" Margin="5"/>

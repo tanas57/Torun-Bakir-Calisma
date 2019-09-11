@@ -475,6 +475,7 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="images\icon\red\help.png" />
     <Resource Include="images\torun_red_mini.png" />
     <Resource Include="images\icon\search.png" />
     <Resource Include="images\icon\red\plus.png" />

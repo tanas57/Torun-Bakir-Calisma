@@ -8,6 +8,7 @@ using Torun.UControls;
 using Torun.Database;
 using Torun.Lang;
 using System.Windows.Threading;
+using Torun.Classes.FileOperations;
 
 namespace Torun
 {
@@ -201,6 +202,7 @@ namespace Torun
                 mainPage_menuReport.Content = Lang.MainPageMenuReport;
                 mainPage_menuBackup.Content = Lang.MainPageMenuBackup;
                 mainPage_menuSettings.Content = Lang.MainPageMenuSettings;
+                mainPage_menuHelp.Content = Lang.HelpPageTitle;
 
                 if(User.user_permission != 2) btnBackup.Visibility = Visibility.Hidden;
 
@@ -324,6 +326,14 @@ namespace Torun
         {
             if (UCCheckList == null) UserControllCall.Add(Grd_Content, UCCheckList = new UCCheckList());
             else UserControllCall.Add(Grd_Content, UCCheckList);
+        }
+
+        private void BtnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            string helpPath = System.Windows.Forms.Application.StartupPath.ToString() + @"\" + FileNames.FILENAME_HELP;
+
+            if (FileOperation.FileExists(FileNames.FILENAME_HELP, true))
+                System.Diagnostics.Process.Start(helpPath);
         }
     }
 }

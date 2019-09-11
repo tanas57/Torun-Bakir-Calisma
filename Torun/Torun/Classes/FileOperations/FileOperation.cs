@@ -235,7 +235,7 @@ namespace Torun.Classes
                 else if (userCount == 1) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 344, 20, 80, 70);
                 else if (userCount == 3) worksheet.Shapes.AddPicture(torunLogoPath, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 550, 20, 80, 70);
 
-                
+
                 GridSource = new List<UCCheckList.CheckListObject>();
                 for (int i = 0; i < works.Count; i++) GridSource.Add(new UCCheckList.CheckListObject());
                 // fill the table with data from database
@@ -251,9 +251,13 @@ namespace Torun.Classes
                         int work_id = int.Parse(workID_parse[0]);
 
                         string[] parse = workID_parse[1].Split(',');
+
+                        if (GridSource == null) continue; // bug fix
+                        if (GridSource[i - 1] == null) continue; // bug fix
+
                         GridSource[i - 1].WorkID = work_id;
                         GridSource[i - 1].Order = i;
-                        GridSource[i - 1].WorkDescription = works.Find(x => x.id == work_id).work_description;
+                        GridSource[i - 1].WorkDescription = db.CheckListDescriptionByID(work_id);
                         GridSource[i - 1].Daily1 = bool.Parse(parse[0]);
                         GridSource[i - 1].Weekly1 = bool.Parse(parse[1]);
                         GridSource[i - 1].Daily2 = bool.Parse(parse[2]);
@@ -267,8 +271,10 @@ namespace Torun.Classes
                 Microsoft.Office.Interop.Excel.OLEObjects objs = worksheet.OLEObjects();
                 int top = 139;
 
-                foreach (var item in GridSource)
+                for (int i = 0; i < GridSource.Count; i++)
                 {
+                    var item = GridSource[i];
+
                     column = 2;
                     if (userCount == 1)
                     {
@@ -277,7 +283,7 @@ namespace Torun.Classes
                         column++;
 
                         cell = worksheet.Cells[row, column];
-                        Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, ColorBlack, 50, 18, item.WorkDescription.ToString(), "Calibri", false, 8, true);
+                        Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, ColorBlack, 50, 18, item.WorkDescription, "Calibri", false, 8, true);
                         column++;
 
                         cell = worksheet.Cells[row, column];
@@ -300,7 +306,7 @@ namespace Torun.Classes
                         column++;
 
                         cell = worksheet.Cells[row, column];
-                        Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription.ToString(), "Calibri", false, 8, true);
+                        Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription, "Calibri", false, 8, true);
                         column++;
 
                         if (item.Daily1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
@@ -322,7 +328,7 @@ namespace Torun.Classes
                         column++;
 
                         cell = worksheet.Cells[row, column];
-                        Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription.ToString(), "Calibri", false, 8, true);
+                        Functions.ExcelCellProcess(cell, ColorWhite, ColorBlack, -1, 50, 18, item.WorkDescription, "Calibri", false, 8, true);
                         column++;
 
                         if (item.Daily1) worksheet.Shapes.AddPicture(checkBoxTick, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 369, top, 16, 16);
@@ -867,8 +873,11 @@ namespace Torun.Classes
             {
                 openFileDialog.Filter = "Image files | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
                 openFileDialog.Multiselect = false;
-                File.Delete(ProfilePhotoPath());
-                File.Copy(openFileDialog.FileName, ProfilePhotoPath());
+                if(openFileDialog.FileName != String.Empty)
+                {
+                    File.Delete(ProfilePhotoPath());
+                    File.Copy(openFileDialog.FileName, ProfilePhotoPath());
+                }
             }
         }
         public static string UserFilename { get; set; }
@@ -900,9 +909,9 @@ namespace Torun.Classes
             return String.Empty;
         }
 
-        public static bool FileExists(string filename)
+        public static bool FileExists(string filename, bool withoutUser = false)
         {
-            return File.Exists(getFilePath(filename));
+            return File.Exists(getFilePath(filename, withoutUser));
         }
         /// <summary>
         /// initially creates a directory for user documents

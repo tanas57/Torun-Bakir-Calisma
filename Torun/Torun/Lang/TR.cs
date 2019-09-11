@@ -392,5 +392,7 @@
         public string UCCheckListLabel => "Başlık1 ve başlık2'yi düzenleyin";
         public string UCCheckListSettingTitle => "Rutin iş ayarı";
         #endregion
+
+        public string HelpPageTitle => "Yardım";
     }
 }
