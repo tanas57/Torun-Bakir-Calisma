@@ -53,8 +53,8 @@ namespace Torun.Classes
 
             Workbook workbook = excelPage.Workbooks.Add(Type.Missing);
 
-            workbook.Worksheets[1].Delete();
-            workbook.Worksheets[1].Delete();
+            //workbook.Worksheets[1].Delete();
+            //workbook.Worksheets[1].Delete();
 
             // user work records
             var works = db.GetRoutineWorks(user);
@@ -268,7 +268,6 @@ namespace Torun.Classes
                 }
 
                 row++;
-                Microsoft.Office.Interop.Excel.OLEObjects objs = worksheet.OLEObjects();
                 int top = 139;
 
                 for (int i = 0; i < GridSource.Count; i++)
@@ -386,7 +385,7 @@ namespace Torun.Classes
             }
 
             // save excel file to user folder
-            workbook.SaveAs(outputFilePath, XlFileFormat.xlOpenXMLWorkbook, Type.Missing,
+            workbook.SaveAs(outputFilePath, XlFileFormat.xlWorkbookDefault, Type.Missing,
             Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange,
             XlSaveConflictResolution.xlUserResolution, true,
             Type.Missing, Type.Missing, Type.Missing);
@@ -394,7 +393,7 @@ namespace Torun.Classes
             workbook.Close();
             excelPage.Quit();
             System.Diagnostics.Process.Start(outputFilePath);
-            System.Diagnostics.Process.Start(ReportFolderProcess());
+            //System.Diagnostics.Process.Start(ReportFolderProcess());
         }
         public static void ExportAsPDF(User user, CountType countType, ReportType reportType, DB db, List<DateTime> selectedDates = null)
         {
